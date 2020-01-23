@@ -12,6 +12,12 @@ app = Flask(__name__)
 def home():
     return 'hii...there 3!!!'
 
+@app.route("/stationslistversion", methods=['GET'])
+def stationslistversion():
+    ans={
+        "version":"1.0.0"
+    }
+    return jsonify(ans)
 
 @app.route("/level/<code>")
 def level(code):
@@ -21,7 +27,7 @@ def level(code):
 @app.route("/trains/<board>/<destination>", methods=['GET'])
 def listoftrains(board, destination):
     ans = []
-    with open('./trains.csv', 'rt') as file:
+    with open('../datasets/trains.csv', 'rt') as file:
         reader = csv.reader(file)
         for row in reader:
             flag = 0
@@ -69,7 +75,7 @@ def listofstations():
     flag = 0
 
     ans = []
-    with open('./stations.csv', 'rt') as file:
+    with open('../datasets/stations.csv', 'rt') as file:
         reader = csv.reader(file)
         for row in reader:
             if flag == 0:
@@ -86,3 +92,4 @@ def listofstations():
 
 if __name__ == '__main__':
     app.run()
+list
