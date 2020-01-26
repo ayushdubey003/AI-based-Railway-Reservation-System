@@ -47,6 +47,11 @@ def listoftrains(board, destination):
                     namedRoutes = row[6].split("$")
                     codedRoutes = row[7].split("$")
                     days = row[2].split(" ")
+                    rt = row[10].split("$")
+                    sld = row[11].split("$")
+                    sd = row[12].split("$")
+                    can = row[13].split("$")
+
                     ans.append({
                             "train no": row[0],
                             "train name": row[1],
@@ -57,7 +62,11 @@ def listoftrains(board, destination):
                             "route with names": namedRoutes,
                             "route with codes": codedRoutes,
                             "arrival times": arr,
-                            "departure times": dept
+                            "departure times": dept,
+                            "right time" : rt,
+                            "slight delay" : sld,
+                            "significant delay" : sd,
+                            "cancelled/unknown" : can
                         })
                     break
 
@@ -69,7 +78,7 @@ def listofstations():
     flag = 0
 
     ans = []
-    with open('../datasets/stationsModified.csv', 'rt') as file:
+    with open('../datasets/stations.csv', 'rt') as file:
         reader = csv.reader(file)
         for row in reader:
             if flag == 0:
