@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,24 +20,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
+import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment {
 
-    private ImageView mSourceCircle, mDestinationCircle, mClearSource, mClearDestination;
+    private ImageView mSourceCircle, mDestinationCircle, mClearSource, mClearDestination, mReverseIv;
     private CardView mSourceCodeCard, mDestinationCodeCard;
     private TextView mSourceCodeTv, mDestinationCodeTv;
     private EditText mSourceEt, mDestinationEt;
     private String mSource, mDestination;
     private View mVerticalLine;
+    private RelativeLayout mRl;
+    private static final String LOG_TAG = "Home Fragment";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,9 +75,66 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        receiveClicks();
     }
 
-    private void init(View view) {
+    private void receiveClicks() {
+        mRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RotateAnimation rotate = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                rotate.setDuration(500);
+                rotate.setInterpolator(new LinearInterpolator());
+                mReverseIv.startAnimation(rotate);
+                rotate.setFillAfter(true);
+                AppConstants.mTempStation = AppConstants.mSourceStation;
+                AppConstants.mSourceStation = AppConstants.mDestinationStation;
+                AppConstants.mDestinationStation = AppConstants.mTempStation;
+
+                try {
+                    mSourceEt.setText(AppConstants.mSourceStation.getmStationName());
+                    mSourceCodeTv.setText(AppConstants.mSourceStation.getmStationCode());
+                    mSourceCodeCard.setVisibility(View.VISIBLE);
+                    mClearSource.setVisibility(View.VISIBLE);
+                } catch (Exception e) {
+                    mSourceEt.setText("");
+                    mSourceCodeCard.setVisibility(View.GONE);
+                    mClearSource.setVisibility(View.GONE);
+                    Log.e(LOG_TAG, e.getLocalizedMessage());
+                }
+
+                try {
+                    mDestinationEt.setText(AppConstants.mDestinationStation.getmStationName());
+                    mDestinationCodeTv.setText(AppConstants.mDestinationStation.getmStationCode());
+                    mDestinationCodeCard.setVisibility(View.VISIBLE);
+                    mClearDestination.setVisibility(View.VISIBLE);
+                } catch (Exception e) {
+                    mDestinationEt.setText("");
+                    mDestinationCodeCard.setVisibility(View.GONE);
+                    mClearDestination.setVisibility(View.GONE);
+                    Log.e(LOG_TAG, e.getLocalizedMessage());
+                }
+            }
+        });
+        mSourceEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                intent.putExtra("type", 1);
+                startActivity(intent);
+            }
+        });
+        mDestinationEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                intent.putExtra("type", 2);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void init(final View view) {
         mSourceCircle = view.findViewById(R.id.source_circle);
         mDestinationCircle = view.findViewById(R.id.destination_circle);
         mClearSource = view.findViewById(R.id.clear_iv_source);
@@ -77,6 +146,8 @@ public class HomeFragment extends Fragment {
         mSourceEt = view.findViewById(R.id.source_et);
         mDestinationEt = view.findViewById(R.id.destination_et);
         mVerticalLine = view.findViewById(R.id.vertical_line);
+        mRl = view.findViewById(R.id.reverse_rl);
+        mReverseIv = view.findViewById(R.id.reverse_iv);
 
         mSourceCircle.setColorFilter(Color.parseColor("#43A047"));
         mDestinationCircle.setColorFilter(Color.parseColor("#ff0000"));
@@ -105,10 +176,11 @@ public class HomeFragment extends Fragment {
         FrameLayout.LayoutParams lP = (FrameLayout.LayoutParams) view.getLayoutParams();
         int height = lP.height;
         ValueAnimator valueAnimator;
-        if(height == 0)
-            valueAnimator = animateView(view,700,0,(int)AppConstants.convertDpToPixel(53,getContext()));
+        if (height == 0)
+            valueAnimator = animateView(view, 700, 0, (int) AppConstants.convertDpToPixel(55, getContext()));
         else
-            valueAnimator = animateView(view,700,(int)AppConstants.convertDpToPixel(53,getContext()),0);
+            valueAnimator = animateView(view, 700, (int) AppConstants.convertDpToPixel(55, getContext()), 0);
+
         valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationCancel(Animator animation) {
@@ -120,9 +192,9 @@ public class HomeFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        animateViewRecursiveCall(view,700);
+                        animateViewRecursiveCall(view, 700);
                     }
-                },500);
+                }, 500);
             }
 
             @Override
@@ -146,5 +218,31 @@ public class HomeFragment extends Fragment {
             }
         });
         valueAnimator.start();
+    }
+
+    private void animateWhileReducingMargin(View view, int i) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            mSourceEt.setText(AppConstants.mSourceStation.getmStationName());
+            mClearSource.setVisibility(View.VISIBLE);
+            mSourceCodeTv.setText(AppConstants.mSourceStation.getmStationCode());
+            mSourceCodeCard.setVisibility(View.VISIBLE);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getLocalizedMessage());
+        }
+
+        try {
+            mDestinationEt.setText(AppConstants.mDestinationStation.getmStationName());
+            mClearDestination.setVisibility(View.VISIBLE);
+            mDestinationCodeTv.setText(AppConstants.mDestinationStation.getmStationCode());
+            mDestinationCodeCard.setVisibility(View.VISIBLE);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getLocalizedMessage());
+        }
     }
 }

@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
                 mPort = port.getText().toString();
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putBoolean(AppConstants.mDataGiven, true);
-                AppConstants.mUrl = "http://" + mIP + ":" + mPort;
+                AppConstants.mUrl = "https://" + mIP + ":" + mPort;
                 editor.putString(AppConstants.mUrlSaved, AppConstants.mUrl);
                 editor.apply();
                 Log.e(LOG_TAG, AppConstants.mUrl);

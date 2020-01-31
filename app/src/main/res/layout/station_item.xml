@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_train_black_24dp"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/station_name"
+            style="@style/internal_fonts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:gravity="left"
+            android:textColor="#000"
+            android:textSize="16sp"
+            tools:text="Gorakhpur Jn"></TextView>
+
+        <TextView
+            android:id="@+id/station_code"
+            style="@style/internal_fonts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:gravity="left"
+            android:textAllCaps="true"
+            android:textColor="#a9a9a9"
+            android:textSize="12sp"
+            tools:text="GKP"></TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -16,7 +16,7 @@ public class Station {
         return mStationName;
     }
 
-    public String getmStationCoordinates() {
+    public String getmStationCode() {
         return mStationCode;
     }
 
