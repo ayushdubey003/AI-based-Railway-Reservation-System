@@ -80,6 +80,8 @@ public class NetworkRequests {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (progressDialog.isShowing())
+                    progressDialog.hide();
                 Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
