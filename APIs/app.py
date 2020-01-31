@@ -6,18 +6,18 @@ app = Flask(__name__)
 #     reader = csv.reader(file)
 #     # for row in reader:
 #     #     print(row)
-
+app.run(host="0.0.0.0", port=5000, debug=True)
 
 @app.route("/")
 def home():
     return 'hii...there 3!!!'
 
-@app.route("/stationslistversion", methods=['GET'])
+@app.route("/list/version", methods=['GET'])
 def stationslistversion():
     ans={
         "version":"1.0.0"
     }
-    return jsonify(ans)
+    return ans
 
 @app.route("/level/<code>")
 def level(code):

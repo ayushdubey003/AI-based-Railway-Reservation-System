@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Railway Reservation System</string>
+    <string name="app_name_og">Ticket Reservation System</string>
+    <string name="app_name_og_abb">TRS</string>
 </resources>
