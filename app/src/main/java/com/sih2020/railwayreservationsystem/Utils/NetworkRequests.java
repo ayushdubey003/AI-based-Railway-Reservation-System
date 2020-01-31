@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+import com.sih2020.railwayreservationsystem.Activities.MainActivity;
 import com.sih2020.railwayreservationsystem.Models.Station;
 
 import org.json.JSONArray;
@@ -39,11 +40,14 @@ public class NetworkRequests {
     private CoordinatorLayout mCL;
     private Context mContext;
     private SharedPreferences mSharedPreferences;
+    private MainActivity mainActivity;
+    private String version;
 
-    public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context) {
+    public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, MainActivity mainActivity) {
         mCL = coordinatorLayout;
         mContext = context;
         mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
+        this.mainActivity = mainActivity;
     }
 
     public void fetchVersionNumber() {
@@ -57,16 +61,13 @@ public class NetworkRequests {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String version = response.getString("version");
+                            version = response.getString("version");
 
                             String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
                             int res = mContext.checkCallingOrSelfPermission(permission);
                             if (progressDialog.isShowing())
                                 progressDialog.hide();
                             if (!mSharedPreferences.getString(AppConstants.mStationsListVersionNo, "").equals(version)) {
-                                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                                editor.putString(AppConstants.mStationsListVersionNo, version);
-                                editor.apply();
                                 fetchStationsList();
                             } else if (res != PackageManager.PERMISSION_GRANTED)
                                 fetchStationsList();
@@ -147,6 +148,9 @@ public class NetworkRequests {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(data.getBytes());
                 fileOutputStream.close();
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putString(AppConstants.mStationsListVersionNo, version);
+                editor.apply();
             } catch (Exception e) {
                 Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
@@ -168,5 +172,6 @@ public class NetworkRequests {
         } catch (Exception e) {
             Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
         }
+        mainActivity.dataFetchComplete();
     }
 }

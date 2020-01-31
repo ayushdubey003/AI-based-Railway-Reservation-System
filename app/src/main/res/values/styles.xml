@@ -16,4 +16,11 @@
         <item name="android:fontFamily">@font/opensans</item>
     </style>
 
+    <style name="tab_appearance" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/opensans</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
