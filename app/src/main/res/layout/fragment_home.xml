@@ -16,33 +16,32 @@
         app:cardCornerRadius="@dimen/cardview_default_elevation"
         app:cardElevation="@dimen/cardview_default_elevation">
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/source_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="16dp">
 
                 <ImageView
                     android:id="@+id/source_circle"
-                    android:layout_width="0dp"
+                    android:layout_width="9dp"
                     android:layout_height="9dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="0.5"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="16dp"
                     android:src="@drawable/circle"></ImageView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/source_cv"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="2"
+                    android:layout_toRightOf="@id/source_circle"
                     android:visibility="gone"
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="@dimen/cardview_default_radius">
@@ -52,7 +51,7 @@
                         style="@style/internal_fonts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:paddingLeft="4dp"
                         android:paddingTop="0dp"
                         android:paddingRight="4dp"
@@ -67,9 +66,10 @@
                 <EditText
                     android:id="@+id/source_et"
                     style="@style/internal_fonts"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/source_cv"
                     android:layout_weight="9"
                     android:background="@null"
                     android:editable="false"
@@ -77,142 +77,464 @@
                     android:hint="Source Station"
                     android:maxLines="1"
                     android:paddingLeft="8dp"
-                    android:paddingBottom="16dp"
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:textSize="18sp"></EditText>
 
                 <ImageView
                     android:id="@+id/clear_iv_source"
-                    android:layout_width="0dp"
+                    android:layout_width="18dp"
                     android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="0.5"
                     android:src="@drawable/ic_close_black_24dp"
                     android:visibility="gone"></ImageView>
 
-            </LinearLayout>
+                <View
+                    android:id="@+id/vertical_line"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/source_circle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dp"
+                    android:background="@color/bluishShadeColor"></View>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="60dp"
-                android:background="#a9a9a9"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="78dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/destination_circle"
-                    android:layout_width="0dp"
-                    android:layout_height="9dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/circle"></ImageView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/destination_cv"
-                    android:layout_width="0dp"
+                <FrameLayout
+                    android:id="@+id/reverse_rl"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="2"
-                    android:visibility="gone"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    app:cardCornerRadius="@dimen/cardview_default_radius">
+                    android:layout_below="@id/source_et"
+                    android:layout_gravity="right">
 
-                    <TextView
-                        android:id="@+id/destination_tv"
+                    <View
+                        android:id="@+id/seperator1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#a9a9a9"></View>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="32dp">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:src="@drawable/circle"
+                            android:tint="@color/bluishShadeColor"></ImageView>
+
+                        <ImageView
+                            android:id="@+id/reverse_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_import_export_black_24dp"></ImageView>
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:id="@+id/destination_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reverse_rl">
+
+                    <ImageView
+                        android:id="@+id/destination_circle"
+                        android:layout_width="9dp"
+                        android:layout_height="9dp"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/circle"></ImageView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/destination_cv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/destination_circle"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/colorPrimary"
+                        app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                        <TextView
+                            android:id="@+id/destination_tv"
+                            style="@style/internal_fonts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="4dp"
+                            android:paddingTop="0dp"
+                            android:paddingRight="4dp"
+                            android:paddingBottom="0dp"
+                            android:singleLine="true"
+                            android:text="ANVT"
+                            android:textAllCaps="true"
+                            android:textColor="#fff"
+                            android:textSize="14sp"></TextView>
+                    </androidx.cardview.widget.CardView>
+
+                    <EditText
+                        android:id="@+id/destination_et"
                         style="@style/internal_fonts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="0dp"
-                        android:paddingRight="4dp"
-                        android:paddingBottom="0dp"
-                        android:singleLine="true"
-                        android:text="ANVT"
-                        android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:textSize="14sp"></TextView>
-                </androidx.cardview.widget.CardView>
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/destination_cv"
+                        android:background="@null"
+                        android:editable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="Destination Station"
+                        android:maxLines="1"
+                        android:paddingLeft="8dp"
+                        android:paddingBottom="16dp"
+                        android:textCursorDrawable="@drawable/cursor_drawable"
+                        android:textSize="18sp"></EditText>
 
-                <EditText
-                    android:id="@+id/destination_et"
-                    style="@style/internal_fonts"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/clear_iv_destination"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_close_black_24dp"
+                        android:visibility="gone"></ImageView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/destination_ll"
+                    android:background="#a9a9a9"></View>
+
+                <RelativeLayout
+                    android:id="@+id/journey_date_tv"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="9"
-                    android:background="@null"
-                    android:editable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="Destination Station"
-                    android:maxLines="1"
-                    android:paddingLeft="8dp"
-                    android:paddingBottom="16dp"
-                    android:textCursorDrawable="@drawable/cursor_drawable"
-                    android:textSize="18sp"></EditText>
+                    android:layout_below="@id/destination_ll"
+                    android:layout_marginTop="8dp">
 
-                <ImageView
-                    android:id="@+id/clear_iv_destination"
-                    android:layout_width="0dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/ic_close_black_24dp"
-                    android:visibility="gone"></ImageView>
+                    <ImageView
+                        android:id="@+id/calender_icon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/ic_date_range_black_24dp"
+                        android:tint="@color/colorPrimary"></ImageView>
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/calender_icon"
+                        android:text="Journey Date"
+                        android:textColor="#626262"
+                        android:textSize="12dp"></TextView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="23dp"
-                android:layout_marginTop="120dp"
-                android:background="#a9a9a9"></View>
+                </RelativeLayout>
 
-            <View
-                android:id="@+id/vertical_line"
-                android:layout_width="1dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="41dp"
-                android:background="@color/bluishShadeColor"></View>
+                <RelativeLayout
+                    android:id="@+id/date_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/journey_date_tv"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp">
 
-            <RelativeLayout
-                android:id="@+id/reverse_rl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="44dp"
-                android:layout_marginEnd="32dp"
-                android:elevation="8dp">
+                    <TextView
+                        android:id="@+id/date_tv"
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14"
+                        android:textColor="#222222"
+                        android:textSize="28sp"
+                        android:textStyle="bold"></TextView>
 
-                <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/circle"
-                    android:tint="@color/bluishShadeColor"></ImageView>
+                    <LinearLayout
+                        android:id="@+id/day_month_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/date_tv"
+                        android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/reverse_iv"
+                        <TextView
+                            android:id="@+id/day_tv"
+                            style="@style/font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Fri"
+                            android:textColor="#626262"
+                            android:textSize="12sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/month_tv"
+                            style="@style/font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/date_tv"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="-4dp"
+                            android:text="February"
+                            android:textColor="#626262"
+                            android:textSize="12sp"
+                            android:textStyle="bold"></TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/day_big_tv"
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="Today"
+                        android:textColor="#222222"
+                        android:textSize="28sp"
+                        android:textStyle="bold"></TextView>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/seperator_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/date_rl"
+                    android:layout_marginTop="8dp"
+                    android:background="#a9a9a9"></View>
+
+                <RelativeLayout
+                    android:id="@+id/class_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/seperator_2"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/class_tv"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="4dp"
+                        android:text="₹"
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <TextView
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/class_tv"
+                        android:text="Class"
+                        android:textColor="#626262"
+                        android:textSize="12dp"></TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/class_rl_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/class_rl"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                            <TextView
+                                style="@style/font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="2dp"
+                                android:paddingRight="16dp"
+                                android:paddingBottom="2dp"
+                                android:text="SL"
+                                android:textAllCaps="true"
+                                android:textColor="#fff"
+                                android:textStyle="bold"></TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <Spinner
+                            android:id="@+id/class_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="14dp"
+                            android:spinnerMode="dropdown"></Spinner>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/seperator_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/class_rl_spinner"
+                    android:layout_marginTop="8dp"
+                    android:background="#a9a9a9"></View>
+
+                <RelativeLayout
+                    android:id="@+id/quota_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/seperator_3"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/quota_icon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/ic_pie_chart_black_24dp"
+                        android:tint="@color/colorPrimary"></ImageView>
+
+                    <TextView
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/quota_icon"
+                        android:text="Quota"
+                        android:textColor="#626262"
+                        android:textSize="12dp"></TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/quota_rl_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/quota_rl"
+                    android:layout_marginLeft="16dp                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                            <TextView
+                                style="@style/font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="2dp"
+                                android:paddingRight="16dp"
+                                android:paddingBottom="2dp"
+                                android:text="GN"
+                                android:textAllCaps="true"
+                                android:textColor="#fff"
+                                android:textStyle="bold"></TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <Spinner
+                            android:id="@+id/class_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:spinnerMode="dropdown"></Spinner>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/seperator_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/quota_rl_spinner"
+                    android:layout_marginTop="8dp"
+                    android:background="#a9a9a9"
+                    android:visibility="visible"></View>
+
+
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_import_export_black_24dp"></ImageView>
+                    android:layout_below="@id/seperator_4"
+                    android:layout_marginTop="8dp"
+                    style="@style/internal_fonts"
+                    android:textColor="#626262"
+                    android:textSize="18sp"
+                    android:id="@+id/date_flexible"
+                    android:text="Flexible with Date"></CheckBox>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/date_flexible"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/bluishShadeColor"
+                    app:cardCornerRadius="@dimen/cardview_default_radius"
+                    app:cardElevation="@dimen/cardview_default_elevation">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_search_black_24dp"></ImageView>
+
+                        <TextView
+                            style="@style/font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:text="Find Seat Availability"
+                            android:textColor="#fff"
+                            android:textSize="18sp"
+                            android:textStyle="bold"></TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
 
-        </FrameLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </FrameLayout>

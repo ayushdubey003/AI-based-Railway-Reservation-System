@@ -3,6 +3,7 @@ package com.sih2020.railwayreservationsystem.Fragments;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,6 +29,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -40,18 +45,28 @@ import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
     private ImageView mSourceCircle, mDestinationCircle, mClearSource, mClearDestination, mReverseIv;
     private CardView mSourceCodeCard, mDestinationCodeCard;
-    private TextView mSourceCodeTv, mDestinationCodeTv;
+    private TextView mSourceCodeTv, mDestinationCodeTv, mDateTv, mMonthTv, mDayTvAbbreviated, mDayTv;
     private EditText mSourceEt, mDestinationEt;
     private String mSource, mDestination;
     private View mVerticalLine;
-    private RelativeLayout mRl;
+    private FrameLayout mRl;
+    private RelativeLayout mDateRl;
     private static final String LOG_TAG = "Home Fragment";
+    private DatePickerDialog.OnDateSetListener mDate;
+    private Calendar mCalendar;
+    private CheckBox mDateFlexible;
+    private String mDayOfTheWeek, mDay, mMonth, mDateNum;
 
 
     public HomeFragment() {
@@ -158,6 +173,31 @@ public class HomeFragment extends Fragment {
                 mDestinationCodeCard.setVisibility(View.GONE);
             }
         });
+
+        mDateRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), mDate,
+                        mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH),
+                        mCalendar.get(Calendar.DAY_OF_MONTH));
+                dialog.show();
+            }
+        });
+
+        mDateFlexible.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mDateRl.setAlpha(0.2f);
+                    mDateRl.setClickable(false);
+                }
+                else {
+                    mDateRl.setAlpha(1.0f);
+                    mDateRl.setClickable(true);
+                }
+            }
+        });
     }
 
     private void init(final View view) {
@@ -174,50 +214,115 @@ public class HomeFragment extends Fragment {
         mVerticalLine = view.findViewById(R.id.vertical_line);
         mRl = view.findViewById(R.id.reverse_rl);
         mReverseIv = view.findViewById(R.id.reverse_iv);
+        mDateRl = view.findViewById(R.id.date_rl);
+        mDateTv = view.findViewById(R.id.date_tv);
+        mMonthTv = view.findViewById(R.id.month_tv);
+        mDayTv = view.findViewById(R.id.day_big_tv);
+        mDayTvAbbreviated = view.findViewById(R.id.day_tv);
+        mDateFlexible = view.findViewById(R.id.date_flexible);
+        mCalendar = Calendar.getInstance();
+        getCurrentDate();
+
+        mDate = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, monthOfYear);
+                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                Log.e(LOG_TAG, monthOfYear + " " + dayOfMonth + " " + year + " " + mCalendar.get(Calendar.DAY_OF_WEEK));
+                updateJourneyDate();
+
+            }
+
+        };
 
         mSourceCircle.setColorFilter(Color.parseColor("#43A047"));
         mDestinationCircle.setColorFilter(Color.parseColor("#ff0000"));
         animateViewRecursiveCall(mVerticalLine, 700);
     }
 
+    private void getCurrentDate() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Date date = mCalendar.getTime();
+        try {
+            date = sdf.parse(sdf.format(mCalendar.getTime()));
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getLocalizedMessage());
+        }
+        setDate(date);
+    }
+
+    private void setDate(Date date) {
+        mDayOfTheWeek = (String) DateFormat.format("EEEE", date);
+        mDateNum = (String) DateFormat.format("dd", date);
+        mMonth = (String) DateFormat.format("MMMM", date);
+        mDay = (String) DateFormat.format("EE", date);
+
+        mDayTvAbbreviated.setText(mDay);
+        mDayTv.setText(mDayOfTheWeek);
+        mMonthTv.setText(mMonth);
+        mDateTv.setText(mDateNum);
+    }
+
+    private void updateJourneyDate() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Date date = null;
+        try {
+            date = sdf.parse(sdf.format(mCalendar.getTime()));
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getLocalizedMessage());
+        }
+        setDate(date);
+    }
+
     private ValueAnimator animateView(final View view, long duration, int initialHeight, int finalHeight) {
-        FrameLayout.LayoutParams lP = (FrameLayout.LayoutParams) view.getLayoutParams();
+        RelativeLayout.LayoutParams lP = (RelativeLayout.LayoutParams) view.getLayoutParams();
         ValueAnimator anim = ValueAnimator.ofInt(initialHeight, finalHeight);
-            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int val = (Integer) valueAnimator.getAnimatedValue();
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-                    layoutParams.height = val;
-                    try {
-                        layoutParams.width = (int) AppConstants.convertDpToPixel(1.0f, getContext());
-                    }
-                    catch (Exception e)
-                    {
-                        return;
-                    }
-                    view.setLayoutParams(layoutParams);
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int val = (Integer) valueAnimator.getAnimatedValue();
+                int u = (int) AppConstants.convertDpToPixel(30, getContext());
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                layoutParams.height = val;
+
+                if (val < u)
+                    mVerticalLine.setBackgroundColor(Color.parseColor("#43A047"));
+                else
+                    mVerticalLine.setBackgroundColor(Color.parseColor("#ff0000"));
+
+                try {
+                    layoutParams.width = (int) AppConstants.convertDpToPixel(1.0f, getContext());
+                } catch (Exception e) {
+                    return;
                 }
-            });
+                view.setLayoutParams(layoutParams);
+            }
+        });
         anim.setDuration(duration);
         anim.setInterpolator(new LinearInterpolator());
         return anim;
     }
 
     private void animateViewRecursiveCall(final View view, long duration) {
-        FrameLayout.LayoutParams lP = (FrameLayout.LayoutParams) view.getLayoutParams();
+        RelativeLayout.LayoutParams lP = (RelativeLayout.LayoutParams) view.getLayoutParams();
         int height = lP.height;
         ValueAnimator valueAnimator;
         if (height == 0)
             try {
-                valueAnimator = animateView(view, 700, 0, (int) AppConstants.convertDpToPixel(55, getContext()));
+                valueAnimator = animateView(view, 700, 0, (int) AppConstants.convertDpToPixel(45, getContext()));
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getLocalizedMessage());
                 return;
             }
         else {
             try {
-                valueAnimator = animateView(view, 700, (int) AppConstants.convertDpToPixel(55, getContext()), 0);
+                valueAnimator = animateView(view, 700, (int) AppConstants.convertDpToPixel(45, getContext()), 0);
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getLocalizedMessage());
                 return;
