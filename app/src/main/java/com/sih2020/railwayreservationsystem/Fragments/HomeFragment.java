@@ -17,7 +17,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -29,6 +31,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +52,7 @@ public class HomeFragment extends Fragment {
     private View mVerticalLine;
     private RelativeLayout mRl;
     private static final String LOG_TAG = "Home Fragment";
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -116,6 +120,7 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
         mSourceEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,12 +129,33 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         mDestinationEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchTrains.class);
                 intent.putExtra("type", 2);
                 startActivity(intent);
+            }
+        });
+
+        mClearSource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppConstants.mSourceStation = null;
+                mSourceEt.setText("");
+                mClearSource.setVisibility(View.GONE);
+                mSourceCodeCard.setVisibility(View.GONE);
+            }
+        });
+
+        mClearDestination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppConstants.mDestinationStation = null;
+                mDestinationEt.setText("");
+                mClearDestination.setVisibility(View.GONE);
+                mDestinationCodeCard.setVisibility(View.GONE);
             }
         });
     }
@@ -157,16 +183,22 @@ public class HomeFragment extends Fragment {
     private ValueAnimator animateView(final View view, long duration, int initialHeight, int finalHeight) {
         FrameLayout.LayoutParams lP = (FrameLayout.LayoutParams) view.getLayoutParams();
         ValueAnimator anim = ValueAnimator.ofInt(initialHeight, finalHeight);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                int val = (Integer) valueAnimator.getAnimatedValue();
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-                layoutParams.height = val;
-                layoutParams.width = (int) AppConstants.convertDpToPixel(1.0f, getContext());
-                view.setLayoutParams(layoutParams);
-            }
-        });
+            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    int val = (Integer) valueAnimator.getAnimatedValue();
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+                    layoutParams.height = val;
+                    try {
+                        layoutParams.width = (int) AppConstants.convertDpToPixel(1.0f, getContext());
+                    }
+                    catch (Exception e)
+                    {
+                        return;
+                    }
+                    view.setLayoutParams(layoutParams);
+                }
+            });
         anim.setDuration(duration);
         anim.setInterpolator(new LinearInterpolator());
         return anim;
@@ -177,9 +209,20 @@ public class HomeFragment extends Fragment {
         int height = lP.height;
         ValueAnimator valueAnimator;
         if (height == 0)
-            valueAnimator = animateView(view, 700, 0, (int) AppConstants.convertDpToPixel(55, getContext()));
-        else
-            valueAnimator = animateView(view, 700, (int) AppConstants.convertDpToPixel(55, getContext()), 0);
+            try {
+                valueAnimator = animateView(view, 700, 0, (int) AppConstants.convertDpToPixel(55, getContext()));
+            } catch (Exception e) {
+                Log.e(LOG_TAG, e.getLocalizedMessage());
+                return;
+            }
+        else {
+            try {
+                valueAnimator = animateView(view, 700, (int) AppConstants.convertDpToPixel(55, getContext()), 0);
+            } catch (Exception e) {
+                Log.e(LOG_TAG, e.getLocalizedMessage());
+                return;
+            }
+        }
 
         valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override

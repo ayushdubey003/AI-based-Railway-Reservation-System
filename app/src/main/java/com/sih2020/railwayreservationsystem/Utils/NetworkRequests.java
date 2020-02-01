@@ -2,7 +2,6 @@ package com.sih2020.railwayreservationsystem.Utils;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -52,9 +51,6 @@ public class NetworkRequests {
 
     public void fetchVersionNumber() {
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
-        progressDialog.setMessage("Initializing");
-        progressDialog.show();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, AppConstants.mUrl + "/list/version", null,
                 new Response.Listener<JSONObject>() {
@@ -65,8 +61,6 @@ public class NetworkRequests {
 
                             String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
                             int res = mContext.checkCallingOrSelfPermission(permission);
-                            if (progressDialog.isShowing())
-                                progressDialog.hide();
                             if (!mSharedPreferences.getString(AppConstants.mStationsListVersionNo, "").equals(version)) {
                                 fetchStationsList();
                             } else if (res != PackageManager.PERMISSION_GRANTED)
@@ -74,14 +68,14 @@ public class NetworkRequests {
                             else
                                 readFromFile();
                         } catch (JSONException e) {
+                            readFromFile();
                             Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (progressDialog.isShowing())
-                    progressDialog.hide();
+                readFromFile();
                 Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
@@ -108,6 +102,7 @@ public class NetworkRequests {
             br.close();
         } catch (IOException e) {
             Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+            mainActivity.dataFetchComplete();
         }
         parseData(data.toString());
     }
@@ -115,22 +110,17 @@ public class NetworkRequests {
     private void fetchStationsList() {
         RequestQueue queue = Volley.newRequestQueue(mContext);
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
-        progressDialog.setMessage("Fetching stations...");
-        progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, AppConstants.mUrl + "/list",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (progressDialog.isShowing())
-                            progressDialog.hide();
                         writeToFile(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                mainActivity.dataFetchComplete();
             }
         });
 
@@ -155,6 +145,7 @@ public class NetworkRequests {
                 editor.apply();
             } catch (Exception e) {
                 Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                mainActivity.dataFetchComplete();
             }
         }
         parseData(data);

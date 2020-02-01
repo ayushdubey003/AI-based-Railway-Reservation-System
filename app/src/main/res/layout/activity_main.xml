@@ -7,40 +7,61 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/toolbar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"></include>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            style="@style/font"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                app:tabTextAppearance="@style/tab_appearance"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="top"
-                android:elevation="16dp"
-                app:tabIndicatorColor="#fff"
-                app:tabSelectedTextColor="#fff"
-                app:tabTextColor="#eeeeee" />
+            <include
+                layout="@layout/toolbar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></include>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/view_pager"
+            <LinearLayout
+                style="@style/font"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="top"
+                    android:elevation="16dp"
+                    app:tabIndicatorColor="#fff"
+                    app:tabSelectedTextColor="#fff"
+                    app:tabTextAppearance="@style/tab_appearance"
+                    app:tabTextColor="#eeeeee" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress_bar_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"></ProgressBar>
+
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

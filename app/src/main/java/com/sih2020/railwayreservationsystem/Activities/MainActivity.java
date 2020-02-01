@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
     private TextView mAppBarTv;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private ProgressBar mProgressBar;
+    private RelativeLayout mMain, mProgressRl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         setContentView(R.layout.activity_main);
 
         init();
+
         if (mSharedPreferences.getBoolean(AppConstants.mDataGiven, false)) {
             AppConstants.mUrl = mSharedPreferences.getString(AppConstants.mUrlSaved, "");
             askPermissions();
@@ -115,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
                 mPort = port.getText().toString();
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putBoolean(AppConstants.mDataGiven, true);
-                AppConstants.mUrl = "https://" + mIP + ":" + mPort;
+                AppConstants.mUrl = "http://" + mIP + ":" + mPort;
                 editor.putString(AppConstants.mUrlSaved, AppConstants.mUrl);
                 editor.apply();
                 Log.e(LOG_TAG, AppConstants.mUrl);
@@ -135,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         mViewPager = findViewById(R.id.view_pager);
         mAllPermissions = new ArrayList<>();
         mAllPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        networkRequests = new NetworkRequests(mCL, this, new MainActivity());
+        networkRequests = new NetworkRequests(mCL, this, MainActivity.this);
+        mProgressBar = findViewById(R.id.progress_bar);
+        mMain = findViewById(R.id.main_layout);
+        mProgressRl = findViewById(R.id.progress_bar_rl);
 
         mTabLayout.setBackground(mGradientDrawable);
         mAppBar.setBackground(mGradientDrawable);
@@ -145,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         mTabLayout.setOnTabSelectedListener(MainActivity.this);
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(3);
+        mProgressRl.setVisibility(View.VISIBLE);
+        mMain.setAlpha(0.2f);
     }
 
     private void askPermissions() {
@@ -161,7 +173,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
                             // open Settings activity
                             showSettingsDialog();
                         }
-                        networkRequests.fetchVersionNumber();
+                        if (!AppConstants.mDataFetchCalled) {
+                            networkRequests.fetchVersionNumber();
+
+                            AppConstants.mDataFetchCalled = true;
+                        }
                     }
 
                     @Override
@@ -204,12 +220,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
     }
 
     public void dataFetchComplete() {
-
+        mProgressRl.setVisibility(View.GONE);
+        mMain.setAlpha(1.0f);
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        LinearLayout tabLayout = (LinearLayout)((ViewGroup) mTabLayout.getChildAt(0)).getChildAt(tab.getPosition());
+        LinearLayout tabLayout = (LinearLayout) ((ViewGroup) mTabLayout.getChildAt(0)).getChildAt(tab.getPosition());
         TextView tabTextView = (TextView) tabLayout.getChildAt(1);
         tabTextView.setTypeface(tabTextView.getTypeface(), Typeface.BOLD);
         mViewPager.setCurrentItem(tab.getPosition());

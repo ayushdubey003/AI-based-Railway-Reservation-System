@@ -17,6 +17,7 @@ public class AppConstants {
     public static Station mSourceStation;
     public static Station mDestinationStation;
     public static Station mTempStation;
+    public static boolean mDataFetchCalled = false;
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

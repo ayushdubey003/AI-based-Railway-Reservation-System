@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Fragments.HomeFragment">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +23,9 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -71,6 +72,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_weight="9"
                     android:background="@null"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="Source Station"
                     android:maxLines="1"
                     android:paddingLeft="8dp"
@@ -99,8 +102,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="78dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -147,6 +150,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_weight="9"
                     android:background="@null"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="Destination Station"
                     android:maxLines="1"
                     android:paddingLeft="8dp"
@@ -169,32 +174,32 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="120dp"
                 android:layout_marginLeft="23dp"
+                android:layout_marginTop="120dp"
                 android:background="#a9a9a9"></View>
 
             <View
                 android:id="@+id/vertical_line"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="41dp"
                 android:layout_width="1dp"
                 android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="41dp"
                 android:background="@color/bluishShadeColor"></View>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
                 android:id="@+id/reverse_rl"
-                android:elevation="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginEnd="32dp"
                 android:layout_marginTop="44dp"
-                android:layout_height="wrap_content">
+                android:layout_marginEnd="32dp"
+                android:elevation="8dp">
 
                 <ImageView
                     android:layout_width="38dp"
                     android:layout_height="38dp"
-                    android:tint="@color/bluishShadeColor"
-                    android:src="@drawable/circle"></ImageView>
+                    android:src="@drawable/circle"
+                    android:tint="@color/bluishShadeColor"></ImageView>
 
                 <ImageView
                     android:id="@+id/reverse_iv"
@@ -208,5 +213,6 @@
         </FrameLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </FrameLayout>
