@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="items">
+        <item>Executive Anubhuti</item>
+        <item>AC Executive Class</item>
+        <item>Second AC</item>
+        <item>First Class</item>
+        <item>Third AC</item>
+        <item>Third AC Economy</item>
+        <item>AC Chair Car</item>
+        <item>Sleeper</item>
+        <item>Second Seating</item>
+    </string-array>
+</resources>

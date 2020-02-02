@@ -2,10 +2,13 @@ package com.sih2020.railwayreservationsystem.Utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Pair;
 
+import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.Models.Station;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AppConstants {
     public static String mUrl;
@@ -18,6 +21,12 @@ public class AppConstants {
     public static Station mDestinationStation;
     public static Station mTempStation;
     public static boolean mDataFetchCalled = false;
+    public static ArrayList<SpinnerModel> mTravelClasses = new ArrayList<>();
+    public static ArrayList<SpinnerModel> mTravelQuotas = new ArrayList<>();
+    public static SpinnerModel mQuota;
+    public static SpinnerModel mClass;
+    public static Date mDate;
+    public static boolean mUseDate = true;
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

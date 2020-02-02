@@ -117,8 +117,8 @@ def listoftrains(board, destination):
 
     return jsonify(trains=ans)
 
-@app.route("/trains/<board>/<destination>/<doj>", methods=['GET'])
-def listoftrainsdaywise(board, destination,doj):
+@app.route("/trains/<board>/<destination>/<doj>/<travelclass>", methods=['GET'])
+def listoftrainsdaywise(board, destination,doj,travelclass):
     ans = []
 
     if(True):
@@ -152,7 +152,14 @@ def listoftrainsdaywise(board, destination,doj):
                                 z=True
                                 break
 
-                        if((len(days) == 1 and days[0].lower() == "daily") or z):
+                        k = False
+
+                        for tc in classes:
+                            if tc.lower() == travelclass.lower():
+                                k = True
+                                break
+
+                        if(((len(days) == 1 and days[0].lower() == "daily") or z) and k):
                             ans.append({
                                     "train no": row[0],
                                     "train name": row[1],

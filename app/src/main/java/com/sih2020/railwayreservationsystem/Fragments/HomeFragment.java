@@ -29,6 +29,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -38,9 +39,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
+import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
 import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -67,6 +70,9 @@ public class HomeFragment extends Fragment {
     private Calendar mCalendar;
     private CheckBox mDateFlexible;
     private String mDayOfTheWeek, mDay, mMonth, mDateNum;
+    private Spinner mClassSpinner, mQuotaSpinner;
+    private SpinnerAdapter mClassAdapter, mQuotaAdapter;
+    private LinearLayout mSearchTrains;
 
 
     public HomeFragment() {
@@ -188,14 +194,47 @@ public class HomeFragment extends Fragment {
         mDateFlexible.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     mDateRl.setAlpha(0.2f);
                     mDateRl.setClickable(false);
-                }
-                else {
+                    AppConstants.mUseDate = false;
+                } else {
                     mDateRl.setAlpha(1.0f);
                     mDateRl.setClickable(true);
+                    AppConstants.mUseDate = true;
                 }
+            }
+        });
+
+        mClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e(LOG_TAG, AppConstants.mTravelClasses.get(position).getmAbbreviation());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mQuotaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e(LOG_TAG, AppConstants.mTravelQuotas.get(position).getmAbbreviation());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mSearchTrains.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = AppConstants.mUrl + "/trains/"+AppConstants.mSourceStation.getmStationCode()+"/"+AppConstants.mDestinationStation.getmStationCode()+"/"+mDay+"/"+AppConstants.mClass.getmAbbreviation().trim();
+                Log.e(LOG_TAG,url);
             }
         });
     }
@@ -220,7 +259,17 @@ public class HomeFragment extends Fragment {
         mDayTv = view.findViewById(R.id.day_big_tv);
         mDayTvAbbreviated = view.findViewById(R.id.day_tv);
         mDateFlexible = view.findViewById(R.id.date_flexible);
+        mClassSpinner = view.findViewById(R.id.class_spinner);
+        mQuotaSpinner = view.findViewById(R.id.quota_spinner);
+        mSearchTrains = view.findViewById(R.id.search_trains);
+
+        mClassAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelClasses);
+        mClassSpinner.setAdapter(mClassAdapter);
+        mQuotaAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelQuotas);
+        mQuotaSpinner.setAdapter(mQuotaAdapter);
         mCalendar = Calendar.getInstance();
+        AppConstants.mClass = AppConstants.mTravelClasses.get(0);
+        AppConstants.mQuota = AppConstants.mTravelQuotas.get(0);
         getCurrentDate();
 
         mDate = new DatePickerDialog.OnDateSetListener() {
@@ -266,6 +315,7 @@ public class HomeFragment extends Fragment {
         mDayTv.setText(mDayOfTheWeek);
         mMonthTv.setText(mMonth);
         mDateTv.setText(mDateNum);
+        AppConstants.mDate = date;
     }
 
     private void updateJourneyDate() {

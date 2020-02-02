@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="@dimen/cardview_default_radius">
+
+        <TextView
+            android:id="@+id/card_tv"
+            style="@style/font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingTop="2dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="2dp"
+            android:singleLine="true"
+            android:text="SL"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textStyle="bold"></TextView>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/full"
+        style="@style/internal_fonts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/card"
+        android:textColor="#000"
+        android:textSize="18sp"
+        tools:text="Sleeper"></TextView>
+
+</RelativeLayout>

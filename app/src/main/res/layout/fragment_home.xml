@@ -38,7 +38,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/source_cv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@id/source_circle"
@@ -51,7 +51,7 @@
                         style="@style/internal_fonts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:paddingLeft="4dp"
                         android:paddingTop="0dp"
                         android:paddingRight="4dp"
@@ -152,7 +152,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/destination_cv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="64dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
@@ -166,7 +166,7 @@
                             style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
+                            android:layout_gravity="center"
                             android:paddingLeft="4dp"
                             android:paddingTop="0dp"
                             android:paddingRight="4dp"
@@ -357,33 +357,11 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/colorPrimary"
-                            app:cardCornerRadius="@dimen/cardview_default_radius">
-
-                            <TextView
-                                style="@style/font"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingLeft="16dp"
-                                android:paddingTop="2dp"
-                                android:paddingRight="16dp"
-                                android:paddingBottom="2dp"
-                                android:text="SL"
-                                android:textAllCaps="true"
-                                android:textColor="#fff"
-                                android:textStyle="bold"></TextView>
-
-                        </androidx.cardview.widget.CardView>
-
                         <Spinner
                             android:id="@+id/class_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="14dp"
+                            android:layout_marginLeft="8dp"
                             android:spinnerMode="dropdown"></Spinner>
 
                     </LinearLayout>
@@ -439,30 +417,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/colorPrimary"
-                            app:cardCornerRadius="@dimen/cardview_default_radius">
-
-                            <TextView
-                                style="@style/font"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingLeft="16dp"
-                                android:paddingTop="2dp"
-                                android:paddingRight="16dp"
-                                android:paddingBottom="2dp"
-                                android:text="GN"
-                                android:textAllCaps="true"
-                                android:textColor="#fff"
-                                android:textStyle="bold"></TextView>
-
-                        </androidx.cardview.widget.CardView>
-
                         <Spinner
-                            android:id="@+id/class_spinner"
+                            android:id="@+id/quota_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
@@ -483,15 +439,15 @@
 
 
                 <CheckBox
+                    android:id="@+id/date_flexible"
+                    style="@style/internal_fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/seperator_4"
                     android:layout_marginTop="8dp"
-                    style="@style/internal_fonts"
+                    android:text="Flexible with Date"
                     android:textColor="#626262"
-                    android:textSize="18sp"
-                    android:id="@+id/date_flexible"
-                    android:text="Flexible with Date"></CheckBox>
+                    android:textSize="18sp"></CheckBox>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/search_button"
@@ -504,9 +460,13 @@
                     app:cardElevation="@dimen/cardview_default_elevation">
 
                     <LinearLayout
+                        android:id="@+id/search_trains"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center"
+                        android:hapticFeedbackEnabled="true"
                         android:orientation="horizontal"
                         android:padding="16dp">
 
