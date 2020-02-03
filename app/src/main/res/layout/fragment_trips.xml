@@ -44,7 +44,6 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/find_pnr_button"
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_height="wrap_content"
@@ -56,6 +55,7 @@
                 app:cardElevation="@dimen/cardview_default_elevation">
 
                 <LinearLayout
+                    android:id="@+id/find_pnr_button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackground"

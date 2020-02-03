@@ -7,19 +7,22 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.sih2020.railwayreservationsystem.Activities.PnrActivity;
 import com.sih2020.railwayreservationsystem.R;
 
 public class TripsFragment extends Fragment {
 
-    private Button find_pnr_button;
+    private LinearLayout find_pnr_button;
 
     public TripsFragment() {
         // Required empty public constructor
@@ -46,10 +49,16 @@ public class TripsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        setClicks();
+    }
+
+    private void setClicks() {
+        Log.e("onClick: ","level 0");
         find_pnr_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PnrActivity.class));
+                Log.e("onClick: ", "okay");
             }
         });
     }
