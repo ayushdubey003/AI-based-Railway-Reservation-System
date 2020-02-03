@@ -451,5 +451,14 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getLocalizedMessage());
         }
+
+        try{
+            AppConstants.mTrainList.clear();
+            AppConstants.mTrainWiseSeatAvailability.clear();
+        }
+        catch (Exception e)
+        {
+            //do nothing
+        }
     }
 }
