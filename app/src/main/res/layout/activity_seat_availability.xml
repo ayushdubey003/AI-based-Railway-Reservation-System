@@ -32,7 +32,7 @@
             android:elevation="@dimen/cardview_default_elevation">
 
             <ImageView
-                android:id="@+id/back"
+                android:id="@+id/back_iv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -60,13 +60,13 @@
                     android:tint="#e4ebea"></ImageView>
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/date_tv"
                     style="@style/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="8dp"
-                    android:text="Feb 14, 2020"
+                    tools:text="Feb 14, 2020"
                     android:textColor="#fff"
                     android:textStyle="bold"></TextView>
 
@@ -114,13 +114,13 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/travel_class"
+                    android:id="@+id/travel_class_tv"
                     style="@style/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="8dp"
-                    android:text="SL - Sleeper"
+                    tools:text="SL - Sleeper"
                     android:textColor="#fff"
                     android:textStyle="bold"></TextView>
 

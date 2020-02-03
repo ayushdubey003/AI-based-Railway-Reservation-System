@@ -221,9 +221,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:paddingLeft="4dp"
-                        android:paddingTop="6dp"
+                        android:paddingTop="5dp"
                         android:paddingRight="4dp"
-                        android:paddingBottom="6dp"
+                        android:paddingBottom="5dp"
                         android:text="View 6 days Availability"
                         android:textColor="#fff"
                         android:textSize="13sp"></TextView>
