@@ -188,7 +188,6 @@ def seat_availability(trainno, board, destination, travelClass, doj, quota):
         soup = BeautifulSoup(content.text, 'html.parser')
 
         try:
-            print(url)
             availability = []
             x = soup.find('div',{"id":"one"}).find_all('div',{"class":"seat_availability_details"})
             for i in range(0,len(x)):

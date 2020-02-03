@@ -42,7 +42,9 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
+import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
 import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
 import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
@@ -209,7 +211,7 @@ public class HomeFragment extends Fragment {
         mClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(LOG_TAG, AppConstants.mTravelClasses.get(position).getmAbbreviation());
+                AppConstants.mClass = AppConstants.mTravelClasses.get(position);
             }
 
             @Override
@@ -221,7 +223,7 @@ public class HomeFragment extends Fragment {
         mQuotaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(LOG_TAG, AppConstants.mTravelQuotas.get(position).getmAbbreviation());
+                AppConstants.mQuota = AppConstants.mTravelQuotas.get(position);
             }
 
             @Override
@@ -233,8 +235,15 @@ public class HomeFragment extends Fragment {
         mSearchTrains.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = AppConstants.mUrl + "/trains/"+AppConstants.mSourceStation.getmStationCode()+"/"+AppConstants.mDestinationStation.getmStationCode()+"/"+mDay+"/"+AppConstants.mClass.getmAbbreviation().trim();
-                Log.e(LOG_TAG,url);
+                try {
+                    String url = "";
+                    url = AppConstants.mUrl + "/trains/" + AppConstants.mSourceStation.getmStationCode() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + mDay + "/" + AppConstants.mClass.getmAbbreviation().trim();
+                    Intent intent = new Intent(getActivity(), SeatAvailabilityActivity.class);
+                    intent.putExtra("url", url);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Snackbar.make(getView(), "One or more fields appear to be empty", Snackbar.LENGTH_LONG).show();
+                }
             }
         });
     }

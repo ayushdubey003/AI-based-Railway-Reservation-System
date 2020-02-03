@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.Models.Station;
+import com.sih2020.railwayreservationsystem.Models.Train;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class AppConstants {
     public static SpinnerModel mClass;
     public static Date mDate;
     public static boolean mUseDate = true;
+    public static ArrayList<Train> mTrainList = new ArrayList<>();
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
