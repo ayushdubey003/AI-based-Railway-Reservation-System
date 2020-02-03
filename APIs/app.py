@@ -223,6 +223,71 @@ def listofstations():
 
     return jsonify(stations=ans)
 
+@app.route("/pnrstatus/<pnr>", methods=['GET'])
+def pnrstatus(pnr):
+    url = "https://www.railyatri.in/pnr-status/" +pnr
+    try:
+        content = requests.get(url)
+        soup = BeautifulSoup(content.text, 'html.parser')
+
+        try:
+            entire_pnr_info = soup.find('div',{"class":"pnr-search-result-blk"}).find('div',{"class":"pnr-search-result-info"}).find('div',{"class":"row"})
+            train_info = entire_pnr_info.find('div',{"class":"train-info"}).find('p',{"class":"pnr-bold-txt"}).text
+            route_info = entire_pnr_info.find('div',{"class":"train-route"}).find_all('div',{"class":"col-xs-4"})
+            board_info = entire_pnr_info.find('div',{"class":"boarding-detls"}).find_all('div',{"class":"col-xs-4"})
+            status = soup.find('div',{"id":"status"}).find_all('div',{"class":"chart-stats"})
+
+            info = train_info.split("-")
+            trainNo = info[0].strip()
+            trainName = ""
+            for i in range(1,len(info)):
+                trainName = trainName + " "+ info[i].strip()
+
+            src = route_info[0].find('p',{"class":"pnr-bold-txt"}).text.strip().split("|")
+            srcName = src[0].strip()
+            srcCode = src[1].strip()
+            dest = route_info[1].find('p',{"class":"pnr-bold-txt"}).text.strip().split("|")
+            destName = dest[0].strip()
+            destCode = dest[1].strip()
+            srctime = route_info[0].find_all('p')[2].text.strip()
+            desttime = route_info[1].find_all('p')[2].text.strip()
+            dura = route_info[2].find_all('span',{"class":"pnr-bold-txt"})[0].text.strip()+":"+route_info[2].find_all('span',{"class":"pnr-bold-txt"})[1].text.strip()
+
+            day = board_info[0].find('p',{"class":"pnr-bold-txt"}).text.strip()
+            tc = board_info[1].find('p',{"class":"pnr-bold-txt"}).text.strip()
+            pf = board_info[2].find('p',{"class":"pnr-bold-txt"}).text.strip()
+
+            bs = []
+            cs = []
+
+            for i in range(1,len(status)):
+                stat = status[i].find_all('div',{"class":"col-xs-4"})
+                bs.append(stat[0].find('p',{"class":"pnr-bold-txt"}).text.strip())
+                cs.append(stat[1].find('p',{"class":"pnr-bold-txt"}).text.strip())
+
+            ans={
+                'pnr':pnr,
+                'trainNo':trainNo,
+                'trainName':trainName.strip(),
+                'fromName':srcName,
+                'fromCode':srcCode,
+                'fromTime':srctime,
+                'toName':destName,
+                'toCode':destCode,
+                'toTime':desttime,
+                'duration':dura,
+                'doj':day,
+                'class':tc,
+                'platform':pf,
+                'bookingStatus':bs,
+                'currentStatus':cs
+            }
+            return jsonify(status=ans)
+        except Exception as e:
+            return jsonify(error = str(e))
+
+    except Exception as e:
+        return jsonify(error = str(e))
 
 if __name__ == '__main__':
     app.run()

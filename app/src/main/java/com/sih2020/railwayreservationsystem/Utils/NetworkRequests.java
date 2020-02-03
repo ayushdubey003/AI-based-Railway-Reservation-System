@@ -36,6 +36,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import eu.amirs.JSON;
 
@@ -255,7 +257,7 @@ public class NetworkRequests {
                             Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
                         } finally {
                             try {
-                                seatAvailabilityActivity.dataFetchComplete();
+                                seatAvailabilityActivity.trainListFetchComplete();
                             } catch (Exception u) {
                                 return;
                             }
@@ -270,5 +272,43 @@ public class NetworkRequests {
 
 
         queue.add(jsonObjectRequest);
+    }
+
+    public void fetchSeatsTrainWise(HashMap<String, String> urls) {
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        AppConstants.mTrainWiseSeatAvailability.clear();
+
+        Iterator iterator = urls.entrySet().iterator();
+        while (iterator.hasNext()) {
+            final HashMap.Entry<String, String> value = (HashMap.Entry<String, String>) iterator.next();
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, value.getValue(), null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray seats = response.getJSONArray("seatavailability");
+                                for (int i = 0; i < seats.length(); i++) {
+                                    if (!AppConstants.mTrainWiseSeatAvailability.containsKey(value.getKey()))
+                                        AppConstants.mTrainWiseSeatAvailability.put(value.getKey(), new ArrayList<String>());
+                                    ArrayList<String> arrayList = AppConstants.mTrainWiseSeatAvailability.get(value.getKey());
+                                    arrayList.add(seats.getString(i));
+                                    AppConstants.mTrainWiseSeatAvailability.put(value.getKey(), arrayList);
+                                }
+                            } catch (JSONException e) {
+                                Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                            } finally {
+                                if (AppConstants.mTrainWiseSeatAvailability.size() == AppConstants.mTrainList.size())
+                                    seatAvailabilityActivity.seatFetchComplete();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                }
+            });
+            queue.add(jsonObjectRequest);
+        }
     }
 }

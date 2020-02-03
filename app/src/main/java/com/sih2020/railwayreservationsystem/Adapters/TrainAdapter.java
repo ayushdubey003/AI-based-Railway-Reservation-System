@@ -22,6 +22,7 @@ import java.util.List;
 public class TrainAdapter extends ArrayAdapter<Train> {
     private Context mContext;
     private List<Train> mTrains;
+    private View view;
 
     public TrainAdapter(@NonNull Context context, @NonNull List<Train> objects) {
         super(context, 0, objects);
@@ -34,6 +35,8 @@ public class TrainAdapter extends ArrayAdapter<Train> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(mContext).inflate(R.layout.train_list_item, parent, false);
+
+        view = convertView;
 
         int deptIndex = 0;
         for (int i = 0; i < mTrains.get(position).getmCodedRoutes().size(); i++) {
