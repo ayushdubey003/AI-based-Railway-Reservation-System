@@ -159,7 +159,34 @@ def listoftrainsdaywise(board, destination,doj,travelclass):
                                 k = True
                                 break
 
-                        if(((len(days) == 1 and days[0].lower() == "daily") or z) and k):
+                        pos = 0
+                        for i in range(0,len(codedRoutes)):
+                            if codedRoutes[i] == board:
+                                pos = i
+                                break
+
+                        u = int(dept[pos].split("(")[1].split(")")[0].split(" ")[1])
+                        pos1=0
+                        temp = ['MON','TUE','WED','THU','FRI','SAT','SUN']
+
+                        for i in range(0,len(temp)):
+                            if temp[i].lower() == doj.lower():
+                                pos1 = i
+                                break
+                        diff = pos1 - u - 1
+                        if diff < 0:
+                            diff = diff + 7
+
+                        v = False
+                        if days[0].lower()!="daily":
+                            for i in range(0,len(days)):
+                                if days[i].lower()==temp[diff].lower():
+                                    v = True
+                                    break
+                        else:
+                            v = True
+
+                        if(((len(days) == 1 and days[0].lower() == "daily") or z) and k and v):
                             ans.append({
                                     "train no": row[0],
                                     "train name": row[1],

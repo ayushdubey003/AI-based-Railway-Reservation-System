@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Train {
     private String mTrainName, mTrainNo, mType, mZone;
-    private ArrayList<String> mArrivalTimes, mAvailableClasses, mCancelled, mDepartureTime, mRightTime, mCodedRoutes, mNamedRoutes, mRunningDays, mSignificantDelay, mSlightDelay;
+    private ArrayList<String> mArrivalTimes, mAvailableClasses, mCancelled, mDepartureTime, mRightTime, mCodedRoutes, mNamedRoutes, mRunningDays, mSignificantDelay, mSlightDelay, mSeats;
 
-    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay) {
+
+    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay, ArrayList<String> mSeats) {
         this.mTrainName = mTrainName;
         this.mTrainNo = mTrainNo;
         this.mType = mType;
@@ -21,6 +22,7 @@ public class Train {
         this.mRunningDays = mRunningDays;
         this.mSignificantDelay = mSignificantDelay;
         this.mSlightDelay = mSlightDelay;
+        this.mSeats = mSeats;
     }
 
     public String getmTrainName() {
@@ -77,5 +79,13 @@ public class Train {
 
     public ArrayList<String> getmSlightDelay() {
         return mSlightDelay;
+    }
+
+    public ArrayList<String> getmSeats() {
+        return mSeats;
+    }
+
+    public void setmSeats(ArrayList<String> mSeats) {
+        this.mSeats = mSeats;
     }
 }

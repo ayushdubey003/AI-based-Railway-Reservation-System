@@ -30,7 +30,6 @@ public class AppConstants {
     public static Date mDate;
     public static boolean mUseDate = true;
     public static ArrayList<Train> mTrainList = new ArrayList<>();
-    public static HashMap<String, ArrayList<String>> mTrainWiseSeatAvailability = new HashMap<>();
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

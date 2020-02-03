@@ -299,6 +299,7 @@
                                     android:id="@+id/availability_progress"
                                     android:layout_width="18dp"
                                     android:layout_height="18dp"
+                                    android:visibility="visible"
                                     android:layout_centerInParent="true" />
 
                                 <TextView

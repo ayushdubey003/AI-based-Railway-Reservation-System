@@ -104,6 +104,16 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView travelClass = convertView.findViewById(R.id.travel_class_tv);
         travelClass.setText(AppConstants.mClass.getmAbbreviation());
 
+        TextView seatAvltv = convertView.findViewById(R.id.availability_tv);
+        ProgressBar avlProgress = convertView.findViewById(R.id.availability_progress);
+        try {
+            seatAvltv.setText(mTrains.get(position).getmSeats().get(0));
+            seatAvltv.setVisibility(View.VISIBLE);
+            avlProgress.setVisibility(View.GONE);
+        } catch (Exception e) {
+
+        }
+
         return convertView;
     }
 }

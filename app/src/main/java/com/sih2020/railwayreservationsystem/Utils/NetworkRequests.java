@@ -250,7 +250,8 @@ public class NetworkRequests {
                                         namedRoutes,
                                         days,
                                         sigDelay,
-                                        sliDelay));
+                                        sliDelay,
+                                        null));
                             }
                         } catch (JSONException e) {
                             readFromFile();
@@ -276,7 +277,6 @@ public class NetworkRequests {
 
     public void fetchSeatsTrainWise(HashMap<String, String> urls) {
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        AppConstants.mTrainWiseSeatAvailability.clear();
 
         Iterator iterator = urls.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -288,18 +288,22 @@ public class NetworkRequests {
                         public void onResponse(JSONObject response) {
                             try {
                                 JSONArray seats = response.getJSONArray("seatavailability");
-                                for (int i = 0; i < seats.length(); i++) {
-                                    if (!AppConstants.mTrainWiseSeatAvailability.containsKey(value.getKey()))
-                                        AppConstants.mTrainWiseSeatAvailability.put(value.getKey(), new ArrayList<String>());
-                                    ArrayList<String> arrayList = AppConstants.mTrainWiseSeatAvailability.get(value.getKey());
+                                ArrayList<String> arrayList = new ArrayList<>();
+                                for (int i = 0; i < seats.length(); i++)
                                     arrayList.add(seats.getString(i));
-                                    AppConstants.mTrainWiseSeatAvailability.put(value.getKey(), arrayList);
+                                arrayList = cleanList(arrayList);
+                                int pos = 0;
+                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                                    if (AppConstants.mTrainList.get(i).getmTrainNo().trim().equals(value.getKey().trim())) {
+                                        pos = i;
+                                        break;
+                                    }
                                 }
+                                AppConstants.mTrainList.get(pos).setmSeats(arrayList);
+                                seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
-                                Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(mCL, e.getLocalizedMessage() + "for train no " + value.getKey(), Snackbar.LENGTH_LONG).show();
                             } finally {
-                                if (AppConstants.mTrainWiseSeatAvailability.size() == AppConstants.mTrainList.size())
-                                    seatAvailabilityActivity.seatFetchComplete();
                             }
                         }
                     }, new Response.ErrorListener() {
@@ -310,5 +314,30 @@ public class NetworkRequests {
             });
             queue.add(jsonObjectRequest);
         }
+    }
+
+    private ArrayList<String> cleanList(ArrayList<String> arrayList) {
+        ArrayList<String> arr = new ArrayList<>();
+        for (int j = 0; j < arrayList.size(); j++) {
+            String u = "";
+            String s = arrayList.get(j);
+            s = s.toUpperCase();
+            boolean ws = true;
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == ' ') {
+                    if (ws) {
+                        ws = false;
+                        u = u + s.charAt(i);
+                    }
+                } else {
+                    ws = true;
+                    if (s.charAt(i) == '.')
+                        continue;
+                    u = u + s.charAt(i);
+                }
+            }
+            arr.add(u);
+        }
+        return arr;
     }
 }

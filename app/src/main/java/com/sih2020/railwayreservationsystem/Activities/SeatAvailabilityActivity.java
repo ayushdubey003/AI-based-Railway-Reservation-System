@@ -32,7 +32,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SeatAvailability";
     private LinearLayout mToolbar;
     private RelativeLayout mMain, mProgress;
-    private TrainAdapter mAdapter;
+    public TrainAdapter mAdapter;
     private ListView mList;
     private TextView mDate, mTravelClass;
     private ImageView mBack;
@@ -92,47 +92,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     }
 
     public void seatFetchComplete() {
-        for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-            int firstPosition = mList.getFirstVisiblePosition() - mList.getHeaderViewsCount();
-            int wantedChild = i - firstPosition;
-            if (i < 0 || i >= mList.getChildCount()) {
-                Log.e(LOG_TAG, "Unable to get view for desired position, because it's not being displayed on screen.");
-                continue;
-            }
-            View wantedView = mList.getChildAt(i);
-            ArrayList<String> arrayList = AppConstants.mTrainWiseSeatAvailability.get(AppConstants.mTrainList.get(i).getmTrainNo());
-            arrayList = cleanList(arrayList);
-            AppConstants.mTrainWiseSeatAvailability.put(AppConstants.mTrainList.get(i).getmTrainNo(), arrayList);
-            wantedView.findViewById(R.id.availability_progress).setVisibility(View.GONE);
-            TextView status = wantedView.findViewById(R.id.availability_tv);
-            status.setText(arrayList.get(0));
-            status.setVisibility(View.VISIBLE);
-        }
-    }
 
-    private ArrayList<String> cleanList(ArrayList<String> arrayList) {
-        ArrayList<String> arr = new ArrayList<>();
-        for (int j = 0; j < arrayList.size(); j++) {
-            String u = "";
-            String s = arrayList.get(j);
-            s = s.toUpperCase();
-            boolean ws = true;
-            for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == ' ') {
-                    if (ws) {
-                        ws = false;
-                        u = u + s.charAt(i);
-                    }
-                } else {
-                    ws = true;
-                    if (s.charAt(i) == '.')
-                        continue;
-                    u = u + s.charAt(i);
-                }
-            }
-            arr.add(u);
-        }
-        return arr;
     }
 
 }

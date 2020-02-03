@@ -454,7 +454,7 @@ public class HomeFragment extends Fragment {
 
         try{
             AppConstants.mTrainList.clear();
-            AppConstants.mTrainWiseSeatAvailability.clear();
+//            AppConstants.mTrainWiseSeatAvailability.clear();
         }
         catch (Exception e)
         {
