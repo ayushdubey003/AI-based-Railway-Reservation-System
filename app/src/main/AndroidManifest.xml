@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.SeatAvailabilityActivity"></activity>
+        <activity android:name=".Activities.PnrActivity"></activity>
+        <activity android:name=".Activities.SeatAvailabilityActivity" />
         <activity android:name=".Activities.SearchTrains" />
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
