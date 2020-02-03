@@ -21,6 +21,8 @@ import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 import com.sih2020.railwayreservationsystem.Utils.NetworkRequests;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -83,7 +85,27 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
         HashMap<String, String> urls = new HashMap<>();
         for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-            String doj = (String) DateFormat.format("yyyy", AppConstants.mDate) + "-" + (String) DateFormat.format("MM", AppConstants.mDate) + "-" + (String) DateFormat.format("dd", AppConstants.mDate);
+            ArrayList<String> route = AppConstants.mTrainList.get(i).getmCodedRoutes();
+            int pos = 0;
+            for (int j = 0; j < route.size(); j++) {
+                if (route.get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode().toString())) {
+                    pos = j;
+                    break;
+                }
+            }
+            String dayNo = AppConstants.mTrainList.get(i).getmDepartureTime().get(pos);
+            int x = 0;
+            for (int j = 0; j < dayNo.length(); j++) {
+                try {
+                    x = (int) dayNo.charAt(j) - 48;
+                    break;
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+            x = x - 1;
+            Date date = AppConstants.mDate;
+            String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
             String temp = AppConstants.mUrl + "/seats/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation.getmStationCode().trim() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
             Log.e(LOG_TAG, temp);
             urls.put(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);

@@ -146,11 +146,11 @@ def listoftrainsdaywise(board, destination,doj,travelclass):
                         sld = row[11].split("$")
                         sd = row[12].split("$")
                         can = row[13].split("$")
-                        z= False
-                        for day in days:
-                            if day.lower() == doj.lower():
-                                z=True
-                                break
+                        z= True
+                        # for day in days:
+                        #     if day.lower() == doj.lower():
+                        #         z=True
+                        #         break
 
                         k = False
 
@@ -173,7 +173,7 @@ def listoftrainsdaywise(board, destination,doj,travelclass):
                             if temp[i].lower() == doj.lower():
                                 pos1 = i
                                 break
-                        diff = pos1 - u - 1
+                        diff = pos1 - u + 1
                         if diff < 0:
                             diff = diff + 7
 
