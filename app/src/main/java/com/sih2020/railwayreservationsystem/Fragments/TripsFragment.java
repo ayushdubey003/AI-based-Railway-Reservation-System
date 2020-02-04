@@ -15,14 +15,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.sih2020.railwayreservationsystem.Activities.PnrActivity;
 import com.sih2020.railwayreservationsystem.R;
 
 public class TripsFragment extends Fragment {
 
     private LinearLayout find_pnr_button;
+    private EditText pnr_no;
 
     public TripsFragment() {
         // Required empty public constructor
@@ -53,17 +57,32 @@ public class TripsFragment extends Fragment {
     }
 
     private void setClicks() {
-        Log.e("onClick: ","level 0");
+        Log.e("onClick: ", "level 0");
         find_pnr_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PnrActivity.class));
-                Log.e("onClick: ", "okay");
+                if (validate()) {
+                    Intent intent = new Intent(getActivity(), PnrActivity.class);
+                    intent.putExtra("PNR_No",pnr_no.getText().toString().trim());
+                    startActivity(intent);
+                    Log.e("onClick: ", "okay");
+                } else {
+                    Snackbar.make(getView(), "Invalid PNR Number", Snackbar.LENGTH_LONG).show();
+                }
             }
         });
     }
 
+    private boolean validate() {
+        String tpnr = pnr_no.getText().toString().trim();
+        if (tpnr.length() != 10) {
+            return false;
+        }
+        return true;
+    }
+
     private void init(View view) {
         find_pnr_button = view.findViewById(R.id.find_pnr_button);
+        pnr_no = view.findViewById(R.id.pnr_no);
     }
 }

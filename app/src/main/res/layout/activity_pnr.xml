@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#f2f2f2"
     android:layout_height="match_parent"
     tools:context=".Activities.PnrActivity">
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -26,6 +27,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_back_black_24dp"/>
                 <TextView
+                    android:id="@+id/pnr_train_no"
                     android:textColor="#fff"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -37,6 +39,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:id="@+id/pnr_train_name"
                     android:textColor="#fff"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -57,6 +60,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/pnr_from_date"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -67,6 +71,7 @@
                     style="@style/font"
                     />
                 <TextView
+                    android:id="@+id/pnr_to_date"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:gravity="end"
@@ -87,6 +92,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/pnr_from_time"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -98,6 +104,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:id="@+id/pnr_duration"
                     android:textColor="#fff"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -109,6 +116,7 @@
                     style="@style/font"
                     />
                 <TextView
+                    android:id="@+id/pnr_to_time"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:gravity="end"
@@ -130,6 +138,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/pnr_from_code_pf"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -141,6 +150,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:id="@+id/pnr_to_code_pf"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:gravity="end"
@@ -163,6 +173,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/pnr_from_name"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -173,6 +184,7 @@
                     style="@style/font"
                     />
                 <TextView
+                    android:id="@+id/pnr_to_name"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:gravity="end"
@@ -188,7 +200,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="#d9d9d9"
+            android:id="@+id/linear_status"
             android:layout_marginTop="220dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -204,6 +216,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:background="#f2f2f2"
+                        android:layout_marginBottom="4dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -213,6 +227,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/pnr_show_no"
                                 android:textColor="#000"
                                 android:layout_gravity="left"
                                 android:layout_width="wrap_content"
@@ -223,6 +238,7 @@
                                 android:textStyle="bold"
                                 />
                             <TextView
+                                android:id="@+id/pnr_class"
                                 android:textColor="#000"
                                 android:layout_gravity="left"
                                 android:layout_width="wrap_content"
@@ -240,6 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/pnr_chart_status"
                                 android:textColor="#000"
                                 android:layout_gravity="left"
                                 android:layout_width="wrap_content"
@@ -249,16 +266,18 @@
                                 style="@style/font"
                                 />
                             <TextView
+                                android:id="@+id/pnr_last_sync_time"
                                 android:textColor="#000"
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="(Synced 1 minute ago)"
+                                android:text="(Synced just now)"
                                 android:textSize="12sp"
                                 style="@style/font"
                                 />
                         </LinearLayout>
                         <ImageView
+                            android:id="@+id/pnr_refresh_button"
                             android:layout_marginLeft="5dp"
                             android:tint="@color/colorPrimary"
                             android:layout_gravity="center"
@@ -276,6 +295,27 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pnr_share_status"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linear_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/cardview_default_elevation"
+            app:cardElevation="@dimen/cardview_default_elevation">
+            <Button
+                android:layout_width="wrap_content"
+                android:text="Share Trip"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                style="@style/font"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:padding="8dp"
+                android:background="@drawable/rounded_colored_border"
+                android:layout_height="wrap_content"/>
+        </androidx.cardview.widget.CardView>
 
-    </FrameLayout>
+    </RelativeLayout>
 </ScrollView>

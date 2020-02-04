@@ -25,6 +25,7 @@
                 android:id="@+id/pnr_hor_layout"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/pnr_no"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:hint="Enter Your PNR No"

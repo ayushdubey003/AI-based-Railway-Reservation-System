@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <LinearLayout
+    android:layout_weight="7"
     android:orientation="vertical"
     android:padding="8dp"
     android:layout_width="wrap_content"
@@ -21,14 +22,36 @@
         android:textStyle="bold"
         />
     <TextView
+        android:background="@drawable/rounded_colored_border"
         android:id="@+id/pnr_seat_no"
-        android:textColor="@color/bluishShadeColor"
+        android:layout_marginTop="6dp"
+        android:textColor="#fff"
+        android:padding="8dp"
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S7,42"
+        android:textStyle="bold"
         android:textSize="14sp"
         style="@style/font"
         />
 </LinearLayout>
+    <ImageView
+        android:layout_weight="1"
+        android:tint="@color/bluishShadeColor"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_check_circle_black_24dp"/>
+    <TextView
+        android:layout_weight="1"
+        android:textColor="@color/bluishShadeColor"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmed"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        style="@style/font"
+        />
 </LinearLayout>
