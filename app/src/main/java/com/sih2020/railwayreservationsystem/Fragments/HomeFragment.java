@@ -46,6 +46,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
 import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
+import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -75,7 +76,6 @@ public class HomeFragment extends Fragment {
     private Spinner mClassSpinner, mQuotaSpinner;
     private SpinnerAdapter mClassAdapter, mQuotaAdapter;
     private LinearLayout mSearchTrains;
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -249,6 +249,28 @@ public class HomeFragment extends Fragment {
     }
 
     private void init(final View view) {
+        AppConstants.mTravelClasses.clear();
+        AppConstants.mTravelClasses.add(new SpinnerModel("1A", "First AC"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("EC", "AC Executive Class"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("2A", "Second AC"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("FC", "First Class"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("3A", "Third AC"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("3E", "Third AC Economy"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("CC", "AC Chair Car"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("SL", "Sleeper"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("2S", "Second Seating"));
+        AppConstants.mTravelClasses.add(new SpinnerModel("GN", "General"));
+
+        AppConstants.mTravelQuotas.clear();
+        AppConstants.mTravelQuotas.add(new SpinnerModel("GN", "General Quota"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("TQ", "Tatkal"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("PT", "Premium Tatkal"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("SS", "Lower Berth"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("LD", "Ladies"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("HP", "Physically Handicapped"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("DP", "Duty Pass Quota"));
+        AppConstants.mTravelQuotas.add(new SpinnerModel("DF", "Defence Quota"));
+
         mSourceCircle = view.findViewById(R.id.source_circle);
         mDestinationCircle = view.findViewById(R.id.destination_circle);
         mClearSource = view.findViewById(R.id.clear_iv_source);
@@ -289,8 +311,6 @@ public class HomeFragment extends Fragment {
                 mCalendar.set(Calendar.YEAR, year);
                 mCalendar.set(Calendar.MONTH, monthOfYear);
                 mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-                Log.e(LOG_TAG, monthOfYear + " " + dayOfMonth + " " + year + " " + mCalendar.get(Calendar.DAY_OF_WEEK));
                 updateJourneyDate();
 
             }
@@ -346,12 +366,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 int val = (Integer) valueAnimator.getAnimatedValue();
-                int u=0;
+                int u = 0;
                 try {
                     u = (int) AppConstants.convertDpToPixel(30, getContext());
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     return;
                 }
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
@@ -459,12 +477,38 @@ public class HomeFragment extends Fragment {
             Log.e(LOG_TAG, e.getLocalizedMessage());
         }
 
-        try{
+        try {
             AppConstants.mTrainList.clear();
 //            AppConstants.mTrainWiseSeatAvailability.clear();
+        } catch (Exception e) {
+            //do nothing
         }
-        catch (Exception e)
-        {
+        try {
+            AppConstants.mTravelClasses.clear();
+            AppConstants.mTravelClasses.add(new SpinnerModel("1A", "First AC"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("EC", "AC Executive Class"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("2A", "Second AC"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("FC", "First Class"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("3A", "Third AC"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("3E", "Third AC Economy"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("CC", "AC Chair Car"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("SL", "Sleeper"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("2S", "Second Seating"));
+            AppConstants.mTravelClasses.add(new SpinnerModel("GN", "General"));
+        } catch (Exception e) {
+            //do nothing
+        }
+        try {
+            AppConstants.mTravelQuotas.clear();
+            AppConstants.mTravelQuotas.add(new SpinnerModel("GN", "General Quota"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("TQ", "Tatkal"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("PT", "Premium Tatkal"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("SS", "Lower Berth"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("LD", "Ladies"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("HP", "Physically Handicapped"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("DP", "Duty Pass Quota"));
+            AppConstants.mTravelQuotas.add(new SpinnerModel("DF", "Defence Quota"));
+        } catch (Exception e) {
             //do nothing
         }
     }

@@ -66,52 +66,51 @@ public class TripsFragment extends Fragment {
     }
 
     private void setRecentPnrData() {
-        SharedPreferences lsharedpreferences = this.getActivity().getSharedPreferences(AppConstants.mPrefsName,Context.MODE_PRIVATE);
-        String[] lpnr = lsharedpreferences.getString("RecentPnrNo","").split(",");
+        SharedPreferences lsharedpreferences = this.getActivity().getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
+        String[] lpnr = lsharedpreferences.getString("RecentPnrNo", "").split(",");
 
-        String[] lfromcode = lsharedpreferences.getString("RecentPnrFrom","").split(",");
-        String[] ltocode = lsharedpreferences.getString("RecentPnrTo","").split(",");
-        String[] ldoj = lsharedpreferences.getString("RecentPnrDoj","").split(",");
+        String[] lfromcode = lsharedpreferences.getString("RecentPnrFrom", "").split(",");
+        String[] ltocode = lsharedpreferences.getString("RecentPnrTo", "").split(",");
+        String[] ldoj = lsharedpreferences.getString("RecentPnrDoj", "").split(",");
 
-        if(lpnr[0].length()==10){
-            pnrno1.setText(lpnr[0]);
-            code1.setText(lfromcode[0]+"-"+ltocode[0]);
-            doj1.setText("DOJ-"+ldoj[0]);
-        }
-        else {
-            pnr1.setVisibility(View.GONE);
-        }
-        if(lpnr[1].length()==10){
-            pnrno2.setText(lpnr[1]);
-            code2.setText(lfromcode[1]+"-"+ltocode[1]);
-            doj2.setText("DOJ-"+ldoj[1]);
-        }
-        else {
-            pnr2.setVisibility(View.GONE);
-        }
-        if(lpnr[2].length()==10){
-            pnrno3.setText(lpnr[2]);
-            code3.setText(lfromcode[2]+"-"+ltocode[2]);
-            doj3.setText("DOJ-"+ldoj[2]);
-        }
-        else {
-            pnr3.setVisibility(View.GONE);
-        }
-        if(lpnr[3].length()==10){
-            pnrno4.setText(lpnr[3]);
-            code4.setText(lfromcode[3]+"-"+ltocode[3]);
-            doj4.setText("DOJ-"+ldoj[3]);
-        }
-        else {
-            pnr4.setVisibility(View.GONE);
-        }
-        if(lpnr[4].length()==10){
-            pnrno5.setText(lpnr[4]);
-            code5.setText(lfromcode[4]+"-"+ltocode[4]);
-            doj5.setText("DOJ-"+ldoj[4]);
-        }
-        else {
-            pnr5.setVisibility(View.GONE);
+        try {
+            if (lpnr[0].length() == 10) {
+                pnrno1.setText(lpnr[0]);
+                code1.setText(lfromcode[0] + "-" + ltocode[0]);
+                doj1.setText("DOJ-" + ldoj[0]);
+            } else {
+                pnr1.setVisibility(View.GONE);
+            }
+            if (lpnr[1].length() == 10) {
+                pnrno2.setText(lpnr[1]);
+                code2.setText(lfromcode[1] + "-" + ltocode[1]);
+                doj2.setText("DOJ-" + ldoj[1]);
+            } else {
+                pnr2.setVisibility(View.GONE);
+            }
+            if (lpnr[2].length() == 10) {
+                pnrno3.setText(lpnr[2]);
+                code3.setText(lfromcode[2] + "-" + ltocode[2]);
+                doj3.setText("DOJ-" + ldoj[2]);
+            } else {
+                pnr3.setVisibility(View.GONE);
+            }
+            if (lpnr[3].length() == 10) {
+                pnrno4.setText(lpnr[3]);
+                code4.setText(lfromcode[3] + "-" + ltocode[3]);
+                doj4.setText("DOJ-" + ldoj[3]);
+            } else {
+                pnr4.setVisibility(View.GONE);
+            }
+            if (lpnr[4].length() == 10) {
+                pnrno5.setText(lpnr[4]);
+                code5.setText(lfromcode[4] + "-" + ltocode[4]);
+                doj5.setText("DOJ-" + ldoj[4]);
+            } else {
+                pnr5.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            //do nothing
         }
     }
 
