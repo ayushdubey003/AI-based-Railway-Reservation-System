@@ -37,6 +37,7 @@
         />
 </LinearLayout>
     <ImageView
+        android:id="@+id/confirm_checkbox"
         android:layout_weight="1"
         android:tint="@color/bluishShadeColor"
         android:layout_gravity="center"
@@ -44,6 +45,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_check_circle_black_24dp"/>
     <TextView
+        android:id="@+id/confirm_text"
         android:layout_weight="1"
         android:textColor="@color/bluishShadeColor"
         android:layout_gravity="center"

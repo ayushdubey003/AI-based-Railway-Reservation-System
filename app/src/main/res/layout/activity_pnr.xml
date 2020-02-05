@@ -15,13 +15,14 @@
             android:id="@+id/upper_linear_layout"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="300dp">
+            android:layout_height="330dp">
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/pnr_back_button"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,6 +42,7 @@
                 <TextView
                     android:id="@+id/pnr_train_name"
                     android:textColor="#fff"
+                    android:padding="8dp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +203,7 @@
 
         <LinearLayout
             android:id="@+id/linear_status"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="240dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_width="match_parent"
@@ -298,6 +300,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/pnr_share_status"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/linear_status"
             android:layout_width="wrap_content"
