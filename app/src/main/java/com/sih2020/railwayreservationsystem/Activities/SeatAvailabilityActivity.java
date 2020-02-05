@@ -21,6 +21,8 @@ import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 import com.sih2020.railwayreservationsystem.Utils.NetworkRequests;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -32,7 +34,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SeatAvailability";
     private LinearLayout mToolbar;
     private RelativeLayout mMain, mProgress;
-    private TrainAdapter mAdapter;
+    public TrainAdapter mAdapter;
     private ListView mList;
     private TextView mDate, mTravelClass;
     private ImageView mBack;
@@ -81,58 +83,31 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mMain.setAlpha(1.0f);
         mProgress.setVisibility(View.GONE);
         mAdapter.notifyDataSetChanged();
-        HashMap<String, String> urls = new HashMap<>();
         for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-            String doj = (String) DateFormat.format("yyyy", AppConstants.mDate) + "-" + (String) DateFormat.format("MM", AppConstants.mDate) + "-" + (String) DateFormat.format("dd", AppConstants.mDate);
-            String temp = AppConstants.mUrl + "/seats/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation.getmStationCode().trim() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
-            Log.e(LOG_TAG, temp);
-            urls.put(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);
-        }
-        networkRequests.fetchSeatsTrainWise(urls);
-    }
-
-    public void seatFetchComplete() {
-        for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-            int firstPosition = mList.getFirstVisiblePosition() - mList.getHeaderViewsCount();
-            int wantedChild = i - firstPosition;
-            if (i < 0 || i >= mList.getChildCount()) {
-                Log.e(LOG_TAG, "Unable to get view for desired position, because it's not being displayed on screen.");
-                continue;
-            }
-            View wantedView = mList.getChildAt(i);
-            ArrayList<String> arrayList = AppConstants.mTrainWiseSeatAvailability.get(AppConstants.mTrainList.get(i).getmTrainNo());
-            arrayList = cleanList(arrayList);
-            AppConstants.mTrainWiseSeatAvailability.put(AppConstants.mTrainList.get(i).getmTrainNo(), arrayList);
-            wantedView.findViewById(R.id.availability_progress).setVisibility(View.GONE);
-            TextView status = wantedView.findViewById(R.id.availability_tv);
-            status.setText(arrayList.get(0));
-            status.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private ArrayList<String> cleanList(ArrayList<String> arrayList) {
-        ArrayList<String> arr = new ArrayList<>();
-        for (int j = 0; j < arrayList.size(); j++) {
-            String u = "";
-            String s = arrayList.get(j);
-            s = s.toUpperCase();
-            boolean ws = true;
-            for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == ' ') {
-                    if (ws) {
-                        ws = false;
-                        u = u + s.charAt(i);
-                    }
-                } else {
-                    ws = true;
-                    if (s.charAt(i) == '.')
-                        continue;
-                    u = u + s.charAt(i);
+            ArrayList<String> route = AppConstants.mTrainList.get(i).getmCodedRoutes();
+            int pos = 0;
+            for (int j = 0; j < route.size(); j++) {
+                if (route.get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode().toString())) {
+                    pos = j;
+                    break;
                 }
             }
-            arr.add(u);
+            String dayNo = AppConstants.mTrainList.get(i).getmDepartureTime().get(pos);
+            int x = 0;
+            for (int j = 0; j < dayNo.length(); j++) {
+                try {
+                    x = (int) dayNo.charAt(j) - 48;
+                    break;
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+            x = x - 1;
+            Date date = AppConstants.mDate;
+            String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
+            String temp = AppConstants.mUrl + "/seats/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation.getmStationCode().trim() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
+            networkRequests.fetchSeatsData(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);
         }
-        return arr;
     }
 
 }
