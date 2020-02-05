@@ -323,9 +323,13 @@ public class NetworkRequests {
                             break;
                         }
                     }
-                    AppConstants.mTrainList.get(pos).setmSeats(arrayList);
-                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
-                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    try {
+                        AppConstants.mTrainList.get(pos).setmSeats(arrayList);
+                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
+                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } catch (Exception e) {
                     int pos = 0;
                     for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
@@ -334,8 +338,12 @@ public class NetworkRequests {
                             break;
                         }
                     }
-                    AppConstants.mTrainList.get(pos).setmSeats(temp);
-                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    try {
+                        AppConstants.mTrainList.get(pos).setmSeats(temp);
+                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         }, new Response.ErrorListener() {

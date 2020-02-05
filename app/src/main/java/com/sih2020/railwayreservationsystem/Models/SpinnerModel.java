@@ -15,4 +15,12 @@ public class SpinnerModel {
     public String getmFullForm() {
         return mFullForm;
     }
+
+    public void setmAbbreviation(String mAbbreviation) {
+        this.mAbbreviation = mAbbreviation;
+    }
+
+    public void setmFullForm(String mFullForm) {
+        this.mFullForm = mFullForm;
+    }
 }

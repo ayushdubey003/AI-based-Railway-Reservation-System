@@ -161,25 +161,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         mProgressRl.setVisibility(View.VISIBLE);
         mMain.setAlpha(0.2f);
 
-        AppConstants.mTravelClasses.add(new SpinnerModel("1A", "First AC"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("EC", "AC Executive Class"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("2A", "Second AC"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("FC", "First Class"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("3A", "Third AC"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("3E", "Third AC Economy"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("CC", "AC Chair Car"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("SL", "Sleeper"));
-        AppConstants.mTravelClasses.add(new SpinnerModel("2S", "Second Seating"));
-
-        AppConstants.mTravelQuotas.add(new SpinnerModel("GN", "General Quota"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("TQ", "Tatkal"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("PT", "Premium Tatkal"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("SS", "Lower Berth"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("LD", "Ladies"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("HP", "Physically Handicapped"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("DP", "Duty Pass Quota"));
-        AppConstants.mTravelQuotas.add(new SpinnerModel("DF", "Defence Quota"));
-
     }
 
     private void askPermissions() {

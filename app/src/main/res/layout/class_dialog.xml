@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="@dimen/cardview_default_elevation"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/font"
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Choose class to check for seat availability"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/ac1"
+            android:text="1A - First AC">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/ec"
+            android:text="EC - AC Executive Class">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/ac2"
+            android:text="2A - Second AC">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/fc"
+            android:text="FC - First Class">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/ac3"
+            android:text="3A - Third AC">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/e3"
+            android:text="3E - Third AC Economy">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/cc"
+            android:text="CC - AC Chair Car">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/sl"
+            android:text="SL - Sleeper">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/s2"
+            android:text="2S - Second Seating">
+
+        </RadioButton>
+
+        <RadioButton
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/internal_fonts"
+            android:id="@+id/gen"
+            android:layout_marginBottom="16dp"
+            android:text="GN - General">
+
+        </RadioButton>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#626262"></View>
+
+        <TextView
+            android:id="@+id/cancel_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/font"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="Cancel"></TextView>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
