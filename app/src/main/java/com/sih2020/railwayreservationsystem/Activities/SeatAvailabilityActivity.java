@@ -149,6 +149,8 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
             String temp = AppConstants.mUrl + "/seats/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation.getmStationCode().trim() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
             networkRequests.fetchSeatsData(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);
+            String temp1 = AppConstants.mUrl + "/fareenquiry" + "/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation + "/" + AppConstants.mDestinationStation;
+            networkRequests.fetchFareData(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp1);
         }
     }
 

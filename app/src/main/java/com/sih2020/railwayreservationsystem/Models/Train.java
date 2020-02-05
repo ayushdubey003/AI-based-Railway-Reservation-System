@@ -3,11 +3,11 @@ package com.sih2020.railwayreservationsystem.Models;
 import java.util.ArrayList;
 
 public class Train {
-    private String mTrainName, mTrainNo, mType, mZone;
+    private String mTrainName, mTrainNo, mType, mZone, mFare;
     private ArrayList<String> mArrivalTimes, mAvailableClasses, mCancelled, mDepartureTime, mRightTime, mCodedRoutes, mNamedRoutes, mRunningDays, mSignificantDelay, mSlightDelay, mSeats;
 
 
-    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay, ArrayList<String> mSeats) {
+    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay, ArrayList<String> mSeats, String mFare) {
         this.mTrainName = mTrainName;
         this.mTrainNo = mTrainNo;
         this.mType = mType;
@@ -23,6 +23,7 @@ public class Train {
         this.mSignificantDelay = mSignificantDelay;
         this.mSlightDelay = mSlightDelay;
         this.mSeats = mSeats;
+        this.mFare = mFare;
     }
 
     public String getmTrainName() {
@@ -83,6 +84,14 @@ public class Train {
 
     public ArrayList<String> getmSeats() {
         return mSeats;
+    }
+
+    public void setmFare(String mFare) {
+        this.mFare = mFare;
+    }
+
+    public String getmFare() {
+        return mFare;
     }
 
     public void setmSeats(ArrayList<String> mSeats) {

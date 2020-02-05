@@ -316,6 +316,104 @@ def pnrstatus(pnr):
     except Exception as e:
         return jsonify(error = str(e))
 
+@app.route("/fareenquiry/<trainno>/<src>/<destination>", methods=['GET'])
+def fareenquiry(trainno,src,destination):
+    url = "https://erail.in/train-fare/"+trainno+"?from="+src+"&to="+destination
+    try:
+        content = requests.get(url)
+        soup = BeautifulSoup(content.text,'html.parser')
+        try:
+            tr = soup.find_all('div',{"class":"panel"})[1].find('table',{"class":"tableSingleFare"}).find_all('tr')
+            classes = []
+
+            for i in range(1,len(tr[0].find_all('th'))):
+                classes.append(tr[0].find_all('th')[i].text.strip())
+
+            adult=[]
+            child=[]
+            adultTatkal=[]
+            childTatkal=[]
+            senFemale=[]
+            senMale=[]
+
+            for i in range(1,len(tr)):
+                td = tr[i].find_all('td')
+                if i==1:
+                    for j in range(1,len(td)):
+                        try:
+                            adult.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            adult.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+                if i==2:
+                    for j in range(1,len(td)):
+                        try:
+                            child.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            child.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+                if i==3:
+                    for j in range(1,len(td)):
+                        try:
+                            adultTatkal.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            adultTatkal.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+                if i==4:
+                    for j in range(1,len(td)):
+                        try:
+                            childTatkal.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            childTatkal.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+                if i==5:
+                    for j in range(1,len(td)):
+                        try:
+                            senFemale.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            senFemale.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+                if i==6:
+                    for j in range(1,len(td)):
+                        try:
+                            senMale.append({
+                                classes[j-1]:"₹ "+td[j].find('b').text.strip()
+                            })
+                        except Exception as ee:
+                            senMale.append({
+                                classes[j-1]:"₹ "+td[j].text.strip()
+                            })
+
+            fare = {
+                "adult":adult,
+                "child":child,
+                "adultTatkal":adultTatkal,
+                "childTatkal":childTatkal,
+                "seniorFemale":senFemale,
+                "seniorMale":senMale
+            }
+
+            return jsonify(fare=fare)
+        except Exception as ex:
+            return jsonify(error=str(ex))
+    except Exception as e:
+        return jsonify(error=str(e))
+
 if __name__ == '__main__':
     app.run()
 list

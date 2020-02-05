@@ -255,6 +255,7 @@ public class NetworkRequests {
                                         days,
                                         sigDelay,
                                         sliDelay,
+                                        null,
                                         null));
                             }
                         } catch (JSONException e) {
@@ -326,6 +327,68 @@ public class NetworkRequests {
                     try {
                         AppConstants.mTrainList.get(pos).setmSeats(arrayList);
                         seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
+                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
+                    try {
+                        AppConstants.mTrainList.get(pos).setmSeats(temp);
+                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                fetchSeatsData(trainNo, url);
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+
+    public void fetchFareData(final String trainNo, final String url) {
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        final ArrayList<String> temp = new ArrayList<>();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject jsonObject = response.getJSONObject("fare");
+                    JSONArray results;
+                    if (AppConstants.mQuota.getmAbbreviation().equalsIgnoreCase("tq"))
+                        results = jsonObject.getJSONArray("adultTatkal");
+                    else
+                        results = jsonObject.getJSONArray("adult");
+
+                    String fare = "";
+                    for (int i = 0; i < results.length(); i++) {
+                        JSONObject resultsJSONObject = results.getJSONObject(i);
+                        try {
+                            fare = resultsJSONObject.getString(AppConstants.mClass.getmAbbreviation());
+                        } catch (Exception eee) {
+                            continue;
+                        }
+                    }
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
+                    try {
+                        AppConstants.mTrainList.get(pos).setmFare(fare);
+                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare(fare);
                         seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();

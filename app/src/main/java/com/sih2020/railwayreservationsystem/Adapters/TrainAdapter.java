@@ -120,12 +120,25 @@ public class TrainAdapter extends ArrayAdapter<Train> {
 
         TextView seatAvltv = convertView.findViewById(R.id.availability_tv);
         final ProgressBar avlProgress = convertView.findViewById(R.id.availability_progress);
-        final ProgressBar fareProgress = convertView.findViewById(R.id.fare_progress);
+
         try {
             seatAvltv.setText(mTrains.get(position).getmSeats().get(0));
             seatAvltv.setVisibility(View.VISIBLE);
             avlProgress.setVisibility(View.GONE);
         } catch (Exception e) {
+        }
+
+        final ProgressBar fareProgress = convertView.findViewById(R.id.fare_progress);
+        TextView fareTv = convertView.findViewById(R.id.fare_tv);
+        try {
+            int x;
+            if(mTrains.get(position).getmFare() == null)
+                x = 1/0;
+            fareTv.setText(mTrains.get(position).getmFare());
+            fareTv.setVisibility(View.VISIBLE);
+            fareProgress.setVisibility(View.GONE);
+        } catch (Exception e) {
+
         }
         return convertView;
     }
