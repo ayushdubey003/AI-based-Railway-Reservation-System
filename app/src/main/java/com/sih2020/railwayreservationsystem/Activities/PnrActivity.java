@@ -95,14 +95,14 @@ public class PnrActivity extends AppCompatActivity {
         share_pnr_status_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("onClick: ","heyy!!");
+                Log.e("onClick: ", "heyy!!");
                 Intent intent2 = new Intent();
                 intent2.setAction(Intent.ACTION_SEND);
                 intent2.setType("text/plain");
-                intent2.putExtra(Intent.EXTRA_TEXT, "Heyy there! this is the Current Status for my PNR No "+
-                        mpnr+" : DOJ: "+from_date.getText().toString()+" "+from_time.getText().toString()+"\n"+
-                        from_code_pf.getText().toString()+" to "+to_code_pf.getText().toString()+"\n"+
-                        "Current Status: "+"\n"+currentStatus);
+                intent2.putExtra(Intent.EXTRA_TEXT, "Heyy there! this is the Current Status for my PNR No " +
+                        mpnr + " : DOJ: " + from_date.getText().toString() + " " + from_time.getText().toString() + "\n" +
+                        from_code_pf.getText().toString() + " to " + to_code_pf.getText().toString() + "\n" +
+                        "Current Status: " + "\n" + currentStatus);
                 startActivity(Intent.createChooser(intent2, "Share via"));
                 //Toast.makeText(PnrActivity.this, "Coming Soon", Toast.LENGTH_SHORT).show();
             }
@@ -145,7 +145,7 @@ public class PnrActivity extends AppCompatActivity {
     }
 
     private void fetchPnrData() {
-        String url = "http://192.168.43.128:5000" + "/pnrstatus/" + mpnr;
+        String url = AppConstants.mUrl + "/pnrstatus/" + mpnr;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -201,15 +201,13 @@ public class PnrActivity extends AppCompatActivity {
             Log.i("setPnrData: ", bs.toString());
             int no_of_passengers = bs.length();
             mdata.clear();
-            currentStatus="";
-            for (int j=0;j<no_of_passengers;j++)
-            {
-                Log.d("setPnrData: ",""+bs.get(j));
-                if (cs.get(j).toString().equals("CNF")){
-                    mdata.add(new PnrPassengerModel("Passenger "+Integer.toString(j+1),bs.get(j).toString()));
-                    currentStatus+="Passenger "+Integer.toString(j+1)+" : "+bs.get(j).toString()+"\n";
-                }
-                else {
+            currentStatus = "";
+            for (int j = 0; j < no_of_passengers; j++) {
+                Log.d("setPnrData: ", "" + bs.get(j));
+                if (cs.get(j).toString().equals("CNF")) {
+                    mdata.add(new PnrPassengerModel("Passenger " + Integer.toString(j + 1), bs.get(j).toString()));
+                    currentStatus += "Passenger " + Integer.toString(j + 1) + " : " + bs.get(j).toString() + "\n";
+                } else {
                     mdata.add(new PnrPassengerModel("Passenger " + Integer.toString(j + 1), cs.get(j).toString()));
                     currentStatus += "Passenger " + Integer.toString(j + 1) + " : " + cs.get(j).toString() + "\n";
                 }
@@ -235,57 +233,56 @@ public class PnrActivity extends AppCompatActivity {
 
     private void saveToRecents(String fromCode, String toCode, String doj) {
 
-        SharedPreferences lsharedpreferences=getSharedPreferences(AppConstants.mPrefsName, MODE_PRIVATE);
+        SharedPreferences lsharedpreferences = getSharedPreferences(AppConstants.mPrefsName, MODE_PRIVATE);
         SharedPreferences.Editor editor = lsharedpreferences.edit();
-        String[] lpnr = lsharedpreferences.getString("RecentPnrNo","").split(",");
+        String[] lpnr = lsharedpreferences.getString("RecentPnrNo", "").split(",");
 
-        String[] lfromcode = lsharedpreferences.getString("RecentPnrFrom","").split(",");
-        String[] ltocode = lsharedpreferences.getString("RecentPnrTo","").split(",");
-        String[] ldoj = lsharedpreferences.getString("RecentPnrDoj","").split(",");
+        String[] lfromcode = lsharedpreferences.getString("RecentPnrFrom", "").split(",");
+        String[] ltocode = lsharedpreferences.getString("RecentPnrTo", "").split(",");
+        String[] ldoj = lsharedpreferences.getString("RecentPnrDoj", "").split(",");
 
-        Log.e("saveToRecents: ",lpnr[0]+" "+lpnr[1]);
+        Log.e("saveToRecents: ", lpnr[0] + " " + lpnr[1]);
 
-        boolean flag=false;
-        for (int i=0;i<min(5,lpnr.length);i++){
-            if(lpnr[i].equals(mpnr)){
-                flag=true;
-                if(i!=0){
-                    for(int j=0;j<i;j++){
-                        lpnr[j+1]=lpnr[j];
-                        lfromcode[j+1]=lfromcode[j];
-                        ltocode[j+1]=ltocode[j];
-                        ldoj[j+1]=ldoj[j];
+        boolean flag = false;
+        for (int i = 0; i < min(5, lpnr.length); i++) {
+            if (lpnr[i].equals(mpnr)) {
+                flag = true;
+                if (i != 0) {
+                    for (int j = 0; j < i; j++) {
+                        lpnr[j + 1] = lpnr[j];
+                        lfromcode[j + 1] = lfromcode[j];
+                        ltocode[j + 1] = ltocode[j];
+                        ldoj[j + 1] = ldoj[j];
                     }
-                }
-                else return;
+                } else return;
             }
         }
-        if(!flag){
-            for(int j=0;j<min(4,lpnr.length);j++){
-                lpnr[j+1]=lpnr[j];
-                lfromcode[j+1]=lfromcode[j];
-                ltocode[j+1]=ltocode[j];
-                ldoj[j+1]=ldoj[j];
+        if (!flag) {
+            for (int j = 0; j < min(4, lpnr.length); j++) {
+                lpnr[j + 1] = lpnr[j];
+                lfromcode[j + 1] = lfromcode[j];
+                ltocode[j + 1] = ltocode[j];
+                ldoj[j + 1] = ldoj[j];
             }
         }
-        lpnr[0]=mpnr;
-        lfromcode[0]=fromCode;
-        ltocode[0]=toCode;
-        ldoj[0]=doj;
+        lpnr[0] = mpnr;
+        lfromcode[0] = fromCode;
+        ltocode[0] = toCode;
+        ldoj[0] = doj;
 
-        String dpnr, dfrom, dto,ddoj;
-        dpnr=lpnr[0]+","+lpnr[1]+","+lpnr[2]+","+lpnr[3]+","+lpnr[4];
-        dfrom=lfromcode[0]+","+lfromcode[1]+","+lfromcode[2]+","+lfromcode[3]+","+lfromcode[4];
-        dto=ltocode[0]+","+ltocode[1]+","+ltocode[2]+","+ltocode[3]+","+ltocode[4];
-        ddoj=ldoj[0]+","+ldoj[1]+","+ldoj[2]+","+ldoj[3]+","+ldoj[4];
+        String dpnr, dfrom, dto, ddoj;
+        dpnr = lpnr[0] + "," + lpnr[1] + "," + lpnr[2] + "," + lpnr[3] + "," + lpnr[4];
+        dfrom = lfromcode[0] + "," + lfromcode[1] + "," + lfromcode[2] + "," + lfromcode[3] + "," + lfromcode[4];
+        dto = ltocode[0] + "," + ltocode[1] + "," + ltocode[2] + "," + ltocode[3] + "," + ltocode[4];
+        ddoj = ldoj[0] + "," + ldoj[1] + "," + ldoj[2] + "," + ldoj[3] + "," + ldoj[4];
 
-        editor.putString("RecentPnrNo",dpnr);
-        editor.putString("RecentPnrFrom",dfrom);
-        editor.putString("RecentPnrTo",dto);
-        editor.putString("RecentPnrDoj",ddoj);
+        editor.putString("RecentPnrNo", dpnr);
+        editor.putString("RecentPnrFrom", dfrom);
+        editor.putString("RecentPnrTo", dto);
+        editor.putString("RecentPnrDoj", ddoj);
 
         editor.apply();
-        Log.e("saveToRecents: ",lpnr[0]+" "+lpnr[1]);
+        Log.e("saveToRecents: ", lpnr[0] + " " + lpnr[1]);
     }
 
     private void setPassengerRecyclerView() {
