@@ -95,8 +95,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         if (mSharedPreferences.getBoolean(AppConstants.mDataGiven, false)) {
             AppConstants.mUrl = mSharedPreferences.getString(AppConstants.mUrlSaved, "");
             askPermissions();
-        } else
+        } else {
             setupAlertDialog();
+            setRecentPnrSharedPreference();
+        }
+    }
+
+    private void setRecentPnrSharedPreference() {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString("RecentPnrNo","1,2,3,4,5");
+        editor.putString("RecentPnrFrom","1,2,3,4,5");
+        editor.putString("RecentPnrTo","1,2,3,4,5");
+        editor.putString("RecentPnrDoj","1,2,3,4,5");
+        editor.commit();
     }
 
     private void setupAlertDialog() {
