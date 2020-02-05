@@ -1,14 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.ServiceFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/bluishShadeColor"
+            android:layout_width="match_parent"
+            android:alpha="0.2"
+            android:layout_height="450dp"/>
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spot Train"
+                    android:paddingLeft="8dp"
+                    style="@style/internal_fonts"
+                    android:textStyle="bold"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/bluishShadeColor"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:tint="@color/bluishShadeColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_train_black_24dp" />
+                    <EditText
+                        android:layout_weight="7"
+                        android:background="@null"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_drawable"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Train No./Train Name"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_weight="1"
+                            android:padding="9dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_search_black_24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live Station"
+                    android:paddingLeft="8dp"
+                    style="@style/internal_fonts"
+                    android:textStyle="bold"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/bluishShadeColor"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:tint="@color/bluishShadeColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_train_black_24dp" />
+                    <EditText
+                        android:layout_weight="7"
+                        android:background="@null"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_drawable"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Station Code/Name"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_weight="1"
+                            android:padding="9dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_search_black_24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passing By Trains"
+                    android:paddingLeft="8dp"
+                    style="@style/internal_fonts"
+                    android:textStyle="bold"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/bluishShadeColor"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:cardCornerRadius="@dimen/cardview_default_elevation"
+                app:cardElevation="@dimen/cardview_default_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:tint="@color/bluishShadeColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_train_black_24dp" />
+                    <EditText
+                        android:layout_weight="7"
+                        android:background="@null"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_drawable"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Station Code/Name"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_weight="1"
+                            android:padding="9dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_search_black_24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="12dp"
+                    app:cardCornerRadius="@dimen/cardview_default_elevation"
+                    app:cardElevation="@dimen/cardview_default_elevation">
+                    <TextView
+                        android:alpha="0.4"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        style="@style/internal_fonts"
+                        android:textStyle="bold"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"/>
+                    <TextView
+                        android:text="Recommended Routes"
+                        android:padding="4dp"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        style="@style/internal_fonts"
+                        android:textStyle="bold"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"/>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="25dp"
+                    app:cardCornerRadius="@dimen/cardview_default_elevation"
+                    app:cardElevation="@dimen/cardview_default_elevation">
+                    <TextView
+                        android:alpha="0.4"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        style="@style/internal_fonts"
+                        android:textStyle="bold"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"/>
+                    <TextView
+                        android:text="Automated Tatkal Booking"
+                        android:padding="4dp"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        style="@style/internal_fonts"
+                        android:textStyle="bold"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
