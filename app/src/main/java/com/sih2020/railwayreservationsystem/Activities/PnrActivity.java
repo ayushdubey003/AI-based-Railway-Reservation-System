@@ -1,7 +1,6 @@
 package com.sih2020.railwayreservationsystem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +29,6 @@ import com.sih2020.railwayreservationsystem.Models.PnrPassengerModel;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
-import com.sih2020.railwayreservationsystem.Utils.RecentPNR;
 
 import org.json.JSONArray;
 import org.json.JSONException;
