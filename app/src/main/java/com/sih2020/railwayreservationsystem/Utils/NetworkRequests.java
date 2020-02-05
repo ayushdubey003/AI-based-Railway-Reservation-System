@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 
@@ -48,6 +49,9 @@ public class NetworkRequests {
     private MainActivity mainActivity;
     private SeatAvailabilityActivity seatAvailabilityActivity;
     private String version;
+    private ArrayList<String> temp;
+    JsonObjectRequest seats;
+    String arrOfSplits[];
 
     public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, MainActivity mainActivity) {
         mCL = coordinatorLayout;
@@ -275,47 +279,6 @@ public class NetworkRequests {
         queue.add(jsonObjectRequest);
     }
 
-    public void fetchSeatsTrainWise(HashMap<String, String> urls) {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-
-        Iterator iterator = urls.entrySet().iterator();
-        while (iterator.hasNext()) {
-            final HashMap.Entry<String, String> value = (HashMap.Entry<String, String>) iterator.next();
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, value.getValue(), null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                JSONArray seats = response.getJSONArray("seatavailability");
-                                ArrayList<String> arrayList = new ArrayList<>();
-                                for (int i = 0; i < seats.length(); i++)
-                                    arrayList.add(seats.getString(i));
-                                arrayList = cleanList(arrayList);
-                                int pos = 0;
-                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                                    if (AppConstants.mTrainList.get(i).getmTrainNo().trim().equals(value.getKey().trim())) {
-                                        pos = i;
-                                        break;
-                                    }
-                                }
-                                AppConstants.mTrainList.get(pos).setmSeats(arrayList);
-                                seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                            } catch (JSONException e) {
-                                Snackbar.make(mCL, e.getLocalizedMessage() + "for train no " + value.getKey(), Snackbar.LENGTH_LONG).show();
-                            } finally {
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
-                }
-            });
-            queue.add(jsonObjectRequest);
-        }
-    }
-
     private ArrayList<String> cleanList(ArrayList<String> arrayList) {
         ArrayList<String> arr = new ArrayList<>();
         for (int j = 0; j < arrayList.size(); j++) {
@@ -339,5 +302,48 @@ public class NetworkRequests {
             arr.add(u);
         }
         return arr;
+    }
+
+    public void fetchSeatsData(final String trainNo, final String url) {
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        final ArrayList<String> temp = new ArrayList<>();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("seatavailability");
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++)
+                        arrayList.add(jsonArray.getString(i));
+                    arrayList = cleanList(arrayList);
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
+                    AppConstants.mTrainList.get(pos).setmSeats(arrayList);
+                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
+                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
+                    AppConstants.mTrainList.get(pos).setmSeats(temp);
+                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                fetchSeatsData(trainNo, url);
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 }

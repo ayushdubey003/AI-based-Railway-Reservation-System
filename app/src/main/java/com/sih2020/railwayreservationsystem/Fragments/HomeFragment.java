@@ -346,7 +346,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 int val = (Integer) valueAnimator.getAnimatedValue();
-                int u = (int) AppConstants.convertDpToPixel(30, getContext());
+                int u=0;
+                try {
+                    u = (int) AppConstants.convertDpToPixel(30, getContext());
+                }
+                catch (Exception e)
+                {
+                    return;
+                }
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
                 layoutParams.height = val;
 

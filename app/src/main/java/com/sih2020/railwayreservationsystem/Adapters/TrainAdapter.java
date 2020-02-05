@@ -2,6 +2,8 @@ package com.sih2020.railwayreservationsystem.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +18,15 @@ import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TrainAdapter extends ArrayAdapter<Train> {
     private Context mContext;
-    private List<Train> mTrains;
+    public List<Train> mTrains;
     private View view;
 
     public TrainAdapter(@NonNull Context context, @NonNull List<Train> objects) {
@@ -59,9 +64,9 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView trainName = convertView.findViewById(R.id.train_name_tv);
         trainName.setText(mTrains.get(position).getmTrainName());
         TextView startTime = convertView.findViewById(R.id.start_time_tv);
-        startTime.setText(mTrains.get(position).getmDepartureTime().get(deptIndex));
+        startTime.setText(convertTime(mTrains.get(position).getmDepartureTime().get(deptIndex)));
         TextView endTime = convertView.findViewById(R.id.end_time_tv);
-        endTime.setText(mTrains.get(position).getmArrivalTimes().get(arrIndex));
+        endTime.setText(convertTime(mTrains.get(position).getmArrivalTimes().get(arrIndex)));
         TextView duration = convertView.findViewById(R.id.duration_tv);
         TextView sun = convertView.findViewById(R.id.sun);
         TextView mon = convertView.findViewById(R.id.mon);
@@ -71,7 +76,16 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView fri = convertView.findViewById(R.id.fri);
         TextView sat = convertView.findViewById(R.id.sat);
 
+        sun.setTextColor(Color.parseColor("#FF0000"));
+        mon.setTextColor(Color.parseColor("#FF0000"));
+        tue.setTextColor(Color.parseColor("#FF0000"));
+        wed.setTextColor(Color.parseColor("#FF0000"));
+        thurs.setTextColor(Color.parseColor("#FF0000"));
+        fri.setTextColor(Color.parseColor("#FF0000"));
+        sat.setTextColor(Color.parseColor("#FF0000"));
+
         ArrayList<String> runningDays = mTrains.get(position).getmRunningDays();
+
         if (runningDays.size() == 1) {
             if (runningDays.get(0).equalsIgnoreCase("daily")) {
                 sun.setTextColor(Color.parseColor("#00FF00"));
@@ -92,7 +106,7 @@ public class TrainAdapter extends ArrayAdapter<Train> {
                 tue.setTextColor(Color.parseColor("#00FF00"));
             if (runningDays.get(i).equalsIgnoreCase("wed"))
                 wed.setTextColor(Color.parseColor("#00FF00"));
-            if (runningDays.get(i).equalsIgnoreCase("thurs"))
+            if (runningDays.get(i).equalsIgnoreCase("thu"))
                 thurs.setTextColor(Color.parseColor("#00FF00"));
             if (runningDays.get(i).equalsIgnoreCase("fri"))
                 fri.setTextColor(Color.parseColor("#00FF00"));
@@ -105,15 +119,26 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         travelClass.setText(AppConstants.mClass.getmAbbreviation());
 
         TextView seatAvltv = convertView.findViewById(R.id.availability_tv);
-        ProgressBar avlProgress = convertView.findViewById(R.id.availability_progress);
+        final ProgressBar avlProgress = convertView.findViewById(R.id.availability_progress);
+        final ProgressBar fareProgress = convertView.findViewById(R.id.fare_progress);
         try {
             seatAvltv.setText(mTrains.get(position).getmSeats().get(0));
             seatAvltv.setVisibility(View.VISIBLE);
             avlProgress.setVisibility(View.GONE);
         } catch (Exception e) {
-
         }
-
         return convertView;
+    }
+
+    private static String convertTime(String time) {
+        SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
+        Date _24HourDt = null;
+        try {
+            _24HourDt = _24HourSDF.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return _12HourSDF.format(_24HourDt);
     }
 }

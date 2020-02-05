@@ -83,7 +83,6 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mMain.setAlpha(1.0f);
         mProgress.setVisibility(View.GONE);
         mAdapter.notifyDataSetChanged();
-        HashMap<String, String> urls = new HashMap<>();
         for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
             ArrayList<String> route = AppConstants.mTrainList.get(i).getmCodedRoutes();
             int pos = 0;
@@ -107,14 +106,8 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             Date date = AppConstants.mDate;
             String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
             String temp = AppConstants.mUrl + "/seats/" + AppConstants.mTrainList.get(i).getmTrainNo().trim() + "/" + AppConstants.mSourceStation.getmStationCode().trim() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
-            Log.e(LOG_TAG, temp);
-            urls.put(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);
+            networkRequests.fetchSeatsData(AppConstants.mTrainList.get(i).getmTrainNo().trim(), temp);
         }
-        networkRequests.fetchSeatsTrainWise(urls);
-    }
-
-    public void seatFetchComplete() {
-
     }
 
 }
