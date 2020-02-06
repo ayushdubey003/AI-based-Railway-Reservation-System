@@ -106,8 +106,11 @@ public class SearchTrains extends AppCompatActivity {
             public void onClick(View view, int position) {
                 if (mIntentCode == 1)
                     AppConstants.mSourceStation = mSearchStations.get(position);
-                else
+                else if (mIntentCode == 2)
                     AppConstants.mDestinationStation = mSearchStations.get(position);
+                else {
+                    AppConstants.mSourceStation = mSearchStations.get(position);
+                }
 
                 finish();
             }
@@ -140,7 +143,7 @@ public class SearchTrains extends AppCompatActivity {
         mAppBar.setBackground(GenerateBackground.generateBackground());
         mCloseIv.setColorFilter(Color.parseColor("#a9a9a9"));
 
-        if (mIntentCode == 2)
+        if (mIntentCode == 2 || mIntentCode == 3)
             mLocationLl.setVisibility(View.GONE);
     }
 }

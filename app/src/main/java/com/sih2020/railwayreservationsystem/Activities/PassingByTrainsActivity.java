@@ -24,7 +24,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sih2020.railwayreservationsystem.Adapters.PassingByTrainAdapter;
-import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -43,7 +42,7 @@ import java.util.Locale;
 public class PassingByTrainsActivity extends AppCompatActivity {
 
     private ImageView back_button;
-    private LinearLayout date_bar,appBar;
+    private LinearLayout date_bar, appBar;
     private ListView passing_train_list;
     private RelativeLayout progressBar;
     private TextView date_text;
@@ -63,6 +62,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passing_by_trains);
 
+        mstation=getIntent().getExtras().getString("station");
         mlist = new ArrayList<>();
         required_list = new ArrayList<>();
         fetchData();
@@ -72,7 +72,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
 
 
     private void init() {
-        appBar=findViewById(R.id.app_bar_pb);
+        appBar = findViewById(R.id.app_bar_pb);
         appBar.setBackground(GenerateBackground.generateBackground());
 
         date_text = findViewById(R.id.date_text);
@@ -85,9 +85,6 @@ public class PassingByTrainsActivity extends AppCompatActivity {
 
         selected_day = (String) DateFormat.format("EEEE", AppConstants.mDate);
         Log.e("PassingByTrainAdapter: ", selected_day);
-
-        //TO-DO: get from intent
-        mstation = "TATA";
 
         mCalendar = Calendar.getInstance();
         mDate = new DatePickerDialog.OnDateSetListener() {
@@ -176,7 +173,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
     }
 
     private void filterCurrentList() {
-        Log.e("filterCurrentList: ","called "+selected_day);
+        Log.e("filterCurrentList: ", "called " + selected_day);
         if (required_list.size() > 0)
             required_list.clear();
         String ldate;
@@ -196,10 +193,9 @@ public class PassingByTrainsActivity extends AppCompatActivity {
             ldate = "SUN";
 
         for (int i = 0; i < mlist.size(); i++) {
-            if (mlist.get(i).getmRunningDays().get(0).equalsIgnoreCase("Daily")){
+            if (mlist.get(i).getmRunningDays().get(0).equalsIgnoreCase("Daily")) {
                 required_list.add(mlist.get(i));
-            }
-            else {
+            } else {
                 for (int j = 0; j < mlist.get(i).getmRunningDays().size(); j++) {
                     if (mlist.get(i).getmRunningDays().get(j).equalsIgnoreCase(ldate)) {
                         required_list.add(mlist.get(i));
@@ -217,6 +213,13 @@ public class PassingByTrainsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setUpDateAlert();
+            }
+        });
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
