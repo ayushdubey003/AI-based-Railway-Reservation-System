@@ -21,10 +21,10 @@ import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
 public class ServiceFragment extends Fragment {
-    private LinearLayout open_passingBy;
-    private EditText passing_by_edit_text;
+    private LinearLayout open_passingBy, liveStationOpen;
+    private EditText passing_by_edit_text, liveStationEditText;
 
-    private ImageView clear_passingbyText;
+    private ImageView clear_passingbyText, liveStationClear;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -70,13 +70,22 @@ public class ServiceFragment extends Fragment {
 
     private void receiveClicks() {
 
+        liveStationOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
+                intent.putExtra("station", "TATA");
+                startActivity(intent);
+            }
+        });
+
         open_passingBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(passing_by_edit_text.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();;
-                }
-                else {
+                if (passing_by_edit_text.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();
+                    ;
+                } else {
                     Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
                     intent.putExtra("station", AppConstants.mSourceStation.getmStationCode());
                     startActivity(intent);
@@ -108,5 +117,9 @@ public class ServiceFragment extends Fragment {
         passing_by_edit_text = view.findViewById(R.id.passing_by_edit_text);
 
         clear_passingbyText = view.findViewById(R.id.clear_passing_by_text);
+
+        liveStationOpen = view.findViewById(R.id.live_station_open);
+        liveStationEditText = view.findViewById(R.id.live_station_edit_text);
+        liveStationClear = view.findViewById(R.id.live_station_clear);
     }
 }
