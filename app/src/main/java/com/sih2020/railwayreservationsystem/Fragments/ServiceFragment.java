@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sih2020.railwayreservationsystem.Activities.LiveStation;
 import com.sih2020.railwayreservationsystem.Activities.PassingByTrainsActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.R;
@@ -73,7 +74,7 @@ public class ServiceFragment extends Fragment {
         liveStationOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
+                Intent intent = new Intent(getActivity(), LiveStation.class);
                 intent.putExtra("station", "TATA");
                 startActivity(intent);
             }
