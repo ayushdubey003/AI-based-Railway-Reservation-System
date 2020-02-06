@@ -110,6 +110,7 @@ public class SearchTrains extends AppCompatActivity {
                     AppConstants.mDestinationStation = mSearchStations.get(position);
                 else {
                     AppConstants.mSourceStation = mSearchStations.get(position);
+                    AppConstants.mFlag = false;
                 }
 
                 finish();

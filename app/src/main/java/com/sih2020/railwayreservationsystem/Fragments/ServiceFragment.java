@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.sih2020.railwayreservationsystem.Activities.PassingByTrainsActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
@@ -22,7 +23,6 @@ import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 public class ServiceFragment extends Fragment {
     private LinearLayout open_passingBy;
     private EditText passing_by_edit_text;
-    private boolean first_time_flag = true;
 
     private ImageView clear_passingbyText;
 
@@ -61,10 +61,10 @@ public class ServiceFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!first_time_flag) {
+        if (!AppConstants.mFlag && AppConstants.mSourceStation != null) {
             passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode());
         } else {
-            first_time_flag = false;
+            AppConstants.mFlag = false;
         }
     }
 
@@ -73,11 +73,17 @@ public class ServiceFragment extends Fragment {
         open_passingBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
-                intent.putExtra("station", AppConstants.mSourceStation.getmStationCode());
-                startActivity(intent);
+                if(passing_by_edit_text.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();;
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
+                    intent.putExtra("station", AppConstants.mSourceStation.getmStationCode());
+                    startActivity(intent);
+                }
             }
         });
+
         passing_by_edit_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +97,8 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 passing_by_edit_text.setText("");
+                AppConstants.mSourceStation = null;
+                AppConstants.mFlag = true;
             }
         });
     }
@@ -99,6 +107,6 @@ public class ServiceFragment extends Fragment {
         open_passingBy = view.findViewById(R.id.open_passing_by);
         passing_by_edit_text = view.findViewById(R.id.passing_by_edit_text);
 
-        clear_passingbyText=view.findViewById(R.id.clear_passing_by_text);
+        clear_passingbyText = view.findViewById(R.id.clear_passing_by_text);
     }
 }
