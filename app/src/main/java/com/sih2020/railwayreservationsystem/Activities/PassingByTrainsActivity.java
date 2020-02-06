@@ -196,9 +196,14 @@ public class PassingByTrainsActivity extends AppCompatActivity {
             ldate = "SUN";
 
         for (int i = 0; i < mlist.size(); i++) {
-            for (int j = 0; j < mlist.get(i).getmRunningDays().size(); j++) {
-                if (mlist.get(i).getmRunningDays().get(j).equalsIgnoreCase(ldate)) {
-                    required_list.add(mlist.get(i));
+            if (mlist.get(i).getmRunningDays().get(0).equalsIgnoreCase("Daily")){
+                required_list.add(mlist.get(i));
+            }
+            else {
+                for (int j = 0; j < mlist.get(i).getmRunningDays().size(); j++) {
+                    if (mlist.get(i).getmRunningDays().get(j).equalsIgnoreCase(ldate)) {
+                        required_list.add(mlist.get(i));
+                    }
                 }
             }
         }
