@@ -1,9 +1,9 @@
 package com.sih2020.railwayreservationsystem.Models;
 
 public class LiveStationModel {
-    public String trainNo, schArrival,expArrival,trainName,delay,source,destination,pf;
+    public String trainNo, schArrival,expArrival,trainName,delay,source,destination,pf,ddept;
 
-    public LiveStationModel(String trainNo, String schArrival, String expArrival, String trainName, String delay, String source, String destination, String pf) {
+    public LiveStationModel(String trainNo, String schArrival, String expArrival, String trainName, String delay, String source, String destination, String pf, String ddept) {
         this.trainNo = trainNo;
         this.schArrival = schArrival;
         this.expArrival = expArrival;
@@ -12,6 +12,11 @@ public class LiveStationModel {
         this.source = source;
         this.destination = destination;
         this.pf = pf;
+        this.ddept=ddept;
+    }
+
+    public String getDdept() {
+        return ddept;
     }
 
     public void setTrainNo(String trainNo) {

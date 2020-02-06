@@ -29,15 +29,15 @@
                 android:layout_height="wrap_content"
                 android:text="18181"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 style="@style/internal_fonts" />
             <TextView
                 android:id="@+id/sceduled_arr_ls"
                 android:layout_toLeftOf="@id/expected_arr_ls"
                 tools:text="10:15 PM"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="28dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="4dp"
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/expected_arr_ls"
                 tools:text="10:15 PM"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
                 android:paddingRight="8dp"
@@ -71,7 +71,7 @@
             <TextView
                 android:id="@+id/train_name_ls"
                 tools:text="Tata Chhapra Express"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="12dp"
                 style="@style/internal_fonts"
@@ -81,7 +81,7 @@
             <TextView
                 android:id="@+id/delay_ls"
                 tools:text="1 hr 32 min late"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginRight="12dp"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
@@ -93,12 +93,13 @@
 
         <RelativeLayout
             android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/circle_layer"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -107,11 +108,17 @@
                     android:layout_width="14dp"
                     android:layout_height="14dp"/>
                 <View
-                    android:layout_width="4dp"
-                    android:layout_height="30dp"
+                    android:layout_width="2dp"
+                    android:layout_height="14dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_below="@id/source_circle"
-                    android:background="@color/bluishShadeColor"></View>
+                    android:background="@color/colorPrimary"></View>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_below="@id/source_circle"
+                    android:background="#8d021f"></View>
                 <ImageView
                     android:src="@drawable/circle"
                     android:layout_width="14dp"
@@ -127,7 +134,7 @@
                     android:id="@+id/source_ls"
                     tools:text="TataNagar Junction"
                     android:maxLines="1"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_gravity="top"
                     android:layout_marginLeft="12dp"
                     style="@style/internal_fonts"
@@ -144,7 +151,7 @@
                     android:id="@+id/destination_ls"
                     tools:text="Howrah Railway Station"
                     android:maxLines="1"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:paddingRight="8dp"
@@ -162,7 +169,7 @@
                 <TextView
                     android:id="@+id/pf_ls"
                     tools:text="Platform 4"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_gravity="top"
                     android:layout_marginLeft="12dp"
                     style="@style/internal_fonts"
@@ -179,10 +186,11 @@
                     android:visibility="gone"
                     android:id="@+id/departed_ls"
                     tools:text="Howrah Railway Station"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:paddingRight="8dp"
+                    android:background="@drawable/rounded_colored_border"
                     style="@style/internal_fonts"
                     android:textColor="#000"
                     android:layout_width="wrap_content"

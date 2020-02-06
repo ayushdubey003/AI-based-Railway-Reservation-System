@@ -22,6 +22,8 @@ public class AppConstants {
     public static ArrayList<Station> mStationsName = new ArrayList<>();
     public static Station mSourceStation;
     public static Station mDestinationStation;
+    public static Station mLiveStation;
+    public static Station mLiveStationOptional = null;
     public static Station mTempStation;
     public static boolean mDataFetchCalled = false;
     public static ArrayList<SpinnerModel> mTravelClasses = new ArrayList<>();

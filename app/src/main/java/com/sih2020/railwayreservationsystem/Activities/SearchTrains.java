@@ -108,9 +108,13 @@ public class SearchTrains extends AppCompatActivity {
                     AppConstants.mSourceStation = mSearchStations.get(position);
                 else if (mIntentCode == 2)
                     AppConstants.mDestinationStation = mSearchStations.get(position);
-                else {
+                else if (mIntentCode == 3) {
                     AppConstants.mSourceStation = mSearchStations.get(position);
                     AppConstants.mFlag = false;
+                } else if (mIntentCode == 4) {
+                    AppConstants.mLiveStation = mSearchStations.get(position);
+                } else {
+                    AppConstants.mLiveStationOptional = mSearchStations.get(position);
                 }
 
                 finish();

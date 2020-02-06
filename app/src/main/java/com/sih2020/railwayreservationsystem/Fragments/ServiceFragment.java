@@ -54,6 +54,7 @@ public class ServiceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         AppConstants.mSourceStation = null;
+        AppConstants.mDestinationStation=null;
 
         init(view);
         receiveClicks();
@@ -62,8 +63,13 @@ public class ServiceFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        if(AppConstants.mLiveStation!=null){
+            liveStationEditText.setText(AppConstants.mLiveStation.getmStationCode()+" - "+AppConstants.mLiveStation.getmStationName());
+        }
+
         if (!AppConstants.mFlag && AppConstants.mSourceStation != null) {
-            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode());
+            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode()+" - "+AppConstants.mSourceStation.getmStationName());
         } else {
             AppConstants.mFlag = false;
         }
@@ -74,9 +80,31 @@ public class ServiceFragment extends Fragment {
         liveStationOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LiveStation.class);
-                intent.putExtra("station", "TATA");
+                if (liveStationEditText.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();
+                    ;
+                } else {
+                    Intent intent = new Intent(getActivity(), LiveStation.class);
+                    intent.putExtra("station", AppConstants.mLiveStation.getmStationCode());
+                    startActivity(intent);
+                }
+            }
+        });
+
+        liveStationEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                intent.putExtra("type", 4);
                 startActivity(intent);
+            }
+        });
+
+        liveStationClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                liveStationEditText.setText("");
+                AppConstants.mLiveStation = null;
             }
         });
 
