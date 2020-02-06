@@ -110,7 +110,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        String url = "http://192.168.43.128:5000" + "/trains/" + mstation;
+        String url = AppConstants.mUrl + "/trains/" + mstation;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
