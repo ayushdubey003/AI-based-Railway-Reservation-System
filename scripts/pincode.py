@@ -16,14 +16,14 @@ with open("../datasets/stations.csv","r") as file:
 		stationNames.append(row[0])
 		stationCodes.append(row[1])
 
-# with open("../datasets/pincodes.csv", "w") as writeFile:
-# 	file = csv.writer(writeFile)
-# 	file.writerow(["Pincode"])
+with open("../datasets/pincodes.csv", "w") as writeFile:
+	file = csv.writer(writeFile)
+	file.writerow(["Pincode"])
 
 i = 1
+driver.get(url)
 
 while True:
-	driver.get(url)
 	if i >= len(stationCodes):
 		break
 	with open("../datasets/pincodes.csv", "a") as writeFile:
@@ -35,8 +35,12 @@ while True:
 			print(i)
 			file = csv.writer(writeFile)
 			file.writerow([str(ans).strip()])
-			i = i+1
 		except Exception as e:
-			file = csv.writer(writeFile)
-			file.writerow(["null"])
-			continue
+			try:
+				u = driver.find_elements_by_class_name("search_units")[0].find_elements_by_class_name("search_unit")[0].find_elements_by_class_name("code")[0].text
+				file = csv.writer(writeFile)
+				file.writerow([u])
+			except Exception as e:
+				file = csv.writer(writeFile)
+				file.writerow(["null"])
+	i = i+1

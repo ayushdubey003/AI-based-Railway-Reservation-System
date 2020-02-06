@@ -414,6 +414,35 @@ def fareenquiry(trainno,src,destination):
     except Exception as e:
         return jsonify(error=str(e))
 
+@app.route("/livestation/<src>/<destination>/<hours>", methods=['GET'])
+def livestation(src,destination,hours):
+    url = ""
+    if destination == "null":
+        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation=&hours="+hours
+    else:
+        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation="+destination.strip()+"&hours="+hours      
+    ans = []
+    try:
+        content = requests.get(url)
+        soup = BeautifulSoup(content.text,'html.parser')
+        u = soup.find('table',{"id":"trainDetails1"}).find_all("tbody")
+        for i in range(0,len(u)):
+            v = u[i].find("tr").find_all("td")
+            x = {
+                "trainNo" : v[0].text.strip(),
+                "trainName" : v[1].text.strip(),
+                "schTimeArrival" : v[2].text.strip(),
+                "schTimeDeparture" : v[3].text.strip(),
+                "expTimeArrival" : v[4].text.strip(),
+                "expTimeDeparture" : v[5].text.strip(),
+                "delay" : v[6].text.strip(),
+                "platformNo" : v[7].text.strip()
+            }
+            ans.append(x)
+    except Exception as e:
+        print(str(e))
+    return jsonify(livestation = ans)
+
 if __name__ == '__main__':
     app.run()
 list
