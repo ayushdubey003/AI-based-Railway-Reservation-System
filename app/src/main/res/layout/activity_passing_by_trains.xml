@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d3d3d3"
+    tools:context=".Activities.SeatAvailabilityActivity">
+
+    <RelativeLayout
+        android:id="@+id/progress_passingby"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"></ProgressBar>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_rl_passing_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:background="@color/bluishShadeColor"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <ImageView
+                android:id="@+id/back_iv_passing_by"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_back_black_24dp"></ImageView>
+
+            <LinearLayout
+                android:id="@+id/date_tv_passing_by"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="10"
+                android:background="@drawable/rounded_rectangle"
+                android:elevation="-8dp">
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_date_range_black_24dp"
+                    android:tint="#e4ebea"></ImageView>
+
+                <TextView
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    style="@style/font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    tools:text="Feb 14, 2020"
+                    android:textColor="#fff"
+                    android:textStyle="bold"></TextView>
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"></ImageView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/passing_by_trains_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_bar"
+            android:divider="@null"></ListView>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
