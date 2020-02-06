@@ -52,10 +52,12 @@ public class LiveStationAdapter extends RecyclerView.Adapter<LiveStationAdapter.
         }
 
 
-        if (mlist.get(position).getPf().equals(null)) {
+        if (mlist.get(position).getPf().equalsIgnoreCase("NULL")) {
             holder.pf.setText("--");
         }
-        holder.pf.setText("Platform " + mlist.get(position).getPf());
+        else {
+            holder.pf.setText("Platform " + mlist.get(position).getPf());
+        }
         holder.source.setText(mlist.get(position).getSource());
         holder.destination.setText(mlist.get(position).getDestination());
         holder.delay.setText(mlist.get(position).getDelay());

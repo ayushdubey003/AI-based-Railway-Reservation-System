@@ -66,12 +66,21 @@ public class LiveStation extends AppCompatActivity {
         if (AppConstants.mLiveStationOptional != null) {
             optionalEditText.setText(AppConstants.mLiveStationOptional.getmStationCode() + " - " +
                     AppConstants.mLiveStationOptional.getmStationName());
+            progressBar.setVisibility(View.VISIBLE);
             fetchData();
         }
     }
 
     private void fetchData() {
-        String url = "http://192.168.43.128:5000" + "/livestation/" + selectedStation + "/" + AppConstants.mLiveStationOptional + "/" + mtime;
+        mlist.clear();
+        String url;
+        //Log.d("fetchData: ",selectedStation+" lele "+AppConstants.mLiveStationOptional.getmStationCode());
+        if (AppConstants.mLiveStationOptional == null) {
+            String temp2 = null;
+            url = "http://192.168.43.128:5000" + "/livestation/" + selectedStation + "/" + temp2 + "/" + mtime;
+        } else {
+            url = "http://192.168.43.128:5000" + "/livestation/" + selectedStation + "/" + AppConstants.mLiveStationOptional.getmStationCode() + "/" + mtime;
+        }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -91,10 +100,10 @@ public class LiveStation extends AppCompatActivity {
                                 String dexparr = jobj.getString("expTimeArrival");
                                 String dpf = jobj.getString("platformNo");
                                 String ddelay = jobj.getString("delay");
-                                String ddept=jobj.getString("schTimeDeparture");
+                                String ddept = jobj.getString("schTimeDeparture");
 
                                 mlist.add(new LiveStationModel(dtrainno, dscharr, dexparr, dtrainname, ddelay,
-                                        "Source", "Destination", dpf,ddept));
+                                        "Source", "Destination", dpf, ddept));
                             }
                             progressBar.setVisibility(View.GONE);
                             madapter.notifyDataSetChanged();
@@ -142,6 +151,7 @@ public class LiveStation extends AppCompatActivity {
             public void onClick(View v) {
                 optionalEditText.setText("");
                 AppConstants.mLiveStationOptional = null;
+                progressBar.setVisibility(View.VISIBLE);
                 fetchData();
             }
         });
