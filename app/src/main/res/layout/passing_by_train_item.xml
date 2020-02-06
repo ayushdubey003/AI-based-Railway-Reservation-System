@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <RelativeLayout
+                android:id="@+id/train_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/train_no_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                    <TextView
+                        android:id="@+id/train_no_pb"
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="2dp"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        tools:text="15114"></TextView>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/train_name_pb"
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_toRightOf="@id/train_no_cv"
+                    android:textAllCaps="true"
+                    android:textColor="#626262"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Lucknow Jn Express"></TextView>
+
+                <ImageView
+                    android:id="@+id/route_pb"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_location_on_black_24dp"></ImageView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/start_time_pb"
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#626262"
+                    tools:text="1:55 AM"></TextView>
+
+
+
+                <TextView
+                    android:id="@+id/end_time_pb"
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:textColor="#626262"
+                    tools:text="8:25 AM"></TextView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="S"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/mon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="M"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/tue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="T"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/wed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="W"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/thurs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="T"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/fri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="F"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                    <TextView
+                        android:id="@+id/sat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="S"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp"></TextView>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -16,9 +16,9 @@ with open("../datasets/stations.csv","r") as file:
 		stationNames.append(row[0])
 		stationCodes.append(row[1])
 
-with open("../datasets/pincodes.csv", "w") as writeFile:
-	file = csv.writer(writeFile)
-	file.writerow(["Pincode"])
+# with open("../datasets/pincodes.csv", "w") as writeFile:
+# 	file = csv.writer(writeFile)
+# 	file.writerow(["Pincode"])
 
 i = 1
 
