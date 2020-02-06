@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +28,7 @@ import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
+import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,23 +38,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class PassingByTrainsActivity extends AppCompatActivity {
 
     private ImageView back_button;
-    private LinearLayout date_bar;
+    private LinearLayout date_bar,appBar;
     private ListView passing_train_list;
     private RelativeLayout progressBar;
+    private TextView date_text;
 
     private PassingByTrainAdapter madapter;
 
     private DatePickerDialog.OnDateSetListener mDate;
     private Calendar mCalendar;
 
-    private String mstation;
+    private String mstation = "TATA";
     private ArrayList<Train> mlist;
+    private ArrayList<Train> required_list;
+    private String selected_day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_passing_by_trains);
 
         mlist = new ArrayList<>();
+        required_list = new ArrayList<>();
         fetchData();
         init();
         setClicks();
@@ -66,6 +72,10 @@ public class PassingByTrainsActivity extends AppCompatActivity {
 
 
     private void init() {
+        appBar=findViewById(R.id.app_bar_pb);
+        appBar.setBackground(GenerateBackground.generateBackground());
+
+        date_text = findViewById(R.id.date_text);
         back_button = findViewById(R.id.back_iv_passing_by);
         date_bar = findViewById(R.id.date_tv_passing_by);
         passing_train_list = findViewById(R.id.passing_by_trains_list);
@@ -73,12 +83,11 @@ public class PassingByTrainsActivity extends AppCompatActivity {
 
         passing_train_list = findViewById(R.id.passing_by_trains_list);
 
-        madapter = new PassingByTrainAdapter(this, mlist, mstation);
-        passing_train_list.setAdapter(madapter);
+        selected_day = (String) DateFormat.format("EEEE", AppConstants.mDate);
+        Log.e("PassingByTrainAdapter: ", selected_day);
 
         //TO-DO: get from intent
         mstation = "TATA";
-
 
         mCalendar = Calendar.getInstance();
         mDate = new DatePickerDialog.OnDateSetListener() {
@@ -92,10 +101,16 @@ public class PassingByTrainsActivity extends AppCompatActivity {
                 updateJourneyDate();
             }
         };
+
+        String dateToShow = (String) DateFormat.format("MMM", AppConstants.mDate) + " " + (String) DateFormat.format("dd", AppConstants.mDate) + "," + (String) DateFormat.format("yyyy", AppConstants.mDate);
+        date_text.setText(dateToShow);
+
+        madapter = new PassingByTrainAdapter(this, required_list, mstation);
+        passing_train_list.setAdapter(madapter);
     }
 
     private void fetchData() {
-        String url = "http://192.168.43.128:5000" + "/trains/" + "TATA";
+        String url = "http://192.168.43.128:5000" + "/trains/" + mstation;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -140,8 +155,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
                             }
 
                             Log.e("onResponse: ", "" + mlist.size());
-                            progressBar.setVisibility(View.GONE);
-                            madapter.notifyDataSetChanged();
+                            filterCurrentList();
 
                         } catch (JSONException e) {
                             Log.e("Trainsdata: ", e.getMessage());
@@ -159,6 +173,38 @@ public class PassingByTrainsActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    private void filterCurrentList() {
+        Log.e("filterCurrentList: ","called "+selected_day);
+        if (required_list.size() > 0)
+            required_list.clear();
+        String ldate;
+        if (selected_day.equalsIgnoreCase("monday"))
+            ldate = "MON";
+        else if (selected_day.equalsIgnoreCase("tuesday"))
+            ldate = "TUE";
+        else if (selected_day.equalsIgnoreCase("wednesday"))
+            ldate = "WED";
+        else if (selected_day.equalsIgnoreCase("thursday"))
+            ldate = "THU";
+        else if (selected_day.equalsIgnoreCase("friday"))
+            ldate = "FRI";
+        else if (selected_day.equalsIgnoreCase("saturday"))
+            ldate = "SAT";
+        else
+            ldate = "SUN";
+
+        for (int i = 0; i < mlist.size(); i++) {
+            for (int j = 0; j < mlist.get(i).getmRunningDays().size(); j++) {
+                if (mlist.get(i).getmRunningDays().get(j).equalsIgnoreCase(ldate)) {
+                    required_list.add(mlist.get(i));
+                }
+            }
+        }
+
+        progressBar.setVisibility(View.GONE);
+        madapter.notifyDataSetChanged();
     }
 
     private void setClicks() {
@@ -187,6 +233,22 @@ public class PassingByTrainsActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Level", e.getLocalizedMessage());
         }
-        //setDate(date);
+        setDate(date);
+    }
+
+    private void setDate(Date date) {
+        boolean z = true;
+        if (!date.equals(AppConstants.mDate))
+            z = false;
+        AppConstants.mDate = date;
+        selected_day = (String) DateFormat.format("EEEE", AppConstants.mDate);
+        ;
+        String dateToShow = (String) DateFormat.format("MMM", AppConstants.mDate) + " " + (String) DateFormat.format("dd", AppConstants.mDate) + "," + (String) DateFormat.format("yyyy", AppConstants.mDate);
+        date_text.setText(dateToShow);
+        if (!z) {
+            String day = (String) DateFormat.format("EE", date);
+            progressBar.setVisibility(View.VISIBLE);
+            filterCurrentList();
+        }
     }
 }

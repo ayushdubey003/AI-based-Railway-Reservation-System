@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import android.text.format.DateFormat;
+
 
 public class PassingByTrainAdapter extends ArrayAdapter<Train> {
     private Context mContext;
@@ -34,7 +36,7 @@ public class PassingByTrainAdapter extends ArrayAdapter<Train> {
         super(context, 0, objects);
         mContext = context;
         mTrains = objects;
-        mstation = station;
+        this.mstation = station;
         Log.e("PassingByTrainAdapter: ", "" + mTrains.size());
     }
 
@@ -46,8 +48,11 @@ public class PassingByTrainAdapter extends ArrayAdapter<Train> {
 
         view = convertView;
         int arrIndex = 0;
+        Log.e( "getView1: ", mstation);
         for (int i = 0; i < mTrains.get(position).getmCodedRoutes().size(); i++) {
+            Log.e( "getView2: ",mTrains.get(position).getmCodedRoutes().get(i).trim() );
             if (mTrains.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(mstation)) {
+                Log.e( "getView3: ", mstation);
                 arrIndex = i;
                 break;
             }
@@ -59,11 +64,11 @@ public class PassingByTrainAdapter extends ArrayAdapter<Train> {
         trainName.setText(mTrains.get(position).getmTrainName());
 
 
-        String arrt = mTrains.get(position).getmDepartureTime().get(arrIndex);
+        String arrt = mTrains.get(position).getmArrivalTimes().get(arrIndex);
         TextView startTime = convertView.findViewById(R.id.start_time_pb);
         startTime.setText(arrt);
 
-        String dtime = mTrains.get(position).getmArrivalTimes().get(arrIndex);
+        String dtime = mTrains.get(position).getmDepartureTime().get(arrIndex);
         TextView endTime = convertView.findViewById(R.id.end_time_pb);
         endTime.setText(dtime);
 
@@ -114,17 +119,5 @@ public class PassingByTrainAdapter extends ArrayAdapter<Train> {
                 sat.setTextColor(Color.parseColor("#00FF00"));
         }
         return convertView;
-    }
-
-    private static String convertTime(String time) {
-        SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
-        Date _24HourDt = null;
-        try {
-            _24HourDt = _24HourSDF.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return _12HourSDF.format(_24HourDt);
     }
 }

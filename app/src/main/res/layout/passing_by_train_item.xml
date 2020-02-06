@@ -86,6 +86,8 @@
                     android:textColor="#626262"
                     tools:text="1:55 AM"></TextView>
 
+
+
                 <TextView
                     android:id="@+id/end_time_pb"
                     style="@style/internal_fonts"
