@@ -9,11 +9,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:background="@color/bluishShadeColor"
             android:layout_width="match_parent"
-            android:alpha="0.2"
-            android:layout_height="450dp"/>
+            android:layout_height="550dp"
+            android:alpha="0.05"
+            android:background="#000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,23 +24,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <TextView
+                    style="@style/internal_fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
                     android:text="Spot Train"
-                    android:paddingLeft="8dp"
-                    style="@style/internal_fonts"
-                    android:textStyle="bold"
-                    android:paddingRight="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:textColor="@color/bluishShadeColor"
-                    android:textSize="12sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,41 +57,43 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_weight="1"
-                        android:tint="@color/bluishShadeColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_train_black_24dp" />
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_train_black_24dp"
+                        android:tint="@color/colorPrimary" />
+
                     <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="7"
                         android:background="@null"
-                        android:maxLines="1"
-                        android:textCursorDrawable="@drawable/cursor_drawable"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:hint="Train No./Train Name"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_drawable"
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:src="@drawable/ic_close_black_24dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:layout_height="wrap_content">
+                        android:background="@color/bluishShadeColor">
+
                         <ImageView
-                            android:layout_weight="1"
-                            android:padding="9dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="9dp"
                             android:src="@drawable/ic_search_black_24dp" />
                     </LinearLayout>
 
@@ -98,23 +103,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <TextView
+                    style="@style/internal_fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
                     android:text="Live Station"
-                    android:paddingLeft="8dp"
-                    style="@style/internal_fonts"
-                    android:textStyle="bold"
-                    android:paddingRight="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:textColor="@color/bluishShadeColor"
-                    android:textSize="12sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,41 +136,43 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_weight="1"
-                        android:tint="@color/bluishShadeColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_train_black_24dp" />
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_train_black_24dp"
+                        android:tint="@color/colorPrimary" />
+
                     <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="7"
                         android:background="@null"
+                        android:hint="Station Code/Name"
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_drawable"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Station Code/Name"
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:src="@drawable/ic_close_black_24dp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:layout_height="wrap_content">
+                        android:background="@color/bluishShadeColor">
+
                         <ImageView
-                            android:layout_weight="1"
-                            android:padding="9dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="9dp"
                             android:src="@drawable/ic_search_black_24dp" />
                     </LinearLayout>
 
@@ -173,23 +182,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <TextView
+                    style="@style/internal_fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Passing By Trains"
                     android:paddingLeft="8dp"
-                    style="@style/internal_fonts"
-                    android:textStyle="bold"
-                    android:paddingRight="8dp"
                     android:paddingTop="4dp"
+                    android:paddingRight="8dp"
                     android:paddingBottom="4dp"
-                    android:textColor="@color/bluishShadeColor"
-                    android:textSize="12sp" />
+                    android:text="Passing By Trains"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -204,51 +215,60 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_weight="1"
-                        android:tint="@color/bluishShadeColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_train_black_24dp" />
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_train_black_24dp"
+                        android:tint="@color/colorPrimary" />
+
                     <EditText
+                        android:id="@+id/passing_by_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="7"
                         android:background="@null"
+                        android:editable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="Station Code/Name"
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_drawable"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Station Code/Name"
                         android:textSize="18sp" />
 
                     <ImageView
-                        android:layout_weight="1"
+                        android:id="@+id/clear_passing_by_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:src="@drawable/ic_close_black_24dp" />
 
                     <LinearLayout
+                        android:id="@+id/open_passing_by"
                         android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:layout_height="wrap_content">
+                        android:background="@color/bluishShadeColor">
+
                         <ImageView
-                            android:layout_weight="1"
-                            android:padding="9dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="9dp"
                             android:src="@drawable/ic_search_black_24dp" />
                     </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_marginTop="80dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
+                android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -256,26 +276,28 @@
                     android:layout_marginRight="12dp"
                     app:cardCornerRadius="@dimen/cardview_default_elevation"
                     app:cardElevation="@dimen/cardview_default_elevation">
+
                     <TextView
-                        android:alpha="0.4"
-                        android:background="@color/colorPrimary"
+                        style="@style/internal_fonts"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:background="@color/bluishShadeColor"
                         android:gravity="center"
                         android:textSize="18sp"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"/>
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:text="Recommended Routes"
-                        android:padding="4dp"
-                        android:gravity="center"
-                        android:textColor="#000"
-                        android:textSize="16sp"
                         style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:layout_width="130dp"
-                        android:layout_height="130dp"/>
+                        android:layout_height="130dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="Recommended Routes"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -283,25 +305,26 @@
                     android:layout_marginRight="25dp"
                     app:cardCornerRadius="@dimen/cardview_default_elevation"
                     app:cardElevation="@dimen/cardview_default_elevation">
+
                     <TextView
-                        android:alpha="0.4"
-                        android:background="@color/colorPrimary"
+                        style="@style/internal_fonts"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:background="@color/bluishShadeColor"
                         android:gravity="center"
                         android:textSize="18sp"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"/>
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:text="Automated Tatkal Booking"
-                        android:padding="4dp"
-                        android:gravity="center"
-                        android:textColor="#000"
-                        android:textSize="16sp"
                         style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:layout_width="130dp"
-                        android:layout_height="130dp"/>
+                        android:layout_height="130dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="Automated Tatkal Booking"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>

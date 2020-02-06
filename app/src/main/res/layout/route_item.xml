@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+
+        <ImageView
+            android:id="@+id/circle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/circle"
+            android:tint="@color/colorPrimary"></ImageView>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="2dp"
+            android:layout_height="104dp"
+            android:layout_below="@id/circle"
+            android:layout_marginLeft="27dp"
+            android:background="@color/colorPrimary"></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="16">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/station_tv"
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    tools:text="Gorakhpur Jn"></TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/arrival_tv"
+                style="@style/internal_fonts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:text="Source"></TextView>
+
+            <TextView
+                android:id="@+id/departure_tv"
+                style="@style/internal_fonts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:text="01:40 pm"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/container"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/correct_time_tv"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:textColor="#626262"
+                android:textSize="11sp"
+                tools:text="Correct Time: 90%"></TextView>
+
+            <TextView
+                android:id="@+id/slight_delay_tv"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:textColor="#626262"
+                android:textSize="11sp"
+                tools:text="Slight Delay: 90%"></TextView>
+
+            <TextView
+                android:id="@+id/significant_delay_tv"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:textColor="#626262"
+                android:textSize="11sp"
+                tools:text="Significant Delay: 90%"></TextView>
+
+            <TextView
+                android:id="@+id/cancelled_tv"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:textColor="#626262"
+                android:textSize="11sp"
+                tools:text="Cancelled: 90%"></TextView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

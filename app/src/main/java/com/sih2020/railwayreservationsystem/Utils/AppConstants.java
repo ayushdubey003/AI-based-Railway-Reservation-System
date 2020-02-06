@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class AppConstants {
+    public static boolean mFlag = true;
     public static String mUrl;
     public static String mPrefsName = "SharedPrefs";
     public static String mDataGiven = "UrlKnown";
