@@ -440,8 +440,31 @@ def livestation(src,destination,hours):
             }
             ans.append(x)
     except Exception as e:
-        print(str(e))
+        return (jsonify(error = str(e)))
     return jsonify(livestation = ans)
+
+@app.route("/status/<trainno>/<doj>", methods=['GET'])
+def livestatus(trainno,doj):
+    ans =[]
+    url = "https://railenquiry.in/runningstatus/"+trainno+"/"+doj
+    try:
+        content = requests.get(url)
+        soup = BeautifulSoup(content.text,'html.parser')
+        u = soup.find('table',{"class":"table-responsive"}).find("tbody").find_all("tr")
+        for i in range(0,len(u)-1):
+            x = u[i].find_all("td")
+            ans.append({
+                "station" : x[1].text,
+                "schArr" : x[3].text,
+                "expArr" : x[4].text,
+                "arrDelay" : x[5].text,
+                "schDept" : x[6].text,
+                "expDept" : x[7].text,
+                "delayDept" : x[8].text
+                })
+    except Exception as e:
+        return (jsonify(error = str(e)))
+    return jsonify(status = ans)
 
 if __name__ == '__main__':
     app.run()
