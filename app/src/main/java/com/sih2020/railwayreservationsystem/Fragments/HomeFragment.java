@@ -312,7 +312,6 @@ public class HomeFragment extends Fragment {
                 mCalendar.set(Calendar.MONTH, monthOfYear);
                 mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateJourneyDate();
-
             }
 
         };

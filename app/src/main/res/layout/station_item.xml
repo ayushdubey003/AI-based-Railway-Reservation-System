@@ -11,6 +11,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
+        android:tint="@color/bluishShadeColor"
         android:src="@drawable/ic_train_black_24dp"></ImageView>
 
     <LinearLayout
