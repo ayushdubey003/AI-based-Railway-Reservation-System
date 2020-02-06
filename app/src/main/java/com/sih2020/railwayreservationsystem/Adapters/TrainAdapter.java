@@ -1,6 +1,7 @@
 package com.sih2020.railwayreservationsystem.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
@@ -8,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.sih2020.railwayreservationsystem.Activities.RouteActivity;
 import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -37,7 +40,7 @@ public class TrainAdapter extends ArrayAdapter<Train> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(mContext).inflate(R.layout.train_list_item, parent, false);
 
@@ -121,6 +124,16 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView seatAvltv = convertView.findViewById(R.id.availability_tv);
         final ProgressBar avlProgress = convertView.findViewById(R.id.availability_progress);
 
+        ImageView routeIv = convertView.findViewById(R.id.route_iv);
+        routeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, RouteActivity.class);
+                intent.putExtra("position", position);
+                mContext.startActivity(intent);
+            }
+        });
+
         try {
             seatAvltv.setText(mTrains.get(position).getmSeats().get(0));
             seatAvltv.setVisibility(View.VISIBLE);
@@ -132,8 +145,8 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView fareTv = convertView.findViewById(R.id.fare_tv);
         try {
             int x;
-            if(mTrains.get(position).getmFare() == null)
-                x = 1/0;
+            if (mTrains.get(position).getmFare() == null)
+                x = 1 / 0;
             fareTv.setText(mTrains.get(position).getmFare());
             fareTv.setVisibility(View.VISIBLE);
             fareProgress.setVisibility(View.GONE);

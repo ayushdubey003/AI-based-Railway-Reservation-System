@@ -305,7 +305,7 @@ public class NetworkRequests {
         return arr;
     }
 
-    public void fetchSeatsData(final String trainNo, final String url) {
+    public void fetchSeatsData(final String trainNo, final String url, final int requestNo) {
         RequestQueue queue = Volley.newRequestQueue(mContext);
         final ArrayList<String> temp = new ArrayList<>();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -350,13 +350,28 @@ public class NetworkRequests {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                fetchSeatsData(trainNo, url);
+                int pos = 0;
+                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                        pos = i;
+                        break;
+                    }
+                }
+                if (requestNo < 5)
+                    fetchSeatsData(trainNo, url, requestNo + 1);
+                else {
+                    ArrayList<String> seats = new ArrayList<>();
+                    for (int i = 0; i < 6; i++)
+                        seats.add("unavailable".toUpperCase());
+                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(seats);
+                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                }
             }
         });
         queue.add(jsonObjectRequest);
     }
 
-    public void fetchFareData(final String trainNo, final String url) {
+    public void fetchFareData(final String trainNo, final String url, final int requestNo) {
         RequestQueue queue = Volley.newRequestQueue(mContext);
         final ArrayList<String> temp = new ArrayList<>();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -412,7 +427,19 @@ public class NetworkRequests {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                fetchSeatsData(trainNo, url);
+                int pos = 0;
+                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                        pos = i;
+                        break;
+                    }
+                }
+                if (requestNo < 5)
+                    fetchSeatsData(trainNo, url, requestNo + 1);
+                else {
+                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare("unavailable".toUpperCase());
+                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                }
             }
         });
         queue.add(jsonObjectRequest);
