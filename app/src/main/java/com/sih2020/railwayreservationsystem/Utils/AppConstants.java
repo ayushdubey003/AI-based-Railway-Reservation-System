@@ -33,6 +33,8 @@ public class AppConstants {
     public static Date mDate;
     public static boolean mUseDate = true;
     public static ArrayList<Train> mTrainList = new ArrayList<>();
+    public static ArrayList<Pair<String, String>> mTrainListAtStartTime = new ArrayList<>();
+    public static Pair<String,String> mSpotTrainPair = new Pair<String,String>(null,null);
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
