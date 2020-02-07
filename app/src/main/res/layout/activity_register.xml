@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="+91-1234567890"
+                        tools:text="+91-1234567890"
                         android:textAllCaps="true"
                         android:textColor="#000"
                         android:textSize="16sp" />

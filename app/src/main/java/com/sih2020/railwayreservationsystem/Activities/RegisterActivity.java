@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,10 +30,13 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -48,11 +52,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private String phoneno, codeSent;
 
+    private DatabaseReference dref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        dref= FirebaseDatabase.getInstance().getReference("Users");
         init();
         takePhoneNoInput();
 
@@ -66,7 +73,33 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser() {
         if(validate()){
+            HashMap<String,String> map=new HashMap();
+            map.put("uid",mauth.getCurrentUser().getUid());
+            map.put("mobile",mauth.getCurrentUser().getPhoneNumber());
+            map.put("email",email.getText().toString().trim());
+            map.put("username",username.getText().toString().trim());
+            map.put("password",password.getText().toString().trim());
+            map.put("name",firstName.getText().toString().trim()+middleName.getText().toString().trim()+
+                    lastName.getText().toString().trim());
+            map.put("dob",dob.getText().toString().trim());
+            map.put("gender","Male");
+            map.put("nationality","IND");
+            map.put("occupation","");
+            map.put("maritalStatus","");
 
+            dref.child(mauth.getCurrentUser().getUid()).setValue(map)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(RegisterActivity.this, "Registered Succesfully", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(RegisterActivity.this, "Registeration failed", Toast.LENGTH_SHORT).show();
+                                Log.e( "onComplete: ",task.getException().getMessage());
+                            }
+                        }
+                    });
         }
     }
 
