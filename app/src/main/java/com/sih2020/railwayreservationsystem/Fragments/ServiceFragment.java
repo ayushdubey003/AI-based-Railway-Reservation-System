@@ -25,7 +25,7 @@ public class ServiceFragment extends Fragment {
     private LinearLayout open_passingBy, liveStationOpen;
     private EditText passing_by_edit_text, liveStationEditText;
 
-    private ImageView clear_passingbyText, liveStationClear;
+    private ImageView clear_passingbyText, liveStationClear, spotTrainClear;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -66,10 +66,12 @@ public class ServiceFragment extends Fragment {
 
         if (AppConstants.mLiveStation != null) {
             liveStationEditText.setText(AppConstants.mLiveStation.getmStationCode() + " - " + AppConstants.mLiveStation.getmStationName());
+            liveStationClear.setVisibility(View.VISIBLE);
         }
 
         if (!AppConstants.mFlag && AppConstants.mSourceStation != null) {
             passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode() + " - " + AppConstants.mSourceStation.getmStationName());
+            clear_passingbyText.setVisibility(View.VISIBLE);
         } else {
             AppConstants.mFlag = false;
         }
@@ -104,6 +106,7 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 liveStationEditText.setText("");
+                liveStationClear.setVisibility(View.GONE);
                 AppConstants.mLiveStation = null;
             }
         });
@@ -135,6 +138,7 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 passing_by_edit_text.setText("");
+                clear_passingbyText.setVisibility(View.GONE);
                 AppConstants.mSourceStation = null;
                 AppConstants.mFlag = true;
             }
@@ -144,11 +148,16 @@ public class ServiceFragment extends Fragment {
     private void init(View view) {
         open_passingBy = view.findViewById(R.id.open_passing_by);
         passing_by_edit_text = view.findViewById(R.id.passing_by_edit_text);
-
         clear_passingbyText = view.findViewById(R.id.clear_passing_by_text);
 
         liveStationOpen = view.findViewById(R.id.live_station_open);
         liveStationEditText = view.findViewById(R.id.live_station_edit_text);
         liveStationClear = view.findViewById(R.id.live_station_clear);
+
+        spotTrainClear = view.findViewById(R.id.clear_train_no_st);
+
+        clear_passingbyText.setVisibility(View.GONE);
+        liveStationClear.setVisibility(View.GONE);
+        spotTrainClear.setVisibility(View.GONE);
     }
 }

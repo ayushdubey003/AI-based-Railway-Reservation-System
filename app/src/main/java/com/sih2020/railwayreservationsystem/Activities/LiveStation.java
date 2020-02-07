@@ -64,11 +64,18 @@ public class LiveStation extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (AppConstants.mLiveStationOptional != null) {
-            optionalEditText.setText(AppConstants.mLiveStationOptional.getmStationCode() + " - " +
-                    AppConstants.mLiveStationOptional.getmStationName());
-            optionalClearButton.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-            fetchData();
+
+            if (AppConstants.mLiveStationOptional.getmStationCode().equalsIgnoreCase(selectedStation)) {
+                optionalEditText.setText("");
+                optionalClearButton.setVisibility(View.GONE);
+                Toast.makeText(this, "Destination station cannot be same as Source station", Toast.LENGTH_SHORT).show();
+            } else {
+                optionalEditText.setText(AppConstants.mLiveStationOptional.getmStationCode() + " - " +
+                        AppConstants.mLiveStationOptional.getmStationName());
+                optionalClearButton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+                fetchData();
+            }
         }
     }
 
