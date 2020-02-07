@@ -138,11 +138,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:background="@color/colorPrimary"
-                                android:padding="15dp"
+                                android:padding="12dp"
                                 android:text="login"
                                 android:textAllCaps="true"
                                 android:textColor="#fff"
-                                android:textSize="18sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
