@@ -19,8 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.LiveStation"></activity>
+        <activity android:name=".Activities.PassingByTrainsActivity" />
         <activity android:name=".Activities.RouteActivity"></activity>
-        <activity android:name=".Activities.PassingByTrainsActivity"></activity>
         <activity android:name=".Activities.PnrActivity" />
         <activity android:name=".Activities.SeatAvailabilityActivity" />
         <activity android:name=".Activities.SearchTrains" />

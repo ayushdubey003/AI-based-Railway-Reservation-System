@@ -15,16 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sih2020.railwayreservationsystem.Activities.LiveStation;
 import com.sih2020.railwayreservationsystem.Activities.PassingByTrainsActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
 public class ServiceFragment extends Fragment {
-    private LinearLayout open_passingBy;
-    private EditText passing_by_edit_text;
+    private LinearLayout open_passingBy, liveStationOpen;
+    private EditText passing_by_edit_text, liveStationEditText;
 
-    private ImageView clear_passingbyText;
+    private ImageView clear_passingbyText, liveStationClear, spotTrainClear;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -53,6 +54,7 @@ public class ServiceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         AppConstants.mSourceStation = null;
+        AppConstants.mDestinationStation = null;
 
         init(view);
         receiveClicks();
@@ -61,8 +63,15 @@ public class ServiceFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        if (AppConstants.mLiveStation != null) {
+            liveStationEditText.setText(AppConstants.mLiveStation.getmStationCode() + " - " + AppConstants.mLiveStation.getmStationName());
+            liveStationClear.setVisibility(View.VISIBLE);
+        }
+
         if (!AppConstants.mFlag && AppConstants.mSourceStation != null) {
-            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode());
+            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode() + " - " + AppConstants.mSourceStation.getmStationName());
+            clear_passingbyText.setVisibility(View.VISIBLE);
         } else {
             AppConstants.mFlag = false;
         }
@@ -70,13 +79,45 @@ public class ServiceFragment extends Fragment {
 
     private void receiveClicks() {
 
+        liveStationOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (liveStationEditText.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();
+                    ;
+                } else {
+                    Intent intent = new Intent(getActivity(), LiveStation.class);
+                    intent.putExtra("station", AppConstants.mLiveStation.getmStationCode());
+                    startActivity(intent);
+                }
+            }
+        });
+
+        liveStationEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                intent.putExtra("type", 4);
+                startActivity(intent);
+            }
+        });
+
+        liveStationClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                liveStationEditText.setText("");
+                liveStationClear.setVisibility(View.GONE);
+                AppConstants.mLiveStation = null;
+            }
+        });
+
         open_passingBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(passing_by_edit_text.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();;
-                }
-                else {
+                if (passing_by_edit_text.getText().toString().equals("")) {
+                    Toast.makeText(getActivity(), "Select a Station", Toast.LENGTH_SHORT).show();
+                    ;
+                } else {
                     Intent intent = new Intent(getActivity(), PassingByTrainsActivity.class);
                     intent.putExtra("station", AppConstants.mSourceStation.getmStationCode());
                     startActivity(intent);
@@ -97,6 +138,7 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 passing_by_edit_text.setText("");
+                clear_passingbyText.setVisibility(View.GONE);
                 AppConstants.mSourceStation = null;
                 AppConstants.mFlag = true;
             }
@@ -106,7 +148,16 @@ public class ServiceFragment extends Fragment {
     private void init(View view) {
         open_passingBy = view.findViewById(R.id.open_passing_by);
         passing_by_edit_text = view.findViewById(R.id.passing_by_edit_text);
-
         clear_passingbyText = view.findViewById(R.id.clear_passing_by_text);
+
+        liveStationOpen = view.findViewById(R.id.live_station_open);
+        liveStationEditText = view.findViewById(R.id.live_station_edit_text);
+        liveStationClear = view.findViewById(R.id.live_station_clear);
+
+        spotTrainClear = view.findViewById(R.id.clear_train_no_st);
+
+        clear_passingbyText.setVisibility(View.GONE);
+        liveStationClear.setVisibility(View.GONE);
+        spotTrainClear.setVisibility(View.GONE);
     }
 }

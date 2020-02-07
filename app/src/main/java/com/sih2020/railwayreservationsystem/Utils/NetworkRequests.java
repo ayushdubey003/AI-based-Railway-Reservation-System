@@ -50,14 +50,15 @@ public class NetworkRequests {
     private SeatAvailabilityActivity seatAvailabilityActivity;
     private String version;
     private ArrayList<String> temp;
-    JsonObjectRequest seats;
     String arrOfSplits[];
+    public RequestQueue requestQueue;
 
     public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, MainActivity mainActivity) {
         mCL = coordinatorLayout;
         mContext = context;
         mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
         this.mainActivity = mainActivity;
+        requestQueue = Volley.newRequestQueue(mContext);
     }
 
     public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, SeatAvailabilityActivity seatAvailabilityActivity) {
@@ -65,10 +66,13 @@ public class NetworkRequests {
         mContext = context;
         mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
         this.seatAvailabilityActivity = seatAvailabilityActivity;
+        requestQueue = Volley.newRequestQueue(mContext);
+        temp = new ArrayList<>();
+        for (int i = 0; i < 6; i++)
+            temp.add("unavailable".toUpperCase());
     }
 
     public void fetchVersionNumber() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, AppConstants.mUrl + "/list/version", null,
                 new Response.Listener<JSONObject>() {
@@ -99,7 +103,7 @@ public class NetworkRequests {
         });
 
 
-        queue.add(jsonObjectRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     private void readFromFile() {
@@ -195,8 +199,6 @@ public class NetworkRequests {
     }
 
     public void fetchTrainsFromUrl(String url) {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -277,7 +279,7 @@ public class NetworkRequests {
         });
 
 
-        queue.add(jsonObjectRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     private ArrayList<String> cleanList(ArrayList<String> arrayList) {
@@ -306,8 +308,18 @@ public class NetworkRequests {
     }
 
     public void fetchSeatsData(final String trainNo, final String url, final int requestNo) {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        final ArrayList<String> temp = new ArrayList<>();
+        if (requestNo >= 3) {
+            int pos = 0;
+            try {
+                seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
+                seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        if (seatAvailabilityActivity.networkRequests == null)
+            return;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -350,30 +362,41 @@ public class NetworkRequests {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                int pos = 0;
-                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                        pos = i;
-                        break;
-                    }
-                }
-                if (requestNo < 5)
+                if (requestNo < 3)
                     fetchSeatsData(trainNo, url, requestNo + 1);
                 else {
-                    ArrayList<String> seats = new ArrayList<>();
-                    for (int i = 0; i < 6; i++)
-                        seats.add("unavailable".toUpperCase());
-                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(seats);
-                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
+                    try {
+                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
+                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-        queue.add(jsonObjectRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     public void fetchFareData(final String trainNo, final String url, final int requestNo) {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        final ArrayList<String> temp = new ArrayList<>();
+        if (requestNo >= 3) {
+            int pos = 0;
+            try {
+                seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
+                seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        if (seatAvailabilityActivity.networkRequests == null)
+            return;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -385,7 +408,7 @@ public class NetworkRequests {
                     else
                         results = jsonObject.getJSONArray("adult");
 
-                    String fare = "";
+                    String fare = "N/A";
                     for (int i = 0; i < results.length(); i++) {
                         JSONObject resultsJSONObject = results.getJSONObject(i);
                         try {
@@ -417,31 +440,32 @@ public class NetworkRequests {
                         }
                     }
                     try {
-                        AppConstants.mTrainList.get(pos).setmSeats(temp);
+                        AppConstants.mTrainList.get(pos).setmFare("N/A");
                         seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
+                return;
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                int pos = 0;
-                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                        pos = i;
-                        break;
-                    }
-                }
-                if (requestNo < 5)
-                    fetchSeatsData(trainNo, url, requestNo + 1);
+                if (requestNo < 3)
+                    fetchFareData(trainNo, url, requestNo + 1);
                 else {
+                    int pos = 0;
+                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                            pos = i;
+                            break;
+                        }
+                    }
                     seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare("unavailable".toUpperCase());
                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                 }
             }
         });
-        queue.add(jsonObjectRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 }

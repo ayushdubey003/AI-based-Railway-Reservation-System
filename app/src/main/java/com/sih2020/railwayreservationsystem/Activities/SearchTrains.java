@@ -108,9 +108,13 @@ public class SearchTrains extends AppCompatActivity {
                     AppConstants.mSourceStation = mSearchStations.get(position);
                 else if (mIntentCode == 2)
                     AppConstants.mDestinationStation = mSearchStations.get(position);
-                else {
+                else if (mIntentCode == 3) {
                     AppConstants.mSourceStation = mSearchStations.get(position);
                     AppConstants.mFlag = false;
+                } else if (mIntentCode == 4) {
+                    AppConstants.mLiveStation = mSearchStations.get(position);
+                } else {
+                    AppConstants.mLiveStationOptional = mSearchStations.get(position);
                 }
 
                 finish();
@@ -144,7 +148,7 @@ public class SearchTrains extends AppCompatActivity {
         mAppBar.setBackground(GenerateBackground.generateBackground());
         mCloseIv.setColorFilter(Color.parseColor("#a9a9a9"));
 
-        if (mIntentCode == 2 || mIntentCode == 3)
+        if (mIntentCode >1)
             mLocationLl.setVisibility(View.GONE);
     }
 }

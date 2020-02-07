@@ -26,6 +26,8 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.R;
@@ -44,7 +46,7 @@ import java.util.Stack;
 public class SeatAvailabilityActivity extends AppCompatActivity {
 
     private String mUrl;
-    private NetworkRequests networkRequests;
+    public NetworkRequests networkRequests;
     private CoordinatorLayout mCL;
     private static final String LOG_TAG = "SeatAvailability";
     private LinearLayout mToolbar;
@@ -58,6 +60,20 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private RadioButton lastChecked;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        networkRequests.requestQueue.cancelAll(new RequestQueue.RequestFilter() {
+            @Override
+            public boolean apply(Request<?> request) {
+                return true;
+            }
+        });
+        networkRequests = null;
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_availability);
@@ -69,6 +85,14 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                networkRequests.requestQueue.cancelAll(new RequestQueue.RequestFilter() {
+                    @Override
+                    public boolean apply(Request<?> request) {
+                        return true;
+                    }
+                });
+
+                networkRequests = null;
                 finish();
             }
         });
