@@ -1,7 +1,7 @@
 package com.sih2020.railwayreservationsystem.Models;
 
 public class LiveStationModel {
-    public String trainNo, schArrival,expArrival,trainName,delay,source,destination,pf,ddept;
+    public String trainNo, schArrival, expArrival, trainName, delay, source, destination, pf, ddept;
 
     public LiveStationModel(String trainNo, String schArrival, String expArrival, String trainName, String delay, String source, String destination, String pf, String ddept) {
         this.trainNo = trainNo;
@@ -12,7 +12,7 @@ public class LiveStationModel {
         this.source = source;
         this.destination = destination;
         this.pf = pf;
-        this.ddept=ddept;
+        this.ddept = ddept;
     }
 
     public String getDdept() {

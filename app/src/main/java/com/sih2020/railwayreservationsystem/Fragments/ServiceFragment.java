@@ -54,7 +54,7 @@ public class ServiceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         AppConstants.mSourceStation = null;
-        AppConstants.mDestinationStation=null;
+        AppConstants.mDestinationStation = null;
 
         init(view);
         receiveClicks();
@@ -64,12 +64,12 @@ public class ServiceFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if(AppConstants.mLiveStation!=null){
-            liveStationEditText.setText(AppConstants.mLiveStation.getmStationCode()+" - "+AppConstants.mLiveStation.getmStationName());
+        if (AppConstants.mLiveStation != null) {
+            liveStationEditText.setText(AppConstants.mLiveStation.getmStationCode() + " - " + AppConstants.mLiveStation.getmStationName());
         }
 
         if (!AppConstants.mFlag && AppConstants.mSourceStation != null) {
-            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode()+" - "+AppConstants.mSourceStation.getmStationName());
+            passing_by_edit_text.setText(AppConstants.mSourceStation.getmStationCode() + " - " + AppConstants.mSourceStation.getmStationName());
         } else {
             AppConstants.mFlag = false;
         }

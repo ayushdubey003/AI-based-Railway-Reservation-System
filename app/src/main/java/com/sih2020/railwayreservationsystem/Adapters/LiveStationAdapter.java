@@ -42,11 +42,10 @@ public class LiveStationAdapter extends RecyclerView.Adapter<LiveStationAdapter.
         holder.trainNo.setText(mlist.get(position).getTrainNo());
         holder.trainName.setText(mlist.get(position).getTrainName());
 
-        if (mlist.get(position).getSchArrival().equalsIgnoreCase("src")){
+        if (mlist.get(position).getSchArrival().equalsIgnoreCase("src")) {
             holder.schArr.setText(mlist.get(position).getDdept());
             holder.expArr.setText(mlist.get(position).getDdept());
-        }
-        else {
+        } else {
             holder.schArr.setText(mlist.get(position).getSchArrival());
             holder.expArr.setText(mlist.get(position).getExpArrival());
         }
@@ -54,8 +53,7 @@ public class LiveStationAdapter extends RecyclerView.Adapter<LiveStationAdapter.
 
         if (mlist.get(position).getPf().equalsIgnoreCase("NULL")) {
             holder.pf.setText("--");
-        }
-        else {
+        } else {
             holder.pf.setText("Platform " + mlist.get(position).getPf());
         }
         holder.source.setText(mlist.get(position).getSource());

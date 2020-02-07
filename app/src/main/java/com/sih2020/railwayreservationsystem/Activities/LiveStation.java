@@ -66,6 +66,7 @@ public class LiveStation extends AppCompatActivity {
         if (AppConstants.mLiveStationOptional != null) {
             optionalEditText.setText(AppConstants.mLiveStationOptional.getmStationCode() + " - " +
                     AppConstants.mLiveStationOptional.getmStationName());
+            optionalClearButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
             fetchData();
         }
@@ -77,9 +78,9 @@ public class LiveStation extends AppCompatActivity {
         //Log.d("fetchData: ",selectedStation+" lele "+AppConstants.mLiveStationOptional.getmStationCode());
         if (AppConstants.mLiveStationOptional == null) {
             String temp2 = null;
-            url = "http://192.168.43.128:5000" + "/livestation/" + selectedStation + "/" + temp2 + "/" + mtime;
+            url = AppConstants.mUrl + "/livestation/" + selectedStation + "/" + temp2 + "/" + mtime;
         } else {
-            url = "http://192.168.43.128:5000" + "/livestation/" + selectedStation + "/" + AppConstants.mLiveStationOptional.getmStationCode() + "/" + mtime;
+            url = AppConstants.mUrl + "/livestation/" + selectedStation + "/" + AppConstants.mLiveStationOptional.getmStationCode() + "/" + mtime;
         }
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -150,6 +151,7 @@ public class LiveStation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 optionalEditText.setText("");
+                optionalClearButton.setVisibility(View.GONE);
                 AppConstants.mLiveStationOptional = null;
                 progressBar.setVisibility(View.VISIBLE);
                 fetchData();
@@ -171,6 +173,7 @@ public class LiveStation extends AppCompatActivity {
 
         optionalEditText = findViewById(R.id.ls_optional_edit_text);
         optionalClearButton = findViewById(R.id.ls_optional_clear);
+        optionalClearButton.setVisibility(View.GONE);
         progressBar = findViewById(R.id.progress_bar_ls);
         back_button = findViewById(R.id.back_ls);
         live_station_list = findViewById(R.id.live_station_list);
