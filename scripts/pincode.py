@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
 
-url = "https://worldpostalcode.com/lookup"
+url = "https://www.google.co.in"
 
 stationNames = []
 stationCodes = []
@@ -16,31 +16,38 @@ with open("../datasets/stations.csv","r") as file:
 		stationNames.append(row[0])
 		stationCodes.append(row[1])
 
-with open("../datasets/pincodes.csv", "w") as writeFile:
-	file = csv.writer(writeFile)
-	file.writerow(["Pincode"])
+# with open("../datasets/pincodes.csv", "w") as writeFile:
+# 	file = csv.writer(writeFile)
+# 	file.writerow(["Pincode"])
 
-i = 1
+i = 1749
 driver.get(url)
 
 while True:
+	i = i+1
 	if i >= len(stationCodes):
 		break
 	with open("../datasets/pincodes.csv", "a") as writeFile:
 		try:
-			driver.find_element_by_id("search").clear()
-			driver.find_element_by_id("search").send_keys(stationNames[i]+" INDIA")
-			driver.find_element_by_id("search").send_keys(Keys.ENTER)
-			ans = driver.find_element_by_xpath("//*[@id=\"map_canvas\"]/div[1]/div[6]/div/div[1]/div/div[1]/b").text
-			print(i)
-			file = csv.writer(writeFile)
-			file.writerow([str(ans).strip()])
-		except Exception as e:
+			driver.find_elements_by_class_name("gLFyf")[0].clear()
+			s = "address of " +stationNames[i] + " Railway Station"
+			driver.find_elements_by_class_name("gLFyf")[0].send_keys(s)
+			driver.find_elements_by_class_name("gLFyf")[0].send_keys(Keys.ENTER)
 			try:
-				u = driver.find_elements_by_class_name("search_units")[0].find_elements_by_class_name("search_unit")[0].find_elements_by_class_name("code")[0].text
+				x = driver.find_elements_by_class_name("Z0LcW")[0].text.split(" ")
+				pin = x[len(x)-1]
+				print(pin)
 				file = csv.writer(writeFile)
-				file.writerow([u])
+				file.writerow([pin])
 			except Exception as e:
+				print(e)
 				file = csv.writer(writeFile)
-				file.writerow(["null"])
-	i = i+1
+				file.writerow([""])
+				continue
+		except Exception as e:
+			print(e)
+			driver.quit()
+			driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
+			driver.get(url)
+			i = i-1
+			continue
