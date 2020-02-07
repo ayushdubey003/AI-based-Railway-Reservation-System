@@ -93,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this, "Registered Succesfully", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                             else{
                                 Toast.makeText(RegisterActivity.this, "Registeration failed", Toast.LENGTH_SHORT).show();

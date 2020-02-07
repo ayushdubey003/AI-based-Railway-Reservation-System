@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
@@ -29,6 +30,14 @@ public class LoginActivity extends AppCompatActivity {
 
         init();
         receiveclicks();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            finish();
+        }
     }
 
     private void receiveclicks() {
