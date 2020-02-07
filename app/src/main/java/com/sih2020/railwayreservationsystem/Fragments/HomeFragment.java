@@ -23,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -36,6 +37,8 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.sih2020.railwayreservationsystem.Activities.SearchStations;
+import com.sih2020.railwayreservationsystem.Activities.LoginActivity;
+import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
 import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
@@ -65,6 +68,7 @@ public class HomeFragment extends Fragment {
     private Spinner mClassSpinner, mQuotaSpinner;
     private SpinnerAdapter mClassAdapter, mQuotaAdapter;
     private LinearLayout mSearchTrains;
+    private Button openLoginButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -239,6 +243,13 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        openLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
     }
 
     private void init(final View view) {
@@ -286,6 +297,7 @@ public class HomeFragment extends Fragment {
         mClassSpinner = view.findViewById(R.id.class_spinner);
         mQuotaSpinner = view.findViewById(R.id.quota_spinner);
         mSearchTrains = view.findViewById(R.id.search_trains);
+        openLoginButton=view.findViewById(R.id.open_login_button);
 
         mClassAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelClasses);
         mClassSpinner.setAdapter(mClassAdapter);

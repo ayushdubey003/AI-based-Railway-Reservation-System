@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -31,4 +32,8 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.github.amirdew:JSON:v1.0.0'
     implementation 'com.koushikdutta.ion:ion:2.1.6'
+    //firebase
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
 }

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:background="@drawable/rounded_colored_border"
+                android:background="@color/colorPrimary"
                 android:id="@+id/train_no_ls"
                 android:layout_marginLeft="12dp"
                 android:textColor="#fff"
@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:text="18181"
                 android:textStyle="bold"
-                android:textSize="16sp"
                 style="@style/internal_fonts" />
             <TextView
                 android:id="@+id/sceduled_arr_ls"
@@ -59,7 +58,7 @@
                 android:paddingBottom="4dp"
                 style="@style/internal_fonts"
                 android:textStyle="bold"
-                android:textColor="#8d021f"
+                android:textColor="@color/burgandyRed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -86,7 +85,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
                 style="@style/internal_fonts"
-                android:textColor="#8d021f"
+                android:textColor="@color/burgandyRed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>

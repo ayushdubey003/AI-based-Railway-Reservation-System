@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import android.text.format.DateFormat;
 
 
@@ -48,11 +49,11 @@ public class PassingByTrainAdapter extends ArrayAdapter<Train> {
 
         view = convertView;
         int arrIndex = 0;
-        Log.e( "getView1: ", mstation);
+        Log.e("getView1: ", mstation);
         for (int i = 0; i < mTrains.get(position).getmCodedRoutes().size(); i++) {
-            Log.e( "getView2: ",mTrains.get(position).getmCodedRoutes().get(i).trim() );
+            Log.e("getView2: ", mTrains.get(position).getmCodedRoutes().get(i).trim());
             if (mTrains.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(mstation)) {
-                Log.e( "getView3: ", mstation);
+                Log.e("getView3: ", mstation);
                 arrIndex = i;
                 break;
             }
