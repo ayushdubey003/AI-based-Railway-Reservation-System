@@ -48,6 +48,7 @@ public class AppConstants {
     public static Pair<String, String> mSpotTrainPair = new Pair<String, String>(null, null);
     public static boolean mBottomSheetOpen = false;
     public static ScrollView mScrollView;
+    public static ArrayList<Integer> mFareFetch = new ArrayList<>(), mSeatFetch = new ArrayList<>();
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

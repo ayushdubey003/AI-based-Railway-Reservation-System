@@ -21,7 +21,7 @@
             style="@style/internal_fonts"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="40dp"/>
         <EditText

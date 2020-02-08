@@ -413,6 +413,7 @@ public class NetworkRequests {
                                     }
                                 }
                                 try {
+                                    AppConstants.mSeatFetch.add(pos);
                                     AppConstants.mTrainList.get(pos).setmSeats(arrayList);
                                     seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
@@ -484,6 +485,7 @@ public class NetworkRequests {
                                     }
                                 }
                                 try {
+                                    AppConstants.mFareFetch.add(pos);
                                     AppConstants.mTrainList.get(pos).setmFare(fare);
                                     seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare(fare);
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();

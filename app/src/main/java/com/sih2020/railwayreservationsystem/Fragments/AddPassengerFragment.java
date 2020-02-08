@@ -43,14 +43,11 @@ public class AddPassengerFragment extends Fragment {
         layer1Ap.setBackground(GenerateBackground.generateBackground());
 
         addPassengerAp=view.findViewById(R.id.add_passenger_ap);
+        addPassengerAp.setBackground(GenerateBackground.generateBackground());
         addPassengerAp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppConstants.hideBottomSheet(getActivity());
-//                Fragment f = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_layout);
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.setCustomAnimations(R.anim.no_anim, R.anim.slide_out_bottom);
-//                transaction.remove(f).commit();
             }
         });
     }
