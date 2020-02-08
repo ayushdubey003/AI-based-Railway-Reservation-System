@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sih2020.railwayreservationsystem.Activities.AutomatedTatkal;
 import com.sih2020.railwayreservationsystem.Activities.LiveStation;
 import com.sih2020.railwayreservationsystem.Activities.PassingByTrainsActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchStations;
@@ -35,7 +36,7 @@ public class ServiceFragment extends Fragment {
 
     private ImageView clear_passingbyText, liveStationClear, spotTrainClear, mSpotIv, mLiveIv, mPassIv;
     private TextView mSpotTv, mLiveTv, mPassTv;
-    private CardView mSpotCv, mLiveCv, mPassCv;
+    private CardView mSpotCv, mLiveCv, mPassCv,mTatkal;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -202,6 +203,13 @@ public class ServiceFragment extends Fragment {
                 startActivity(new Intent(getActivity(), TrainLiveStatus.class));
             }
         });
+
+        mTatkal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AutomatedTatkal.class));
+            }
+        });
     }
 
     private void init(View view) {
@@ -233,6 +241,8 @@ public class ServiceFragment extends Fragment {
         mPassCv = view.findViewById(R.id.pass_cv);
         mPassIv = view.findViewById(R.id.pass_iv);
         mPassTv = view.findViewById(R.id.pass_tv);
+
+        mTatkal=view.findViewById(R.id.tatkal);
     }
 
 }

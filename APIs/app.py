@@ -2,6 +2,13 @@ from flask import Flask, jsonify
 import requests 
 from bs4 import BeautifulSoup
 import csv
+import re
+import joblib # install 
+import lightgbm as lgm # install
+import numpy as np # install
+from sklearn.preprocessing import StandardScaler # install
+from datetime import datetime
+
 app = Flask(__name__)
 
 # with open('./stations.csv', 'rt') as file:
@@ -481,6 +488,74 @@ def livestatus(trainno,doj):
     except Exception as e:
         return (jsonify(error = str(e)))
     return jsonify(status = ans)
+
+def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
+    train_metric_type = [0, 0, 0, 0]
+    if train_type > 0:
+        train_metric_type[train_type - 1] = 1
+    
+    date_item_booking = list(map(int, booking_date.split('-')))
+    date_item_journey = list(map(int, journey_date.split('-')))
+    
+    booking_year = date_item_booking[0]
+    journey_year = date_item_journey[0]
+    
+    booking_month = date_item_booking[1]
+    journey_month = date_item_journey[1]
+    
+    booking_day = date_item_booking[2]
+    journey_day = date_item_journey[2]
+    
+    booking_datetime = datetime(booking_year, booking_month, booking_day, hour=booking_hour)
+    journey_datetime = datetime(journey_year, journey_month, journey_day, hour=journey_hour)
+    
+    time_difference_1 = (journey_datetime - booking_datetime).total_seconds() // 3600
+    assert time_difference_1 >= 0
+    time_difference_2 = 0
+    
+    journey_month_type = [0] * 11
+    if journey_month > 1:
+        journey_month_type[journey_month - 2] = 1
+    
+    ticket_class_type = [0, 0, 0]
+    if ticket_class == 'SL':
+        ticket_class_type[2] = 1
+    if ticket_class == '2A':
+        ticket_class_type[0] = 1
+    if ticket_class == '3A':
+        ticket_class_type[1] = 1
+    
+    waiting_list_type = [0, 0, 0, 0]
+    if waiting_list_category == 'RL':
+        waiting_list_type[2] = 1
+    if waiting_list_category == 'TQ':
+        waiting_list_type[3] = 1
+    if waiting_list_category == 'PQ':
+        waiting_list_type[0] = 1
+    if waiting_list_category == 'RA':
+        waiting_list_type[1] = 1
+
+    row = []
+    row.append(train_days)
+    row.append(time_difference_1)
+    row.append(0)
+    row.append(waiting_list_number)
+    row.extend(ticket_class_type)
+    row.extend(waiting_list_type)
+    row.extend(journey_month_type)
+    row.extend(train_metric_type)
+   
+    print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
+    X = np.array([row])
+    
+    model = joblib.load('lgbtqmodel.pkl')
+    scalar = joblib.load('scaler_file.pkl')
+    X_sc = scalar.transform(X)
+    
+    print(X, X_sc)
+    return model.predict(X_sc)[0]
+    
+
 
 if __name__ == '__main__':
     app.run()
