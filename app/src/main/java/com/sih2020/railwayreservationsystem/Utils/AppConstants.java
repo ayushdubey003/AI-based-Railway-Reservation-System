@@ -33,6 +33,9 @@ public class AppConstants {
     public static Date mDate;
     public static boolean mUseDate = true;
     public static ArrayList<Train> mTrainList = new ArrayList<>();
+    public static String[] mNationality = {"Indian", "Others"};
+    public static String[] mOccupation = {"NA","Govt-employee","Farmer", "Self-employed","Unemployed"};
+    public static String[] mMaritalStatus = {"NA","Single", "Married"};
     public static ArrayList<Pair<String, String>> mTrainListAtStartTime = new ArrayList<>();
     public static Pair<String,String> mSpotTrainPair = new Pair<String,String>(null,null);
 

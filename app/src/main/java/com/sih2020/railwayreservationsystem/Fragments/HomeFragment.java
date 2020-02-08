@@ -31,11 +31,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.sih2020.railwayreservationsystem.Activities.SearchStations;
 import com.sih2020.railwayreservationsystem.Activities.LoginActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
@@ -68,7 +71,6 @@ public class HomeFragment extends Fragment {
     private Spinner mClassSpinner, mQuotaSpinner;
     private SpinnerAdapter mClassAdapter, mQuotaAdapter;
     private LinearLayout mSearchTrains;
-    private Button openLoginButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -243,13 +245,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-        openLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
     }
 
     private void init(final View view) {
@@ -297,7 +292,6 @@ public class HomeFragment extends Fragment {
         mClassSpinner = view.findViewById(R.id.class_spinner);
         mQuotaSpinner = view.findViewById(R.id.quota_spinner);
         mSearchTrains = view.findViewById(R.id.search_trains);
-        openLoginButton=view.findViewById(R.id.open_login_button);
 
         mClassAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelClasses);
         mClassSpinner.setAdapter(mClassAdapter);

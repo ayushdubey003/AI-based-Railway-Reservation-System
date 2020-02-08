@@ -27,11 +27,13 @@
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/fir_se_big_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/si_text"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             app:cardCornerRadius="40dp"
             app:cardElevation="4dp">
 
@@ -42,11 +44,12 @@
                 android:padding="12dp">
 
                 <EditText
-                    android:id="@+id/user_name_login"
+                    android:id="@+id/phone_no_login"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="User Name"
+                    android:hint="Enter registered phone no."
+                    android:inputType="number"
                     android:maxLines="1"
                     android:textColor="#000" />
 
@@ -59,7 +62,8 @@
                     android:drawableRight="@drawable/ic_blur_off_black_24dp"
                     android:hint="Password"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -148,6 +152,22 @@
                 </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/login_back"
+            style="@style/internal_fonts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fir_se_big_card"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:padding="8dp"
+            android:text="back"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </ScrollView>
