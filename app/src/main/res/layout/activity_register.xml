@@ -25,16 +25,17 @@
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/step1_text"
-            android:layout_below="@+id/register_text"
             style="@style/internal_fonts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/register_text"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp"
-            android:padding="8dp"
             android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:text="Step 1"
             android:textAllCaps="true"
             android:textColor="#fff"
@@ -62,8 +63,8 @@
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
                     android:hint="10 digit Mobile No"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:textColor="#000"
                     android:textSize="16sp" />
@@ -71,10 +72,10 @@
                 <EditText
                     android:id="@+id/email_register"
                     style="@style/internal_fonts"
-                    android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email Id"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:textColor="#000"
                     android:textSize="16sp" />
@@ -90,7 +91,6 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:visibility="gone"
                     android:id="@+id/password_register"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
@@ -100,10 +100,10 @@
                     android:hint="Password"
                     android:maxLines="1"
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
                 <EditText
-                    android:visibility="gone"
                     android:id="@+id/confirm_password_register"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
@@ -113,7 +113,8 @@
                     android:hint="Confirm Password"
                     android:maxLines="1"
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -167,6 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:editable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="DOB(dd/mm/yy)  "
                         android:maxLines="1"
                         android:textColor="#000"
@@ -229,8 +231,9 @@
                         android:id="@+id/temp4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nationality -"
                         android:layout_centerVertical="true"
+                        android:alpha="0.8"
+                        android:text="Nationality -"
                         android:textSize="16dp" />
 
                     <Spinner
@@ -260,8 +263,9 @@
                         android:id="@+id/temp5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Occupation -"
                         android:layout_centerVertical="true"
+                        android:alpha="0.8"
+                        android:text="Occupation -"
                         android:textSize="16dp" />
 
                     <Spinner
@@ -291,8 +295,9 @@
                         android:id="@+id/temp6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Marital Status -"
                         android:layout_centerVertical="true"
+                        android:alpha="0.8"
+                        android:text="Marital Status -"
                         android:textSize="16dp" />
 
                     <Spinner
@@ -310,6 +315,46 @@
                         android:layout_marginRight="12dp"
                         android:background="#a9a9a9"
                         android:visibility="visible"></View>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/captcha_register"
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:padding="6dp"
+                        android:text="YmGVTM"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/refresh_captcha_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/captcha_register"
+                        android:src="@drawable/ic_autorenew_black_24dp" />
+
+                    <EditText
+                        android:id="@+id/enter_captcha_register"
+                        style="@style/internal_fonts"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
+                        android:hint="Enter the Captcha"
+                        android:maxLines="1"
+                        android:textColor="#000"
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
                 <RelativeLayout

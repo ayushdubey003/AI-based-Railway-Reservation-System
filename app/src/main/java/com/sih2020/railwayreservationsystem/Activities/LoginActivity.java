@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
@@ -72,6 +74,24 @@ public class LoginActivity extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             finish();
         }
+        setRandomCaptcha();
+    }
+
+    private void setRandomCaptcha() {
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 48; i <= 57; i++)
+            values.add(i);
+        for (int i = 65; i <= 90; i++)
+            values.add(i);
+        for (int i = 97; i <= 122; i++)
+            values.add(i);
+        String lpassword = "";
+        while (lpassword.length() < 6) {
+            int x = values.get((int) (Math.random() * values.size()));
+            char ch = (char) x;
+            lpassword = lpassword + Character.toString(ch);
+        }
+        captcha.setText(lpassword);
     }
 
     private void receiveclicks() {
@@ -124,6 +144,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        refreshCaptcha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setRandomCaptcha();
+                    }
+                }, 1000);
             }
         });
     }
@@ -226,6 +259,10 @@ public class LoginActivity extends AppCompatActivity {
         if (phoneNoLogin.getText().toString().length() != 10) {
             phoneNoLogin.setError("Enter a 10 digit phone number");
             phoneNoLogin.requestFocus();
+            return false;
+        } else if (!enterCaptcha.getText().toString().equals(captcha.getText().toString())) {
+            enterCaptcha.setError("Enter correct captcha");
+            enterCaptcha.requestFocus();
             return false;
         }
         return true;
