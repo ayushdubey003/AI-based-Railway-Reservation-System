@@ -491,27 +491,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
-                <Button
-                    android:id="@+id/open_login_button"
-                    android:layout_alignParentBottom="true"
-                    android:text="LOGIN"
-                    android:background="@color/bluishShadeColor"
-                    android:layout_width="wrap_content"
-                    android:textColor="#fff"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-                <Button
-                    android:id="@+id/logout_button"
-                    android:layout_alignParentBottom="true"
-                    android:text="LOGOUT"
-                    android:layout_alignParentRight="true"
-                    android:background="@color/bluishShadeColor"
-                    android:layout_width="wrap_content"
-                    android:textColor="#fff"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-
         </RelativeLayout>
 
     </RelativeLayout>

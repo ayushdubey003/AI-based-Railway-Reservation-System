@@ -80,7 +80,6 @@ public class HomeFragment extends Fragment {
     private Spinner mClassSpinner, mQuotaSpinner;
     private SpinnerAdapter mClassAdapter, mQuotaAdapter;
     private LinearLayout mSearchTrains;
-    private Button openLoginButton,logOutButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -251,21 +250,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-        openLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
-
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void init(final View view) {
@@ -313,8 +297,6 @@ public class HomeFragment extends Fragment {
         mClassSpinner = view.findViewById(R.id.class_spinner);
         mQuotaSpinner = view.findViewById(R.id.quota_spinner);
         mSearchTrains = view.findViewById(R.id.search_trains);
-        openLoginButton=view.findViewById(R.id.open_login_button);
-        logOutButton=view.findViewById(R.id.logout_button);
 
         mClassAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelClasses);
         mClassSpinner.setAdapter(mClassAdapter);
