@@ -34,13 +34,14 @@ with open("../datasets/combinedtrains.csv","r") as readFile:
 		if i == 1:
 			continue
 		if True:
+			print(i)
 			print(row[0])
 			try:
 				driver.get(url)
 				driver.find_element_by_id("ui-id-9").click()
 				driver.find_element_by_id("avgDelayTrainInput").clear()
 				driver.find_element_by_id("avgDelayTrainInput").send_keys(row[0])
-				time.sleep(5)
+				time.sleep(2)
 				tr = driver.find_element_by_id("trainScheduleAvgDelayDispTbl").find_elements_by_tag_name("tr")
 				arrDelay = ""
 				deptDelay = ""
