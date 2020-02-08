@@ -5,10 +5,7 @@ from datetime import datetime
 
 class PNRSpider(scrapy.Spider):
     name = "PNRStatusScraper"
-    data = pkgutil.get_data("PNRStatusScraper", "resources/trainNumbers5.txt")
-    data = data.decode()
-    data = data.split("\n")
-    # data = ["12723"]
+    data = open("../dataset/trainNumbers.txt","r")
     start_urls=[]
     for train in data:
         train = train.strip()
