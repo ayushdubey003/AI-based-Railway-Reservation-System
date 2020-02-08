@@ -34,7 +34,7 @@ while True:
 			driver.find_elements_by_class_name("gLFyf")[0].send_keys(s)
 			driver.find_elements_by_class_name("gLFyf")[0].send_keys(Keys.ENTER)
 			try:
-				x = driver.find_elements_by_class_name("Z0LcW")[0].text.split(" ")
+				x = driver.find_elements_by_class_name("Z0LcW")[0].text
 				pin = x[len(x)-1]
 				print(pin)
 				file = csv.writer(writeFile)

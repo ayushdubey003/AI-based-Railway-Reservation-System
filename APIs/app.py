@@ -2,6 +2,14 @@ from flask import Flask, jsonify
 import requests 
 from bs4 import BeautifulSoup
 import csv
+import re
+import re
+import joblib # install 
+import lightgbm as lgm # install
+import numpy as np # install
+from sklearn.preprocessing import StandardScaler # install
+from datetime import datetime
+
 app = Flask(__name__)
 
 # with open('./stations.csv', 'rt') as file:
@@ -13,6 +21,99 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 @app.route("/")
 def home():
     return 'hii...there 3!!!'
+
+def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
+    train_metric_type = [0, 0, 0, 0]
+    if train_type > 0:
+        train_metric_type[train_type - 1] = 1
+    
+    date_item_booking = list(map(int, booking_date.split('-')))
+    date_item_journey = list(map(int, journey_date.split('-')))
+    
+    booking_year = date_item_booking[0]
+    journey_year = date_item_journey[0]
+    
+    booking_month = date_item_booking[1]
+    journey_month = date_item_journey[1]
+    
+    booking_day = date_item_booking[2]
+    journey_day = date_item_journey[2]
+    
+    booking_datetime = datetime(booking_year, booking_month, booking_day, hour=booking_hour)
+    journey_datetime = datetime(journey_year, journey_month, journey_day, hour=journey_hour)
+    
+    time_difference_1 = (journey_datetime - booking_datetime).total_seconds() // 3600
+    assert time_difference_1 >= 0
+    time_difference_2 = 0
+    
+    journey_month_type = [0] * 11
+    if journey_month > 1:
+        journey_month_type[journey_month - 2] = 1
+    
+    ticket_class_type = [0, 0, 0]
+    if ticket_class == 'SL':
+        ticket_class_type[2] = 1
+    if ticket_class == '2A':
+        ticket_class_type[0] = 1
+    if ticket_class == '3A':
+        ticket_class_type[1] = 1
+    
+    waiting_list_type = [0, 0, 0, 0]
+    if waiting_list_category == 'RL':
+        waiting_list_type[2] = 1
+    if waiting_list_category == 'TQ':
+        waiting_list_type[3] = 1
+    if waiting_list_category == 'PQ':
+        waiting_list_type[0] = 1
+    if waiting_list_category == 'RA':
+        waiting_list_type[1] = 1
+
+    row = []
+    row.append(train_days)
+    row.append(time_difference_1)
+    row.append(0)
+    row.append(waiting_list_number)
+    row.extend(ticket_class_type)
+    row.extend(waiting_list_type)
+    row.extend(journey_month_type)
+    row.extend(train_metric_type)
+   
+    print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
+    X = np.array([row])
+    
+    model = joblib.load('../datasets/lgbtqmodel.pkl')
+    scalar = joblib.load('../datasets/scaler_file.pkl')
+    X_sc = scalar.transform(X)
+    
+    print(X, X_sc)
+    return model.predict(X_sc)[0]
+    
+@app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
+def predict(train_number, booking_date, booking_time, journey_date, journey_time, ticket_class, waiting_list):
+    train_dict = joblib.load('../datasets/train_dictionary.pkl')
+    train_number = int(train_number.strip())
+    assert train_number in train_dict.keys()
+    train_days = train_dict[train_number]['days']
+    train_type = train_dict[train_number]['type']
+    
+    date_pattern = re.compile('[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')
+    assert len(date_pattern.findall(booking_date)[0]) == len(booking_date)
+    assert len(date_pattern.findall(journey_date)[0]) == len(journey_date)
+    
+    time_pattern = re.compile('[0-9][0-9]:[0-9][0-9]')
+    assert len(time_pattern.findall(booking_time)[0]) == len(booking_time)
+    assert len(time_pattern.findall(journey_time)[0]) == len(journey_time)
+    booking_hour = int(booking_time[0:2])
+    journey_hour = int(journey_time[0:2])
+    
+    assert ticket_class in ['1A', '2A', '3A', 'SL']
+    
+    waiting_list_type = waiting_list[0:2]
+    assert waiting_list_type in ['GN', 'RL', 'TQ', 'RA', 'PQ']
+    waiting_number = int(waiting_list.split('_')[1][2:])
+    
+    return jsonify(prediction=predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_type, waiting_number)*100)
+
 
 @app.route("/list/version", methods=['GET'])
 def stationslistversion():
@@ -481,6 +582,7 @@ def livestatus(trainno,doj):
     except Exception as e:
         return (jsonify(error = str(e)))
     return jsonify(status = ans)
+
 
 if __name__ == '__main__':
     app.run()
