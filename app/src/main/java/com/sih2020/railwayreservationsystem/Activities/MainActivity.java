@@ -3,6 +3,7 @@ package com.sih2020.railwayreservationsystem.Activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -43,6 +45,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
     private ViewPager mViewPager;
     private ProgressBar mProgressBar;
     private RelativeLayout mMain, mProgressRl;
+    private ImageView loginButton;
+
+    private FirebaseAuth mauth;
 
 
     @Override
@@ -90,7 +96,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mauth=FirebaseAuth.getInstance();
         init();
+        receiveClicks();
 
         if (mSharedPreferences.getBoolean(AppConstants.mDataGiven, false)) {
             AppConstants.mUrl = mSharedPreferences.getString(AppConstants.mUrlSaved, "");
@@ -99,6 +107,33 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
             setupAlertDialog();
             setRecentPnrSharedPreference();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mauth.getCurrentUser()==null){
+            loginButton.setImageResource(R.drawable.loginicon);
+        }
+        else{
+            loginButton.setImageResource(R.drawable.logouticon);
+        }
+    }
+
+    private void receiveClicks() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mauth.getCurrentUser()==null){
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+                else {
+                    FirebaseAuth.getInstance().signOut();
+                    loginButton.setImageResource(R.drawable.loginicon);
+                    Toast.makeText(MainActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void setRecentPnrSharedPreference() {
@@ -160,6 +195,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         mProgressBar = findViewById(R.id.progress_bar);
         mMain = findViewById(R.id.main_layout);
         mProgressRl = findViewById(R.id.progress_bar_rl);
+
+        loginButton=findViewById(R.id.home_login_button);
+        loginButton.setVisibility(View.VISIBLE);
+        if(mauth.getCurrentUser()!=null){
+            loginButton.setImageResource(R.drawable.logouticon);
+        }
 
         mTabLayout.setBackground(mGradientDrawable);
         mAppBar.setBackground(mGradientDrawable);

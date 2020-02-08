@@ -4,45 +4,38 @@ import time
 from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
-
 url = "https://www.google.co.in"
 
-stationNames = []
-stationCodes = []
+driver.get(url)
 
-with open("../datasets/stations.csv","r") as file:
+stationNames = []
+
+with open("../datasets/lost.csv","r") as file:
 	read = csv.reader(file)
 	for row in read:
-		stationNames.append(row[0])
-		stationCodes.append(row[1])
+		stationNames.append(row[1])
 
-# with open("../datasets/pincodes.csv", "w") as writeFile:
-# 	file = csv.writer(writeFile)
-# 	file.writerow(["Pincode"])
-
-i = 4214
+i = 844
 driver.get(url)
 
 while True:
 	i = i+1
-	if i >= len(stationCodes):
-		break
-	with open("../datasets/pincodes.csv", "a") as writeFile:
+	with open("../datasets/pincodesLost.csv", "a") as writeFile:
 		try:
 			driver.find_elements_by_class_name("gLFyf")[0].clear()
-			s = "address of " +stationNames[i] + " Railway Station"
+			s = stationNames[i] + " pincode"
 			driver.find_elements_by_class_name("gLFyf")[0].send_keys(s)
 			driver.find_elements_by_class_name("gLFyf")[0].send_keys(Keys.ENTER)
 			try:
 				x = driver.find_elements_by_class_name("Z0LcW")[0].text
-				pin = x[len(x)-1]
+				pin = x
 				print(pin)
 				file = csv.writer(writeFile)
-				file.writerow([pin])
+				file.writerow([stationNames[i]]+[pin])
 			except Exception as e:
 				print(e)
 				file = csv.writer(writeFile)
-				file.writerow([""])
+				file.writerow([stationNames[i]]+[""])
 				continue
 		except Exception as e:
 			print(e)
