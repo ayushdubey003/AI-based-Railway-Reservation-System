@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -41,25 +45,32 @@ import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextView registerButton, registerBack;
+    private TextView registerButton, registerBack, captchaRegister;
     private EditText email, username, password, confirmPassword,
-            firstName, middleName, lastName, dob, phoneNoEditText;
-    private ImageView calender;
+            firstName, middleName, lastName, dob, phoneNoEditText, enterCaptchaRegister;
+    private ImageView calenderIcon, refreshRegister;
     private Spinner nationality, occupation, maritalStatus;
     private RadioGroup radioGroup;
     private RadioButton male, female, transGender;
     private ScrollView rootLayout;
-    private FirebaseAuth mauth;
 
-    private String phoneno, codeSent, mGender;
+    private String phoneno, codeSent, mGender = "";
+    private DatePickerDialog.OnDateSetListener mDate;
+    private Calendar mCalendar;
 
     private DatabaseReference dref, pref;
+    private FirebaseAuth mauth;
 
     private AlertDialog alertDialogPhoneNo, alertDialogOtp;
     private ProgressDialog progressDialog;
@@ -81,6 +92,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            finish();
+        }
+        setRandomCaptcha();
+    }
+
+    private void setRandomCaptcha() {
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 48; i <= 57; i++)
+            values.add(i);
+        for (int i = 65; i <= 90; i++)
+            values.add(i);
+        for (int i = 97; i <= 122; i++)
+            values.add(i);
+        String lpassword = "";
+        while (lpassword.length() < 6) {
+            int x = values.get((int) (Math.random() * values.size()));
+            char ch = (char) x;
+            lpassword = lpassword + Character.toString(ch);
+        }
+        captchaRegister.setText(lpassword);
+    }
+
     private void setUpSpinners() {
         nationalityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, AppConstants.mNationality);
         nationality.setAdapter(nationalityAdapter);
@@ -96,6 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
 
                 pref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -110,11 +148,14 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         if (!flag2) {
                             if (validate()) {
-                                progressDialog.show();
                                 sendVerificationCode();
+                            }
+                            else {
+                                progressDialog.dismiss();
                             }
                         } else {
                             phoneNoEditText.setError("A user exists with this phone no");
+                            progressDialog.dismiss();
                         }
                     }
 
@@ -146,6 +187,33 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+        refreshRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setRandomCaptcha();
+                    }
+                }, 1000);
+            }
+        });
+
+        calenderIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUpDateAlert();
+            }
+        });
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUpDateAlert();
+            }
+        });
     }
 
     private void registerUser() {
@@ -158,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity {
         map.put("name", firstName.getText().toString().trim() + middleName.getText().toString().trim() +
                 lastName.getText().toString().trim());
         map.put("dob", dob.getText().toString().trim());
-        map.put("gender", "Male");
+        map.put("gender", mGender);
         map.put("nationality", AppConstants.mNationality[nationality.getSelectedItemPosition()]);
         map.put("occupation", AppConstants.mOccupation[occupation.getSelectedItemPosition()]);
         map.put("maritalStatus", AppConstants.mMaritalStatus[maritalStatus.getSelectedItemPosition()]);
@@ -218,11 +286,16 @@ public class RegisterActivity extends AppCompatActivity {
         else if (firstName.getText().toString().trim().length() == 0) {
             firstName.setError("Enter your first name");
             return false;
+        } else if (dob.getText().toString().trim().length() == 0) {
+            dob.setError("Enter date of birth");
+            return false;
+        } else if (mGender.equals("")) {
+            Toast.makeText(this, "Select gender", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!enterCaptchaRegister.getText().toString().equals(captchaRegister.getText().toString())) {
+            enterCaptchaRegister.setError("Enter correct captcha");
+            return false;
         }
-//        else if (dob.getText().toString().trim().length() == 0) {
-//            dob.setError("Enter date of birth");
-//            return false;
-//        }
         return true;
     }
 
@@ -365,6 +438,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         mauth = FirebaseAuth.getInstance();
 
+        captchaRegister = findViewById(R.id.captcha_register);
+        refreshRegister = findViewById(R.id.refresh_captcha_register);
+        enterCaptchaRegister = findViewById(R.id.enter_captcha_register);
+
         rootLayout = findViewById(R.id.register_root_layout);
         rootLayout.setBackground(GenerateBackground.generateBackground());
 
@@ -382,7 +459,7 @@ public class RegisterActivity extends AppCompatActivity {
         lastName = findViewById(R.id.last_name);
         dob = findViewById(R.id.date_text_register);
 
-        calender = findViewById(R.id.calender_image_register);
+        calenderIcon = findViewById(R.id.calender_image_register);
         nationality = findViewById(R.id.nationality);
         occupation = findViewById(R.id.occupation);
         maritalStatus = findViewById(R.id.marital_status);
@@ -391,14 +468,55 @@ public class RegisterActivity extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         transGender = findViewById(R.id.transgender);
+
+        mCalendar = Calendar.getInstance();
+        mDate = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, monthOfYear);
+                mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateJourneyDate();
+            }
+        };
+    }
+
+    private void setUpDateAlert() {
+        mCalendar.setTime(AppConstants.mDate);
+        DatePickerDialog dialog = new DatePickerDialog(this, mDate,
+                mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH),
+                mCalendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
+
+    private void updateJourneyDate() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Date date = null;
+        try {
+            date = sdf.parse(sdf.format(mCalendar.getTime()));
+        } catch (Exception e) {
+            Log.e("Level", e.getLocalizedMessage());
+        }
+        setDate(date);
+    }
+
+    private void setDate(Date date) {
+        String dateToShow = (String) DateFormat.format("dd", AppConstants.mDate) +
+                "/" + (String) DateFormat.format("MM", AppConstants.mDate) + "/" +
+                (String) DateFormat.format("yyyy", AppConstants.mDate);
+        dob.setText(dateToShow);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (alertDialogPhoneNo.isShowing()) {
-            alertDialogPhoneNo.dismiss();
-        } else if (alertDialogOtp.isShowing()) {
+//        if (alertDialogPhoneNo.isShowing()) {
+//            alertDialogPhoneNo.dismiss();
+//        } else
+        if (alertDialogOtp.isShowing()) {
             alertDialogOtp.dismiss();
         }
         onBackPressed();
