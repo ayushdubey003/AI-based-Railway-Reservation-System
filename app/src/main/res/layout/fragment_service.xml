@@ -57,21 +57,59 @@
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_train_black_24dp"
-                        android:tint="@color/colorPrimary" />
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp">
+
+                        <ImageView
+                            android:id="@+id/spot_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_train_black_24dp"
+                            android:tint="@color/colorPrimary" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/spot_cv"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="8dp"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                            <TextView
+                                android:id="@+id/spot_tv"
+                                style="@style/internal_fonts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingLeft="4dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="4dp"
+                                android:paddingBottom="0dp"
+                                android:singleLine="true"
+                                android:text="15007"
+                                android:textAllCaps="true"
+                                android:textColor="#fff"
+                                android:textSize="14sp"></TextView>
+                        </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
                     <EditText
+                        android:id="@+id/spot_train"
                         style="@style/internal_fonts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:layout_weight="7"
                         android:background="@null"
+                        android:editable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="Train No./Train Name"
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_drawable"
@@ -86,6 +124,7 @@
                         android:src="@drawable/ic_close_black_24dp" />
 
                     <LinearLayout
+                        android:id="@+id/spot_train_ll"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
@@ -138,13 +177,47 @@
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_train_black_24dp"
-                        android:tint="@color/colorPrimary" />
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp">
+
+                        <ImageView
+                            android:id="@+id/live_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="@color/colorPrimary" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/live_cv"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="8dp"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                            <TextView
+                                android:id="@+id/live_tv"
+                                style="@style/internal_fonts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingLeft="4dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="4dp"
+                                android:paddingBottom="0dp"
+                                android:singleLine="true"
+                                android:text="ANVT"
+                                android:textAllCaps="true"
+                                android:textColor="#fff"
+                                android:textSize="14sp"></TextView>
+                        </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
                     <EditText
                         android:id="@+id/live_station_edit_text"
@@ -152,6 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:layout_weight="7"
                         android:background="@null"
                         android:editable="false"
@@ -223,13 +297,47 @@
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_train_black_24dp"
-                        android:tint="@color/colorPrimary" />
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp">
+
+                        <ImageView
+                            android:id="@+id/pass_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="@color/colorPrimary" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/pass_cv"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="8dp"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                            <TextView
+                                android:id="@+id/pass_tv"
+                                style="@style/internal_fonts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingLeft="4dp"
+                                android:paddingTop="0dp"
+                                android:paddingRight="4dp"
+                                android:paddingBottom="0dp"
+                                android:singleLine="true"
+                                android:text="ANVT"
+                                android:textAllCaps="true"
+                                android:textColor="#fff"
+                                android:textSize="14sp"></TextView>
+                        </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
                     <EditText
                         android:id="@+id/passing_by_edit_text"
@@ -237,6 +345,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:layout_weight="7"
                         android:background="@null"
                         android:editable="false"

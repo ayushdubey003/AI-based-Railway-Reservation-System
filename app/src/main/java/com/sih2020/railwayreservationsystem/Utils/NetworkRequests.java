@@ -21,9 +21,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Activities.MainActivity;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
+import com.sih2020.railwayreservationsystem.Activities.TrainLiveStatus;
 import com.sih2020.railwayreservationsystem.Models.Station;
+import com.sih2020.railwayreservationsystem.Models.Status;
 import com.sih2020.railwayreservationsystem.Models.Train;
 
 import org.json.JSONArray;
@@ -48,6 +54,7 @@ public class NetworkRequests {
     private SharedPreferences mSharedPreferences;
     private MainActivity mainActivity;
     private SeatAvailabilityActivity seatAvailabilityActivity;
+    private TrainLiveStatus trainLiveStatus;
     private String version;
     private ArrayList<String> temp;
     String arrOfSplits[];
@@ -72,6 +79,14 @@ public class NetworkRequests {
             temp.add("unavailable".toUpperCase());
     }
 
+    public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, TrainLiveStatus trainLiveStatus) {
+        mCL = coordinatorLayout;
+        mContext = context;
+        mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
+        this.trainLiveStatus = trainLiveStatus;
+        requestQueue = Volley.newRequestQueue(mContext);
+    }
+
     public void fetchVersionNumber() {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, AppConstants.mUrl + "/list/version", null,
@@ -85,9 +100,11 @@ public class NetworkRequests {
                             int res = mContext.checkCallingOrSelfPermission(permission);
                             if (!mSharedPreferences.getString(AppConstants.mStationsListVersionNo, "").equals(version)) {
                                 fetchStationsList();
-                            } else if (res != PackageManager.PERMISSION_GRANTED)
+                                fetchTrainsList();
+                            } else if (res != PackageManager.PERMISSION_GRANTED) {
                                 fetchStationsList();
-                            else
+                                fetchTrainsList();
+                            } else
                                 readFromFile();
                         } catch (JSONException e) {
                             readFromFile();
@@ -130,7 +147,30 @@ public class NetworkRequests {
                 return;
             }
         }
-        parseData(data.toString());
+        parseData(data.toString(), 1);
+        file = new File(dir, "trainsList.txt");
+
+        data = new StringBuilder();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                data.append(line);
+            }
+
+            br.close();
+        } catch (IOException e) {
+            Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+            try {
+                mainActivity.dataFetchComplete();
+            } catch (Exception u) {
+                return;
+            }
+        }
+        parseData(data.toString(), 2);
+
     }
 
     private void fetchStationsList() {
@@ -140,7 +180,27 @@ public class NetworkRequests {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        writeToFile(response);
+                        writeToFile(response, 1);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Snackbar.make(mCL, error.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+//                mainActivity.dataFetchComplete();
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void fetchTrainsList() {
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, AppConstants.mUrl + "/trains",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        writeToFile(response, 2);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -153,15 +213,19 @@ public class NetworkRequests {
         queue.add(stringRequest);
     }
 
-
-    private void writeToFile(String data) {
+    private void writeToFile(String data, int x) {
         String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
         int res = mContext.checkCallingOrSelfPermission(permission);
         if (res == PackageManager.PERMISSION_GRANTED) {
             File root = Environment.getExternalStorageDirectory();
             File dir = new File(root.getAbsolutePath() + "/Android/data/" + mContext.getPackageName());
             dir.mkdirs();
-            File file = new File(dir, "stationList.txt");
+            File file = null;
+            if (x == 1)
+                file = new File(dir, "stationList.txt");
+            else
+                file = new File(dir, "trainsList.txt");
+
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(data.getBytes());
@@ -174,19 +238,27 @@ public class NetworkRequests {
                 mainActivity.dataFetchComplete();
             }
         }
-        parseData(data);
+        parseData(data, x);
     }
 
-    private void parseData(String data) {
+    private void parseData(String data, int x) {
         JSON parser = new JSON(data);
         JSONObject jsonObject = parser.getJsonObject();
         try {
-            JSONArray stations = jsonObject.getJSONArray("stations");
-            for (int i = 0; i < stations.length(); i++) {
-                JSONObject station = stations.getJSONObject(i);
-                AppConstants.mStationsName.add(new Station(station.getString("name"),
-                        station.getString("code"),
-                        new Pair<String, String>(station.getJSONArray("coordinates").getString(0), station.getJSONArray("coordinates").getString(1))));
+            if (x == 1) {
+                JSONArray stations = jsonObject.getJSONArray("stations");
+                for (int i = 0; i < stations.length(); i++) {
+                    JSONObject station = stations.getJSONObject(i);
+                    AppConstants.mStationsName.add(new Station(station.getString("name"),
+                            station.getString("code"),
+                            new Pair<String, String>(station.getJSONArray("coordinates").getString(0), station.getJSONArray("coordinates").getString(1))));
+                }
+            } else {
+                JSONArray trains = jsonObject.getJSONArray("trains");
+                for (int i = 0; i < trains.length(); i++) {
+                    JSONObject train = trains.getJSONObject(i);
+                    AppConstants.mTrainListAtStartTime.add(new Pair<String, String>(train.getString("trainNo"), train.getString("trainName")));
+                }
             }
         } catch (Exception e) {
             Snackbar.make(mCL, e.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
@@ -318,70 +390,53 @@ public class NetworkRequests {
             }
             return;
         }
-        if (seatAvailabilityActivity.networkRequests == null)
-            return;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("seatavailability");
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    for (int i = 0; i < jsonArray.length(); i++)
-                        arrayList.add(jsonArray.getString(i));
-                    arrayList = cleanList(arrayList);
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null)
+                            fetchSeatsData(trainNo, url, requestNo + 1);
+                        else {
+                            try {
+                                JsonArray jsonArray = result.getAsJsonArray("seatavailability");
+                                ArrayList<String> arrayList = new ArrayList<>();
+                                for (int i = 0; i < jsonArray.size(); i++)
+                                    arrayList.add(jsonArray.get(i).getAsString());
+                                arrayList = cleanList(arrayList);
+                                int pos = 0;
+                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                                        pos = i;
+                                        break;
+                                    }
+                                }
+                                try {
+                                    AppConstants.mTrainList.get(pos).setmSeats(arrayList);
+                                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
+                                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } catch (Exception ex) {
+                                int pos = 0;
+                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                                        pos = i;
+                                        break;
+                                    }
+                                }
+                                try {
+                                    AppConstants.mTrainList.get(pos).setmSeats(temp);
+                                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                } catch (Exception exx) {
+                                    exx.printStackTrace();
+                                }
+                            }
                         }
                     }
-                    try {
-                        AppConstants.mTrainList.get(pos).setmSeats(arrayList);
-                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
-                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (Exception e) {
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
-                        }
-                    }
-                    try {
-                        AppConstants.mTrainList.get(pos).setmSeats(temp);
-                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (requestNo < 3)
-                    fetchSeatsData(trainNo, url, requestNo + 1);
-                else {
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
-                        }
-                    }
-                    try {
-                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
-                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
+                });
     }
 
     public void fetchFareData(final String trainNo, final String url, final int requestNo) {
@@ -395,77 +450,92 @@ public class NetworkRequests {
             }
             return;
         }
-        if (seatAvailabilityActivity.networkRequests == null)
-            return;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject jsonObject = response.getJSONObject("fare");
-                    JSONArray results;
-                    if (AppConstants.mQuota.getmAbbreviation().equalsIgnoreCase("tq"))
-                        results = jsonObject.getJSONArray("adultTatkal");
-                    else
-                        results = jsonObject.getJSONArray("adult");
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null)
+                            fetchFareData(trainNo, url, requestNo + 1);
+                        else {
+                            try {
+                                JsonObject jsonObject = result.getAsJsonObject("fare");
+                                JsonArray results;
+                                if (AppConstants.mQuota.getmAbbreviation().equalsIgnoreCase("tq"))
+                                    results = jsonObject.getAsJsonArray("adultTatkal");
+                                else
+                                    results = jsonObject.getAsJsonArray("adult");
 
-                    String fare = "N/A";
-                    for (int i = 0; i < results.length(); i++) {
-                        JSONObject resultsJSONObject = results.getJSONObject(i);
-                        try {
-                            fare = resultsJSONObject.getString(AppConstants.mClass.getmAbbreviation());
-                        } catch (Exception eee) {
-                            continue;
+                                String fare = "N/A";
+                                for (int i = 0; i < results.size(); i++) {
+                                    JsonObject resultsJSONObject = results.get(i).getAsJsonObject();
+                                    try {
+                                        fare = resultsJSONObject.get(AppConstants.mClass.getmAbbreviation()).getAsString();
+                                    } catch (Exception eee) {
+                                        continue;
+                                    }
+                                }
+                                int pos = 0;
+                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                                        pos = i;
+                                        break;
+                                    }
+                                }
+                                try {
+                                    AppConstants.mTrainList.get(pos).setmFare(fare);
+                                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare(fare);
+                                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                } catch (Exception ee) {
+                                    ee.printStackTrace();
+                                }
+                                return;
+                            } catch (Exception ee) {
+                                int pos = 0;
+                                for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                                    if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                                        pos = i;
+                                        break;
+                                    }
+                                }
+                                try {
+                                    AppConstants.mTrainList.get(pos).setmFare("N/A");
+                                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            return;
                         }
                     }
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
+                });
+    }
+
+    public void fetchTrainStatus(String url, final ArrayList<Status> route) {
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null) {
+                            Snackbar.make(mCL, "Error getting train status", Snackbar.LENGTH_LONG).show();
+                        } else {
+                            JsonArray jsonArray = result.get("status").getAsJsonArray();
+                            for (int i = 0; i < jsonArray.size(); i++) {
+                                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+                                route.add(new Status(jsonObject.get("arrDelay").getAsString(),
+                                        jsonObject.get("delayDept").getAsString(),
+                                        jsonObject.get("expArr").getAsString(),
+                                        jsonObject.get("expDept").getAsString(),
+                                        jsonObject.get("schArr").getAsString(),
+                                        jsonObject.get("schDept").getAsString(),
+                                        jsonObject.get("station").getAsString()));
+                            }
+                            trainLiveStatus.dataFetchComplete(route);
                         }
                     }
-                    try {
-                        AppConstants.mTrainList.get(pos).setmFare(fare);
-                        seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare(fare);
-                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (Exception e) {
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
-                        }
-                    }
-                    try {
-                        AppConstants.mTrainList.get(pos).setmFare("N/A");
-                        seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                return;
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (requestNo < 3)
-                    fetchFareData(trainNo, url, requestNo + 1);
-                else {
-                    int pos = 0;
-                    for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
-                        if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
-                            pos = i;
-                            break;
-                        }
-                    }
-                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare("unavailable".toUpperCase());
-                    seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
+                });
     }
 }

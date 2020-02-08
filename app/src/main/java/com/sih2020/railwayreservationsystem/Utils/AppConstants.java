@@ -36,6 +36,8 @@ public class AppConstants {
     public static String[] mNationality = {"Indian", "Others"};
     public static String[] mOccupation = {"NA","Govt-employee","Farmer", "Self-employed","Unemployed"};
     public static String[] mMaritalStatus = {"NA","Single", "Married"};
+    public static ArrayList<Pair<String, String>> mTrainListAtStartTime = new ArrayList<>();
+    public static Pair<String,String> mSpotTrainPair = new Pair<String,String>(null,null);
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

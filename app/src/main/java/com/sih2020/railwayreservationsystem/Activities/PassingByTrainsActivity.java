@@ -62,7 +62,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passing_by_trains);
 
-        mstation=getIntent().getExtras().getString("station");
+        mstation = getIntent().getExtras().getString("station");
         mlist = new ArrayList<>();
         required_list = new ArrayList<>();
         fetchData();
@@ -165,7 +165,11 @@ public class PassingByTrainsActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(PassingByTrainsActivity.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("onErrorResponse: ", error.getLocalizedMessage());
+                try {
+                    Log.e("onErrorResponse: ", error.getLocalizedMessage());
+                } catch (Exception e) {
+                    //do nothing
+                }
                 finish();
             }
         });

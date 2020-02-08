@@ -20,7 +20,7 @@ with open("../datasets/stations.csv","r") as file:
 # 	file = csv.writer(writeFile)
 # 	file.writerow(["Pincode"])
 
-i = 1749
+i = 4214
 driver.get(url)
 
 while True:

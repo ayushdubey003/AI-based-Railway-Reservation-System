@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.R;
@@ -62,14 +63,6 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        networkRequests.requestQueue.cancelAll(new RequestQueue.RequestFilter() {
-            @Override
-            public boolean apply(Request<?> request) {
-                return true;
-            }
-        });
-        networkRequests = null;
         finish();
     }
 
@@ -81,18 +74,16 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         receiveClicks();
     }
 
+    @Override
+    protected void onStop() {
+        Ion.getDefault(this).cancelAll(this);
+        super.onStop();
+    }
+
     private void receiveClicks() {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                networkRequests.requestQueue.cancelAll(new RequestQueue.RequestFilter() {
-                    @Override
-                    public boolean apply(Request<?> request) {
-                        return true;
-                    }
-                });
-
-                networkRequests = null;
                 finish();
             }
         });

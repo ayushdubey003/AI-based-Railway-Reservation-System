@@ -19,6 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.TrainLiveStatus"></activity>
+        <activity android:name=".Activities.SearchTrains" />
         <activity android:name=".Activities.RegisterActivity">
 
         </activity>
@@ -28,7 +30,7 @@
         <activity android:name=".Activities.RouteActivity" />
         <activity android:name=".Activities.PnrActivity" />
         <activity android:name=".Activities.SeatAvailabilityActivity" />
-        <activity android:name=".Activities.SearchTrains" />
+        <activity android:name=".Activities.SearchStations" />
         <activity
             android:name=".Activities.MainActivity"
             android:windowSoftInputMode="adjustPan">

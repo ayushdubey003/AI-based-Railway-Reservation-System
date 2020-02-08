@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="75dp"
+    android:id="@+id/route_ll"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -16,12 +18,14 @@
             android:layout_height="24dp"
             android:layout_marginLeft="16dp"
             android:src="@drawable/circle"
-            android:tint="@color/colorPrimary"></ImageView>
+            android:tint="@color/colorPrimary">
+
+        </ImageView>
 
         <View
             android:id="@+id/line"
             android:layout_width="2dp"
-            android:layout_height="104dp"
+            android:layout_height="0dp"
             android:layout_below="@id/circle"
             android:layout_marginLeft="27dp"
             android:background="@color/colorPrimary"></View>
@@ -40,7 +44,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
+                android:layout_weight="8"
                 android:orientation="vertical">
 
                 <TextView
@@ -48,9 +52,19 @@
                     style="@style/internal_fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:textColor="#000"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     tools:text="Gorakhpur Jn"></TextView>
+
+                <TextView
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Avg delay of 3 mins"
+                    android:textColor="#626262"
+                    android:textSize="10sp"></TextView>
             </LinearLayout>
 
             <TextView
@@ -73,58 +87,6 @@
                 android:textSize="14sp"
                 tools:text="01:40 pm"></TextView>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/container"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/correct_time_tv"
-                style="@style/internal_fonts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:textColor="#626262"
-                android:textSize="11sp"
-                tools:text="Correct Time: 90%"></TextView>
-
-            <TextView
-                android:id="@+id/slight_delay_tv"
-                style="@style/internal_fonts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:textColor="#626262"
-                android:textSize="11sp"
-                tools:text="Slight Delay: 90%"></TextView>
-
-            <TextView
-                android:id="@+id/significant_delay_tv"
-                style="@style/internal_fonts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:textColor="#626262"
-                android:textSize="11sp"
-                tools:text="Significant Delay: 90%"></TextView>
-
-            <TextView
-                android:id="@+id/cancelled_tv"
-                style="@style/internal_fonts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:textColor="#626262"
-                android:textSize="11sp"
-                tools:text="Cancelled: 90%"></TextView>
         </LinearLayout>
     </RelativeLayout>
 

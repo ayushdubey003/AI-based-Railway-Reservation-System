@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
                         }
                         if (!AppConstants.mDataFetchCalled) {
                             networkRequests.fetchVersionNumber();
-
                             AppConstants.mDataFetchCalled = true;
                         }
                     }
