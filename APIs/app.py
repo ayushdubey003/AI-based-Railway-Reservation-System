@@ -17,13 +17,29 @@ def home():
 @app.route("/list/version", methods=['GET'])
 def stationslistversion():
     ans={
-        "version":"1.0.0"
+        "version":"1.0.1"
     }
     return ans
 
 @app.route("/level/<code>")
 def level(code):
     return jsonify(name=code)
+
+@app.route("/trains", methods=['GET'])
+def listofalltrains():
+    ans = []
+    i = 0
+    with open("../datasets/combinedtrains.csv","rt") as readFile:
+        file = csv.reader(readFile)
+        for row in file:
+            i = i+1
+            if i==1:
+                continue
+            ans.append({
+                "trainNo": row[0],
+                "trainName" : row[1]
+                });
+    return jsonify(trains=ans)
 
 @app.route("/trains/<board>", methods=['GET'])
 def listoftrainssourceindependent(board):

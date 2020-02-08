@@ -3,6 +3,7 @@ package com.sih2020.railwayreservationsystem.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RouteActivity extends AppCompatActivity {
@@ -25,6 +27,12 @@ public class RouteActivity extends AppCompatActivity {
     private ListView mRouteList;
     private ImageView mBack;
     private RouteAdapter mAdapter;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,10 @@ public class RouteActivity extends AppCompatActivity {
         mAppBarTv = findViewById(R.id.app_bar_tv);
         mRouteList = findViewById(R.id.route_list);
         mBack = findViewById(R.id.back_iv);
-        mAdapter = new RouteAdapter(this, AppConstants.mTrainList, mPosition);
+        ArrayList<String> temp = new ArrayList<>();
+        for (int i = 0; i < AppConstants.mTrainList.get(mPosition).getmCodedRoutes().size() - 1; i++)
+            temp.add(AppConstants.mTrainList.get(mPosition).getmCodedRoutes().get(i));
+        mAdapter = new RouteAdapter(this, temp, AppConstants.mTrainList, mPosition);
         mRouteList.setAdapter(mAdapter);
 
         mAppBar.setBackground(GenerateBackground.generateBackground());

@@ -22,7 +22,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sih2020.railwayreservationsystem.Adapters.LiveStationAdapter;
 import com.sih2020.railwayreservationsystem.Models.LiveStationModel;
-import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
@@ -148,7 +147,7 @@ public class LiveStation extends AppCompatActivity {
         optionalEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LiveStation.this, SearchTrains.class);
+                Intent intent = new Intent(LiveStation.this, SearchStations.class);
                 intent.putExtra("type", 5);
                 startActivity(intent);
             }

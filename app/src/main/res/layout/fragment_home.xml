@@ -409,93 +409,92 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/quota_rl"
-                    android:layout_marginLeft="16dp                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Spinner
-                            android:id="@+id/quota_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:spinnerMode="dropdown"></Spinner>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <View
-                    android:id="@+id/seperator_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/quota_rl_spinner"
-                    android:layout_marginTop="8dp"
-                    android:background="#a9a9a9"
-                    android:visibility="visible"></View>
-
-
-                <CheckBox
-                    android:id="@+id/date_flexible"
-                    style="@style/internal_fonts"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/seperator_4"
-                    android:layout_marginTop="8dp"
-                    android:text="Flexible with Date"
-                    android:textColor="#626262"
-                    android:textSize="18sp"></CheckBox>
+                    android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/search_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/date_flexible"
-                    android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="@color/bluishShadeColor"
-                    app:cardCornerRadius="@dimen/cardview_default_radius"
-                    app:cardElevation="@dimen/cardview_default_elevation">
-
-                    <LinearLayout
-                        android:id="@+id/search_trains"
+                    <Spinner
+                        android:id="@+id/quota_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?selectableItemBackground"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:hapticFeedbackEnabled="true"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:spinnerMode="dropdown"></Spinner>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_search_black_24dp"></ImageView>
-
-                        <TextView
-                            style="@style/font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:text="Find Seat Availability"
-                            android:textColor="#fff"
-                            android:textSize="18sp"
-                            android:textStyle="bold"></TextView>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
             </RelativeLayout>
 
+            <View
+                android:id="@+id/seperator_4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/quota_rl_spinner"
+                android:layout_marginTop="8dp"
+                android:background="#a9a9a9"
+                android:visibility="visible"></View>
+
+
+            <CheckBox
+                android:id="@+id/date_flexible"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seperator_4"
+                android:layout_marginTop="8dp"
+                android:text="Flexible with Date"
+                android:textColor="#626262"
+                android:textSize="18sp"></CheckBox>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date_flexible"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/bluishShadeColor"
+                app:cardCornerRadius="@dimen/cardview_default_radius"
+                app:cardElevation="@dimen/cardview_default_elevation">
+
+                <LinearLayout
+                    android:id="@+id/search_trains"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hapticFeedbackEnabled="true"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_search_black_24dp"></ImageView>
+
+                    <TextView
+                        style="@style/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:text="Find Seat Availability"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:textStyle="bold"></TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
-</FrameLayout>
+</androidx.cardview.widget.CardView>
+
+    </FrameLayout>

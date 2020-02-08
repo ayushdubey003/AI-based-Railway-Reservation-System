@@ -4,32 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -41,22 +35,23 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.sih2020.railwayreservationsystem.Activities.SearchStations;
+import com.sih2020.railwayreservationsystem.Activities.LoginActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
 import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
-import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
@@ -147,7 +142,7 @@ public class HomeFragment extends Fragment {
         mSourceEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                Intent intent = new Intent(getActivity(), SearchStations.class);
                 intent.putExtra("type", 1);
                 startActivity(intent);
             }
@@ -156,7 +151,7 @@ public class HomeFragment extends Fragment {
         mDestinationEt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SearchTrains.class);
+                Intent intent = new Intent(getActivity(), SearchStations.class);
                 intent.putExtra("type", 2);
                 startActivity(intent);
             }
@@ -238,6 +233,10 @@ public class HomeFragment extends Fragment {
                 try {
                     String url = "";
                     url = AppConstants.mUrl + "/trains/" + AppConstants.mSourceStation.getmStationCode() + "/" + AppConstants.mDestinationStation.getmStationCode() + "/" + mDay + "/" + AppConstants.mClass.getmAbbreviation().trim();
+                    if (AppConstants.mSourceStation.getmStationCode().equalsIgnoreCase(AppConstants.mDestinationStation.getmStationCode())) {
+                        Snackbar.make(getView(), "Source and destination station cannot be the same", Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
                     Intent intent = new Intent(getActivity(), SeatAvailabilityActivity.class);
                     intent.putExtra("url", url);
                     startActivity(intent);
