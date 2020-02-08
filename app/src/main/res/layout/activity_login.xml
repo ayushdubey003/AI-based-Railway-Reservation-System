@@ -42,15 +42,17 @@
                 android:padding="12dp">
 
                 <EditText
-                    android:id="@+id/user_name_login"
+                    android:id="@+id/phone_no_login"
                     style="@style/internal_fonts"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="User Name"
+                    android:hint="Enter registered phone no."
                     android:maxLines="1"
                     android:textColor="#000" />
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/password_login"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/register_root_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".Activities.RegisterActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/register_text"
             style="@style/internal_fonts"
@@ -24,12 +25,29 @@
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/step1_text"
+            android:layout_below="@+id/register_text"
+            style="@style/internal_fonts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:padding="8dp"
+            android:layout_marginTop="10dp"
+            android:text="Step 1"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/big_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/register_text"
-            android:layout_margin="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/step1_text"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             app:cardCornerRadius="40dp"
             app:cardElevation="4dp">
 
@@ -38,55 +56,41 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/temp3"
-                        style="@style/font"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:layout_alignParentLeft="true"
-                        android:text="Mobile No. :"
-                        android:textAllCaps="true"
-                        android:textColor="#000"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/phone_no_text"
-                        android:layout_toRightOf="@+id/temp3"
-                        android:layout_marginLeft="10dp"
-                        style="@style/font"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        tools:text="+91-1234567890"
-                        android:textAllCaps="true"
-                        android:textColor="#000"
-                        android:textSize="16sp" />
-                </RelativeLayout>
 
+                <EditText
+                    android:id="@+id/phone_no_et_ra"
+                    style="@style/internal_fonts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="10 digit Mobile No"
+                    android:maxLines="1"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/email_register"
                     style="@style/internal_fonts"
+                    android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
-                    android:textSize="16sp"
                     android:layout_height="wrap_content"
                     android:hint="Email Id"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/user_name_register"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
-                    android:textSize="16sp"
                     android:layout_height="wrap_content"
                     android:hint="Username"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/password_register"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
@@ -94,10 +98,12 @@
                     android:layout_marginTop="10dp"
                     android:drawableRight="@drawable/ic_blur_off_black_24dp"
                     android:hint="Password"
-                    android:textSize="16sp"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/confirm_password_register"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
@@ -105,127 +111,139 @@
                     android:layout_marginTop="10dp"
                     android:drawableRight="@drawable/ic_blur_off_black_24dp"
                     android:hint="Confirm Password"
-                    android:textSize="16sp"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
+
                     <EditText
-                        android:layout_weight="2"
                         android:id="@+id/first_name"
                         style="@style/internal_fonts"
                         android:layout_width="0dp"
-                        android:textSize="16sp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:hint="First Name"
                         android:maxLines="1"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
                     <EditText
-                        android:layout_weight="3"
-                        android:layout_toRightOf="@id/first_name"
                         android:id="@+id/middle_name"
                         style="@style/internal_fonts"
                         android:layout_width="0dp"
-                        android:textSize="16sp"
                         android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/first_name"
+                        android:layout_weight="3"
                         android:hint="Middle Name (Optional)"
                         android:maxLines="1"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <EditText
-                    android:layout_weight="3"
-                    android:layout_toRightOf="@id/first_name"
                     android:id="@+id/last_name"
                     style="@style/internal_fonts"
                     android:layout_width="match_parent"
-                    android:textSize="16sp"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/first_name"
+                    android:layout_weight="3"
                     android:hint="Last Name (Optional)"
                     android:maxLines="1"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
+
                     <EditText
-                        android:editable="false"
                         android:id="@+id/date_text_register"
                         style="@style/internal_fonts"
                         android:layout_width="wrap_content"
-                        android:textSize="16sp"
                         android:layout_height="wrap_content"
+                        android:editable="false"
                         android:hint="DOB(dd/mm/yy)  "
                         android:maxLines="1"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
                     <ImageView
                         android:id="@+id/calender_image_register"
-                        android:alpha="0.7"
-                        android:layout_marginLeft="5dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_date_range_black_24dp"
-                        android:layout_toRightOf="@id/date_text_register"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/date_text_register"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_date_range_black_24dp" />
+
                     <RadioGroup
                         android:id="@+id/radio_group"
-                        android:layout_alignParentRight="true"
-                        android:orientation="horizontal"
-                        android:layout_marginRight="18dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="18dp"
+                        android:orientation="horizontal">
+
                         <RadioButton
                             android:id="@+id/male"
-                            android:text="M"
                             style="@style/font"
-                            android:textColor="#000"
-                            android:textStyle="bold"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="M"
+                            android:textColor="#000"
+                            android:textStyle="bold" />
+
                         <RadioButton
                             android:id="@+id/female"
-                            android:text="F"
                             style="@style/font"
-                            android:textColor="#000"
-                            android:textStyle="bold"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="F"
+                            android:textColor="#000"
+                            android:textStyle="bold" />
+
                         <RadioButton
                             android:id="@+id/transgender"
-                            android:text="T"
                             style="@style/font"
-                            android:textColor="#000"
-                            android:textStyle="bold"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="T"
+                            android:textColor="#000"
+                            android:textStyle="bold" />
                     </RadioGroup>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="18dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp">
+
                     <TextView
                         android:id="@+id/temp4"
-                        android:text="Nationality -"
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Nationality -"
+                        android:layout_centerVertical="true"
+                        android:textSize="16dp" />
+
                     <Spinner
-                        android:layout_toRightOf="@+id/temp4"
                         android:id="@+id/nationality"
-                        android:layout_marginLeft="30dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/temp4" />
+
                     <View
-                        android:layout_below="@+id/nationality"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@+id/nationality"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="12dp"
                         android:background="#a9a9a9"
@@ -233,52 +251,61 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="18dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp">
+
                     <TextView
                         android:id="@+id/temp5"
-                        android:text="Occupation (optional) -"
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Occupation -"
+                        android:layout_centerVertical="true"
+                        android:textSize="16dp" />
+
                     <Spinner
-                        android:layout_toRightOf="@+id/temp5"
                         android:id="@+id/occupation"
-                        android:layout_marginLeft="30dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/temp5" />
+
                     <View
-                        android:layout_below="@+id/occupation"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@+id/occupation"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="12dp"
                         android:background="#a9a9a9"
                         android:visibility="visible"></View>
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="18dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp">
+
                     <TextView
                         android:id="@+id/temp6"
-                        android:text="Marital Status (Optional) -"
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Marital Status -"
+                        android:layout_centerVertical="true"
+                        android:textSize="16dp" />
+
                     <Spinner
-                        android:layout_toRightOf="@+id/temp6"
                         android:id="@+id/marital_status"
-                        android:layout_marginLeft="30dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/temp6" />
+
                     <View
-                        android:layout_below="@+id/marital_status"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@+id/marital_status"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="12dp"
                         android:background="#a9a9a9"
@@ -317,5 +344,21 @@
                 </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/register_back"
+            style="@style/internal_fonts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/big_card"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:padding="8dp"
+            android:layout_marginBottom="15dp"
+            android:text="back"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </ScrollView>
