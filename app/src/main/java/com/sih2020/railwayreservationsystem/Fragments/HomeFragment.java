@@ -42,8 +42,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.sih2020.railwayreservationsystem.Activities.LoginActivity;
 import com.sih2020.railwayreservationsystem.Activities.SearchTrains;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
@@ -78,7 +80,7 @@ public class HomeFragment extends Fragment {
     private Spinner mClassSpinner, mQuotaSpinner;
     private SpinnerAdapter mClassAdapter, mQuotaAdapter;
     private LinearLayout mSearchTrains;
-    private Button openLoginButton;
+    private Button openLoginButton,logOutButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -256,6 +258,14 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
+
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void init(final View view) {
@@ -304,6 +314,7 @@ public class HomeFragment extends Fragment {
         mQuotaSpinner = view.findViewById(R.id.quota_spinner);
         mSearchTrains = view.findViewById(R.id.search_trains);
         openLoginButton=view.findViewById(R.id.open_login_button);
+        logOutButton=view.findViewById(R.id.logout_button);
 
         mClassAdapter = new SpinnerAdapter(getActivity(), getContext(), AppConstants.mTravelClasses);
         mClassSpinner.setAdapter(mClassAdapter);

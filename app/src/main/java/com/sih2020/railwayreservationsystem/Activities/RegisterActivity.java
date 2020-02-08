@@ -97,34 +97,33 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    pref.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            boolean flag2=false;
-                            for (DataSnapshot ds:dataSnapshot.getChildren()){
-                                if(ds.getKey().equals("+91"+phoneNoEditText.getText().toString())){
-                                    Log.e( "onDataChange: ","levelofquality");
-                                    flag2=true;
-                                    break;
-                                }
-                            }
-                            if(!flag2){
-                                if (validate()) {
-                                    progressDialog.show();
-                                    sendVerificationCode();
-                                }
-                            }
-                            else{
-                                phoneNoEditText.setError("A user exists with this phone no");
+                pref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        boolean flag2 = false;
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if (ds.getKey().equals("+91" + phoneNoEditText.getText().toString())) {
+                                Log.e("onDataChange: ", "levelofquality");
+                                flag2 = true;
+                                break;
                             }
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        if (!flag2) {
+                            if (validate()) {
+                                progressDialog.show();
+                                sendVerificationCode();
+                            }
+                        } else {
+                            phoneNoEditText.setError("A user exists with this phone no");
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
         });
 
         registerBack.setOnClickListener(new View.OnClickListener() {

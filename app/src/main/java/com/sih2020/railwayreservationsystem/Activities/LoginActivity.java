@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ScrollView root_layout;
     private TextView captcha;
-    private TextView login_button, openRegisterActivity;
+    private TextView login_button, openRegisterActivity, loginBack;
     private EditText phoneNoLogin, passWord, enterCaptcha;
     private ImageView refreshCaptcha;
 
@@ -51,14 +53,15 @@ public class LoginActivity extends AppCompatActivity {
     private String codeSent;
 
     private AlertDialog alertDialogOtp;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        pref= FirebaseDatabase.getInstance().getReference("Phone");
-        mauth=FirebaseAuth.getInstance();
+        pref = FirebaseDatabase.getInstance().getReference("Phone");
+        mauth = FirebaseAuth.getInstance();
         init();
         receiveclicks();
     }
@@ -66,45 +69,46 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             finish();
         }
     }
 
     private void receiveclicks() {
 
-        phoneNoLogin.setOnClickListener(new View.OnClickListener() {
+        login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (validate()) {
+                    progressDialog.show();
 
-                pref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        boolean flag2=false;
-                        for (DataSnapshot ds:dataSnapshot.getChildren()){
-                            if(ds.getKey().equals("+91"+phoneNoLogin.getText().toString())){
-                                Log.e( "onDataChange: ","levelofquality");
-                                flag2=true;
-                                break;
+                    pref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            boolean flag2 = false;
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                if (ds.getKey().equals("+91" + phoneNoLogin.getText().toString())) {
+                                    Log.e("onDataChange: ", "levelofquality");
+                                    flag2 = true;
+                                    break;
+                                }
                             }
-                        }
-                        if(flag2){
-                            if (validate()) {
+                            if (flag2) {
                                 //progressDialog.show();
                                 sendVerificationCode();
+                            } else {
+                                phoneNoLogin.setError("User does not exist, Register to proceed");
+                                progressDialog.dismiss();
                             }
                         }
-                        else{
-                            phoneNoLogin.setError("User does not exist, Register to proceed");
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
+                    });
+                }
             }
         });
 
@@ -112,7 +116,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start register activity
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        loginBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -136,7 +147,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onVerificationFailed(@NonNull FirebaseException e) {
                     Log.e("onVerificationFailed: ", e.getMessage());
-
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -145,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                     codeSent = s;
 
 
-                    //progressDialog.dismiss();
+                    progressDialog.dismiss();
                     openEnterOtpDialog();
                 }
             };
@@ -159,9 +171,10 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView upper_text = dialogView.findViewById(R.id.upper_text);
         upper_text.setBackground(GenerateBackground.generateBackground());
-        upper_text.setText("User Registration : Step 2");
+        upper_text.setText("User Login");
 
         TextView sendOtp = dialogView.findViewById(R.id.send_otp);
+        sendOtp.setText("Submit OTP");
 
         final EditText enterOtp = dialogView.findViewById(R.id.enter_phone_no_et);
         enterOtp.setHint("Enter OTP");
@@ -176,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
         sendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //progressDialog.show();
+                progressDialog.show();
                 String enteredOtp = enterOtp.getText().toString().trim();
 
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, enteredOtp);
@@ -193,10 +206,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.e("level", "signInWithCredential:success");
-
+                            progressDialog.dismiss();
                             FirebaseUser user = task.getResult().getUser();
                             finish();
-                            Log.e("onComplete: ",user.getPhoneNumber());
+                            Log.e("onComplete: ", user.getPhoneNumber());
                             //mauth.signOut();
                         } else {
                             finish();
@@ -210,14 +223,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validate() {
-        if(phoneNoLogin.getText().toString().length()!=10){
+        if (phoneNoLogin.getText().toString().length() != 10) {
             phoneNoLogin.setError("Enter a 10 digit phone number");
+            phoneNoLogin.requestFocus();
             return false;
         }
         return true;
     }
 
     private void init() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
+
+        loginBack = findViewById(R.id.login_back);
         openRegisterActivity = findViewById(R.id.open_register_activity);
         phoneNoLogin = findViewById(R.id.phone_no_login);
         //passWord = findViewById(R.id.password_login);
