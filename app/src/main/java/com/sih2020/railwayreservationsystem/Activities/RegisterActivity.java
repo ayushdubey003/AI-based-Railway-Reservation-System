@@ -231,14 +231,6 @@ public class RegisterActivity extends AppCompatActivity {
         map.put("occupation", AppConstants.mOccupation[occupation.getSelectedItemPosition()]);
         map.put("maritalStatus", AppConstants.mMaritalStatus[maritalStatus.getSelectedItemPosition()]);
 
-//        HashMap<String,String> walletMap=new HashMap<>();
-//        walletMap.put("registered","false");
-//
-//        final String hashed = Hashing.sha256()
-//                .hashString("your input", StandardCharsets.UTF_8)
-//                .toString();
-//
-//        walletMap.put("hash","##########");
 
         dref.child(mauth.getCurrentUser().getUid()).setValue(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
