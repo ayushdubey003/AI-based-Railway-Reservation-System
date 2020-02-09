@@ -20,8 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.AlternateRoutesActivity"></activity>
-        <activity android:name=".Activities.AutomatedTatkal"></activity>
+        <activity android:name=".Activities.ProfileAcitvity"></activity>
+        <activity android:name=".Activities.AlternateRoutesActivity" />
+        <activity android:name=".Activities.AutomatedTatkal" />
 
         <receiver
             android:name=".BroadcastRecievers.TatkalReciever"
