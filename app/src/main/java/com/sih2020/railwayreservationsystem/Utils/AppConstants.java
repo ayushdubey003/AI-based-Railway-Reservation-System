@@ -53,6 +53,20 @@ public class AppConstants {
     public static ArrayList<Integer> mFareFetch = new ArrayList<>(), mSeatFetch = new ArrayList<>();
     public static ArrayList<AddPassengerModal> mAddPassengerList=new ArrayList<>();
     public static AddPassengerListAdapter mAddPassengerListGlobalAdapter;
+    private static ArrayList<String> mDays=new ArrayList<>();
+
+    public static int getDay(String day)
+    {
+        mDays.add("Sunday");
+        mDays.add("Monday");
+        mDays.add("Tuesday");
+        mDays.add("Wednesday");
+        mDays.add("Thursday");
+        mDays.add("Friday");
+        mDays.add("Saturday");
+
+        return mDays.indexOf(day);
+    }
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);

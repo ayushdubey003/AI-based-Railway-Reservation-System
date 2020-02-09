@@ -26,12 +26,14 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/alternateroutes"
             android:layout_width="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_height="wrap_content"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+            android:src="@drawable/ic_train_black_24dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
         <LinearLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
