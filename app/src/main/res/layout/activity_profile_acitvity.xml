@@ -6,6 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.ProfileAcitvity">
+    <ProgressBar
+        android:id="@+id/progress_pa"
+        android:layout_width="wrap_content"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"/>
     <RelativeLayout
         android:id="@+id/zeroth_layer_pa"
         android:layout_width="match_parent"
@@ -55,7 +61,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/username_pa"
-                    android:text="Ritik Raj"
+                    tools:text="Ritik Raj"
                     android:textSize="14sp"
                     android:paddingTop="8dp"
                     android:layout_gravity="center"
@@ -66,8 +72,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/email_pa"
                     android:layout_below="@+id/username_pa"
-                    android:text="ritikraj@123.com"
+                    tools:text="ritikraj@123.com"
                     android:textSize="14sp"
                     android:paddingTop="8dp"
                     android:layout_gravity="center"
@@ -94,7 +101,7 @@
             <TextView
                 android:id="@+id/wallet_text_temp"
                 android:text="Wallet"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:padding="8dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#000"
@@ -125,6 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/add_balance_pa"
                 android:layout_below="@id/current_balance_pa"
                 android:text="+Add Balance"
                 android:textSize="14sp"
@@ -133,7 +141,6 @@
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/bluishShadeColor"
                 style="@style/internal_fonts"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -153,7 +160,7 @@
             <TextView
                 android:id="@+id/booking_temp_text"
                 android:text="Booking History -"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:padding="8dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#000"
@@ -162,6 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/no_history_text_pa"
                 android:layout_below="@id/booking_temp_text"
                 android:text="No History To Show"
                 android:textSize="14sp"
@@ -170,7 +178,6 @@
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/bluishShadeColor"
                 style="@style/internal_fonts"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -190,7 +197,7 @@
             <TextView
                 android:id="@+id/master_temp_text"
                 android:text="My Master List"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:padding="8dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#000"
@@ -199,6 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/no_master_text_pa"
                 android:layout_below="@id/master_temp_text"
                 android:text="No List To Show"
                 android:textSize="14sp"
@@ -207,7 +215,6 @@
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/bluishShadeColor"
                 style="@style/internal_fonts"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -220,9 +227,10 @@
         app:cardElevation="@dimen/cardview_default_elevation"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/logout_pa"
             android:text="   Logout   "
             android:textAllCaps="true"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:padding="8dp"
             android:background="@color/colorPrimary"
             android:textColor="#fff"
