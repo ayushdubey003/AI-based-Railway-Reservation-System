@@ -384,7 +384,7 @@ def listofstations():
     flag = 0
 
     ans = []
-    with open('../datasets/stations.csv', 'rt') as file:
+    with open('../datasets/finalpincodes.csv', 'rt') as file:
         reader = csv.reader(file)
         for row in reader:
             if flag == 0:
@@ -392,12 +392,13 @@ def listofstations():
                 continue
             else:
                 coordinates =[]
-                coordinates.append(row[2])
                 coordinates.append(row[3])
+                coordinates.append(row[4])
                 ans.append({
-                    'name': row[0],
-                    'code': row[1],
-                    "coordinates": coordinates
+                    'name': row[1],
+                    'code': row[2],
+                    "coordinates": coordinates,
+                    "pincode" : row[5]
                 })
 
     return jsonify(stations=ans)
