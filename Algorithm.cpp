@@ -24,10 +24,6 @@ struct queueData{
   int duration;
 };
 
-bool comparator(struct queueData queueData1, struct queueData queueData2){
-  return queueData1.duration < queueData2.duration;
-}
-
 int main(int argc, char *argv[]){
   // auto start = high_resolution_clock::now();
 
@@ -54,12 +50,12 @@ int main(int argc, char *argv[]){
   string departureFileName;
   string runningFileName;
 
-  stationFileName = "../datasets/stationCodes.txt";
-  trainFileName = "../datasets/reservedTrains.txt";
-  routesFileName = "../datasets/routes.txt";
-  arrivalFileName = "../datasets/arrival.txt";
-  departureFileName = "../datasets/departure.txt";
-  runningFileName = "../datasets/runningDays.txt";
+  stationFileName = "datasets/stationCodes.txt";
+  trainFileName = "datasets/reservedTrains.txt";
+  routesFileName = "datasets/routes.txt";
+  arrivalFileName = "datasets/arrival.txt";
+  departureFileName = "datasets/departure.txt";
+  runningFileName = "datasets/runningDays.txt";
 
   stationFile.open(stationFileName.c_str());
   trainFile.open(trainFileName.c_str());
@@ -210,7 +206,7 @@ int main(int argc, char *argv[]){
       departure %= (7 * 24 * 60);
       if (arrival > departure)
         departure += (7 * 24 * 60);
-      if (departure - arrival > maxTime || departure - arrival < minTime)
+      if (departure - arrival > maxTime && departure - arrival < minTime)
         continue;
       if (temp.lastTrain == node.trainNumber)
         continue;
@@ -249,8 +245,6 @@ int main(int argc, char *argv[]){
       bfsQueue.push(temp);
     }
   }
-
-  sort(solution.begin(), solution.end(), comparator);
 
   for (auto node : solution){
 

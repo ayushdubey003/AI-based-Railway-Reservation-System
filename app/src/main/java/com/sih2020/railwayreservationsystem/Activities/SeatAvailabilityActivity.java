@@ -155,7 +155,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                     intent.putExtra("duration", "06hr");
                     intent.putExtra("doj", mDateTv.getText().toString());
                     intent.putExtra("fare", dlist.get(position).getmFare());
-                    intent.putExtra("position",position);
+                    intent.putExtra("position", position);
 
                     startActivity(intent);
                 }
@@ -536,7 +536,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         }
 
         String jtime = train.getmDepartureTime().get(deptIndex).trim().split(" ")[0];
-        Log.e(LOG_TAG,jtime);
+        Log.e(LOG_TAG, jtime);
         String currStatus = train.getmSeats().get(0);
         if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
             mTrains.get(pos).setmConfirmationProbability("UNAVAILABLE");
@@ -544,7 +544,20 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             return;
         } else {
             String v[] = currStatus.split("/");
-            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + v[0] + "_" + v[1];
+            String l="",d="";
+            for(int i=0;i<v[0].length();i++)
+            {
+                if(v[0].charAt(i)==' ')
+                    continue;
+                l=l+v[0].charAt(i);
+            }
+            for(int i=0;i<v[1].length();i++)
+            {
+                if(v[1].charAt(i)==' ')
+                    continue;
+                d=d+v[1].charAt(i);
+            }
+            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + l + "_" + d;
             networkRequests.fetchConfirmationProbability(pos, url);
         }
     }
