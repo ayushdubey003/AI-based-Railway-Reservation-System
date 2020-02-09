@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
@@ -65,6 +66,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private ImageView mBack;
     private RadioButton lastChecked;
     public ArrayList<Train> mTrains;
+    FloatingActionButton floatingActionButton;
 
     @Override
     public void onBackPressed() {
@@ -110,6 +112,13 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setUpClassAlert();
+            }
+        });
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SeatAvailabilityActivity.this,AlternateRoutesActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -164,6 +173,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     }
 
     private void init() {
+        floatingActionButton=findViewById(R.id.alternateroutes);
         mUrl = getIntent().getStringExtra("url");
         mCL = findViewById(R.id.cl);
         mToolbar = findViewById(R.id.app_bar);
