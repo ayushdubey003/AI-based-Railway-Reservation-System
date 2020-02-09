@@ -26,7 +26,7 @@ struct queueData{
 int main(){
   auto start = high_resolution_clock::now();
   string source = "GKP";
-  string destination = "YPR";
+  string destination = "TATA";
 
   fstream stationFile;
   fstream trainFile;
@@ -221,6 +221,9 @@ i=0;
   for(auto node:solution){
     for(auto st:node.stationList)
     cout<<st<<" ";
+    cout<<endl;
+    for (auto tn:node.trainList)
+    cout<<tn<<" ";
     cout<<endl;
   }
 
