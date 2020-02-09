@@ -734,11 +734,12 @@ blockchain.create_genesis_block()
 @app.route('/new_transaction', methods=['POST'])
 def new_transaction():
     tx_data = request.get_json()
+    print(request.get_json())
     required_fields = ["sender", "receiver", "amount"]
 
-    for field in required_fields:
-        if not tx_data.get(field):
-            return jsonify(error=404)
+    #for field in required_fields:
+    #    if not tx_data.get(field):
+    #        return jsonify(error=404)
 
     tx_data["timestamp"] = time.time()
 

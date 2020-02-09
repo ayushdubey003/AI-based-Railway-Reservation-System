@@ -27,6 +27,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -41,10 +52,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -261,6 +279,61 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        createBlockChainTransaction();
+    }
+
+    private void createBlockChainTransaction() {
+
+        try {
+            JsonObject jsonBody = new JsonObject();
+            jsonBody.addProperty("sender", mauth.getCurrentUser().getUid());
+            jsonBody.addProperty("receiver", "");
+            jsonBody.addProperty("amount", 0);
+
+            Ion.with(RegisterActivity.this)
+                    .load(AppConstants.mUrl+"/new_transaction")
+                    .setTimeout(5000)
+                    .setJsonObjectBody(jsonBody)
+                    .asString()
+                    .setCallback(new FutureCallback<String>() {
+                        @Override
+                        public void onCompleted(Exception e, String result) {
+
+                            if (e == null) {
+
+                                RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
+
+                                String url2 = AppConstants.mUrl + "/mine";
+                                JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url2, null,
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                try {
+                                                    //JSONObject jobj = response.getJSONObject("status");
+                                                    Log.e("onResponse: ", response.getString("Success"));
+                                                } catch (JSONException e) {
+                                                    Log.e("onResponse: ", e.getMessage());
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+                                    }
+                                });
+
+                                requestQueue.add(jsonObjectRequest2);
+                            } else {
+                                //Toast.makeText(context, R.string.flag_error_response, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+        catch (Exception e){
+
+        }
     }
 
     private boolean validate() {
