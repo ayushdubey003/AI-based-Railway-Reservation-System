@@ -75,7 +75,6 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.append(waiting_list_number)
     row.extend(ticket_class_type)
     row.extend(waiting_list_type)
-    row.extend(journey_month_type)
     row.extend(train_metric_type)
    
     print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
@@ -85,7 +84,6 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     scalar = joblib.load('../datasets/scaler_file.pkl')
     X_sc = scalar.transform(X)
     
-    print(X, X_sc)
     return model.predict(X_sc)[0]
     
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
@@ -110,7 +108,11 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
     
     waiting_list_type = waiting_list[0:2]
     assert waiting_list_type in ['GN', 'RL', 'TQ', 'RA', 'PQ']
-    waiting_number = int(waiting_list.split('_')[1][2:])
+    for i in range(-1, -len(waiting_list) - 1, -1):
+        if not (waiting_list[i] in [str(j) for j in range(10)]):
+            break
+    waiting_number = int(waiting_list[i + 1:])
+
     
     return jsonify(prediction=predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_type, waiting_number)*100)
 

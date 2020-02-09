@@ -101,17 +101,21 @@ public class SearchStations extends AppCompatActivity {
         mSearchList.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mSearchList, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if (mIntentCode == 1)
-                    AppConstants.mSourceStation = mSearchStations.get(position);
-                else if (mIntentCode == 2)
-                    AppConstants.mDestinationStation = mSearchStations.get(position);
-                else if (mIntentCode == 3) {
-                    AppConstants.mSourceStation = mSearchStations.get(position);
-                    AppConstants.mFlag = false;
-                } else if (mIntentCode == 4) {
-                    AppConstants.mLiveStation = mSearchStations.get(position);
-                } else {
-                    AppConstants.mLiveStationOptional = mSearchStations.get(position);
+                try {
+                    if (mIntentCode == 1)
+                        AppConstants.mSourceStation = mSearchStations.get(position);
+                    else if (mIntentCode == 2)
+                        AppConstants.mDestinationStation = mSearchStations.get(position);
+                    else if (mIntentCode == 3) {
+                        AppConstants.mSourceStation = mSearchStations.get(position);
+                        AppConstants.mFlag = false;
+                    } else if (mIntentCode == 4) {
+                        AppConstants.mLiveStation = mSearchStations.get(position);
+                    } else {
+                        AppConstants.mLiveStationOptional = mSearchStations.get(position);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 finish();
@@ -145,7 +149,7 @@ public class SearchStations extends AppCompatActivity {
         mAppBar.setBackground(GenerateBackground.generateBackground());
         mCloseIv.setColorFilter(Color.parseColor("#a9a9a9"));
 
-        if (mIntentCode >1)
+        if (mIntentCode > 1)
             mLocationLl.setVisibility(View.GONE);
     }
 }

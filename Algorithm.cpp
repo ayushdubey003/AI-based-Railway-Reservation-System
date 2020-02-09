@@ -23,10 +23,14 @@ struct queueData{
   int intermissions;
 };
 
-int main(){
+int main(int argc, char *argv[]){
   auto start = high_resolution_clock::now();
-  string source = "GKP";
-  string destination = "YPR";
+  freopen("result.txt", "w", stdout);
+  string source = argv[1];
+  string destination = argv[2];
+  int intermediateStation = stoi(argv[3]);
+  int currentDay = stoi(argv[4]);
+
 
   fstream stationFile;
   fstream trainFile;
@@ -79,12 +83,11 @@ int main(){
   int i, j, k;
   int stationSize;
   int index;
-  int currentDay;
   int startDay;
   int arrival;
   int departure;
   int arrivalDay;
-  int intermediateStation = 1;
+
 
   i = 0;
   while(stationFile >> stationCode){
@@ -145,7 +148,6 @@ int main(){
   }
 
   index = stationMap[source];
-  currentDay = 0;
 
   for (auto node: graph[index]){
     struct queueData temp;
@@ -171,7 +173,7 @@ int main(){
 
     bfsQueue.push(temp);
   }
-i=0;
+
   while(!bfsQueue.empty()){
     struct queueData temp, prev;
     temp = bfsQueue.front();
@@ -186,7 +188,6 @@ i=0;
     prev = temp;
 
     for (auto node : graph[index]){
-      i++;
       temp = prev;
 
       departure = node.sourceDeparture;
@@ -218,15 +219,23 @@ i=0;
     }
   }
 
-  for(auto node:solution){
-    for(auto st:node.stationList)
-    cout<<st<<" ";
-    cout<<endl;
+  for (auto node : solution){
+
+    for(auto station : node.stationList)
+      cout << station << " ";
+    cout << endl;
+
+    for(auto train : node.trainList)
+      cout << train << " ";
+    cout << endl;
+
+    if (node.startingTime > node.endingTime)
+      node.endingTime += (7 * 24 * 60);
+
+    cout << node.endingTime - node.startingTime << endl;
   }
 
-
-      cout<<i<<endl;
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast <microseconds> (stop - start);
-  cout << duration.count();
+  // cout << duration.count();
 }

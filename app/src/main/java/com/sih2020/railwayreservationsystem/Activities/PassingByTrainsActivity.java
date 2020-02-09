@@ -148,7 +148,7 @@ public class PassingByTrainsActivity extends AppCompatActivity {
 
                                 mlist.add(new Train(dtrainname, dtrainno, "1", "1", arrtime, new ArrayList<String>(), new ArrayList<String>(), depttime,
                                         new ArrayList<String>(), rcodes, rnames, rundays, new ArrayList<String>(), new ArrayList<String>(),
-                                        new ArrayList<String>(), "1"));
+                                        new ArrayList<String>(), "1", "1"));
                             }
 
                             Log.e("onResponse: ", "" + mlist.size());
