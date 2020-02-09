@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
@@ -33,9 +35,10 @@ public class AlternateRoutesActivity extends AppCompatActivity {
 
     ArrayList<AlternateModel> routes;
     RecyclerView recycler;
-    AlternateRouteAdapter alternateRouteAdapter;
+   public  AlternateRouteAdapter alternateRouteAdapter;
     ProgressDialog progressDialog;
     LinearLayout toolBar;
+    SimpleDateFormat timeformat,dateformat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,8 @@ public class AlternateRoutesActivity extends AppCompatActivity {
 
         toolBar = findViewById(R.id.tool_bar_ar);
         toolBar.setBackground(GenerateBackground.generateBackground());
-
+         dateformat=new SimpleDateFormat("yyyy-MM-dd");
+         timeformat=new SimpleDateFormat("hh:mm");
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Asd");
         progressDialog.setCancelable(false);
@@ -52,7 +56,7 @@ public class AlternateRoutesActivity extends AppCompatActivity {
         routes = new ArrayList<>();
         fetchAlternateRoutes(this);
         recycler = findViewById(R.id.alternaterouterecycler);
-//        alternateRouteAdapter = new AlternateRouteAdapter(this, routes);
+        alternateRouteAdapter = new AlternateRouteAdapter(this, routes);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(alternateRouteAdapter);
         Log.i("onCreate: ", "hollllla");
@@ -80,7 +84,6 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         if (e == null) {
-                            progressDialog.dismiss();
                             AlternateModel route;
                             JsonArray array = result.getAsJsonArray("alternates");
                             Log.i("onCompleted:", array.toString());
@@ -91,16 +94,19 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                                 for (int j = 0; j < singleroute.getAsJsonArray("stations").size(); j++) {
                                     route.getmStations().add(singleroute.getAsJsonArray("stations").get(j).toString());
                                 }
+                                Date target;
+                                int min=0;
+                                for(int j=0;j<singleroute.getAsJsonArray("departureTime").size();j++){
+                                    min+=Integer.parseInt(singleroute.getAsJsonArray("departureTime").get(j).getAsString());
+                                    target=new Date(AppConstants.mDate.getTime()+min*60000);
+                                    String time=timeformat.format(target);
+                                    String date=dateformat.format(target);
+                                    route.getmDepartureTime().add(time);
+                                    route.getmDepartureDate().add(date);
+
+                                }
 
                                 for (int j = 0; j < singleroute.getAsJsonArray("trains").size(); j++) {
-                                    if (j == 0) {
-                                        HashMap<String, String> hashMap = new HashMap<>();
-                                        hashMap.put(singleroute.getAsJsonArray("trains").get(j).getAsString(), singleroute.getAsJsonArray("departureTime").get(j).getAsString());
-                                        route.setmDepartureTime(hashMap);
-                                    }
-                                    else{
-
-                                    }
                                     route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).toString());
                                     Date date = AppConstants.mDate;
                                     String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
@@ -112,6 +118,8 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                                 route.setN(1);
                                 route.setmTime(singleroute.get("time").getAsString());
                                 routes.add(route);
+                                alternateRouteAdapter.notifyDataSetChanged();
+                                progressDialog.dismiss();
 
 //                                networkRequests.fetchAlternateFareDate()
                             }

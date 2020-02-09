@@ -8,8 +8,9 @@ public class AlternateModel {
     int n;
     ArrayList<String> mStations;
     ArrayList<String> mTrains;
+    ArrayList<String> mDepartureTime,mDepartureDate;
     String mTime;
-    HashMap<String, String> mConfirmation, mSeatstatus, mFares, mDepartureTime;
+    HashMap<String, String> mConfirmation, mSeatstatus, mFares;
     String mTicketclass;
     String dayofjourney;
     String dateofjourney;
@@ -20,15 +21,16 @@ public class AlternateModel {
         mFares = new HashMap<>();
         mSeatstatus = new HashMap<>();
         mTrains = new ArrayList<>();
-        mDepartureTime = new HashMap<>();
+        mDepartureTime = new ArrayList<>();
+        mDepartureDate=new ArrayList<>();
     }
 
-    public HashMap<String, String> getmDepartureTime() {
-        return mDepartureTime;
-    }
-
-    public void setmDepartureTime(HashMap<String, String> mDepartureTime) {
+    public void setmDepartureTime(ArrayList<String> mDepartureTime) {
         this.mDepartureTime = mDepartureTime;
+    }
+
+    public void setmDepartureDate(ArrayList<String> mDepartureDate) {
+        this.mDepartureDate = mDepartureDate;
     }
 
     public void setN(int n) {
@@ -102,6 +104,14 @@ public class AlternateModel {
 
     public String getmTicketclass() {
         return mTicketclass;
+    }
+
+    public ArrayList<String> getmDepartureTime() {
+        return mDepartureTime;
+    }
+
+    public ArrayList<String> getmDepartureDate() {
+        return mDepartureDate;
     }
 
     public String getDayofjourney() {
