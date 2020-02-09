@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +10,7 @@
         android:id="@+id/zeroth_layer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -18,50 +18,54 @@
             <RelativeLayout
                 android:id="@+id/app_bar_at"
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimary"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
                 <ImageView
                     android:id="@+id/bacK_button_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:padding="8dp"
-                    android:src="@drawable/ic_arrow_back_black_24dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/ic_arrow_back_black_24dp" />
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:padding="8dp"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <TextView
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Automated Tatkal Form"
                         android:textAllCaps="true"
-                        android:textSize="16sp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="#fff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/app_bar_lower_text"
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="MDP to tata | 14 feb friday 2020"
                         android:textAllCaps="true"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="#fff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/first_layer_at"
-                android:layout_below="@+id/app_bar_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/app_bar_at"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="@dimen/cardview_default_radius">
 
@@ -94,9 +98,9 @@
                                 android:paddingTop="2dp"
                                 android:paddingRight="16dp"
                                 android:paddingBottom="2dp"
+                                android:text="15114"
                                 android:textColor="#fff"
-                                android:textSize="14sp"
-                                android:text="15114"></TextView>
+                                android:textSize="14sp"></TextView>
 
                         </androidx.cardview.widget.CardView>
 
@@ -107,11 +111,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="32dp"
                             android:layout_toRightOf="@id/train_no_cv"
+                            android:text="Lucknow Jn Express"
                             android:textAllCaps="true"
                             android:textColor="#626262"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:text="Lucknow Jn Express"></TextView>
+                            android:textStyle="bold"></TextView>
 
                         <ImageView
                             android:id="@+id/route_at"
@@ -134,10 +138,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="8dp"
                             android:layout_centerVertical="true"
-                            android:textColor="#626262"
-                            android:text="1:55 AM"></TextView>
+                            android:layout_marginLeft="8dp"
+                            android:text="1:55 AM"
+                            android:textColor="#626262"></TextView>
 
                         <LinearLayout
                             android:id="@+id/duration_ll"
@@ -173,15 +177,15 @@
                         </LinearLayout>
 
                         <TextView
-                            android:layout_centerVertical="true"
                             android:id="@+id/end_time_at"
                             style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:textColor="#626262"
-                            android:text="8:25 AM"></TextView>
+                            android:text="8:25 AM"
+                            android:textColor="#626262"></TextView>
 
                     </RelativeLayout>
 
@@ -189,34 +193,37 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp">
+
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/board_station_name"
                                 style="@style/internal_fonts"
-                                android:layout_gravity="center"
-                                android:padding="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="#000"
-                                android:text="Madhupur Jn"/>
+                                android:layout_gravity="center"
+                                android:padding="4dp"
+                                android:text="Madhupur Jn"
+                                android:textColor="#000" />
+
                             <TextView
                                 android:id="@+id/board_station_code"
                                 style="@style/internal_fonts"
-                                android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="#000"
-                                android:text="(MDP)"/>
+                                android:layout_gravity="center"
+                                android:text="(MDP)"
+                                android:textColor="#000" />
                         </LinearLayout>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             app:cardBackgroundColor="@color/bluishShadeColor"
                             app:cardCornerRadius="@dimen/cardview_default_radius"
                             app:contentPadding="1dp">
@@ -237,9 +244,9 @@
                                     android:paddingTop="4dp"
                                     android:paddingRight="4dp"
                                     android:paddingBottom="4dp"
+                                    android:text="SL"
                                     android:textColor="#fff"
-                                    android:textSize="10sp"
-                                    android:text="SL"></TextView>
+                                    android:textSize="10sp"></TextView>
 
                                 <RelativeLayout
                                     android:layout_width="wrap_content"
@@ -257,33 +264,35 @@
                                         android:paddingBottom="4dp"
                                         android:text="Available 25"
                                         android:textColor="#000"
-                                        android:textSize="10sp"/>
+                                        android:textSize="10sp" />
                                 </RelativeLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/reach_code"
                                 style="@style/internal_fonts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:padding="4dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#000"
-                                android:text="Tatanagar Jn"/>
+                                android:text="Tatanagar Jn"
+                                android:textColor="#000" />
+
                             <TextView
-                                style="@style/internal_fonts"
                                 android:id="@+id/reach_name"
-                                android:layout_gravity="center"
+                                style="@style/internal_fonts"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="#000"
-                                android:text="(TATA)"/>
+                                android:layout_gravity="center"
+                                android:text="(TATA)"
+                                android:textColor="#000" />
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -294,228 +303,243 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/second_layer_at"
-                android:layout_below="@+id/first_layer_at"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_below="@+id/first_layer_at"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
                         android:text="boarding station |"
                         android:textAllCaps="true"
-                        android:padding="8dp"
-                        android:layout_centerVertical="true"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
                     <Spinner
                         android:id="@+id/boarding_stations_at"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/third_layer_at"
-                android:layout_below="@+id/second_layer_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/second_layer_at"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/passenger_text"
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
                         android:text="add passengers"
                         android:textAllCaps="true"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/passenger_list_at"
-                        android:layout_marginTop="15dp"
-                        android:padding="8dp"
-                        android:layout_below="@+id/passenger_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/passenger_text"
+                        android:layout_marginTop="15dp"
+                        android:padding="8dp" />
+
                     <TextView
-                        android:layout_below="@+id/passenger_list_at"
                         android:id="@+id/add_new_passenger"
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/passenger_list_at"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:padding="8dp"
                         android:text="+ add new"
                         android:textAllCaps="true"
-                        android:padding="8dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="@color/bluishShadeColor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/fourth_layer_at"
-                android:layout_below="@+id/third_layer_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/third_layer_at"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/mobile_text_at"
+                        style="@style/internal_fonts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
                         android:text="Passenger Mobile Number"
                         android:textAllCaps="true"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:layout_gravity="center"
-                        style="@style/internal_fonts"
-                        android:textStyle="bold"
                         android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
-                        android:layout_below="@+id/mobile_text_at"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mobile_text_at"
+                        android:layout_marginTop="10dp">
+
                         <TextView
-                            android:text="+91-"
-                            android:textAllCaps="true"
-                            android:textSize="10sp"
+                            style="@style/internal_fonts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:paddingLeft="8dp"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
-                            android:layout_gravity="center"
-                            style="@style/internal_fonts"
-                            android:textStyle="bold"
+                            android:text="+91-"
+                            android:textAllCaps="true"
                             android:textColor="#000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
                         <EditText
                             android:id="@+id/phone_no_at"
-                            android:inputType="number"
-                            android:hint="Contact Number"
-                            android:textSize="10sp"
-                            android:layout_gravity="center"
                             style="@style/font"
-                            android:textColor="#000"
                             android:layout_width="250dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Contact Number"
+                            android:inputType="number"
+                            android:textColor="#000"
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/fifth_layer_at"
-                android:layout_below="@+id/fourth_layer_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/fourth_layer_at"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="@dimen/cardview_default_elevation"
                 app:cardElevation="@dimen/cardview_default_elevation">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
+
                     <TextView
-                        android:text="@string/terms"
-                        android:padding="8dp"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
                         style="@style/internal_fonts"
-                        android:textColor="#000"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:padding="8dp"
+                        android:text="@string/terms"
+                        android:textColor="#000"
+                        android:textSize="10sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
     </ScrollView>
+
     <RelativeLayout
         android:id="@+id/sixth_layer_at"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:background="#4d4d4d"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#4d4d4d">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:padding="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
             <TextView
                 android:id="@+id/fare_at"
-                android:text="$165"
-                android:textAllCaps="true"
-                android:textSize="18sp"
-                android:layout_gravity="start"
                 style="@style/internal_fonts"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:text="per person"
-                android:textAllCaps="true"
-                android:textSize="10sp"
-                android:layout_gravity="start"
-                style="@style/internal_fonts"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            android:layout_margin="5dp"
-            android:layout_marginRight="25dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_height="30dp">
-            <Button
-                android:id="@+id/review_button_at"
-                android:textSize="10sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColor="#fff"
-                android:text="Review Journey Details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"/>
+                android:layout_gravity="start"
+                android:text="$165"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="per person"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_marginRight="25dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
+
+            <Button
+                android:id="@+id/review_button_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Review Journey Details"
+                android:textColor="#fff"
+                android:textSize="10sp" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fragment_layout"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
-
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

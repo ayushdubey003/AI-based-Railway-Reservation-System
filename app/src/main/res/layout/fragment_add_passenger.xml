@@ -63,7 +63,6 @@
             <EditText
                 android:id="@+id/input_age_ap"
                 style="@style/font"
-                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/input_name_ap"
@@ -71,6 +70,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="12dp"
                 android:hint="Age"
+                android:inputType="number"
                 android:padding="8dp"
                 android:textColor="#000"
                 android:textSize="14sp" />
