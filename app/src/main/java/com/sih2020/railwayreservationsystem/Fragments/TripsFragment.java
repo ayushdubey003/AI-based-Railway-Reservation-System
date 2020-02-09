@@ -65,6 +65,12 @@ public class TripsFragment extends Fragment {
         setClicks();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setRecentPnrData();
+    }
+
     private void setRecentPnrData() {
         SharedPreferences lsharedpreferences = this.getActivity().getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
         String[] lpnr = lsharedpreferences.getString("RecentPnrNo", "").split(",");

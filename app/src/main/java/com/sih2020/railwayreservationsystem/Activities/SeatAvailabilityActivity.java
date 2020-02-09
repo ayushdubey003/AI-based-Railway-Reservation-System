@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -25,12 +27,15 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.google.firebase.auth.FirebaseAuth;
 import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
+import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
@@ -59,6 +64,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private Calendar mCalendar;
     private ImageView mBack;
     private RadioButton lastChecked;
+    public ArrayList<Train> mTrains;
 
     @Override
     public void onBackPressed() {
@@ -72,6 +78,13 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seat_availability);
         init();
         receiveClicks();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppConstants.mFareFetch.clear();
+        AppConstants.mSeatFetch.clear();
     }
 
     @Override
@@ -99,6 +112,55 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                 setUpClassAlert();
             }
         });
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                    startActivity(new Intent(SeatAvailabilityActivity.this, LoginActivity.class));
+                } else if (!AppConstants.mSeatFetch.contains(position) || !AppConstants.mFareFetch.contains(position)) {
+                    Toast.makeText(SeatAvailabilityActivity.this, "Please wait to fetch all data", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayList<Train> dlist = new ArrayList<>();
+                    dlist = AppConstants.mTrainList;
+
+                    int deptIndex = 0;
+                    for (int i = 0; i < dlist.get(position).getmCodedRoutes().size(); i++) {
+                        if (dlist.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode())) {
+                            deptIndex = i;
+                            break;
+                        }
+                    }
+
+                    int arrIndex = 0;
+                    for (int i = 0; i < dlist.get(position).getmCodedRoutes().size(); i++) {
+                        if (dlist.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mDestinationStation.getmStationCode())) {
+                            arrIndex = i;
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(SeatAvailabilityActivity.this, AutomatedTatkal.class);
+                    intent.putExtra("trainNo", dlist.get(position).getmTrainNo());
+                    intent.putExtra("trainName", dlist.get(position).getmTrainName());
+                    intent.putExtra("boardTime", dlist.get(position).getmArrivalTimes().get(arrIndex));
+                    intent.putExtra("reachTime", dlist.get(position).getmDepartureTime().get(deptIndex));
+                    intent.putExtra("fromCode", dlist.get(position).getmCodedRoutes().get(arrIndex));
+                    intent.putExtra("toCode", dlist.get(position).getmCodedRoutes().get(deptIndex));
+                    intent.putExtra("fromName", dlist.get(position).getmNamedRoutes().get(arrIndex));
+                    intent.putExtra("toName", dlist.get(position).getmNamedRoutes().get(deptIndex));
+                    intent.putExtra("class", mTravelClass.getText().toString());
+                    intent.putExtra("availability", dlist.get(position).getmSeats().get(0));
+                    intent.putExtra("duration", "06hr");
+                    intent.putExtra("doj", mDateTv.getText().toString());
+                    intent.putExtra("fare", dlist.get(position).getmFare());
+                    intent.putExtra("position",position);
+
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void init() {
@@ -111,9 +173,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mDateTv = findViewById(R.id.date_tv);
         mTravelClass = findViewById(R.id.travel_class_tv);
         mBack = findViewById(R.id.back_iv);
-        mAdapter = new TrainAdapter(SeatAvailabilityActivity.this, AppConstants.mTrainList);
         mCalendar = Calendar.getInstance();
-        mList.setAdapter(mAdapter);
         mDate = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -125,6 +185,9 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                 updateJourneyDate();
             }
         };
+        mTrains = new ArrayList<>();
+        mAdapter = new TrainAdapter(SeatAvailabilityActivity.this, mTrains);
+        mList.setAdapter(mAdapter);
 
         networkRequests = new NetworkRequests(mCL, this, SeatAvailabilityActivity.this);
         networkRequests.fetchTrainsFromUrl(mUrl);
@@ -139,6 +202,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     public void trainListFetchComplete() {
         mMain.setAlpha(1.0f);
         mProgress.setVisibility(View.GONE);
+//        Log.e(LOG_TAG, "" + mTrains.size());
         mAdapter.notifyDataSetChanged();
         for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
             ArrayList<String> route = AppConstants.mTrainList.get(i).getmCodedRoutes();
@@ -447,5 +511,41 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             Log.e(LOG_TAG, e.getLocalizedMessage());
         }
         setDate(date);
+    }
+
+    public void seatsFetched(int pos, boolean b) {
+        if (!b) {
+            mTrains.get(pos).setmConfirmationProbability("UNAVAILABLE");
+            mAdapter.notifyDataSetChanged();
+            return;
+        }
+        Train train = AppConstants.mTrainList.get(pos);
+        Date currentTime = Calendar.getInstance().getTime();
+        String s = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(currentTime);
+        String u[] = s.split(" ");
+        String bdate = u[0];
+        String btime = u[1];
+        s = new SimpleDateFormat("yyyy-MM-dd").format(AppConstants.mDate);
+        String jdate = s;
+        int deptIndex = 0;
+        for (int i = 0; i < mTrains.get(pos).getmCodedRoutes().size(); i++) {
+            if (mTrains.get(pos).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode())) {
+                deptIndex = i;
+                break;
+            }
+        }
+
+        String jtime = train.getmDepartureTime().get(deptIndex).trim().split(" ")[0];
+        Log.e(LOG_TAG,jtime);
+        String currStatus = train.getmSeats().get(0);
+        if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
+            mTrains.get(pos).setmConfirmationProbability("UNAVAILABLE");
+            mAdapter.notifyDataSetChanged();
+            return;
+        } else {
+            String v[] = currStatus.split("/");
+            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + v[0] + "_" + v[1];
+            networkRequests.fetchConfirmationProbability(pos, url);
+        }
     }
 }
