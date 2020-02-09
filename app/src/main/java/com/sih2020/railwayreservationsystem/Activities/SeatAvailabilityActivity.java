@@ -660,8 +660,12 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         destinations.add(0, new SpinnerModel(AppConstants.mDestinationStation.getmStationCode(),
                 AppConstants.mDestinationStation.getmStationName()));
 
-        mSourcesSpinner.setAdapter(new SpinnerAdapter(this, this, sources));
-        mDestinationsSpinner.setAdapter(new SpinnerAdapter(this, this, destinations));
+        SpinnerAdapter sourceAdapter = new SpinnerAdapter(this, this, sources);
+        SpinnerAdapter destinaionAdapter = new SpinnerAdapter(this, this, destinations);
+        sourceAdapter.changeWhiteType();
+        destinaionAdapter.changeWhiteType();
+        mSourcesSpinner.setAdapter(sourceAdapter);
+        mDestinationsSpinner.setAdapter(destinaionAdapter);
 
     }
 
