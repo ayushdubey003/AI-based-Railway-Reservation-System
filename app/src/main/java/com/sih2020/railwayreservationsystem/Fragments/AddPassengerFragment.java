@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sih2020.railwayreservationsystem.Activities.AutomatedTatkal;
+import com.sih2020.railwayreservationsystem.Models.AddPassengerModal;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
@@ -41,10 +44,12 @@ public class AddPassengerFragment extends Fragment {
     private ArrayAdapter<String> nationalityAdapter, berthAdapter;
     private ArrayList<String> mBerth = new ArrayList<>();
 
-    private String selectedGender="";
+    private String selectedGender = "";
+    private AutomatedTatkal automatedTatkal;
 
-    public AddPassengerFragment() {
+    public AddPassengerFragment(AutomatedTatkal automatedTatkal) {
         // Required empty public constructor
+        this.automatedTatkal = automatedTatkal;
     }
 
 
@@ -88,31 +93,42 @@ public class AddPassengerFragment extends Fragment {
         addPassengerAp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validate()){
-                    AppConstants.mAddPassengerModal.clear();
-                    AppConstants.mAddPassengerModal.add(name.getText().toString().trim());
-                    AppConstants.mAddPassengerModal.add(age.getText().toString().trim());
-                    AppConstants.mAddPassengerModal.add(selectedGender);
-                    AppConstants.mAddPassengerModal.add(mBerth.get(berthPreference.getSelectedItemPosition()));
-                    AppConstants.mAddPassengerModal.add(AppConstants.mNationality[nationality.getSelectedItemPosition()]);
+                if (validate()) {
+                    String lname = name.getText().toString().trim();
+                    String lage = age.getText().toString().trim();
+                    String lgender = selectedGender;
+                    String lberth = mBerth.get(berthPreference.getSelectedItemPosition());
+                    String lnationality = AppConstants.mNationality[nationality.getSelectedItemPosition()];
+
+                    automatedTatkal.mPassengers.add(new AddPassengerModal(lname, lage, lgender, lberth, lnationality));
+                    automatedTatkal.addPassengerListAdapter.notifyDataSetChanged();
+
                     AppConstants.hideBottomSheet(getActivity());
+
+                    Log.e("mastercheck", "" + lname + " " + AppConstants.mAddPassengerList.size());
                 }
             }
         });
     }
 
     private boolean validate() {
-        if(name.getText().toString().length()<=3){
-            name.setError("Name should be atleast 4 characters");
-            name.requestFocus();
-            return false;
-        }
-        else if(age.getText().toString().length()>0 && age.getText().toString().length()<126){
-            age.setError("Enter age between 0 and 125");
+        int lage;
+        if (age.getText().toString().length() == 0) {
+            age.setError("Enter age");
             age.requestFocus();
             return false;
         }
-        else if(selectedGender.equals("")){
+        lage = Integer.parseInt(age.getText().toString());
+
+        if (name.getText().toString().length() <= 3) {
+            name.setError("Name should be atleast 4 characters");
+            name.requestFocus();
+            return false;
+        } else if (lage < 0 || lage > 126) {
+            age.setError("Enter age between 0 and 125");
+            age.requestFocus();
+            return false;
+        } else if (selectedGender.equals("")) {
             Toast.makeText(getActivity(), "Select gender", Toast.LENGTH_SHORT).show();
             return false;
         }

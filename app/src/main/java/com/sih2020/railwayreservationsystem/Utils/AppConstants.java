@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sih2020.railwayreservationsystem.Activities.AutomatedTatkal;
+import com.sih2020.railwayreservationsystem.Adapters.AddPassengerListAdapter;
 import com.sih2020.railwayreservationsystem.Fragments.AddPassengerFragment;
+import com.sih2020.railwayreservationsystem.Models.AddPassengerModal;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
 import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.Models.Train;
@@ -49,7 +51,8 @@ public class AppConstants {
     public static boolean mBottomSheetOpen = false;
     public static ScrollView mScrollView;
     public static ArrayList<Integer> mFareFetch = new ArrayList<>(), mSeatFetch = new ArrayList<>();
-    public static ArrayList<String> mAddPassengerModal = new ArrayList<>();
+    public static ArrayList<AddPassengerModal> mAddPassengerList=new ArrayList<>();
+    public static AddPassengerListAdapter mAddPassengerListGlobalAdapter;
 
     public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -60,7 +63,7 @@ public class AppConstants {
     }
 
     public static void showBottomSheet(AutomatedTatkal automatedTatkal) {
-        AddPassengerFragment bottomSheet = new AddPassengerFragment();
+        AddPassengerFragment bottomSheet = new AddPassengerFragment(automatedTatkal);
         FragmentTransaction transaction = automatedTatkal.getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.no_anim);
         transaction.add(R.id.fragment_layout, bottomSheet);

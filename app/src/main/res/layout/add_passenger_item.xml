@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
     <ImageView
+        android:id="@+id/delete_passenger_api"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_delete_black_24dp"
         android:tint="@color/burgandyRed"
@@ -51,5 +55,11 @@
         android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <View
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/delete_passenger_api"
+        android:background="@color/bluishShadeColor"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
 
 </RelativeLayout>

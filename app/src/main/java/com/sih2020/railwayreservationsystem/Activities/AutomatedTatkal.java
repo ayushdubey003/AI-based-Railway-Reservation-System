@@ -1,10 +1,13 @@
 package com.sih2020.railwayreservationsystem.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,9 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.sih2020.railwayreservationsystem.Adapters.AddPassengerListAdapter;
 import com.sih2020.railwayreservationsystem.Fragments.AddPassengerFragment;
+import com.sih2020.railwayreservationsystem.Models.AddPassengerModal;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Services.TatkalService;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -42,11 +48,13 @@ public class AutomatedTatkal extends AppCompatActivity {
     private ArrayList<String> mBoardingList;
     private ArrayAdapter<String> mBoardingAdapter;
     private RecyclerView passengerList;
+    public AddPassengerListAdapter addPassengerListAdapter;
+    public ArrayList<AddPassengerModal> mPassengers;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automated_tatkal);
+        AppConstants.mAddPassengerList.clear();
         init();
         receiveClicks();
 
@@ -83,15 +91,47 @@ public class AutomatedTatkal extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    new AlertDialog.Builder(AutomatedTatkal.this)
+                            .setTitle("Review Booking Details")
+                            .setMessage("Train ka sara details yahan aayega...sb kuch jitna bhi hai...")
+
+                            .setPositiveButton("Proceed to pay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+
+                            .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+
+            }
+        });
+    }
+
+    private boolean validate() {
+        return true;
     }
 
     public void init() {
+
         mBoardingSpinner = findViewById(R.id.boarding_stations_at);
         mBoardingList = new ArrayList<>();
         mBoardingList = AppConstants.mTrainList.get(getIntent().getExtras().getInt("position")).getmNamedRoutes();
         mBoardingAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mBoardingList);
         mBoardingSpinner.setAdapter(mBoardingAdapter);
-
+        mPassengers = new ArrayList<>();
 
         //mService=findViewById(R.id.service);
         layerToHide = findViewById(R.id.zeroth_layer);
@@ -147,7 +187,10 @@ public class AutomatedTatkal extends AppCompatActivity {
         fare = findViewById(R.id.fare_at);
         fare.setText(getIntent().getExtras().getString("fare"));
 
-        passengerList=findViewById(R.id.passenger_list_at);
+        passengerList = findViewById(R.id.passenger_list_at);
+        addPassengerListAdapter = new AddPassengerListAdapter(this, mPassengers);
+        passengerList.setLayoutManager(new LinearLayoutManager(this));
+        passengerList.setAdapter(addPassengerListAdapter);
     }
 
     @Override
