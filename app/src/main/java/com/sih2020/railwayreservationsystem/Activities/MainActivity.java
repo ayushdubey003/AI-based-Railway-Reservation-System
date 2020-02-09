@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
             loginButton.setImageResource(R.drawable.loginicon);
         }
         else{
-            loginButton.setImageResource(R.drawable.logout2icon);
+            loginButton.setImageResource(R.drawable.iconsprofile);
         }
     }
 
@@ -128,9 +128,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
                 else {
-                    FirebaseAuth.getInstance().signOut();
-                    loginButton.setImageResource(R.drawable.loginicon);
-                    Toast.makeText(MainActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,ProfileAcitvity.class));
+//                    FirebaseAuth.getInstance().signOut();
+//                    loginButton.setImageResource(R.drawable.loginicon);
+//                    Toast.makeText(MainActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
