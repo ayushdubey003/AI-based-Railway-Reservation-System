@@ -21,15 +21,19 @@ struct queueData{
   vector <string> trainList;
   vector <string> stationList;
   int intermissions;
+  int duration;
 };
 
 int main(int argc, char *argv[]){
-  auto start = high_resolution_clock::now();
+  // auto start = high_resolution_clock::now();
+
   freopen("result.txt", "w", stdout);
   string source = argv[1];
   string destination = argv[2];
   int intermediateStation = stoi(argv[3]);
   int currentDay = stoi(argv[4]);
+  int minTime = stoi(argv[5]);
+  int maxTime = stoi(argv[6]);
 
 
   fstream stationFile;
@@ -87,6 +91,7 @@ int main(int argc, char *argv[]){
   int arrival;
   int departure;
   int arrivalDay;
+  int routeSize = 0;
 
 
   i = 0;
@@ -175,7 +180,7 @@ int main(int argc, char *argv[]){
   }
 
   while(!bfsQueue.empty()){
-    struct queueData temp, prev;
+    struct queueData temp, prev, lastAdded;
     temp = bfsQueue.front();
     bfsQueue.pop();
 
@@ -191,26 +196,48 @@ int main(int argc, char *argv[]){
       temp = prev;
 
       departure = node.sourceDeparture;
-      startDay = arrivalDay - departure / (24 * 60);
+      startDay = arrivalDay + 7 - departure / (24 * 60);
       startDay %= 7;
+
 
       if (node.days[startDay] == '0')
         continue;
-
+      departure = startDay * 24 * 60 + departure;
+      departure %= (7 * 24 * 60);
       if (arrival > departure)
         departure += (7 * 24 * 60);
-      if (departure - arrival > 4 * 60)
+      if (departure - arrival > maxTime && departure - arrival < minTime)
+        continue;
+      if (temp.lastTrain == node.trainNumber)
         continue;
       departure %= (7 * 24 * 60);
 
-      temp.endingTime = node.destinationArrival;
+      temp.endingTime = node.destinationArrival + startDay * 24 * 60;
+      temp.endingTime %= (7 * 24 * 60);
       temp.lastTrain = node.trainNumber;
       temp.trainList.push_back(temp.lastTrain);
       temp.lastStation = node.destinationStation;
       temp.stationList.push_back(temp.lastStation);
 
       if (temp.lastStation == destination){
+        if (temp.startingTime > temp.endingTime)
+          temp.endingTime += (7 * 24 * 60);
+        temp.duration = temp.endingTime - temp.startingTime;
+
+        if (routeSize > 0)
+          lastAdded = solution[routeSize - 1];
+
+        if (temp.stationList == lastAdded.stationList || temp.trainList == lastAdded.trainList){
+          if (temp.duration >= lastAdded.duration)
+            continue;
+          else{
+            solution.pop_back();
+            routeSize--;
+          }
+        }
+
         solution.push_back(temp);
+        routeSize++;
         continue;
       }
 
@@ -229,13 +256,10 @@ int main(int argc, char *argv[]){
       cout << train << " ";
     cout << endl;
 
-    if (node.startingTime > node.endingTime)
-      node.endingTime += (7 * 24 * 60);
-
-    cout << node.endingTime - node.startingTime << endl;
+    cout << node.duration << endl;
   }
 
-  auto stop = high_resolution_clock::now();
-  auto duration = duration_cast <microseconds> (stop - start);
+  // auto stop = high_resolution_clock::now();
+  // auto duration = duration_cast <microseconds> (stop - start);
   // cout << duration.count();
 }
