@@ -50,12 +50,12 @@ int main(int argc, char *argv[]){
   string departureFileName;
   string runningFileName;
 
-  stationFileName = "../datasets/stationCodes.txt";
-  trainFileName = "../datasets/reservedTrains.txt";
-  routesFileName = "../datasets/routes.txt";
-  arrivalFileName = "../datasets/arrival.txt";
-  departureFileName = "../datasets/departure.txt";
-  runningFileName = "../datasets/runningDays.txt";
+  stationFileName = "datasets/stationCodes.txt";
+  trainFileName = "datasets/reservedTrains.txt";
+  routesFileName = "datasets/routes.txt";
+  arrivalFileName = "datasets/arrival.txt";
+  departureFileName = "datasets/departure.txt";
+  runningFileName = "datasets/runningDays.txt";
 
   stationFile.open(stationFileName.c_str());
   trainFile.open(trainFileName.c_str());
@@ -206,7 +206,7 @@ int main(int argc, char *argv[]){
       departure %= (7 * 24 * 60);
       if (arrival > departure)
         departure += (7 * 24 * 60);
-      if (departure - arrival > maxTime || departure - arrival < minTime)
+      if (departure - arrival > maxTime && departure - arrival < minTime)
         continue;
       if (temp.lastTrain == node.trainNumber)
         continue;
