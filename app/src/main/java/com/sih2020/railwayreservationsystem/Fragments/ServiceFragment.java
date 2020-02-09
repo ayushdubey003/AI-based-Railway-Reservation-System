@@ -36,7 +36,7 @@ public class ServiceFragment extends Fragment {
 
     private ImageView clear_passingbyText, liveStationClear, spotTrainClear, mSpotIv, mLiveIv, mPassIv;
     private TextView mSpotTv, mLiveTv, mPassTv;
-    private CardView mSpotCv, mLiveCv, mPassCv,mTatkal;
+    private CardView mSpotCv, mLiveCv, mPassCv;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -204,12 +204,6 @@ public class ServiceFragment extends Fragment {
             }
         });
 
-        mTatkal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AutomatedTatkal.class));
-            }
-        });
     }
 
     private void init(View view) {
@@ -241,8 +235,6 @@ public class ServiceFragment extends Fragment {
         mPassCv = view.findViewById(R.id.pass_cv);
         mPassIv = view.findViewById(R.id.pass_iv);
         mPassTv = view.findViewById(R.id.pass_tv);
-
-        mTatkal=view.findViewById(R.id.tatkal);
     }
 
 }

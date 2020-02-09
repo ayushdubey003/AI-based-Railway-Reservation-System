@@ -3,12 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import re
-import re
 import joblib # install 
 import lightgbm as lgm # install
 import numpy as np # install
 from sklearn.preprocessing import StandardScaler # install
 from datetime import datetime
+import os
+import sys
 
 app = Flask(__name__)
 
@@ -21,6 +22,33 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 @app.route("/")
 def home():
     return 'hii...there 3!!!'
+
+@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>", methods=['GET'])
+def alternates(board,destination,intermediates,doj):
+    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj
+    os.system(cmd)
+    file=""
+    with open("result.txt","r") as readFile:
+        file = readFile.read()
+    u = file.split('\n')
+    i = 0
+    alternates = []
+    while True:
+        if i >= len(u) - 1:
+            break
+        stations = []
+        trains = []
+        time =""
+        stations = u[i].split(" ")
+        trains = u[i+1].split(" ")
+        time = u[i+2]
+        alternates.append({
+            "stations":stations,
+            "trains" :trains,
+            "time" :time
+            })
+        i = i+3
+    return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
     train_metric_type = [0, 0, 0, 0]
@@ -75,17 +103,15 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.append(waiting_list_number)
     row.extend(ticket_class_type)
     row.extend(waiting_list_type)
-    row.extend(journey_month_type)
     row.extend(train_metric_type)
    
-    # print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
+    print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
     X = np.array([row])
     
     model = joblib.load('../datasets/lgbtqmodel.pkl')
     scalar = joblib.load('../datasets/scaler_file.pkl')
     X_sc = scalar.transform(X)
     
-    print(X, X_sc)
     return model.predict(X_sc)[0]
     
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])

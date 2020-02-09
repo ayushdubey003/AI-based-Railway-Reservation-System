@@ -5356,3 +5356,347 @@ Train Number,Train Name,Arrival Delays,Departure Delays
 54820,JU JSM PASS,$ $7 min$4 min$4 min$0$14 min$11 min$12 min$13 min$15 min$23 min$36 min$48 min$55 min$55 min$1:16 hrs$1:24 hrs$1:25 hrs$53 min$52 min$0,$6 min$8 min$5 min$4 min$6 min$14 min$11 min$12 min$15 min$18 min$40 min$47 min$53 min$56 min$59 min$1:23 hrs$1:24 hrs$1:25 hrs$53 min$53 min$ 
 04801,PBC MKN SPL,$ $0,$0$ 
 14889,JU MBF LINK EXP,,
+74837,JU PNU DMU,$ $3 min$5 min$2 min$2 min$2 min$4 min$11 min$13 min$13 min$19 min$36 min$41 min$45 min$47 min$49 min$53 min$53 min$58 min$1:02 hrs$1:04 hrs$1:04 hrs$1:08 hrs$1:11 hrs$1:09 hrs$1:11 hrs$1:17 hrs$1:17 hrs$1:18 hrs$29 min$0$0$0$7 min$8 min$6 min$7 min,$3 min$6 min$4 min$3 min$3 min$2 min$10 min$13 min$15 min$14 min$34 min$36 min$41 min$48 min$48 min$50 min$53 min$55 min$1 hrs$1:02 hrs$1:04 hrs$1:07 hrs$1:09 hrs$1:11 hrs$1:10 hrs$1:14 hrs$1:18 hrs$1:20 hrs$1:19 hrs$48 min$13 min$18 min$7 min$10 min$18 min$6 min$ 
+54810,JU RE PASS,$ $4 min$1 min$5 min$13 min$22 min$25 min$31 min$33 min$40 min$51 min$38 min$18 min$47 min$1 hrs$1:27 hrs$44 min$4 min$2 min$3 min$0$1 min$0$6 min$7 min$0$6 min$11 min$14 min$8 min$18 min$18 min$20 min$20 min$9 min$5 min$8 min$10 min$9 min$10 min$12 min$8 min$12 min$9 min$13 min$12 min$0,$4 min$4 min$5 min$12 min$22 min$23 min$32 min$32 min$39 min$52 min$53 min$45 min$45 min$58 min$1:29 hrs$1:37 hrs$1 min$5 min$2 min$3 min$7 min$8 min$7 min$7 min$8 min$5 min$10 min$13 min$15 min$15 min$18 min$20 min$20 min$20 min$6 min$7 min$10 min$11 min$9 min$10 min$12 min$10 min$14 min$12 min$12 min$12 min$ 
+74641,JUC MOW DMU,$ $30 min$24 min$24 min$21 min$27 min$27 min$28 min$30 min$18 min,$18 min$31 min$24 min$24 min$24 min$29 min$27 min$31 min$30 min$ 
+74643,JUC ASR DMU,$ $29 min$29 min$34 min$32 min$43 min$44 min$44 min$44 min$42 min$30 min,$25 min$29 min$33 min$35 min$38 min$44 min$44 min$45 min$44 min$42 min$ 
+74934,FZR JUC DMU,$ $4 min$5 min$5 min$21 min$24 min$26 min$32 min$22 min$18 min$19 min$3 min,$0$4 min$5 min$21 min$25 min$20 min$31 min$35 min$28 min$18 min$19 min$ 
+74931,JUC FZR DMU,$ $2 min$5 min$26 min$26 min$28 min$27 min$35 min$31 min$28 min$26 min$18 min,$3 min$9 min$25 min$27 min$27 min$28 min$28 min$40 min$35 min$28 min$27 min$ 
+74933,JUC FZR DMU,$ $8 min$11 min$16 min$16 min$24 min$24 min$30 min$29 min$28 min$26 min$15 min,$7 min$11 min$13 min$16 min$20 min$23 min$25 min$30 min$29 min$29 min$28 min$ 
+74935,JUC FZR DMU,$ $8 min$14 min$19 min$19 min$19 min$20 min$24 min$23 min$23 min$23 min$0,$6 min$15 min$18 min$20 min$19 min$19 min$19 min$28 min$33 min$26 min$23 min$ 
+74937,JUC FZR DMU,$ $14 min$20 min$20 min$19 min$19 min$19 min$27 min$13 min$9 min$8 min$3 min,$10 min$18 min$20 min$20 min$19 min$19 min$23 min$28 min$14 min$9 min$11 min$ 
+74932,FZR JUC DMU,$ $6 min$7 min$11 min$10 min$11 min$14 min$15 min$23 min$26 min$35 min$22 min,$1 min$6 min$7 min$11 min$10 min$11 min$14 min$24 min$29 min$33 min$36 min$ 
+74939,JUC FZR DMU,$ $7 min$9 min$16 min$13 min$17 min$17 min$19 min$22 min$24 min$25 min$7 min,$4 min$8 min$14 min$20 min$20 min$17 min$18 min$20 min$25 min$25 min$23 min$ 
+54644,FZR JUC PASS,$ $7 min$19 min$25 min$29 min$24 min$28 min$30 min$29 min$29 min$33 min$19 min,$0$16 min$23 min$30 min$32 min$23 min$28 min$30 min$28 min$35 min$41 min$ 
+54643,JUC FZR PASS,$ $31 min$43 min$37 min$36 min$45 min$29 min$27 min$25 min$28 min$35 min$25 min,$24 min$33 min$49 min$43 min$50 min$40 min$33 min$34 min$26 min$33 min$37 min$ 
+74912,JUC HSX DMU,$ $3 min$6 min$12 min$1 min,$0$3 min$6 min$17 min$ 
+74914,JUC HSX DMU,$ $10 min$10 min$9 min$0,$8 min$12 min$9 min$9 min$ 
+74916,JUC HSX DMU,$ $12 min$14 min$13 min$10 min,$11 min$14 min$14 min$14 min$ 
+74918,JUC HSX DMU,$ $18 min$15 min$16 min$4 min,$17 min$19 min$16 min$16 min$ 
+74920,JUC HSX DMU,$ $32 min$16 min$30 min$26 min,$28 min$32 min$43 min$30 min$ 
+54072,JUC HSX PASS,,
+54638,JUC HSX PASS,$ $23 min$24 min$24 min$14 min,$22 min$24 min$26 min$24 min$ 
+74954,JUC JJJ DEMU,$ $27 min$29 min$28 min$27 min$27 min$21 min,$25 min$27 min$29 min$28 min$27 min$21 min$ 
+74952,JUC JJJ DMU,$ $8 min$15 min$23 min$12 min$21 min$20 min,$4 min$15 min$23 min$30 min$16 min$21 min$ 
+54626,JUC JJJ PASS,$ $18 min$23 min$21 min$25 min$24 min$23 min,$14 min$20 min$22 min$20 min$28 min$25 min$ 
+74648,JUC LDH DMU,$ $21 min$32 min$38 min$43 min$1:02 hrs$1:01 hrs,$18 min$29 min$36 min$41 min$54 min$1:07 hrs$ 
+14682,JUC NDLS EXPRES,$ $6 min$6 min$1 min$0$4 min$6 min$7 min$8 min$0$3 min$7 min$7 min$1 min$7 min$12 min$13 min$22 min$15 min$20 min$7 min$7 min,$0$7 min$6 min$1 min$2 min$4 min$6 min$7 min$8 min$1 min$3 min$6 min$7 min$6 min$9 min$13 min$13 min$23 min$16 min$20 min$8 min$ 
+74942,JUC NRO DMU,$ $0,$3 min$ 
+74944,JUC NRO DMU,$ $0,$2 min$ 
+74946,JUC NRO DMU,$ $0,$0$ 
+74948,JUC NRO DMU,$ $11 min,$3 min$ 
+74901,JUC PTK DMU,$ $8 min$14 min$15 min$16 min$16 min$20 min$20 min$19 min$26 min$31 min$28 min$25 min$28 min$22 min$6 min,$5 min$12 min$14 min$15 min$16 min$17 min$22 min$20 min$25 min$30 min$30 min$28 min$28 min$28 min$27 min$ 
+74903,JUC PTK DMU,$ $29 min$36 min$20 min$35 min$38 min$38 min$38 min$37 min$38 min$38 min$35 min$34 min$32 min$33 min$16 min,$23 min$31 min$36 min$20 min$36 min$39 min$38 min$39 min$38 min$38 min$38 min$35 min$34 min$33 min$34 min$ 
+54621,JUC PTK PASS,$ $57 min$59 min$58 min$57 min$56 min$57 min$1:04 hrs$55 min$56 min$54 min$54 min$53 min$54 min$47 min$37 min,$50 min$58 min$58 min$57 min$56 min$56 min$56 min$1:04 hrs$55 min$55 min$56 min$53 min$53 min$53 min$59 min$ 
+52559,JUNGLE SAFARI,,
+55518,JYG DBG PASS,$ $34 min$36 min$31 min$1:03 hrs$1:02 hrs$1:18 hrs$1:15 hrs$27 min,$29 min$36 min$39 min$1:03 hrs$1:05 hrs$1:19 hrs$1:22 hrs$1:23 hrs$ 
+18420,JYG DBG PURI EX,$ $31 min$33 min$32 min$45 min$15 min$45 min$59 min$24 min$1:12 hrs$1:07 hrs$55 min$35 min$44 min$47 min$52 min$1:07 hrs$22 min$35 min$43 min$40 min$30 min$0,$0$30 min$33 min$35 min$44 min$15 min$45 min$1:02 hrs$58 min$1:08 hrs$1:05 hrs$52 min$40 min$44 min$47 min$52 min$1:10 hrs$24 min$35 min$43 min$37 min$30 min$ 
+53042,JYG HWH PASS,$ $8 min$10 min$11 min$18 min$24 min$20 min$24 min$21 min$26 min$29 min$26 min$22 min$27 min$30 min$29 min$4:51 hrs$43 min$42 min$44 min$36 min$46 min$22 min$33 min$40 min$40 min$42 min$37 min$7 min$18 min$23 min$11 min$12 min$10 min$14 min$13 min$28 min$57 min$1:02 hrs$56 min$54 min$1:04 hrs$58 min$55 min$53 min$55 min$47 min$51 min$56 min$54 min$53 min$53 min$1:01 hrs$1:03 hrs$1:07 hrs$25 min$53 min$45 min$54 min$56 min$49 min$51 min$1 hrs$1:03 hrs$44 min$1:21 hrs$1:46 hrs$1:49 hrs$2 hrs$2:15 hrs$2:14 hrs$2:50 hrs$2:21 hrs$2:13 hrs$2:16 hrs$2:26 hrs$1:05 hrs$1:29 hrs$1:29 hrs$1:41 hrs$39 min$1:41 hrs$1:45 hrs$56 min$38 min$45 min$1:01 hrs$59 min$1:03 hrs$1:05 hrs$1:06 hrs$1:04 hrs$38 min$33 min$26 min$21 min$27 min$31 min$28 min$27 min$19 min,$3 min$10 min$11 min$19 min$22 min$27 min$25 min$27 min$26 min$26 min$30 min$25 min$25 min$28 min$28 min$4:17 hrs$4:23 hrs$37 min$51 min$52 min$42 min$51 min$31 min$37 min$39 min$41 min$46 min$37 min$19 min$30 min$23 min$15 min$11 min$11 min$14 min$13 min$53 min$55 min$1:02 hrs$57 min$55 min$1:03 hrs$59 min$56 min$51 min$56 min$49 min$53 min$56 min$54 min$53 min$56 min$1:02 hrs$1:06 hrs$1:10 hrs$41 min$55 min$53 min$55 min$56 min$58 min$57 min$1 hrs$1:11 hrs$1:21 hrs$1:32 hrs$1:46 hrs$1:55 hrs$2:39 hrs$2:15 hrs$2:18 hrs$2:50 hrs$2:21 hrs$2:23 hrs$2:19 hrs$2:26 hrs$1:08 hrs$1:29 hrs$1:29 hrs$1:41 hrs$1:49 hrs$1:41 hrs$1:45 hrs$1:06 hrs$51 min$47 min$1:12 hrs$1 hrs$1:04 hrs$1:14 hrs$1:06 hrs$1:07 hrs$32 min$33 min$25 min$30 min$28 min$29 min$26 min$26 min$ 
+13136,JYG KOAA EXP,$ $11 min$10 min$5 min$0$10 min$0$22 min$25 min$28 min$0$7 min$0$0$4 min$0,$0$11 min$11 min$5 min$0$5 min$0$22 min$22 min$28 min$2 min$7 min$0$1 min$5 min$ 
+15547,JYG LTT JANSADHARAN EXP,$ $10 min$30 min$23 min$0$4 min$35 min$0$21 min$30 min$1:42 hrs$1:31 hrs$1:18 hrs$57 min$1:45 hrs$1:29 hrs$1:56 hrs$16 min$9 min,$1 min$9 min$30 min$25 min$0$0$35 min$0$19 min$52 min$1:43 hrs$1:37 hrs$1:21 hrs$1:33 hrs$1:45 hrs$1:38 hrs$1:56 hrs$18 min$ 
+55527,JYG PNBE PASS,$ $17 min$22 min$26 min$26 min$28 min$26 min$33 min$37 min$41 min$44 min$50 min$33 min$46 min$54 min$52 min$1:02 hrs$1:07 hrs$1:28 hrs$1:49 hrs$1:59 hrs$1:51 hrs$2:11 hrs$2:16 hrs$2:15 hrs$2:09 hrs$2:26 hrs$2:26 hrs$2:12 hrs$2:19 hrs$2:15 hrs$2:19 hrs$2:25 hrs$1:55 hrs$1:55 hrs$58 min,$9 min$19 min$23 min$25 min$27 min$35 min$31 min$38 min$22 min$41 min$44 min$50 min$37 min$47 min$55 min$52 min$1:05 hrs$1:16 hrs$1:35 hrs$1:57 hrs$2 hrs$2:07 hrs$2:12 hrs$2:17 hrs$2:24 hrs$2:24 hrs$2:26 hrs$2:27 hrs$2:12 hrs$2:30 hrs$2:19 hrs$2:23 hrs$2:24 hrs$1:56 hrs$1:55 hrs$ 
+18606,JYG RNC EXPRESS,$ $13 min$17 min$6 min$0$0$2 min$6 min$29 min$0$4 min$4 min$50 min$33 min,$0$12 min$20 min$10 min$3 min$0$41 min$20 min$30 min$7 min$7 min$18 min$54 min$ 
+15284,JANKI EXPRESS,$ $14 min$18 min$11 min$8 min$11 min$20 min$28 min$33 min$37 min$21 min$20 min$30 min$35 min$39 min$42 min$56 min$54 min$47 min$10 min$39 min$0,$0$14 min$19 min$11 min$14 min$14 min$20 min$30 min$34 min$39 min$21 min$21 min$30 min$35 min$48 min$49 min$55 min$54 min$47 min$17 min$10 min$ 
+55514,JYG SPJ PASS,$ $25 min$30 min$30 min$41 min$29 min$35 min$39 min$58 min$1:05 hrs$1:22 hrs$1:23 hrs$1:28 hrs$1:35 hrs$1:39 hrs$1:32 hrs,$12 min$29 min$31 min$39 min$42 min$35 min$36 min$56 min$1:03 hrs$1:15 hrs$1:24 hrs$1:27 hrs$1:30 hrs$1:36 hrs$1:44 hrs$ 
+55520,JYG SPJ PASS,$ $36 min$40 min$42 min$44 min$39 min$45 min$47 min$44 min$1:01 hrs$1:07 hrs$1:02 hrs$1:05 hrs$1:09 hrs$32 min$16 min,$24 min$40 min$41 min$44 min$44 min$45 min$47 min$48 min$58 min$1:03 hrs$1:07 hrs$1:03 hrs$1:10 hrs$1:10 hrs$31 min$ 
+14257,K V EXP,$ $15 min$17 min$21 min$23 min$23 min$24 min$26 min$23 min$24 min$25 min$31 min$37 min$36 min$54 min$18 min$53 min$1:07 hrs$1:27 hrs$1:15 hrs$1:17 hrs$1:21 hrs$1:33 hrs$1:25 hrs$1:22 hrs$1:32 hrs$1:29 hrs$1:27 hrs$1:40 hrs$1:42 hrs$1:50 hrs$1:38 hrs,$0$15 min$17 min$21 min$24 min$23 min$26 min$28 min$23 min$23 min$31 min$32 min$37 min$50 min$56 min$22 min$1:06 hrs$1:10 hrs$1:27 hrs$1:17 hrs$1:21 hrs$1:21 hrs$1:17 hrs$1:44 hrs$1:24 hrs$1:32 hrs$1:29 hrs$1:33 hrs$1:41 hrs$1:42 hrs$1:18 hrs$ 
+17616,KACHEGUDA EXP,$ $17 min$17 min$0$5 min$0$0$2 min$2 min$3 min$9 min$0$23 min$36 min$26 min$0$31 min$4 min$0$9 min$5 min$21 min,$10 min$16 min$16 min$1 min$15 min$1 min$2 min$2 min$2 min$6 min$10 min$27 min$24 min$37 min$28 min$31 min$33 min$7 min$2 min$13 min$6 min$ 
+17604,KACHEGUDA EXP,$ $15 min$27 min$34 min$38 min$44 min$19 min$0$21 min$34 min$27 min$42 min$25 min$56 min$47 min$42 min$48 min$3 min,$7 min$15 min$28 min$35 min$42 min$47 min$20 min$13 min$23 min$39 min$38 min$39 min$28 min$1 hrs$47 min$37 min$49 min$ 
+12786,KACHEGUDA EXP,$ $5 min$11 min$7 min$25 min$12 min$18 min$25 min$31 min$30 min$32 min$12 min$13 min$24 min$12 min$31 min$33 min$36 min$38 min$8 min,$1 min$4 min$12 min$9 min$8 min$12 min$19 min$27 min$32 min$31 min$32 min$18 min$14 min$26 min$13 min$32 min$33 min$40 min$39 min$ 
+17651,KACHEGUDA  EXP,$ $11 min$4 min$8 min$10 min$0$0$9 min$13 min$1 min$11 min$15 min$20 min$12 min$0$1 min$11 min$20 min$21 min$26 min$5 min,$0$12 min$5 min$9 min$9 min$1 min$11 min$10 min$14 min$9 min$11 min$14 min$20 min$19 min$8 min$7 min$11 min$20 min$22 min$40 min$ 
+16354,KACHEGUDA EXP,$ $13 min$10 min$29 min$27 min$27 min$0$18 min$0$0$0$0$0$2 min$6 min$8 min$6 min$16 min$0$0$15 min$7 min$2 min$4 min$3 min$5 min$0$11 min$0$10 min,$0$13 min$11 min$30 min$27 min$27 min$4 min$20 min$0$0$0$0$0$4 min$6 min$8 min$6 min$28 min$1 min$17 min$16 min$7 min$3 min$4 min$4 min$8 min$10 min$12 min$1 min$ 
+12226,KAIFIYAT EXP,$ $1:38 hrs$1:08 hrs$2:03 hrs$1:56 hrs$2:11 hrs$2:41 hrs$3:24 hrs$3:40 hrs$3:48 hrs$3:43 hrs$3:56 hrs$4:01 hrs$3:41 hrs$3:57 hrs$3:56 hrs$3:51 hrs,$1:15 hrs$1:39 hrs$1:19 hrs$2:04 hrs$2 hrs$2:12 hrs$2:47 hrs$3:27 hrs$3:40 hrs$3:49 hrs$3:45 hrs$3:58 hrs$4 hrs$3:46 hrs$3:57 hrs$3:56 hrs$ 
+12225,KAIFIYAT EXP,$ $30 min$34 min$31 min$52 min$57 min$1:11 hrs$1:05 hrs$1:21 hrs$1:13 hrs$1:16 hrs$1:51 hrs$1:48 hrs$2:23 hrs$3:12 hrs$2:53 hrs$3:11 hrs,$43 min$32 min$35 min$37 min$51 min$59 min$1:20 hrs$1:06 hrs$1:20 hrs$1:15 hrs$1:18 hrs$1:41 hrs$1:53 hrs$2:58 hrs$3:12 hrs$2:53 hrs$ 
+57626,KAKATHIYA  F PSR,$ $3 min$19 min$22 min$17 min$53 min$47 min$59 min$1:06 hrs$1 hrs$54 min$1:05 hrs$1:14 hrs$1:15 hrs$1:19 hrs$1:19 hrs$1:13 hrs$1:12 hrs$58 min$39 min$44 min$48 min$54 min$58 min$59 min$1:02 hrs$1:03 hrs$59 min$1:10 hrs$1:05 hrs$1:11 hrs$1:06 hrs,$0$4 min$19 min$23 min$50 min$54 min$58 min$1:09 hrs$1:16 hrs$1:03 hrs$1:01 hrs$1:12 hrs$1:14 hrs$1:18 hrs$1:19 hrs$1:24 hrs$1:13 hrs$1:18 hrs$1 hrs$41 min$44 min$51 min$54 min$58 min$1 hrs$1:02 hrs$1:03 hrs$59 min$1:10 hrs$1:05 hrs$1:11 hrs$ 
+57625,KAKATIYA  F  PAS,$ $11 min$15 min$17 min$33 min$15 min$18 min$19 min$26 min$27 min$32 min$30 min$31 min$22 min$43 min$1:11 hrs$1:18 hrs$1:33 hrs$1:44 hrs$1:45 hrs$1:52 hrs$1:55 hrs$1:29 hrs$1:27 hrs$1:28 hrs$1:38 hrs$1:45 hrs$2:07 hrs$1:14 hrs$1:47 hrs$1:47 hrs$1:23 hrs$23 min,$4 min$11 min$15 min$26 min$32 min$17 min$20 min$21 min$26 min$29 min$32 min$33 min$31 min$27 min$1:06 hrs$1:17 hrs$1:32 hrs$1:37 hrs$1:44 hrs$1:49 hrs$1:52 hrs$1:56 hrs$1:46 hrs$1:47 hrs$1:33 hrs$1:56 hrs$1:48 hrs$2:10 hrs$1:30 hrs$1:55 hrs$1:47 hrs$1:23 hrs$ 
+14724,KALINDI EXPRESS,$ $4 min$2 min$2 min$0$5 min$5 min$4 min$10 min$11 min$26 min$27 min$49 min$58 min$20 min$27 min$26 min$37 min$35 min$0$14 min$14 min$17 min$14 min$20 min$17 min$0$0,$0$4 min$2 min$6 min$2 min$4 min$5 min$7 min$19 min$20 min$27 min$27 min$50 min$56 min$23 min$28 min$24 min$39 min$39 min$8 min$15 min$14 min$17 min$15 min$22 min$18 min$7 min$ 
+14723,KALINDI EXPRESS,$ $8 min$18 min$21 min$27 min$27 min$23 min$25 min$16 min$1 min$23 min$13 min$31 min$19 min$9 min$19 min$25 min$0$15 min$15 min$21 min$25 min$35 min$35 min$16 min$17 min$18 min$17 min$11 min,$3 min$7 min$20 min$23 min$27 min$26 min$25 min$25 min$16 min$0$25 min$23 min$30 min$23 min$14 min$21 min$18 min$1 min$15 min$19 min$21 min$27 min$41 min$42 min$8 min$18 min$21 min$19 min$ 
+18478,KALINGAUTKALEXP,$ $13 min$16 min$21 min$24 min$25 min$37 min$29 min$12 min$9 min$27 min$26 min$43 min$1:09 hrs$1:16 hrs$1:06 hrs$1:03 hrs$1:02 hrs$1:07 hrs$1:07 hrs$1:05 hrs$1:19 hrs$1:23 hrs$1:33 hrs$1:08 hrs$1:24 hrs$1:34 hrs$1:32 hrs$1:36 hrs$57 min$35 min$41 min$42 min$53 min$28 min$35 min$41 min$34 min$39 min$35 min$43 min$44 min$12 min$20 min$19 min$18 min$22 min$24 min$24 min$27 min$38 min$15 min$22 min$55 min$48 min$55 min$1:05 hrs$1:03 hrs$1:08 hrs$1:03 hrs$56 min$45 min$1:10 hrs$1:24 hrs$1:28 hrs$1:30 hrs$1:10 hrs$1:34 hrs$1:15 hrs$1:01 hrs$1:03 hrs$1:08 hrs$1:46 hrs$1:21 hrs$1:10 hrs$58 min$43 min,$1 min$13 min$14 min$23 min$23 min$25 min$35 min$29 min$13 min$17 min$27 min$27 min$46 min$1:08 hrs$1:20 hrs$1:07 hrs$1:04 hrs$1:01 hrs$1:07 hrs$1:07 hrs$1:11 hrs$1:23 hrs$1:26 hrs$1:33 hrs$1:13 hrs$1:25 hrs$1:33 hrs$1:33 hrs$1:38 hrs$1:02 hrs$39 min$39 min$42 min$52 min$30 min$41 min$41 min$35 min$39 min$35 min$43 min$39 min$18 min$20 min$20 min$17 min$22 min$24 min$24 min$25 min$38 min$14 min$23 min$57 min$49 min$54 min$1:06 hrs$1:05 hrs$1:09 hrs$59 min$1:16 hrs$44 min$1:09 hrs$1:24 hrs$1:28 hrs$1:39 hrs$1:11 hrs$1:34 hrs$1:16 hrs$1:01 hrs$1:10 hrs$1:08 hrs$1:47 hrs$1:19 hrs$1:08 hrs$58 min$ 
+12312,KALKA MAIL,$ $18 min$19 min$15 min$16 min$23 min$21 min$29 min$30 min$31 min$31 min$41 min$17 min$0$11 min$22 min$11 min$23 min$13 min$20 min$22 min$36 min$31 min$1 hrs$1:56 hrs$2:21 hrs$3:08 hrs$3:51 hrs$4:06 hrs$4:07 hrs$4:08 hrs$4:10 hrs$4:03 hrs$4:06 hrs$4:01 hrs$3:59 hrs$3:34 hrs$3:26 hrs$3:37 hrs$3:05 hrs$3:19 hrs,$16 min$19 min$17 min$18 min$19 min$23 min$24 min$29 min$28 min$30 min$32 min$42 min$25 min$13 min$13 min$23 min$15 min$24 min$14 min$20 min$19 min$34 min$32 min$1:10 hrs$1:57 hrs$2:29 hrs$3:10 hrs$3:48 hrs$4:07 hrs$4:08 hrs$4:08 hrs$4:12 hrs$4:04 hrs$4:07 hrs$4:02 hrs$4:01 hrs$3:37 hrs$3:28 hrs$3:35 hrs$3:05 hrs$ 
+12006,KALKA SHTBDI,$ $5 min$3 min$5 min$8 min$3 min,$4 min$4 min$4 min$7 min$5 min$ 
+12011,KALKA SHTBDI,$ $5 min$6 min$0$2 min$0,$0$6 min$6 min$2 min$2 min$ 
+12012,KALKA SHTBDI,$ $1 min$0$0$0$0,$1 min$0$1 min$1 min$2 min$ 
+12005,KALKA SHTBDI,$ $11 min$15 min$3 min$1 min$0,$0$10 min$15 min$3 min$1 min$ 
+52453,KALKA SIMLA EXP,$ $12 min$16 min$16 min$16 min$19 min$17 min$20 min$19 min$19 min$9 min$7 min,$3 min$13 min$16 min$16 min$16 min$18 min$16 min$20 min$21 min$21 min$9 min$ 
+15667,KAMAKHYA EXPRESS,$ $10 min$14 min$16 min$0$16 min$0$4 min$2 min$0$0$2:19 hrs$5:21 hrs$5:25 hrs$5:09 hrs$5:20 hrs$5:15 hrs$5:07 hrs$4:57 hrs$5:02 hrs$5:07 hrs$5:14 hrs$4:45 hrs$4:49 hrs$4:20 hrs$3:40 hrs$4:04 hrs$4:48 hrs$4:45 hrs$4:57 hrs$4:30 hrs,$15 min$10 min$16 min$17 min$2 min$16 min$2 min$0$3 min$2 min$0$3:30 hrs$5:30 hrs$5:27 hrs$5:46 hrs$5:45 hrs$5:32 hrs$5:10 hrs$4:56 hrs$5:02 hrs$5:09 hrs$5:14 hrs$4:45 hrs$4:48 hrs$4:20 hrs$3:40 hrs$4:11 hrs$4:48 hrs$4:44 hrs$4:57 hrs$ 
+11071,KAMAYANI EXPRES,$ $5 min$9 min$11 min$22 min$10 min$13 min$15 min$17 min$25 min$30 min$23 min$36 min$32 min$19 min$12 min$11 min$18 min$26 min$41 min$27 min$49 min$1 hrs$46 min$36 min$8 min$9 min$15 min$28 min$40 min$42 min$33 min$43 min$43 min$45 min$27 min$45 min$1:04 hrs$1:41 hrs$1:45 hrs$1:45 hrs$1:42 hrs$1:09 hrs$50 min,$0$7 min$13 min$10 min$21 min$11 min$14 min$16 min$17 min$25 min$31 min$37 min$37 min$32 min$19 min$11 min$13 min$24 min$27 min$45 min$40 min$1:05 hrs$1 hrs$46 min$37 min$15 min$14 min$26 min$30 min$40 min$43 min$39 min$44 min$45 min$54 min$37 min$49 min$1:22 hrs$1:43 hrs$1:44 hrs$1:37 hrs$1:43 hrs$1:09 hrs$ 
+11072,KAMAYANI EXPRES,$ $25 min$27 min$27 min$31 min$11 min$1:26 hrs$1:22 hrs$1:35 hrs$1:42 hrs$1:57 hrs$2:10 hrs$1:53 hrs$2:01 hrs$2:08 hrs$2:17 hrs$2:14 hrs$1:15 hrs$1:21 hrs$1:33 hrs$1:28 hrs$1:29 hrs$1:40 hrs$1:47 hrs$1:39 hrs$1:41 hrs$1:44 hrs$57 min$49 min$50 min$55 min$55 min$1:05 hrs$1:08 hrs$1:19 hrs$1:18 hrs$1:05 hrs$59 min$1 hrs$30 min$1:03 hrs$45 min$58 min,$0$28 min$28 min$28 min$34 min$46 min$1:32 hrs$1:21 hrs$1:35 hrs$1:51 hrs$1:58 hrs$1:58 hrs$1:58 hrs$2:04 hrs$2:08 hrs$2:16 hrs$2:15 hrs$1:17 hrs$1:24 hrs$1:30 hrs$1:30 hrs$1:30 hrs$1:53 hrs$1:47 hrs$1:39 hrs$1:35 hrs$1:37 hrs$56 min$49 min$51 min$59 min$1:01 hrs$1:07 hrs$1:08 hrs$1:19 hrs$1:19 hrs$1:09 hrs$59 min$57 min$46 min$1:03 hrs$36 min$ 
+15959,KAMRUP EXPRESS,$ $0$6 min$0$7 min$30 min$12 min$12 min$0$9 min$0$19 min$22 min$29 min$41 min$52 min$13 min$23 min$22 min$27 min$28 min$24 min$24 min$29 min$48 min$49 min$28 min$23 min$22 min$16 min$28 min$42 min$45 min$58 min,$1 min$1 min$7 min$0$8 min$34 min$13 min$15 min$1 min$9 min$1 min$20 min$22 min$31 min$41 min$53 min$0$23 min$22 min$27 min$28 min$28 min$25 min$29 min$48 min$49 min$25 min$23 min$22 min$16 min$38 min$41 min$44 min$ 
+15960,KAMRUP EXPRESS,$ $0$4 min$6 min$3 min$4 min$5 min$2 min$0$9 min$11 min$16 min$23 min$5 min$9 min$0$6 min$6 min$0$17 min$21 min$36 min$33 min$26 min$0$2 min$0$1 min$8 min$0$11 min$29 min$18 min$2 min$17 min$13 min$5 min,$8 min$4 min$4 min$6 min$4 min$4 min$7 min$5 min$1 min$9 min$13 min$16 min$23 min$11 min$11 min$3 min$6 min$7 min$0$18 min$21 min$37 min$34 min$26 min$2 min$1 min$2 min$2 min$9 min$2 min$25 min$29 min$18 min$17 min$17 min$12 min$ 
+13150,KANCHANKANYA EX,$ $4 min$2 min$0$14 min$35 min$51 min$1:07 hrs$58 min$58 min$1:02 hrs$1:03 hrs$0$12 min$2 min$0$1 min$4 min$4 min$0$13 min$3 min,$0$7 min$6 min$2 min$22 min$45 min$52 min$1:08 hrs$59 min$1:01 hrs$1:02 hrs$1:03 hrs$6 min$10 min$4 min$3 min$3 min$4 min$5 min$1 min$14 min$ 
+13149,KANCHANKANYA EXP,$ $5 min$13 min$20 min$23 min$24 min$20 min$29 min$19 min$0$15 min$16 min$22 min$34 min$21 min$42 min$24 min$39 min$51 min$1:53 hrs$1:52 hrs,$2 min$6 min$14 min$19 min$23 min$27 min$18 min$27 min$17 min$8 min$17 min$18 min$22 min$34 min$23 min$42 min$23 min$38 min$56 min$1:53 hrs$ 
+16517,KANNUR  EXP,$ $4 min$13 min$15 min$13 min$0$2 min$2 min$0$0$0$3 min$4 min$3 min$0$0$0$6 min$8 min$6 min$0,$2 min$5 min$13 min$15 min$13 min$2 min$2 min$2 min$5 min$8 min$0$3 min$4 min$3 min$0$1 min$1 min$5 min$7 min$13 min$ 
+12665,KANNYAKUMARI EXP,,
+16381,KANYAKUMARI EXP,$ $6 min$5 min$13 min$16 min$10 min$8 min$11 min$1:20 hrs$58 min$47 min$6 min$2 min$17 min$25 min$31 min$7 min$23 min$30 min$15 min$21 min$18 min$19 min$8 min$10 min$0$0$19 min$41 min$3 min$0$5 min$0$7 min$19 min$10 min$13 min$10 min$17 min$11 min$14 min$12 min$17 min$0$11 min$24 min$33 min$33 min$36 min$29 min$25 min$29 min$14 min$11 min$15 min$17 min$20 min$29 min$33 min$18 min$23 min$8 min$0,$1 min$5 min$5 min$15 min$19 min$11 min$20 min$41 min$1:15 hrs$1 hrs$46 min$30 min$8 min$18 min$38 min$32 min$20 min$26 min$30 min$22 min$22 min$22 min$20 min$11 min$11 min$4 min$19 min$20 min$36 min$21 min$3 min$5 min$2 min$9 min$19 min$16 min$13 min$15 min$17 min$12 min$14 min$21 min$17 min$6 min$13 min$27 min$33 min$33 min$36 min$29 min$33 min$29 min$14 min$12 min$15 min$17 min$21 min$33 min$33 min$20 min$23 min$14 min$ 
+16526,KANYAKUMARI EXP,$ $4 min$15 min$17 min$22 min$15 min$22 min$13 min$3 min$3 min$12 min$16 min$1 min$5 min$6 min$6 min$13 min$18 min$19 min$20 min$19 min$13 min$16 min$21 min$35 min$47 min$47 min$44 min$47 min$27 min$50 min$51 min$54 min$1:03 hrs$1:02 hrs$1:03 hrs$1:04 hrs$37 min$51 min$49 min$44 min$55 min$10 min$2 min,$1 min$6 min$16 min$18 min$22 min$17 min$23 min$17 min$5 min$9 min$12 min$18 min$3 min$4 min$6 min$9 min$13 min$18 min$19 min$20 min$19 min$15 min$16 min$22 min$41 min$47 min$47 min$44 min$47 min$48 min$50 min$51 min$1:02 hrs$1:03 hrs$1:02 hrs$1:03 hrs$1:04 hrs$38 min$52 min$49 min$1:03 hrs$56 min$30 min$ 
+12634,KANYAKUMARI EXP,$ $10 min$9 min$3 min$21 min$22 min$21 min$11 min$9 min$3 min$0$0$7 min$7 min$6 min$24 min$0,$2 min$11 min$10 min$6 min$22 min$24 min$21 min$12 min$12 min$8 min$1 min$7 min$7 min$7 min$6 min$25 min$ 
+12633,KANYAKUMARI EXP,$ $0$9 min$13 min$15 min$0$5 min$4 min$0$5 min$9 min$19 min$19 min$15 min$14 min$7 min$0,$1 min$1 min$9 min$15 min$14 min$5 min$5 min$6 min$0$11 min$12 min$20 min$22 min$18 min$15 min$10 min$ 
+64214,KAP LKO MEMU,$ $3:26 hrs$3:33 hrs$3:24 hrs$3:50 hrs$4:03 hrs$4:08 hrs$4:16 hrs$4:20 hrs$4:37 hrs,$3:21 hrs$3:35 hrs$3:44 hrs$3:31 hrs$3:56 hrs$4:05 hrs$4:13 hrs$4:18 hrs$4:56 hrs$ 
+64216,KAP LKO MEMU,$ $2:57 hrs$2:59 hrs$3:01 hrs$2:49 hrs$2:48 hrs$2:47 hrs$2:47 hrs$2:52 hrs$2:55 hrs$3:21 hrs,$2:56 hrs$2:59 hrs$3 hrs$3:04 hrs$2:49 hrs$2:48 hrs$2:47 hrs$2:51 hrs$2:57 hrs$3:22 hrs$ 
+16175,KARAIKAL EXP,$ $3 min$11 min$20 min$22 min$10 min$31 min$31 min$22 min$24 min$17 min$27 min$31 min$46 min$49 min$0,$1 min$4 min$12 min$21 min$21 min$17 min$31 min$37 min$23 min$24 min$24 min$27 min$41 min$52 min$49 min$ 
+12408,KARAMABHOOMI EXP,$ $36 min$22 min$10 min$2:23 hrs$2:21 hrs$2:37 hrs$3 hrs$2:50 hrs$3:30 hrs$3:18 hrs$3:02 hrs$3:16 hrs$3:43 hrs$4:25 hrs$4:13 hrs$4:46 hrs$4:42 hrs,$0$36 min$22 min$5 min$2:29 hrs$2:21 hrs$2:47 hrs$3:05 hrs$3:07 hrs$3:29 hrs$3:18 hrs$3:02 hrs$3:15 hrs$4:17 hrs$4:25 hrs$4:15 hrs$4:46 hrs$ 
+22512,KARMABHOOMI EXP,$ $0$22 min$23 min$55 min$47 min$1:27 hrs$1:18 hrs$59 min$51 min$45 min$54 min$1:23 hrs$1:28 hrs$1:57 hrs$2:15 hrs$1:58 hrs$1:57 hrs$2:32 hrs$2:09 hrs$2:11 hrs$2:20 hrs$2:33 hrs$1:19 hrs,$2 min$1 min$21 min$23 min$55 min$44 min$1:30 hrs$1:19 hrs$1:09 hrs$51 min$52 min$45 min$1:21 hrs$1:25 hrs$1:59 hrs$2:15 hrs$1:53 hrs$1:57 hrs$2:36 hrs$2:29 hrs$2:09 hrs$2:33 hrs$2:34 hrs$ 
+22511,KARMABHOOMI EXP,$ $0$16 min$30 min$11 min$12 min$0$0$9 min$0$1:46 hrs$1:30 hrs$1:18 hrs$1:26 hrs$1:49 hrs$1:25 hrs$1:30 hrs$2:20 hrs$2:35 hrs$2:54 hrs$2:21 hrs,$20 min$4 min$28 min$30 min$10 min$12 min$0$3 min$9 min$1:26 hrs$1:46 hrs$1:35 hrs$1:15 hrs$1:27 hrs$1:49 hrs$1:40 hrs$1:27 hrs$2:20 hrs$2:45 hrs$2:55 hrs$ 
+12407,KARMABHOOMI EXP,$ $56 min$12 min$37 min$38 min$1:02 hrs$1:10 hrs$1:09 hrs$2:15 hrs$2:17 hrs$2:17 hrs$2:46 hrs$4:32 hrs$4:20 hrs$4:59 hrs$5:45 hrs$5:52 hrs$5:42 hrs$5:25 hrs,$0$56 min$3 min$39 min$38 min$1:07 hrs$1:01 hrs$1:30 hrs$2:10 hrs$2:15 hrs$2:17 hrs$2:45 hrs$4:32 hrs$4:18 hrs$5:13 hrs$5:53 hrs$5:52 hrs$5:42 hrs$ 
+12545,KARMABHUMI EXP,$ $2 min$17 min$32 min$40 min$18 min$13 min$46 min$49 min$10 min$3:06 hrs$4:42 hrs$4:48 hrs$4:44 hrs$4:42 hrs$4:36 hrs$4:20 hrs$4:51 hrs,$0$15 min$17 min$32 min$40 min$35 min$13 min$50 min$51 min$10 min$4:05 hrs$4:42 hrs$4:48 hrs$4:44 hrs$4:55 hrs$4:33 hrs$4:23 hrs$ 
+12546,KARMABHUMI EXP,$ $12 min$16 min$8 min$0$1 min$42 min$57 min$1:07 hrs$56 min$1:26 hrs$1:34 hrs$57 min$35 min$1 hrs$1:05 hrs$1:05 hrs$45 min$1:06 hrs$35 min,$0$14 min$17 min$14 min$1 min$14 min$55 min$56 min$1:09 hrs$59 min$1:27 hrs$1:32 hrs$55 min$34 min$1 hrs$1:05 hrs$1:05 hrs$45 min$1:06 hrs$ 
+12627,KARNATAKA EXP,$ $1 min$13 min$28 min$27 min$38 min$37 min$17 min$16 min$35 min$38 min$37 min$44 min$42 min$4 min$15 min$13 min$24 min$14 min$33 min$31 min$32 min$25 min$46 min$50 min$55 min$24 min$43 min$57 min$45 min$54 min$1:15 hrs$1:21 hrs$1:22 hrs$59 min$49 min,$2 min$2 min$19 min$28 min$26 min$38 min$42 min$21 min$27 min$41 min$38 min$51 min$45 min$43 min$12 min$15 min$24 min$26 min$35 min$33 min$32 min$35 min$33 min$47 min$52 min$1:01 hrs$38 min$42 min$58 min$47 min$53 min$1:14 hrs$1:21 hrs$1:25 hrs$59 min$ 
+12628,KARNATAKA EXP,$ $17 min$21 min$21 min$35 min$47 min$1:10 hrs$1:35 hrs$1:18 hrs$1:17 hrs$1:08 hrs$1:16 hrs$1:10 hrs$1:16 hrs$1:32 hrs$1:41 hrs$1:14 hrs$1:54 hrs$54 min$33 min$58 min$1:11 hrs$1:10 hrs$1:15 hrs$1:24 hrs$1:03 hrs$1:22 hrs$1:15 hrs$1:05 hrs$1:03 hrs$1:05 hrs$53 min$1:07 hrs$1 hrs$0,$0$18 min$22 min$22 min$35 min$52 min$1:10 hrs$1:37 hrs$1:19 hrs$1:17 hrs$1:23 hrs$1:19 hrs$1:09 hrs$1:15 hrs$1:33 hrs$1:44 hrs$1:27 hrs$1:54 hrs$1:18 hrs$32 min$1 hrs$1:11 hrs$1:14 hrs$1:29 hrs$1:25 hrs$1:22 hrs$1:25 hrs$1:17 hrs$56 min$1:05 hrs$1:06 hrs$54 min$1:07 hrs$31 min$ 
+12933,KARNAVATI EXP,$ $9 min$0$1 min$0$2 min$5 min$10 min$8 min$0,$1 min$9 min$2 min$4 min$1 min$4 min$5 min$11 min$9 min$ 
+12934,KARNAVATI EXP,$ $0$0$0$9 min$0$5 min$10 min$5 min$1 min,$1 min$2 min$1 min$2 min$9 min$2 min$5 min$10 min$4 min$ 
+16523,KARWAR  EXP,$ $18 min$20 min$24 min$31 min$31 min$25 min$28 min$33 min$29 min$24 min$26 min$9 min,$8 min$19 min$20 min$29 min$31 min$34 min$26 min$30 min$35 min$31 min$26 min$27 min$ 
+15040,KASGANJ FBD EXP,$ $15 min$20 min$21 min$22 min$25 min$24 min$13 min,$6 min$16 min$20 min$21 min$22 min$26 min$24 min$ 
+14258,KASHI V EXPRESS,$ $20 min$24 min$22 min$24 min$27 min$27 min$16 min$1:11 hrs$50 min$54 min$57 min$49 min$58 min$1:11 hrs$1:25 hrs$1:22 hrs$1:23 hrs$1:36 hrs$1:22 hrs$1:26 hrs$1:25 hrs$1:32 hrs$1:31 hrs$1:23 hrs$1:36 hrs$1:44 hrs$1:45 hrs$1:46 hrs$1:48 hrs$1:51 hrs$1:20 hrs$1:43 hrs$1:06 hrs,$9 min$18 min$26 min$22 min$25 min$27 min$27 min$31 min$1:13 hrs$39 min$54 min$56 min$49 min$1:05 hrs$1:23 hrs$1:25 hrs$1:21 hrs$1:28 hrs$1:36 hrs$1:24 hrs$1:25 hrs$1:25 hrs$1:32 hrs$1:32 hrs$1:24 hrs$1:43 hrs$1:44 hrs$1:45 hrs$1:45 hrs$1:49 hrs$1:51 hrs$1:45 hrs$1:42 hrs$ 
+16021,KAVERI  EXPRESS,$ $7 min$11 min$15 min$20 min$15 min$15 min$4 min$14 min$16 min$18 min$22 min$36 min$7 min$16 min$29 min$33 min$36 min$32 min$29 min$30 min$10 min,$1 min$8 min$11 min$15 min$19 min$17 min$16 min$4 min$15 min$16 min$19 min$31 min$37 min$13 min$17 min$30 min$34 min$36 min$34 min$28 min$31 min$ 
+16022,KAVERI EXPRESS,$ $4 min$10 min$9 min$12 min$10 min$15 min$0$6 min$15 min$13 min$6 min$10 min$0$6 min$4 min$8 min$9 min$16 min$22 min$28 min$2 min,$2 min$4 min$11 min$10 min$13 min$10 min$16 min$3 min$8 min$16 min$14 min$8 min$10 min$5 min$6 min$10 min$8 min$11 min$18 min$22 min$28 min$ 
+19709,KAVI GURU EXP,$ $5 min$46 min$15 min$15 min$0$15 min$0$18 min$15 min$0$15 min$18 min$15 min$0$0$30 min$49 min$32 min$12 min$17 min$0$0$0$0$15 min$0$0$0$1 min$5 min$0,$1 min$5 min$46 min$17 min$15 min$7 min$14 min$3 min$18 min$40 min$0$15 min$15 min$15 min$0$15 min$25 min$51 min$31 min$9 min$17 min$0$0$0$0$15 min$0$2 min$1 min$0$5 min$ 
+13027,KAVI GURU EXP,$ $0$2 min$16 min$14 min$17 min$12 min$16 min$15 min$1 min,$1 min$2 min$3 min$19 min$14 min$18 min$12 min$16 min$16 min$ 
+13028,KAVI GURU EXP,$ $6 min$4 min$0$4 min$11 min$7 min$11 min$0$25 min$3 min,$2 min$6 min$5 min$3 min$6 min$10 min$8 min$13 min$4 min$26 min$ 
+12949,KAVIGURU EXPRESS,$ $7 min$21 min$39 min$22 min$16 min$0$0$0$4 min$3 min$0$0$2 min$0$17 min$35 min$1:08 hrs$0$0$0$9 min$0$11 min$29 min$1:20 hrs$57 min$1:19 hrs$1:25 hrs$1:22 hrs$1:19 hrs$1 hrs$1:01 hrs$29 min,$0$7 min$22 min$39 min$17 min$16 min$1 min$3 min$2 min$5 min$3 min$1 min$2 min$10 min$17 min$30 min$35 min$1:09 hrs$3 min$2 min$2 min$6 min$1 min$14 min$29 min$1:14 hrs$57 min$1:19 hrs$1:25 hrs$1:22 hrs$1:19 hrs$1 hrs$1 hrs$ 
+70102,KAWR PERN DMU,$ $3 min$7 min$8 min$15 min$13 min$26 min$27 min$43 min$48 min$7 min,$0$5 min$8 min$12 min$21 min$32 min$28 min$42 min$43 min$48 min$ 
+70104,KAWR PERN DMU,$ $8 min$9 min$12 min$17 min$23 min$19 min$19 min$26 min$25 min$0,$6 min$13 min$12 min$18 min$18 min$26 min$21 min$21 min$27 min$23 min$ 
+16516,KAWR YPR EXP,$ $20 min$20 min$25 min$19 min$19 min$0$4 min$6 min$23 min$55 min$20 min$37 min$43 min$49 min$45 min$35 min$38 min$50 min$15 min,$5 min$21 min$26 min$27 min$19 min$19 min$0$4 min$11 min$39 min$36 min$23 min$40 min$43 min$49 min$45 min$37 min$48 min$1:05 hrs$ 
+56642,KBPR MAQ PASS,$ $0$2 min$0$0,$0$0$1 min$4 min$ 
+56644,KBPR MAQ PASS,$ $29 min$59 min$33 min,$32 min$38 min$1:09 hrs$ 
+43902,KBT MAS LOCAL,$ $1 min$6 min$8 min$14 min$19 min$3 min,$0$1 min$7 min$8 min$14 min$19 min$ 
+43904,KBT MAS LOCAL,$ $4 min$9 min$6 min$12 min$2 min,$4 min$4 min$9 min$6 min$12 min$ 
+43912,KBT MSB LOCAL,$ $11 min$17 min$19 min$24 min$0,$13 min$11 min$17 min$19 min$24 min$ 
+17639,KCG AK EXP,$ $8 min$7 min$1 min$0$1 min$7 min$0$5 min$5 min$13 min$0$0$0$11 min$24 min$27 min$24 min$0,$7 min$8 min$8 min$2 min$0$3 min$9 min$1 min$12 min$12 min$14 min$1 min$2 min$2 min$20 min$25 min$27 min$25 min$ 
+57473,KCG BDHN PASS,$ $1:42 hrs$1:26 hrs$1:02 hrs$54 min$1:06 hrs$57 min$1:09 hrs$1:05 hrs$1:10 hrs$1:01 hrs$22 min$49 min$56 min$55 min$1:05 hrs$1 hrs$1 hrs$1:01 hrs$18 min$24 min$4 min,$1:49 hrs$1:41 hrs$1:09 hrs$1:15 hrs$1:07 hrs$1:08 hrs$1:15 hrs$1:09 hrs$1:15 hrs$1:10 hrs$1:02 hrs$46 min$1:06 hrs$1:11 hrs$1:09 hrs$1:06 hrs$1:13 hrs$1:12 hrs$1:18 hrs$33 min$31 min$ 
+22119,TEJAS EXPRESS,$ $9 min$3 min$6 min$15 min$35 min$43 min$36 min,$3 min$7 min$3 min$9 min$28 min$36 min$44 min$ 
+22117,PUNE AMI AC SF,$ $0$13 min$0$0$35 min$42 min$47 min$10 min$0,$3 min$16 min$14 min$1 min$6 min$35 min$47 min$45 min$9 min$ 
+57425,KCG GTL PASS,$ $14 min$20 min$31 min$39 min$1 hrs$1:29 hrs$1:20 hrs$1:07 hrs$1:15 hrs$1:25 hrs$1:26 hrs$1:32 hrs$1:34 hrs$1:39 hrs$1:39 hrs$1:48 hrs$1:45 hrs$1:59 hrs$2:20 hrs$2:10 hrs$2:02 hrs$1:54 hrs$2:01 hrs$2:14 hrs$2:02 hrs$2 hrs$2:14 hrs$2:17 hrs$2:16 hrs$2:17 hrs$2:32 hrs$2:05 hrs,$12 min$16 min$25 min$44 min$56 min$1:23 hrs$1:32 hrs$1:21 hrs$1:10 hrs$1:21 hrs$1:25 hrs$1:30 hrs$1:40 hrs$1:45 hrs$1:44 hrs$1:46 hrs$1:48 hrs$2 hrs$2:12 hrs$2:20 hrs$2:07 hrs$2:03 hrs$1:54 hrs$2:05 hrs$2:33 hrs$2:07 hrs$2:12 hrs$2:15 hrs$2:20 hrs$2:17 hrs$2:31 hrs$2:42 hrs$ 
+57435,KCG KRNT PASS,$ $58 min$1:04 hrs$1:07 hrs$1:18 hrs$1:29 hrs$1:49 hrs$1:59 hrs$1:51 hrs$1:54 hrs$1:40 hrs$1:30 hrs$1:29 hrs$4 min,$55 min$1:01 hrs$1:05 hrs$1:20 hrs$1:28 hrs$1:48 hrs$1:53 hrs$1:59 hrs$1:52 hrs$2 hrs$1:46 hrs$1:30 hrs$1:34 hrs$ 
+17606,KCG  MAQ  EXP,$ $30 min$28 min$25 min$3 min$9 min$12 min$18 min$11 min$18 min$0$10 min$0$0$28 min$19 min$23 min$22 min$19 min$19 min$27 min$24 min$0,$3 min$30 min$33 min$25 min$8 min$16 min$16 min$18 min$15 min$18 min$8 min$10 min$4 min$0$28 min$20 min$24 min$23 min$19 min$19 min$27 min$24 min$ 
+77671,KCG MBNR DMU,$ $1:07 hrs$1:10 hrs$1:27 hrs$1:27 hrs$1:20 hrs$1:20 hrs$1:40 hrs$1:35 hrs$2:01 hrs,$1:05 hrs$1:07 hrs$1:14 hrs$1:30 hrs$1:29 hrs$1:20 hrs$1:35 hrs$1:40 hrs$1:38 hrs$ 
+57447,KCG MBNR PASS,$ $1:16 hrs$1:35 hrs$1:37 hrs$1:44 hrs$1:59 hrs$2:17 hrs$2:18 hrs$2:03 hrs$1 day 5:40 hrs,$1:20 hrs$1:20 hrs$1:37 hrs$1:44 hrs$1:58 hrs$2:20 hrs$2:25 hrs$2:18 hrs$1:55 hrs$ 
+17615,KCG MDU EXP,$ $48 min$35 min$15 min$12 min$44 min$16 min$6 min$21 min$0$0$4 min$8 min$0$3 min$18 min$21 min$0$0$2 min$0,$59 min$51 min$36 min$17 min$14 min$46 min$19 min$7 min$22 min$0$7 min$4 min$8 min$3 min$3 min$35 min$21 min$3 min$1 min$2 min$ 
+57307,KCG MED PASS,$ $20:08 hrs$1:40 hrs$1:40 hrs,$1:27 hrs$1:24 hrs$1:40 hrs$ 
+57561,KCG MMR PASS,$ $9 min$6 min$13 min$18 min$15 min$3 min$9 min$10 min$10 min$13 min$3 min$18 min$19 min$5 min$12 min$18 min$17 min$21 min$10 min$18 min$19 min$18 min$22 min$15 min$17 min$19 min$26 min$19 min$21 min$17 min$22 min$26 min$37 min$53 min$1:06 hrs$1:05 hrs$1:04 hrs$1:13 hrs$1:11 hrs$1:02 hrs$1:02 hrs$44 min$48 min$53 min$41 min$42 min$46 min$51 min$37 min$50 min$1 hrs$1:08 hrs$36 min$36 min$37 min$33 min$41 min$43 min$43 min$51 min$33 min$0$39 min,$5 min$10 min$7 min$13 min$18 min$15 min$10 min$9 min$11 min$12 min$14 min$17 min$19 min$20 min$7 min$12 min$18 min$15 min$21 min$17 min$19 min$20 min$19 min$27 min$16 min$18 min$25 min$29 min$21 min$25 min$18 min$29 min$34 min$51 min$1:01 hrs$1:06 hrs$1:06 hrs$1:13 hrs$1:13 hrs$1:12 hrs$1:04 hrs$1:03 hrs$47 min$51 min$55 min$45 min$44 min$47 min$51 min$45 min$52 min$1:03 hrs$1:10 hrs$43 min$38 min$37 min$36 min$45 min$45 min$47 min$54 min$43 min$36 min$ 
+77674,KCG NDKD DMU,$ $29 min$10 min$18 min$53 min$59 min$1:14 hrs$1:13 hrs$1:17 hrs$1:27 hrs$1:26 hrs$1:31 hrs$1:19 hrs$1:25 hrs$47 min$40 min$51 min$47 min$22 min,$22 min$28 min$17 min$18 min$53 min$1:09 hrs$1:14 hrs$1:13 hrs$1:20 hrs$1:27 hrs$1:26 hrs$1:32 hrs$1:20 hrs$1:27 hrs$46 min$44 min$51 min$48 min$ 
+77675,KCG MRGA DMU,,
+17652,KCG CGL EXP,$ $20 min$32 min$25 min$28 min$19 min$20 min$14 min$42 min$41 min$44 min$36 min$27 min$26 min$0$21 min$15 min$12 min$34 min$6 min$13 min$3 min,$1 min$20 min$32 min$26 min$29 min$23 min$26 min$33 min$41 min$41 min$44 min$39 min$27 min$26 min$17 min$21 min$18 min$16 min$34 min$10 min$20 min$ 
+16353,KCG NCJ EXP,$ $31 min$24 min$21 min$32 min$36 min$28 min$20 min$0$15 min$46 min$16 min$16 min$13 min$0$0$0$1 min$0$12 min$21 min$18 min$34 min$48 min$44 min$0$22 min$0,$1 min$32 min$26 min$22 min$37 min$36 min$27 min$22 min$16 min$18 min$47 min$16 min$16 min$13 min$2 min$10 min$0$1 min$0$18 min$23 min$34 min$34 min$48 min$44 min$8 min$22 min$ 
+57601,KCG KRMR PASS,$ $6 min$10 min$12 min$14 min$16 min$21 min$26 min$36 min$33 min$36 min$36 min$36 min$33 min$41 min$40 min$44 min$45 min$42 min$0$33 min$2:58 hrs$59 min$52 min$1:04 hrs$1:04 hrs$37 min,$6 min$9 min$10 min$16 min$17 min$17 min$25 min$33 min$38 min$41 min$36 min$37 min$36 min$33 min$41 min$41 min$46 min$46 min$41 min$0$34 min$36 min$59 min$52 min$1:08 hrs$58 min$ 
+57690,KCG NZB PASS,$ $15 min$24 min$22 min$22 min$30 min$18 min$17 min$19 min$28 min$28 min$27 min$46 min$0,$12 min$22 min$22 min$23 min$27 min$31 min$19 min$21 min$24 min$32 min$31 min$33 min$47 min$ 
+57688,KCG NZB PASS,$ $1 hrs$1:08 hrs$1:09 hrs$1:11 hrs$1:25 hrs$1:31 hrs$1:37 hrs$56 min$0,$1:05 hrs$52 min$1:09 hrs$1:09 hrs$1:15 hrs$1:32 hrs$1:36 hrs$1:43 hrs$1:08 hrs$ 
+77693,KCG RC DEMU,$ $9 min$11 min$19 min$58 min$1:23 hrs$1:36 hrs$1:52 hrs$2:08 hrs$1:42 hrs$1:45 hrs$1:51 hrs$2:01 hrs$1:55 hrs$2:14 hrs$2:12 hrs$1:08 hrs$40 min$29 min,$3 min$11 min$14 min$48 min$1:15 hrs$1:28 hrs$1:54 hrs$1:52 hrs$2:15 hrs$1:46 hrs$1:51 hrs$1:52 hrs$2:01 hrs$2 hrs$2:15 hrs$2:14 hrs$1:09 hrs$40 min$ 
+17603,KCG VSG EXP,$ $24 min$25 min$25 min$28 min$15 min$18 min$6 min$42 min$43 min$13 min$1 min$8 min$10 min$17 min$14 min$16 min$17 min,$7 min$25 min$25 min$27 min$32 min$19 min$18 min$33 min$44 min$41 min$13 min$4 min$10 min$13 min$15 min$22 min$30 min$ 
+16570,KCG YPR EXP,$ $27 min$30 min$12 min$0$0$0$9 min$31 min$16 min$0$43 min$58 min$26 min$0,$2 min$28 min$31 min$12 min$0$0$8 min$9 min$34 min$20 min$5 min$50 min$59 min$27 min$ 
+57305,KCGGNT PASS,,
+19259,KCVL BVC EXPRESS,$ $3 min$17 min$19 min$21 min$8 min$0$8 min$26 min$16 min$17 min$4 min$9 min$2 min$8 min$11 min$14 min$0$25 min$45 min$22 min$1:09 hrs$1:06 hrs$17 min$27 min$0$0$0$0$2 min$3 min$11 min$10 min$0$24 min$30 min$29 min$2 min,$1 min$6 min$17 min$19 min$21 min$32 min$0$8 min$25 min$15 min$16 min$4 min$8 min$10 min$9 min$10 min$15 min$5 min$25 min$54 min$28 min$1:09 hrs$1:06 hrs$19 min$27 min$1 min$5 min$2 min$0$2 min$6 min$12 min$10 min$1 min$29 min$30 min$29 min$ 
+12201,KCVL GARIB RATH,$ $2 min$9 min$34 min$59 min$1:07 hrs$1:02 hrs$1:18 hrs$1:21 hrs$1:13 hrs$1:04 hrs$34 min$38 min$29 min$20 min$31 min$23 min$23 min$22 min$13 min$13 min$14 min$1 min$0$0,$1 min$2 min$10 min$43 min$59 min$1:07 hrs$1:11 hrs$1:17 hrs$1:21 hrs$1:14 hrs$1:05 hrs$39 min$39 min$30 min$22 min$32 min$23 min$24 min$21 min$17 min$14 min$15 min$3 min$8 min$ 
+22114,KCVL LTT SF EXP,$ $13 min$20 min$16 min$18 min$15 min$0$39 min$40 min$48 min$6 min$44 min$1:17 hrs$54 min$56 min$26 min$57 min$1:40 hrs$1:45 hrs$2:06 hrs$2:19 hrs$2:32 hrs$3 hrs$2:24 hrs$2:44 hrs,$1 min$15 min$20 min$16 min$19 min$25 min$6 min$50 min$46 min$48 min$41 min$45 min$43 min$53 min$59 min$26 min$56 min$54 min$1:48 hrs$2:21 hrs$2:20 hrs$2:32 hrs$3:01 hrs$2:26 hrs$ 
+56317,KCVL NCJ PASS,$ $10 min$13 min$19 min$15 min$14 min$14 min$2 min,$3 min$12 min$17 min$19 min$14 min$15 min$18 min$ 
+58425,KDJR BBS FAST PASS,$ $5 min$7 min$11 min$11 min$9 min$7 min$11 min$14 min$17 min$13 min$16 min$13 min$13 min$20 min$21 min$29 min$18 min$18 min$18 min,$0$5 min$7 min$11 min$11 min$9 min$8 min$13 min$15 min$17 min$15 min$16 min$10 min$13 min$20 min$22 min$26 min$18 min$18 min$ 
+74681,KEMK ASR DMU,$ $12 min$7 min$5 min,$5 min$12 min$7 min$ 
+74683,KEMK ASR DMU,$ $21 min$11 min,$19 min$23 min$ 
+74685,KEMK ASR DMU,$ $4 min$0,$2 min$5 min$ 
+74687,KEMK ASR DMU,$ $26 min$29 min$16 min,$24 min$29 min$30 min$ 
+12625,KERALA EXPRESS,$ $12 min$9 min$19 min$20 min$24 min$26 min$22 min$32 min$36 min$19 min$23 min$24 min$18 min$14 min$36 min$32 min$15 min$16 min$6 min$11 min$15 min$17 min$22 min$11 min$18 min$0$13 min$5 min$0$9 min$0$4 min$9 min$10 min$18 min$29 min$40 min$39 min$43 min$18 min$27 min$30 min,$6 min$12 min$8 min$19 min$20 min$24 min$27 min$23 min$35 min$36 min$20 min$24 min$25 min$19 min$19 min$40 min$32 min$22 min$21 min$14 min$15 min$18 min$20 min$25 min$15 min$20 min$1 min$17 min$9 min$12 min$8 min$2 min$11 min$16 min$15 min$19 min$30 min$39 min$40 min$45 min$27 min$27 min$ 
+12626,KERALA EXPRESS,$ $19 min$46 min$30 min$39 min$52 min$42 min$32 min$35 min$49 min$1:10 hrs$25 min$51 min$37 min$11 min$38 min$20 min$11 min$17 min$30 min$7 min$0$11 min$27 min$50 min$35 min$21 min$28 min$39 min$40 min$21 min$26 min$20 min$31 min$35 min$34 min$36 min$31 min$33 min$35 min$6 min,$0$21 min$48 min$28 min$42 min$53 min$44 min$39 min$41 min$52 min$1 hrs$34 min$51 min$36 min$15 min$51 min$20 min$17 min$24 min$31 min$17 min$4 min$13 min$36 min$48 min$35 min$26 min$27 min$39 min$40 min$25 min$31 min$25 min$31 min$32 min$34 min$36 min$38 min$32 min$35 min$ 
+12218,KERLA S KRANTI,$ $4 min$0$8 min$0$0$1 min$2 min$22 min$50 min$54 min$32 min$50 min$33 min$33 min$27 min$46 min$33 min$1 hrs$1 hrs$2 min,$0$0$0$10 min$5 min$1 min$1 day 10:16 hrs$7 min$35 min$1 hrs$1:01 hrs$39 min$50 min$39 min$1:20 hrs$33 min$47 min$52 min$59 min$1:02 hrs$ 
+78804,KGE G DEMU,$ $3 min$0$5 min$8 min$0,$0$4 min$2 min$5 min$8 min$ 
+78806,KGE G DEMU,$ $1 min$0$5 min$21 min$0,$0$2 min$0$19 min$23 min$ 
+78802,KGE G DEMU,$ $10 min$6 min$9 min$13 min$8 min,$10 min$11 min$7 min$9 min$13 min$ 
+12039,KGM NDLS SHT,$ $2 min$1 min$6 min$0$4 min$1 min$1 min,$1 min$2 min$1 min$6 min$0$8 min$5 min$ 
+14119,KGM DDN EXPRESS,,
+12208,KGM GARIB RATH,$ $3 min$3 min$0$0$7 min$23 min$7 min$6 min$0$3 min$19 min$20 min$15 min$8 min$0,$0$3 min$2 min$1 min$5 min$5 min$24 min$10 min$8 min$0$3 min$19 min$20 min$15 min$6 min$ 
+12209,KGM GARIB RATH,$ $3:10 hrs$3:06 hrs$3:23 hrs$3:19 hrs$3:21 hrs$3:28 hrs$3:22 hrs$3:31 hrs$3:25 hrs$3:06 hrs,$1:51 hrs$3:10 hrs$3:20 hrs$3:25 hrs$3:22 hrs$3:21 hrs$3:28 hrs$3:22 hrs$3:33 hrs$3:23 hrs$ 
+15044,KGM LJN EXP,$ $14 min$9 min$9 min$11 min$13 min$0$5 min$0$0$44 min,$11 min$22 min$6 min$10 min$11 min$12 min$3 min$4 min$0$19 min$ 
+55304,KGM MB PASS,$ $1 min$6 min$14 min$13 min$0$8 min$10 min$0$22 min,$1 min$5 min$9 min$14 min$18 min$3 min$8 min$14 min$7 min$ 
+55302,KGM MB PASS,$ $5 min$4 min$6 min$9 min$5 min$7 min$0$10 min$40 min$1 hrs,$0$5 min$2 min$6 min$12 min$18 min$11 min$7 min$37 min$45 min$ 
+52587,KGN DJ NG TRAIN,,
+52545,KGN DJ NG TRAIN,,
+52542,KGN NJP PASS N G,,
+58601,KGP ADRA PASS,,
+68021,KGP BLS MEMU,$ $25 min$10 min$7 min$17 min$17 min$19 min$14 min$11 min$13 min$10 min$4 min$0,$11 min$25 min$10 min$7 min$17 min$17 min$20 min$14 min$11 min$13 min$10 min$4 min$ 
+68643,KGP HIJ MEMU,,
+68645,KGP HIJ EMU,,
+68047,KGP BLDA MEMU,$ $52 min$1:38 hrs$1:40 hrs$50 min$0,$18 min$52 min$1:38 hrs$1:41 hrs$2 min$ 
+58025,KGP HTE PASS,$ $6 min$0$8 min$13 min$15 min$15 min$13 min$14 min$17 min$28 min$24 min$42 min$37 min$4 min$4 min$11 min$10 min$11 min$13 min$24 min$40 min$21 min$14 min$22 min$52 min$47 min$43 min$44 min$43 min$41 min$40 min$43 min$15 min,$2 min$6 min$0$8 min$16 min$17 min$18 min$13 min$20 min$34 min$27 min$33 min$47 min$37 min$2 min$8 min$14 min$10 min$11 min$21 min$39 min$40 min$19 min$21 min$43 min$48 min$51 min$45 min$44 min$44 min$51 min$52 min$52 min$ 
+38726,KGP HWH LOCAL,$ $49 min$37 min$21 min$33 min$42 min$39 min$53 min$38 min$46 min$43 min$44 min$44 min$1:02 hrs$37 min$53 min$16 min$58 min,$22 min$49 min$37 min$21 min$34 min$42 min$39 min$53 min$45 min$46 min$43 min$44 min$44 min$1:05 hrs$37 min$53 min$16 min$ 
+38712,KGP SRC FAST,$ $28 min$31 min$27 min$33 min$34 min$33 min$37 min$39 min$17 min,$27 min$29 min$32 min$27 min$33 min$34 min$33 min$37 min$39 min$ 
+38702,KGP HWH LOCAL,$ $7 min$7 min$9 min$10 min$8 min$11 min$13 min$15 min$13 min$10 min$12 min$14 min$7 min$20 min$13 min$13 min$22 min$11 min$11 min$14 min$0,$3 min$7 min$7 min$9 min$11 min$8 min$11 min$13 min$15 min$13 min$10 min$12 min$14 min$7 min$20 min$13 min$13 min$22 min$11 min$11 min$14 min$ 
+38704,KGP HWH LOCAL,$ $4 min$4 min$1 min$4 min$5 min$4 min$5 min$4 min$3 min$4 min$5 min$5 min$3 min$5 min$5 min$5 min$5 min$5 min$6 min$0,$0$4 min$4 min$1 min$4 min$5 min$4 min$5 min$4 min$3 min$4 min$5 min$5 min$3 min$5 min$5 min$5 min$5 min$5 min$6 min$ 
+38706,KGP HWH LOCAL,$ $3 min$2 min$3 min$3 min$4 min$6 min$5 min$4 min$6 min$6 min$8 min$7 min$12 min$10 min$9 min$5 min$7 min$8 min$6 min$0,$0$3 min$2 min$3 min$3 min$4 min$6 min$5 min$4 min$6 min$6 min$8 min$7 min$12 min$10 min$9 min$5 min$7 min$8 min$2 min$ 
+38710,KGP HWL LADIES SPL,$ $5 min$6 min$4 min$6 min$8 min$7 min$7 min$9 min$8 min$9 min$10 min$7 min$12 min$15 min$11 min$17 min$12 min$12 min$12 min$1 min,$1 min$5 min$6 min$4 min$6 min$8 min$7 min$7 min$9 min$8 min$9 min$10 min$7 min$12 min$15 min$11 min$17 min$12 min$12 min$12 min$ 
+38714,KGP HWH FAST,$ $3 min$1 min$5 min$3 min$3 min$2 min$3 min$4 min$3 min$3 min$0,$0$3 min$1 min$5 min$3 min$3 min$2 min$3 min$4 min$3 min$3 min$ 
+38718,KGP SRC LOCAL,$ $4 min$6 min$13 min$8 min$6 min$6 min$6 min$7 min$12 min$7 min$7 min$7 min$14 min$2:19 hrs$12 min$16 min$15 min$13 min$1:11 hrs,$0$4 min$7 min$13 min$8 min$6 min$6 min$7 min$7 min$12 min$7 min$8 min$3:09 hrs$14 min$2:19 hrs$12 min$16 min$15 min$13 min$ 
+38720,KGP HWH LOCAL,$ $2 min$2 min$4 min$3 min$3 min$2 min$3 min$1:36 hrs$2 min$1:08 hrs$4 min$6 min$3:14 hrs$1:21 hrs$8 min$13 min$8 min$1:11 hrs$8 min$0,$1 min$2 min$2 min$4 min$4 min$3 min$2 min$3 min$1 min$1:14 hrs$1:08 hrs$4 min$6 min$3:14 hrs$1:21 hrs$8 min$13 min$8 min$1:11 hrs$8 min$ 
+38722,KGP HWH LOCAL,$ $41 min$1 min$1 min$3 min$3 min$2 min$2 min$3 min$3 min$4 min$10 min$8 min$12 min$6 min$10 min$14 min$7 min$26 min$2 min,$2 min$41 min$1 min$1 min$25 min$3 min$2 min$2 min$3 min$3 min$7 min$10 min$9 min$12 min$6 min$10 min$14 min$7 min$26 min$ 
+38724,KGP HWH LOCAL,$ $1 min$5 min$7 min$7 min$7 min$7 min$5 min$7 min$10 min$11 min$9 min$11 min$14 min$13 min$8 min$6 min$2 min$6 min$8 min$0,$0$1 min$5 min$7 min$7 min$7 min$7 min$5 min$10 min$10 min$11 min$9 min$11 min$14 min$13 min$9 min$6 min$2 min$6 min$8 min$ 
+38708,KGP HWH LOCAL,$ $1 min$2 min$2 min$3 min$4 min$4 min$4 min$4 min$5 min$5 min$7 min$5 min$6 min$3 min$9 min$2 min$2 min$4 min$8 min$6 min$0,$0$1 min$2 min$2 min$3 min$4 min$4 min$4 min$4 min$5 min$5 min$7 min$5 min$6 min$3 min$9 min$2 min$2 min$4 min$8 min$6 min$ 
+08017,KGP JGM SPL,$ $2 min$3 min$8 min$5 min$2 min,$0$2 min$3 min$8 min$5 min$ 
+08051,KGP JGM SPL,$ $15 min,$19 min$ 
+58009,KGP JJKR PASS,,
+58005,KGP KUR PASS,$ $12 min$13 min$16 min$15 min$13 min$21 min$22 min$22 min$23 min$22 min$19 min$22 min$21 min$13 min$19 min$18 min$18 min$27 min$0$4 min$7 min$9 min$10 min$19 min$30 min$50 min$52 min$1:06 hrs$59 min$1 hrs,$4 min$12 min$13 min$18 min$15 min$14 min$24 min$24 min$23 min$23 min$24 min$23 min$21 min$21 min$13 min$20 min$22 min$28 min$27 min$3 min$5 min$7 min$9 min$8 min$20 min$32 min$50 min$51 min$1:06 hrs$58 min$ 
+22875,KGP  PRR  EXRES,$ $0$3 min$5 min$6 min$8 min$9 min$9 min$12 min$18 min$7 min$9 min$9 min,$5 min$0$4 min$6 min$6 min$8 min$9 min$9 min$13 min$18 min$7 min$10 min$ 
+38716,KGP HWH LOCAL,$ $5 min$5 min$3 min$4 min$4 min$6 min$6 min$5 min$7 min$6 min$9 min$8 min$8 min$11 min$26 min$5 min$8 min$9 min$1 min,$3 min$5 min$5 min$3 min$4 min$4 min$6 min$6 min$5 min$7 min$6 min$11 min$8 min$8 min$11 min$26 min$5 min$8 min$9 min$ 
+68013,KGP TATA MEMU,$ $14 min$16 min$13 min$12 min$4 min$4 min$4 min$3 min$2 min$1 min$1 min$2 min$0,$2 min$14 min$16 min$13 min$13 min$5 min$4 min$4 min$3 min$2 min$2 min$1 min$2 min$ 
+68005,KGP TATA MEMU,$ $20 min$9 min$21 min$23 min$23 min$7 min$12 min$6:10 hrs$6 min$9 min$14 min$8 min$0,$2 min$21 min$9 min$21 min$24 min$24 min$7 min$13 min$11 min$6 min$9 min$4:15 hrs$17 min$ 
+68011,KGP TATA MEMU,$ $16 min$14 min$15 min$16 min$17 min$14 min$15 min$12 min$16 min$2 min$23 min$1 min,$6 min$16 min$14 min$16 min$16 min$17 min$14 min$15 min$12 min$16 min$2 min$20 min$ 
+68015,KGP TATA MEMU,$ $7 min$7 min$13 min$18 min$24 min$34 min$36 min$35 min$38 min$37 min$31 min$26 min$18 min,$1 min$8 min$7 min$14 min$23 min$32 min$39 min$37 min$38 min$38 min$39 min$34 min$26 min$ 
+58021,KGP TATA PASS,$ $14 min$27 min$28 min$38 min$34 min$33 min$32 min$35 min$32 min$38 min$37 min$45 min$0,$6 min$22 min$29 min$39 min$42 min$37 min$34 min$33 min$35 min$31 min$39 min$40 min$1:17 hrs$ 
+22603,KGP VM SF EXP,$ $0$16 min$0$25 min$17 min$9 min$27 min$36 min$5 min$0$0$7 min$8 min$0$0,$4 min$1 min$16 min$10 min$22 min$17 min$9 min$26 min$37 min$1 min$14 min$2 min$7 min$9 min$1 min$ 
+22604,KHARAGPUR EXP,$ $0$0$9 min$0$5 min$0$30 min$40 min$31 min$0$5 min$0,$0$1 min$0$9 min$4 min$8 min$28 min$25 min$41 min$31 min$6 min$5 min$ 
+95002,KHPI CSTM FAST,$ $0$0$0$1 min$1 min$1 min$4 min,$1 min$0$0$0$1 min$1 min$1 min$ 
+95004,KHPI CSTM FAST,$ $2 min$3 min$3 min$3 min$5 min$5 min$8 min,$2 min$3 min$3 min$3 min$2 min$5 min$5 min$ 
+95006,KHPI CSTM FAST,$ $0$1 min$1 min$1 min$1 min$2 min$3 min,$2 min$2 min$1 min$1 min$1 min$2 min$2 min$ 
+95008,KHPI CSTM FAST,$ $4 min$5 min$5 min$5 min$5 min$5 min$9 min,$5 min$5 min$5 min$5 min$5 min$5 min$5 min$ 
+95010,KHPI CSTM FAST,$ $3 min$3 min$3 min$4 min$4 min$5 min$10 min$8 min,$1 min$4 min$3 min$3 min$4 min$4 min$5 min$10 min$ 
+95404,KSRA CSTM FAST,$ $1 min$1 min$2 min$2 min$2 min$3 min$4 min$4 min$5 min,$0$1 min$1 min$2 min$2 min$2 min$3 min$5 min$4 min$ 
+96016,KHPI KJT LOCAL,$ $10 min,$10 min$ 
+96002,KHPI KJT LOCAL,$ $11 min,$11 min$ 
+96004,KHPI KJT LOCAL,$ $3 min,$3 min$ 
+96006,KHPI KJT LOCAL,$ $8 min,$7 min$ 
+96008,KHPI KJT LOCAL,$ $15 min,$3 min$ 
+96010,KHPI KJT LOCAL,$ $1 min,$2 min$ 
+96012,KHPI KJT LOCAL,$ $0,$1 min$ 
+96014,KHPI KJT LOCAL,$ $9 min,$9 min$ 
+96018,KHPI KJT LOCAL,$ $7 min,$8 min$ 
+38602,KIG HWH LOCAL,$ $5 min$4 min$9 min$9 min$10 min$13 min$13 min$10 min$12 min$16 min$11 min$18 min$3 min,$3 min$5 min$4 min$9 min$9 min$10 min$13 min$14 min$10 min$12 min$16 min$11 min$18 min$ 
+11018,KIK LTT EXPRESS,$ $11 min$22 min$30 min$1:14 hrs$1:22 hrs$1:22 hrs$1:22 hrs$30 min$7 min$2 min$5 min$15 min$17 min$20 min$50 min$35 min$51 min$1:03 hrs$58 min$0$11 min$47 min$24 min$21 min$38 min$12 min,$0$15 min$22 min$55 min$1:14 hrs$1:21 hrs$1:21 hrs$1:20 hrs$25 min$7 min$12 min$5 min$18 min$16 min$20 min$52 min$54 min$1 hrs$1:04 hrs$58 min$8 min$13 min$1:10 hrs$28 min$23 min$38 min$ 
+56513,KIK SBC FAST PASS,$ $6 min$5 min$17 min$32 min$35 min$28 min$16 min$16 min$17 min$16 min$10 min$6 min$24 min$24 min$23 min$22 min$2 min$17 min$17 min$12 min$18 min$16 min$19 min$19 min$22 min$15 min$19 min$26 min$25 min$29 min$30 min$25 min$23 min$26 min$31 min$32 min$30 min$34 min$36 min$37 min$9 min$10 min$2 min,$0$6 min$3 min$25 min$32 min$41 min$13 min$16 min$16 min$17 min$17 min$9 min$21 min$25 min$24 min$23 min$22 min$16 min$19 min$17 min$20 min$17 min$16 min$20 min$21 min$22 min$15 min$21 min$26 min$25 min$29 min$26 min$25 min$23 min$26 min$31 min$32 min$30 min$41 min$36 min$48 min$10 min$10 min$ 
+76815,KIK TJ DEMU,$ $3 min$7 min$10 min$9 min$16 min$16 min$22 min$25 min$0,$0$10 min$10 min$10 min$14 min$16 min$16 min$22 min$25 min$ 
+56711,KIK TPJ DMU,$ $2 min$6 min$10 min$15 min$14 min$19 min$25 min$32 min$14 min$15 min$16 min$18 min$20 min$18 min$3 min,$1 min$4 min$8 min$10 min$13 min$14 min$19 min$26 min$32 min$13 min$17 min$18 min$18 min$20 min$17 min$ 
+76813,KIK VLKN DMU,$ $6 min$0$0,$0$7 min$0$ 
+15707,KIR ASR EXPRESS,$ $11 min$11 min$12 min$14 min$3 min$9 min$22 min$0$10 min$17 min$19 min$0$2 min$8 min$16 min$11 min$31 min$34 min$35 min$23 min$23 min$24 min$1:25 hrs$28 min$39 min$20 min$4 min$33 min$40 min$1:43 hrs$1:25 hrs$1:29 hrs$1:43 hrs$46 min$1:36 hrs$1:34 hrs$1:37 hrs$1:41 hrs$2:54 hrs$1:51 hrs$2 hrs$1:26 hrs$1:36 hrs$1:39 hrs$1:43 hrs$1:25 hrs$1:51 hrs$1:37 hrs$1:41 hrs$1:49 hrs$51 min,$0$11 min$13 min$12 min$25 min$9 min$11 min$23 min$1 min$10 min$15 min$19 min$3 min$4 min$8 min$17 min$14 min$26 min$34 min$35 min$22 min$28 min$29 min$1:25 hrs$30 min$39 min$19 min$11 min$34 min$44 min$1:40 hrs$1:24 hrs$1:29 hrs$1:49 hrs$1:41 hrs$1:36 hrs$1:34 hrs$1:25 hrs$1:43 hrs$2:54 hrs$1:58 hrs$2:01 hrs$1:27 hrs$1:37 hrs$1:41 hrs$1:45 hrs$1:27 hrs$1:51 hrs$1:40 hrs$1:36 hrs$1:49 hrs$ 
+55223,SPJ DBG PASS,,
+15712,KIR HWH EXPRESS,,
+55704,KIR MLFC PASS,$ $10 min$12 min$12 min$12 min$18 min$19 min$21 min$23 min$23 min$22 min$22 min$20 min$16 min,$5 min$13 min$14 min$12 min$15 min$17 min$19 min$23 min$23 min$23 min$22 min$21 min$23 min$ 
+55702,KIR MLDT PASS,$ $28 min$28 min$37 min$39 min$31 min$1:59 hrs$2:07 hrs$2:16 hrs$2:16 hrs$2:13 hrs$2:10 hrs$2:02 hrs$1:42 hrs,$25 min$28 min$38 min$37 min$48 min$1:54 hrs$2:05 hrs$2:17 hrs$2:17 hrs$2:15 hrs$2:13 hrs$2:10 hrs$2:03 hrs$ 
+55708,KIR RDP PASS,,
+55727,KIR RDP PASS,,
+55729,KIR RDP PASS,,
+28182,KIR TATA LNK EXP,,
+14520,KISAN EXPRESS,$ $5 min$4 min$9 min$19 min$19 min$20 min$18 min$18 min$19 min$25 min$6 min$8 min$2 min$5 min$7 min$10 min$9 min$17 min$5 min,$1 min$5 min$6 min$12 min$19 min$19 min$22 min$18 min$19 min$20 min$25 min$4 min$8 min$1 min$5 min$6 min$11 min$9 min$25 min$ 
+14519,KISAN EXPRESS,$ $9 min$17 min$12 min$21 min$22 min$38 min$13 min$15 min$15 min$21 min$21 min$17 min$18 min$18 min$20 min$21 min$30 min$32 min$1 min,$6 min$9 min$17 min$12 min$22 min$21 min$40 min$14 min$11 min$17 min$22 min$22 min$17 min$18 min$20 min$22 min$21 min$30 min$32 min$ 
+53627,KIUL GAYA PASS,$ $12 min$17 min$15 min$15 min$4 min$28 min$31 min$1:44 hrs$1:11 hrs$1:15 hrs$0$0,$0$13 min$17 min$15 min$20 min$25 min$28 min$1:40 hrs$1:44 hrs$1:12 hrs$1:31 hrs$11 min$ 
+53629,KIUL GAYA PASS,,
+73428,KIUL JMP PASS,$ $2 min$6 min$7 min$7 min$9 min$31 min$8 min$3 min,$4 min$5 min$7 min$7 min$7 min$9 min$10 min$8 min$ 
+53480,KIUL JMP PASS,$ $9 min$9 min$9 min$8 min$11 min$22 min$9 min,$6 min$8 min$9 min$10 min$9 min$11 min$9 min$ 
+73422,KIUL JMP PASS,$ $9 min$14 min$11 min$11 min$12 min$31 min$11 min$0,$8 min$11 min$14 min$11 min$11 min$12 min$13 min$11 min$ 
+53424,KIUL JMP PASS,,
+73426,KIUL JMP PASS,$ $9 min$15 min$13 min$12 min$12 min$22 min$12 min$0,$9 min$11 min$15 min$13 min$12 min$13 min$13 min$13 min$ 
+63572,MKA JSME MEMU,$ $3 min$7 min$7 min$11 min$16 min$28 min$0$14 min$18 min$22 min$25 min$29 min$22 min$26 min$0$4 min$8 min$9 min$5 min,$0$5 min$7 min$9 min$11 min$18 min$28 min$11 min$15 min$21 min$22 min$25 min$29 min$22 min$26 min$1 min$4 min$8 min$9 min$ 
+63574,KIUL JSME MEMU,$ $1:05 hrs$1:08 hrs$1:06 hrs$1:09 hrs$1:12 hrs$1:12 hrs$1:11 hrs$55 min$1:18 hrs$1:19 hrs$1:18 hrs$1:27 hrs,$58 min$1:06 hrs$1:09 hrs$1:07 hrs$1:10 hrs$1:13 hrs$1:13 hrs$1:12 hrs$1:18 hrs$1:20 hrs$1:20 hrs$1:19 hrs$ 
+63205,KIUL PNBE MEMU,$ $13 min$13 min$33 min$50 min$51 min$53 min$57 min$1:01 hrs$1:04 hrs$46 min$51 min$50 min$49 min$49 min$33 min$43 min$49 min$49 min$50 min$50 min$0,$0$13 min$34 min$50 min$51 min$52 min$53 min$57 min$1:02 hrs$1:27 hrs$50 min$54 min$50 min$49 min$52 min$38 min$49 min$50 min$52 min$55 min$50 min$ 
+66534,BYPL KPN MEMU,$ $5 min$7 min$10 min$13 min$13 min$14 min$15 min$15 min$0,$4 min$5 min$7 min$11 min$13 min$13 min$14 min$15 min$15 min$ 
+95102,KJT CSTM FAST,$ $0$0$1 min$1 min$2 min$3 min,$0$0$0$1 min$1 min$2 min$ 
+95104,KJT CSTM FAST,$ $0$0$1 min$1 min$2 min$3 min,$0$0$0$1 min$1 min$2 min$ 
+95106,KJT CSTM FAST,$ $2 min$2 min$2 min$4 min$4 min$5 min,$1 min$1 min$2 min$2 min$4 min$4 min$ 
+95108,KJT CSTM FAST,$ $3 min$3 min$3 min$3 min$2 min$5 min,$3 min$3 min$3 min$3 min$4 min$2 min$ 
+95110,KJT CSTM FAST,$ $2 min$1 min$3 min$4 min$3 min$5 min,$2 min$2 min$2 min$3 min$4 min$3 min$ 
+95112,KJT CSTM FAST,$ $4 min$4 min$3 min$3 min$3 min$5 min,$3 min$4 min$3 min$3 min$4 min$3 min$ 
+95114,KJT CSTM FAST,$ $0$0$0$0$1 min$2 min,$0$1 min$0$0$0$1 min$ 
+95116,KJT CSTM FAST,$ $1 min$1 min$2 min$1 min$2 min$3 min,$1 min$1 min$2 min$2 min$1 min$2 min$ 
+95118,KJT CSTM FAST,$ $0$0$1 min$1 min$2 min$8 min,$0$0$0$1 min$1 min$2 min$ 
+95120,KJT CSTM FAST,$ $0$0$1 min$1 min$0$8 min,$1 min$0$0$1 min$1 min$0$ 
+95122,KJT CSTM FAST,$ $2 min$1 min$2 min$3 min$4 min$12 min,$1 min$2 min$2 min$2 min$3 min$4 min$ 
+95124,KJT CSTM FAST,$ $0$0$0$0$3 min$7 min,$0$0$0$0$0$3 min$ 
+95126,KJT CSTM FAST,$ $1 min$1 min$1 min$1 min$1 min$10 min,$1 min$1 min$1 min$1 min$1 min$1 min$ 
+95128,KJT CSTM FAST,,
+95132,KJT CSTM FAST,$ $0$0$0$1 min$2 min$4 min,$0$0$0$0$1 min$2 min$ 
+95134,KJT CSTM FAST,$ $2 min$2 min$3 min$3 min$3 min$6 min,$2 min$2 min$2 min$3 min$3 min$2 min$ 
+95136,KJT CSTM FAST,,
+95138,KJT CSTM FAST,$ $1 min$1 min$2 min$2 min$1 min$6 min,$0$1 min$1 min$2 min$2 min$1 min$ 
+95140,KJT CSTM FAST,$ $5 min$4 min$5 min$5 min$5 min$7 min,$4 min$5 min$4 min$5 min$5 min$5 min$ 
+96102,KJT CSTM LOCAL,$ $3 min$3 min$4 min$3 min$2 min$3 min,$2 min$3 min$3 min$4 min$2 min$2 min$ 
+96104,KJT CSTM LOCAL,$ $2 min$2 min$3 min$3 min$3 min$2 min,$1 min$2 min$2 min$3 min$3 min$4 min$ 
+96106,KJT CSTM LOCAL,$ $2 min$2 min$2 min$2 min$2 min$3 min,$1 min$2 min$2 min$2 min$2 min$2 min$ 
+96110,KJT TNA LOCAL,$ $3 min$3 min$3 min$4 min$4 min$10 min,$3 min$4 min$3 min$3 min$4 min$4 min$ 
+96001,KJT KHPI LOCAL,$ $4 min,$3 min$ 
+96005,KJT KHPI LOCAL,$ $5 min,$1 min$ 
+96007,KJT KHPI LOCAL,$ $1 min,$0$ 
+96009,KJT KHPI LOCAL,$ $0,$0$ 
+96011,KJT KHPI LOCAL,,
+96013,KJT KHPI LOCAL,$ $5 min,$3 min$ 
+96015,KJT KHPI LOCAL,$ $8 min,$5 min$ 
+51317,KJT PUNE PASS,,
+96108,KJT TNA LOCAL,$ $6 min$5 min$5 min$5 min$7 min$13 min,$6 min$6 min$5 min$5 min$5 min$7 min$ 
+52955,AE JND PASS M G,$ ,$ 
+74014,KKDE DLI DMU,$ $47 min$37 min$35 min$33 min$33 min$34 min$34 min$31 min$13 min$14 min$14 min$19 min$16 min$16 min$16 min$17 min$23 min$22 min$23 min$20 min$21 min$26 min$23 min$36 min$34 min$55 min$1 hrs,$40 min$41 min$38 min$35 min$33 min$33 min$36 min$34 min$11 min$14 min$14 min$14 min$19 min$16 min$19 min$17 min$19 min$24 min$23 min$24 min$21 min$25 min$27 min$27 min$39 min$34 min$1:13 hrs$ 
+64452,KKDE DLI MEMU,$ $3 min$3 min$4 min$4 min$8 min$7 min$8 min$9 min$9 min$10 min$13 min$18 min$20 min$23 min$23 min$24 min$23 min$26 min$29 min$35 min$36 min$50 min$32 min,$2 min$3 min$3 min$4 min$5 min$8 min$8 min$8 min$9 min$9 min$10 min$16 min$18 min$22 min$23 min$23 min$23 min$23 min$27 min$36 min$38 min$37 min$51 min$ 
+64454,KKDE DLI MEMU,$ $10 min$10 min$16 min$17 min$26 min$25 min$28 min$24 min$29 min$17 min$21 min$22 min$25 min$31 min$35 min$41 min$5 min$40 min$44 min$51 min$53 min$41 min$21 min$22 min,$6 min$9 min$14 min$16 min$23 min$26 min$28 min$28 min$8 min$29 min$21 min$21 min$24 min$30 min$35 min$40 min$40 min$5 min$43 min$47 min$52 min$57 min$43 min$25 min$ 
+54047,KKDE JIND FAST PASS,$ $29 min$38 min$48 min$45 min$46 min$49 min$38 min$36 min,$15 min$33 min$43 min$48 min$45 min$41 min$49 min$38 min$ 
+54037,KKDE JIND PASS,$ $46 min$47 min$1:02 hrs$36 min$36 min$37 min$29 min$31 min,$43 min$46 min$54 min$56 min$38 min$36 min$37 min$29 min$ 
+54039,KKDE JIND PASS,$ $25 min$32 min$34 min$19 min$19 min$21 min$24 min$32 min,$11 min$30 min$33 min$34 min$21 min$21 min$21 min$24 min$ 
+54041,KKDE JIND PASS,$ $14 min$14 min$12 min$13 min$14 min$14 min$15 min$0,$2 min$15 min$23 min$12 min$15 min$13 min$18 min$23 min$ 
+64462,KKDE NZM MEMU,$ $3 min$3 min$4 min$7 min$8 min$9 min$10 min$12 min$11 min$12 min$15 min$20 min$21 min$22 min$23 min$22 min$22 min$24 min$26 min$26 min$26 min$25 min$26 min$32 min$16 min,$0$3 min$3 min$6 min$7 min$8 min$9 min$10 min$12 min$11 min$15 min$19 min$20 min$21 min$22 min$23 min$22 min$22 min$24 min$26 min$26 min$27 min$27 min$26 min$31 min$ 
+74993,KKDE UMB DEMU,$ $16 min$16 min$17 min$20 min$22 min$13 min,$11 min$16 min$17 min$19 min$20 min$22 min$ 
+64545,KKDE UMB MEMU,$ $13 min$16 min$20 min$31 min$33 min$1:24 hrs,$12 min$16 min$20 min$31 min$31 min$33 min$ 
+64547,KKDE UMB MEMU,$ $26 min$26 min$33 min$41 min$43 min$20 min,$23 min$26 min$33 min$40 min$42 min$43 min$ 
+64483,KKDE UMB MEMU,$ ,$ 
+76830,KKDI TPJ DMU,$ $2 min$5 min$0$6 min$7 min$9 min$0,$0$2 min$5 min$6 min$6 min$7 min$9 min$ 
+76840,KKDI TPJ MEMU,$ $1 min$3 min$4 min$8 min$15 min$14 min$0,$0$1 min$3 min$5 min$13 min$16 min$14 min$ 
+76837,KKDI VPT MEMU,$ $5 min$9 min$11 min$12 min$7 min$21 min$32 min$34 min$0,$2 min$5 min$9 min$12 min$15 min$18 min$29 min$32 min$35 min$ 
+74981,KKP FKA DMU,$ $2 min$3 min$2 min$0,$0$12 min$3 min$3 min$ 
+74983,KKP FKA DMU,$ $6 min$4 min$5 min$0,$0$6 min$4 min$5 min$ 
+14887,KLK BME EXPRESS,$ $2 min$2 min$4 min$0$8 min$9 min$17 min$17 min$19 min$28 min$27 min$25 min$24 min$26 min$22 min$10 min$11 min$10 min$11 min$11 min$14 min$26 min$21 min$26 min$27 min$26 min$27 min$1 min$22 min$23 min$0$12 min$12 min$0$1 min$11 min$19 min$23 min$24 min$2 min,$0$2 min$3 min$4 min$2 min$9 min$9 min$19 min$17 min$14 min$28 min$27 min$25 min$24 min$27 min$1 min$10 min$13 min$10 min$12 min$16 min$19 min$26 min$23 min$27 min$27 min$28 min$27 min$0$25 min$28 min$9 min$12 min$13 min$6 min$11 min$13 min$19 min$31 min$24 min$ 
+54304,KLK DLI PASS,$ $5 min$5 min$17 min$16 min$18 min$18 min$14 min$21 min$22 min$20 min$19 min$31 min$31 min$30 min$1:32 hrs$1:34 hrs$1:39 hrs$47 min$20 min$23 min$26 min$30 min$33 min$34 min$7 min$11 min$12 min$15 min$16 min$21 min$20 min$22 min$12 min$0$2 min$9 min$6 min$17 min$5 min$19 min$22 min$25 min,$2 min$6 min$11 min$17 min$16 min$17 min$18 min$19 min$21 min$21 min$20 min$28 min$31 min$31 min$1:43 hrs$1:32 hrs$1:42 hrs$1:39 hrs$17 min$22 min$26 min$29 min$32 min$33 min$35 min$15 min$11 min$13 min$16 min$17 min$22 min$20 min$22 min$1 min$1 min$7 min$10 min$9 min$17 min$17 min$19 min$28 min$ 
+52457,KLK SML PASS,$ $0$2 min$1 min$5 min$5 min$6 min$4 min$5 min$7 min$7 min$8 min$8 min$9 min$10 min$12 min$13 min$1 min,$0$1 min$2 min$2 min$5 min$5 min$6 min$4 min$5 min$7 min$7 min$8 min$9 min$9 min$10 min$13 min$13 min$ 
+22456,KLK SNSI SF EXP,$ $1 min$0$10 min$17 min$16 min$11 min$0$5 min$19 min$25 min$33 min$46 min$53 min$0,$0$0$1 min$17 min$12 min$16 min$16 min$0$12 min$22 min$30 min$38 min$53 min$54 min$ 
+14503,KLK SVDK EXPRESS,$ $2 min$19 min$32 min$35 min$43 min$26 min$18 min$18 min$0,$3 min$11 min$19 min$32 min$41 min$44 min$25 min$15 min$15 min$ 
+34056,KLYM BGB LOCAL,$ $1 min$3 min$4 min$5 min$8 min$8 min$8 min$8 min$16 min$9 min$15 min$8 min$9 min$9 min$11 min$12 min$10 min$5 min,$0$2 min$3 min$4 min$5 min$8 min$8 min$8 min$9 min$16 min$9 min$15 min$11 min$9 min$9 min$11 min$12 min$10 min$ 
+30128,KLYM NACC LOCAL,$ $0$6 min$6 min$7 min$8 min$12 min$10 min$10 min$10 min$6 min$3 min$7 min$11 min$4 min$0,$0$5 min$6 min$6 min$8 min$8 min$12 min$10 min$10 min$10 min$7 min$3 min$12 min$9 min$1 min$ 
+31192,KLYM NH LOCAL,$ $0$0$3 min,$0$0$0$ 
+31312,KLYM SDAH LOCAL,$ $1 min$7 min$7 min$8 min$7 min$4 min$7 min$13 min$0,$0$4 min$7 min$7 min$8 min$7 min$4 min$7 min$13 min$ 
+31314,KLYM SDAH LOCAL,$ $1 min$1 min$4 min$4 min$3 min$3 min$6 min$4 min$4 min,$0$1 min$1 min$5 min$4 min$3 min$3 min$6 min$4 min$ 
+31316,KLYM SDAH LOCAL,$ $1 min$2 min$2 min$1 min$3 min$2 min$2 min$0,$0$1 min$2 min$2 min$1 min$3 min$2 min$2 min$ 
+31318,KLYM SDAH LOCAL,$ $1 min$3 min$5 min$5 min$6 min$8 min$8 min$6 min$45 min$7 min$3 min,$0$2 min$3 min$5 min$5 min$6 min$8 min$8 min$6 min$45 min$7 min$ 
+31322,KLYM SDAH LOCAL,$ $0$3 min$4 min$4 min$8 min$9 min$10 min$7 min$15 min$0,$0$2 min$3 min$4 min$6 min$10 min$9 min$11 min$7 min$15 min$ 
+31324,KLYM SDAH LOCAL,$ $1 min$2 min$6 min$5 min$5 min$5 min$9 min$5 min$10 min$1 min,$0$1 min$2 min$6 min$5 min$6 min$5 min$9 min$5 min$10 min$ 
+31326,KLYM SDAH LOCAL,$ $1 min$2 min$5 min$3 min$5 min$15 min$7 min$3 min,$0$4 min$2 min$5 min$4 min$5 min$15 min$7 min$ 
+31328,KLYM SDAH LOCAL,$ $1 min$6 min$5 min$9 min$9 min$13 min$5 min$14 min$18 min$10 min,$0$4 min$6 min$5 min$9 min$9 min$13 min$5 min$14 min$18 min$ 
+31330,KLYM SDAH LOCAL,$ $0$4 min$6 min$2 min$1:53 hrs$2 min$2 min$4 min$10 min$0,$0$2 min$4 min$6 min$2 min$1 min$2 min$2 min$4 min$10 min$ 
+31332,KLYM SDAH LOCAL,$ $1 min$7 min$8 min$7 min$6 min$7 min$14 min$10 min$26 min$8 min,$0$4 min$7 min$8 min$7 min$9 min$7 min$14 min$10 min$26 min$ 
+31334,KLYM SDAH LOCAL,$ $1 min$3 min$5 min$2 min$2 min$3 min$5 min$5 min$9 min$11 min,$0$2 min$3 min$5 min$3 min$2 min$3 min$5 min$5 min$9 min$ 
+31336,KLYM SDAH LOCAL,$ $1 min$2 min$4 min$6 min$9 min$8 min$9 min$9 min$1 min,$0$1 min$2 min$8 min$7 min$9 min$8 min$9 min$9 min$ 
+31320,KLYM SDAH LOCAL,$ $1 min$4 min$7 min$6 min$10 min$10 min$6 min,$0$1 min$4 min$7 min$6 min$10 min$10 min$ 
+71102,KMN JM RAIL BUS,,
+71108,KMN JM RAIL BUS,,
+71112,KMN JM RAIL BUS,,
+71116,KMN JM RAIL BUS,,
+68074,KNF BJE MEMU,$ $12 min$16 min$15 min$12 min$20 min$22 min$18 min$20 min$0,$13 min$10 min$16 min$16 min$17 min$20 min$23 min$18 min$8 min$ 
+31726,KNJ RHA LOCAL,$ $2 min$2 min$3 min$1 min,$0$2 min$2 min$3 min$ 
+31722,KNJ RHA LOCAL,$ $4 min$5 min$6 min$1 min,$0$4 min$5 min$6 min$ 
+31724,KNJ RHA LOCAL,$ $4 min$4 min$2 min,$0$4 min$4 min$ 
+31802,KNJ SDAH LADIES SPL,$ $7 min$7 min$5 min$4 min$8 min$9 min$6 min$9 min$9 min$7 min$8 min$10 min$9 min$9 min$10 min$7 min,$1 min$7 min$7 min$6 min$4 min$8 min$9 min$6 min$9 min$9 min$8 min$8 min$10 min$9 min$9 min$10 min$ 
+31838,KNJ SDAH LOCAL,,
+31812,KNJ SDAH LOCAL,,
+31816,KNJ SDAH LOCAL,$ $4 min$5 min$7 min$2 min$12 min$7 min$7 min$9 min$10 min$6 min$6 min$3 min$5 min$6 min$5 min$1 min,$0$4 min$5 min$6 min$3 min$12 min$7 min$7 min$9 min$10 min$7 min$6 min$3 min$5 min$6 min$5 min$ 
+31820,KNJ SDAH LOCAL,$ $5 min$5 min$7 min$6 min$8 min$7 min$11 min$11 min$14 min$12 min$6 min$12 min$15 min$9 min$11 min$0,$0$5 min$5 min$7 min$6 min$9 min$7 min$11 min$11 min$14 min$12 min$6 min$12 min$15 min$9 min$11 min$ 
+31822,KNJ SDAH LOCAL,$ $4 min$6 min$6 min$2 min$6 min$7 min$9 min$10 min$11 min$9 min$9 min$11 min$11 min$11 min$5 min,$0$4 min$6 min$6 min$2 min$6 min$7 min$9 min$10 min$11 min$9 min$9 min$11 min$11 min$11 min$ 
+31824,KNJ SDAH LOCAL,$ $8 min$9 min$11 min$7 min$11 min$15 min$13 min$16 min$16 min$16 min$21 min$18 min$18 min$30 min$23 min$5 min,$4 min$8 min$9 min$11 min$7 min$11 min$15 min$13 min$16 min$16 min$16 min$21 min$18 min$18 min$30 min$23 min$ 
+31828,KNJ SDAH LOCAL,$ $4 min$4 min$3 min$5 min$7 min$5 min$6 min$9 min$6 min,$0$4 min$4 min$4 min$5 min$7 min$5 min$6 min$9 min$ 
+31830,KNJ SDAH LOCAL,$ $6 min$7 min$8 min$3 min$8 min$7 min$10 min$10 min$11 min$13 min$13 min$7 min$15 min$10 min$14 min$15 min$4 min,$0$6 min$7 min$8 min$3 min$8 min$7 min$10 min$10 min$11 min$13 min$13 min$7 min$15 min$10 min$14 min$15 min$ 
+31832,KNJ SDAH LOCAL,$ $3 min$5 min$6 min$2 min$5 min$8 min$8 min$13 min$12 min$5 min$5 min$7 min$7 min$2 min,$0$3 min$5 min$6 min$2 min$5 min$8 min$8 min$13 min$12 min$5 min$5 min$7 min$7 min$ 
+31834,KNJ SDAH LOCAL,,
+31836,KNJ SDAH LOCAL,$ $4 min$5 min$7 min$2 min$6 min$8 min$7 min$8 min$8 min$8 min$3 min$6 min$8 min$6 min,$0$4 min$5 min$7 min$2 min$6 min$8 min$7 min$8 min$8 min$8 min$3 min$6 min$8 min$ 
+31814,KNJ SDAH LOCAL,$ $4 min$5 min$7 min$3 min$6 min$6 min$9 min$8 min$11 min$11 min$18 min$9 min$11 min$8 min,$0$4 min$5 min$7 min$3 min$6 min$6 min$9 min$8 min$11 min$11 min$18 min$9 min$11 min$ 
+31818,KNJ SDAH LOCAL,$ $3 min$6 min$6 min$1 min$6 min$6 min$5 min$7 min$8 min$4 min$9 min$7 min$5 min$4 min$1 min,$0$3 min$6 min$6 min$1 min$6 min$6 min$5 min$7 min$8 min$4 min$9 min$7 min$5 min$4 min$ 
+31826,KNJ SDAH LOCAL,,
+31584,KNJ STB LOCAL,$ $0,$0$ 
+31586,KNJ STB LOCAL,,
+59205,KNLS PBR PASS,,
+51683,KNW BIR PASS,,
+51685,KNW BIR PASS,$ $1:03 hrs$1:07 hrs$1:11 hrs,$1:05 hrs$1:06 hrs$1:10 hrs$ 
+51687,KNW BIR PASS,$ $1:37 hrs$1:37 hrs$1:30 hrs,$1:39 hrs$1:38 hrs$1:37 hrs$ 
+52964,SWD MHOW PASS M G,,
+19414,KOAA ADI EXPRESS,$ $7 min$18 min$21 min$15 min$19 min$22 min$33 min$49 min$42 min$1 hrs$1:20 hrs$1:12 hrs$40 min$50 min$58 min$37 min$0$0$0$7 min$10 min$59 min$0$0$0$7 min$0$40 min$45 min$39 min$0$6 min$11 min$19 min$40 min,$0$8 min$28 min$21 min$15 min$19 min$22 min$42 min$49 min$39 min$1 hrs$1:20 hrs$1:12 hrs$40 min$53 min$58 min$35 min$1 min$0$0$8 min$15 min$1:01 hrs$0$4 min$15 min$7 min$1 min$40 min$45 min$38 min$0$6 min$11 min$19 min$ 
+12319,KOAA AGC EXPRESS,,
+13167,KOAA AGC EXPRESS,$ $19 min$1 min$0$0$14 min$0$28 min$1:05 hrs$55 min$1:01 hrs$1:26 hrs$2:42 hrs$2:41 hrs$2:48 hrs$3:25 hrs$3:55 hrs$3:43 hrs$4:09 hrs$4:15 hrs$4:03 hrs$4:03 hrs,$0$21 min$0$0$0$14 min$4 min$37 min$1:05 hrs$55 min$1:07 hrs$1:26 hrs$2:48 hrs$2:49 hrs$3:04 hrs$4 hrs$3:57 hrs$3:46 hrs$4:09 hrs$4:13 hrs$4:18 hrs$ 
+13137,KOAA AMH EXPRESS,,
+13131,KOAA  PNBE  EXP,$ $0$0$1 min$0$5 min$3 min$7 min$4 min$0$3 min$3 min$0$8 min$11 min$13 min$15 min$17 min$3 min$19 min$15 min$24 min$4 min$14 min$17 min$4 min$9 min$10 min$19 min$33 min$26 min$23 min$20 min$23 min$19 min$18 min$21 min$7 min$15 min$1 min,$0$1 min$1 min$2 min$1 min$5 min$5 min$7 min$6 min$1 min$4 min$3 min$3 min$9 min$13 min$13 min$15 min$20 min$11 min$14 min$24 min$25 min$12 min$15 min$16 min$8 min$11 min$15 min$31 min$33 min$28 min$25 min$22 min$25 min$22 min$19 min$21 min$12 min$17 min$ 
+13161,TEBHAGA  EXP,,
+30612,KOAA BRP LOCAL,,
+15233,KOAA DBG EXP,$ $22 min$10 min$0$6 min$0$0$2 min$0,$0$20 min$11 min$2 min$8 min$1 min$1 min$5 min$ 
+12525,KOAA DBRG EXP,,
+15049,KOAA  GKP  EXP,$ $1 min$1 min$14 min$9 min$15 min$17 min$21 min$26 min$0$11 min$22 min$29 min$26 min$27 min$56 min$1:41 hrs$1:51 hrs$1:55 hrs$2:02 hrs$2:02 hrs$2:01 hrs$2:15 hrs$2:10 hrs$2:03 hrs$1:59 hrs,$0$1 min$4 min$14 min$10 min$16 min$17 min$20 min$27 min$1 min$12 min$22 min$29 min$26 min$27 min$1:04 hrs$1:41 hrs$1:51 hrs$1:55 hrs$2:02 hrs$2:02 hrs$2:01 hrs$2:17 hrs$2:10 hrs$2:03 hrs$ 
+15051,KOAA GKP EXP,$ $5 min$2 min$3 min$2 min$4 min$12 min$29 min$0$0$4 min$47 min$1:01 hrs$1:06 hrs$1:17 hrs$1:27 hrs$1:57 hrs$2:15 hrs$1:47 hrs$1:44 hrs,$0$4 min$3 min$4 min$2 min$3 min$14 min$29 min$2 min$1 min$17 min$50 min$1:01 hrs$1:06 hrs$1:17 hrs$1:51 hrs$1:57 hrs$2:15 hrs$1:48 hrs$ 
+12363,KOAA HDB SUPF EX,$ $0$12 min$32 min$1:07 hrs$1:14 hrs$5:31 hrs$25 min$3:13 hrs$3:06 hrs$3:05 hrs$2:56 hrs,$1 min$4 min$19 min$35 min$1:08 hrs$2:57 hrs$5:33 hrs$25 min$3:09 hrs$3:08 hrs$3:04 hrs$ 
+53139,KOAA JSME PGS,$ $5 min$0$0$0$8 min$10 min$17 min$33 min$34 min$33 min$37 min$46 min$47 min$50 min$43 min$48 min$49 min$33 min,$0$6 min$0$0$5 min$8 min$10 min$27 min$33 min$32 min$33 min$45 min$47 min$48 min$49 min$46 min$48 min$51 min$ 
+13135,KOAA JYG EXP,$ $3 min$0$6 min$17 min$11 min$17 min$21 min$18 min$0$20 min$25 min$0$15 min$19 min$27 min$0,$1 min$4 min$1 min$7 min$17 min$10 min$18 min$19 min$17 min$0$20 min$35 min$15 min$15 min$19 min$26 min$ 
+13117,KOAA LGL EXPRESS,,
+53179,KOAA LGL PASS,,

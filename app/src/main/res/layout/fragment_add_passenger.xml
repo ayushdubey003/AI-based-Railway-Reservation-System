@@ -1,204 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="@dimen/cardview_default_elevation"
     android:layout_height="wrap_content"
     tools:context=".Fragments.AddPassengerFragment">
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/cancel_layer_ap"
+        style="@style/internal_fonts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="2dp"
+        android:text="Back"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/layer1_ap"
-            android:text="Add Passenger Details"
-            android:textAllCaps="true"
-            android:background="@color/colorPrimary"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            style="@style/internal_fonts"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:textColor="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"/>
-        <EditText
-            android:id="@+id/input_name_ap"
-            android:hint="Name"
-            android:layout_below="@+id/layer1_ap"
-            android:textSize="18sp"
-            style="@style/font"
-            android:padding="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dp"
-            android:textColor="#000"
-            android:layout_marginRight="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:hint="Age"
-            android:id="@+id/input_age_ap"
-            android:layout_below="@+id/input_name_ap"
-            android:textSize="18sp"
-            style="@style/font"
-            android:textColor="#000"
-            android:padding="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_below="@+id/input_age_ap"
-            android:id="@+id/gender_layer"
-            android:text="Gender"
-            android:textAllCaps="true"
-            android:padding="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:textSize="16sp"
-            style="@style/internal_fonts"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <RadioGroup
-            android:id="@+id/radio_group_ap"
-            android:padding="8dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_below="@+id/gender_layer"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:text="Male"
-                android:textColor="#000"
-                style="@style/font"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:text="Female"
-                android:textColor="#000"
-                style="@style/font"
-                android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:text="Transgender"
-                android:textColor="#000"
-                android:layout_marginLeft="10dp"
-                style="@style/font"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
-        <View
-            android:layout_below="@+id/radio_group_ap"
-            android:background="#a9a9a9"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-        <RelativeLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:id="@+id/berth_preference_ap"
-            android:layout_below="@+id/radio_group_ap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="berth preference |"
-                android:textAllCaps="true"
-                android:padding="8dp"
-                android:layout_centerVertical="true"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                style="@style/internal_fonts"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Spinner
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cancel_layer_ap"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="@dimen/cardview_default_elevation">
 
-        <View
-            android:layout_below="@+id/berth_preference_ap"
-            android:background="#a9a9a9"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
         <RelativeLayout
-            android:id="@+id/last_second_layer"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_below="@+id/berth_preference_ap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:text="nationality |"
-                android:textAllCaps="true"
-                android:padding="8dp"
-                android:layout_centerVertical="true"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                style="@style/internal_fonts"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Spinner
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
 
-        <View
-            android:layout_below="@+id/last_second_layer"
-            android:background="#a9a9a9"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-        <RelativeLayout
-            android:id="@+id/sixth_layer_at"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/last_second_layer"
-            android:layout_width="match_parent"
-            android:background="#4d4d4d"
-            android:layout_height="wrap_content">
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp"
-                android:layout_margin="5dp"
-                android:layout_centerVertical="true"
+            <TextView
+                android:id="@+id/layer1_ap"
+                style="@style/internal_fonts"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="30dp">
-                <Button
-                    android:id="@+id/add_passenger_ap"
-                    android:textSize="10sp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="#fff"
-                    android:text="Add Passenger"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="Add Passenger Details"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/input_name_ap"
+                style="@style/font"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layer1_ap"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:hint="Name"
+                android:padding="8dp"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/input_age_ap"
+                style="@style/font"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_name_ap"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:hint="Age"
+                android:padding="8dp"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/gender_layer"
+                style="@style/internal_fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_age_ap"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="12dp"
+                android:padding="8dp"
+                android:text="Gender"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_ap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gender_layer"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <RadioButton
+                    android:id="@+id/male_ap"
+                    style="@style/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"/>
-            </androidx.cardview.widget.CardView>
+                    android:text="Male"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/female_ap"
+                    style="@style/font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Female"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/trans_ap"
+                    style="@style/font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Transgender"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/radio_group_ap"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:background="#a9a9a9" />
+
+            <RelativeLayout
+                android:id="@+id/berth_preference_ap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radio_group_ap"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <TextView
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:text="berth preference |"
+                    android:textAllCaps="true"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/berth_spinner_ap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/berth_preference_ap"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:background="#a9a9a9" />
+
+            <RelativeLayout
+                android:id="@+id/last_second_layer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/berth_preference_ap"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp">
+
+                <TextView
+                    style="@style/internal_fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:text="nationality |"
+                    android:textAllCaps="true"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/nationality_spinner_ap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/last_second_layer"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:background="#a9a9a9" />
+
+            <RelativeLayout
+                android:id="@+id/sixth_layer_at"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/last_second_layer"
+                android:layout_marginTop="20dp"
+                android:background="#4d4d4d">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp">
+
+                    <Button
+                        android:id="@+id/add_passenger_ap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Add Passenger"
+                        android:textColor="#fff"
+                        android:textSize="10sp" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
