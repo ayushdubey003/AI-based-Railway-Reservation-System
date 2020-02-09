@@ -1,6 +1,7 @@
 package com.sih2020.railwayreservationsystem.Models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AlternateModel {
 
@@ -8,17 +9,26 @@ public class AlternateModel {
     ArrayList<String> mStations;
     ArrayList<String> mTrains;
     String mTime;
-    ArrayList<String> mConfirmation,mSeatstatus,mFares;
+    HashMap<String, String> mConfirmation, mSeatstatus, mFares, mDepartureTime;
     String mTicketclass;
     String dayofjourney;
     String dateofjourney;
 
     public AlternateModel() {
-        mStations=new ArrayList<>();
-        mConfirmation=new ArrayList<>();
-        mFares=new ArrayList<>();
-        mSeatstatus=new ArrayList<>();
-        mTrains=new ArrayList<>();
+        mStations = new ArrayList<>();
+        mConfirmation = new HashMap<>();
+        mFares = new HashMap<>();
+        mSeatstatus = new HashMap<>();
+        mTrains = new ArrayList<>();
+        mDepartureTime = new HashMap<>();
+    }
+
+    public HashMap<String, String> getmDepartureTime() {
+        return mDepartureTime;
+    }
+
+    public void setmDepartureTime(HashMap<String, String> mDepartureTime) {
+        this.mDepartureTime = mDepartureTime;
     }
 
     public void setN(int n) {
@@ -37,17 +47,6 @@ public class AlternateModel {
         this.mTime = mTime;
     }
 
-    public void setmConfirmation(ArrayList<String> mConfirmation) {
-        this.mConfirmation = mConfirmation;
-    }
-
-    public void setmSeatstatus(ArrayList<String> mSeatstatus) {
-        this.mSeatstatus = mSeatstatus;
-    }
-
-    public void setmFares(ArrayList<String> mFares) {
-        this.mFares = mFares;
-    }
 
     public void setmTicketclass(String mTicketclass) {
         this.mTicketclass = mTicketclass;
@@ -77,16 +76,28 @@ public class AlternateModel {
         return mTime;
     }
 
-    public ArrayList<String> getmConfirmation() {
+    public HashMap<String, String> getmConfirmation() {
         return mConfirmation;
     }
 
-    public ArrayList<String> getmSeatstatus() {
+    public void setmConfirmation(HashMap<String, String> mConfirmation) {
+        this.mConfirmation = mConfirmation;
+    }
+
+    public HashMap<String, String> getmSeatstatus() {
         return mSeatstatus;
     }
 
-    public ArrayList<String> getmFares() {
+    public void setmSeatstatus(HashMap<String, String> mSeatstatus) {
+        this.mSeatstatus = mSeatstatus;
+    }
+
+    public HashMap<String, String> getmFares() {
         return mFares;
+    }
+
+    public void setmFares(HashMap<String, String> mFares) {
+        this.mFares = mFares;
     }
 
     public String getmTicketclass() {

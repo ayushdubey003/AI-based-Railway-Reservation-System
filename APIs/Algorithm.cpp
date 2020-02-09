@@ -16,8 +16,10 @@ struct data{
 struct queueData{
   int startingTime;
   int endingTime;
+  int lastDeparture;
   string lastTrain;
   string lastStation;
+  vector <int> time;
   vector <string> trainList;
   vector <string> stationList;
   int intermissions;
@@ -26,6 +28,21 @@ struct queueData{
 
 bool comparator(struct queueData queueData1, struct queueData queueData2){
   return queueData1.duration < queueData2.duration;
+}
+
+int distanceInKM(string latitude1, string longitude1, string latitude2, string longitude2){
+  int R = 6371;
+  double lat1 = stoi(latitude1) / 10000.0;
+  double long1 = stoi(longitude1) / 10000.0;
+  double lat2 = stoi(latitude2) / 10000.0;
+  double long2 = stoi(longitude2) / 10000.0;
+  double latitudeDifference = fabs(lat1 - lat2) * (3.1416 / 180);
+  double longitudeDifference = fabs(long1 - long2) * (3.1416 / 180);
+  double a = sin(latitudeDifference / 2) * sin(latitudeDifference / 2) + cos(lat1 * 3.1416 / 180) * cos(lat2 * 3.1416 / 180) * sin(longitudeDifference / 2) * sin(longitudeDifference / 2);
+  double c = 2 * atan2(sqrt(a),sqrt(1-a));
+  int d = R * c;
+  return d;
+
 }
 
 int main(int argc, char *argv[]){
@@ -46,6 +63,7 @@ int main(int argc, char *argv[]){
   fstream arrivalFile;
   fstream departureFile;
   fstream runningFile;
+  fstream latLongFile;
 
   string stationFileName;
   string trainFileName;
@@ -53,6 +71,7 @@ int main(int argc, char *argv[]){
   string arrivalFileName;
   string departureFileName;
   string runningFileName;
+  string latLongFileName;
 
   stationFileName = "../datasets/stationCodes.txt";
   trainFileName = "../datasets/reservedTrains.txt";
@@ -60,6 +79,7 @@ int main(int argc, char *argv[]){
   arrivalFileName = "../datasets/arrival.txt";
   departureFileName = "../datasets/departure.txt";
   runningFileName = "../datasets/runningDays.txt";
+  latLongFileName = "../datasets/latlong.txt";
 
   stationFile.open(stationFileName.c_str());
   trainFile.open(trainFileName.c_str());
@@ -67,6 +87,7 @@ int main(int argc, char *argv[]){
   arrivalFile.open(arrivalFileName.c_str());
   departureFile.open(departureFileName.c_str());
   runningFile.open(runningFileName.c_str());
+  latLongFile.open(latLongFileName.c_str());
 
   string stationCode;
   string trainNumber;
@@ -74,6 +95,7 @@ int main(int argc, char *argv[]){
   string arrivalString;
   string departureString;
   string runningDay;
+  string latLong;
 
   vector <string> stationCodes;
   vector <string> trainNumbers;
@@ -81,6 +103,7 @@ int main(int argc, char *argv[]){
   vector <string> arrivalTime[2500];
   vector <string> departureTime[2500];
   vector <string> runningDays;
+  vector <string> stationData[9000];
   vector <struct data> graph[9000];
   vector <struct queueData> solution;
 
@@ -131,6 +154,16 @@ int main(int argc, char *argv[]){
     runningDays.push_back(runningDay);
   }
 
+  i = 0;
+  while(latLongFile >> latLong){
+    stationData[i].push_back(latLong);
+    latLongFile >> latLong;
+    stationData[i].push_back(latLong);
+    latLongFile >> latLong;
+    stationData[i].push_back(latLong);
+    i++;
+  }
+
   for (i = 0; i < 2473; i++){
     stationSize = routes[i].size() - 1;
     for(j = 0; j < stationSize - 1; j++){
@@ -167,6 +200,8 @@ int main(int argc, char *argv[]){
     temp.lastStation = node.destinationStation;
     temp.stationList.push_back(source);
     temp.stationList.push_back(temp.lastStation);
+    temp.lastDeparture = temp.startingTime;
+    temp.time.push_back(temp.lastDeparture);
     temp.intermissions = 0;
 
     startDay = currentDay - temp.startingTime / (24 * 60) + 7;
@@ -216,6 +251,8 @@ int main(int argc, char *argv[]){
         continue;
       departure %= (7 * 24 * 60);
 
+      temp.time.push_back((departure - temp.lastDeparture + 7 * 24 * 60) % (7 * 24 * 60));
+      temp.lastDeparture = departure;
       temp.endingTime = node.destinationArrival + startDay * 24 * 60;
       temp.endingTime %= (7 * 24 * 60);
       temp.lastTrain = node.trainNumber;
@@ -263,6 +300,10 @@ int main(int argc, char *argv[]){
     cout << endl;
 
     cout << node.duration << endl;
+
+    for(auto timeDuration : node.time)
+      cout << timeDuration << " ";
+    cout << endl;
   }
 
   // auto stop = high_resolution_clock::now();

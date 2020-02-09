@@ -69,13 +69,10 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private ImageView mBack;
     private RadioButton lastChecked;
     public ArrayList<Train> mTrains;
-<<<<<<< HEAD
     FloatingActionButton floatingActionButton;
-=======
     private ArrayList<Station> mSources, mDestinations;
     private Spinner mSourcesSpinner, mDestinationsSpinner;
     private int mSourceSpinnerChoice, mDestinationSpinnerChoice;
->>>>>>> 3aa83f957c09fee94f2a01a955fb02d51327630c
 
     @Override
     public void onBackPressed() {
@@ -127,7 +124,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(SeatAvailabilityActivity.this,AlternateRoutesActivity.class);
+                Intent intent = new Intent(SeatAvailabilityActivity.this, AlternateRoutesActivity.class);
                 startActivity(intent);
             }
         });
@@ -184,7 +181,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mSourcesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != mSourceSpinnerChoice){
+                if (position != mSourceSpinnerChoice) {
                     mSourceSpinnerChoice = position;
                     mSourcesSpinner.setSelection(position);
                     refresh();
@@ -200,7 +197,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mDestinationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != mDestinationSpinnerChoice){
+                if (position != mDestinationSpinnerChoice) {
                     mDestinationSpinnerChoice = position;
                     mDestinationsSpinner.setSelection(position);
                     refresh();
@@ -216,7 +213,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     }
 
     private void init() {
-        floatingActionButton=findViewById(R.id.alternateroutes);
+        floatingActionButton = findViewById(R.id.alternateroutes);
         mUrl = getIntent().getStringExtra("url");
         mCL = findViewById(R.id.cl);
         mToolbar = findViewById(R.id.app_bar);
@@ -606,25 +603,23 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             return;
         } else {
             String v[] = currStatus.split("/");
-            String l="",d="";
-            for(int i=0;i<v[0].length();i++)
-            {
-                if(v[0].charAt(i)==' ')
+            String l = "", d = "";
+            for (int i = 0; i < v[0].length(); i++) {
+                if (v[0].charAt(i) == ' ')
                     continue;
-                l=l+v[0].charAt(i);
+                l = l + v[0].charAt(i);
             }
-            for(int i=0;i<v[1].length();i++)
-            {
-                if(v[1].charAt(i)==' ')
+            for (int i = 0; i < v[1].length(); i++) {
+                if (v[1].charAt(i) == ' ')
                     continue;
-                d=d+v[1].charAt(i);
+                d = d + v[1].charAt(i);
             }
             String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + l + "_" + d;
             networkRequests.fetchConfirmationProbability(pos, url);
         }
     }
 
-    private void loadVicinityStations(){
+    private void loadVicinityStations() {
         Station source = AppConstants.mSourceStation;
         Station destination = AppConstants.mDestinationStation;
         ArrayList<Station> vicinity_source = new ArrayList<>(), vicinity_destination =
@@ -640,14 +635,13 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                             && destination.getmPinCode().length() == 6 && pin_code.substring(0, 3).equals(destination.getmPinCode().substring(0, 3)))
                         vicinity_destination.add(AppConstants.mStationsName.get(i));
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
 
             }
         }
 
         ArrayList<SpinnerModel> sources = new ArrayList<>();
-        for(int i = 0;i < Math.min(5, vicinity_source.size());i ++){
+        for (int i = 0; i < Math.min(5, vicinity_source.size()); i++) {
             mSources.add(vicinity_source.get(i));
             sources.add(new SpinnerModel(vicinity_source.get(i).getmStationCode(), vicinity_source.
                     get(i).getmStationName()));
@@ -657,7 +651,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                 AppConstants.mSourceStation.getmStationName()));
 
         ArrayList<SpinnerModel> destinations = new ArrayList<>();
-        for(int i = 0;i < Math.min(5, vicinity_destination.size());i ++){
+        for (int i = 0; i < Math.min(5, vicinity_destination.size()); i++) {
             mDestinations.add(vicinity_destination.get(i));
             destinations.add(new SpinnerModel(vicinity_destination.get(i).getmStationCode(), vicinity_destination.
                     get(i).getmStationName()));
@@ -671,7 +665,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
 
     }
 
-    private void refresh(){
+    private void refresh() {
         AppConstants.mSourceStation = mSources.get(mSourceSpinnerChoice);
         AppConstants.mDestinationStation = mDestinations.get(mDestinationSpinnerChoice);
         update();
