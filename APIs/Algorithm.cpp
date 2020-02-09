@@ -42,7 +42,6 @@ int distanceInKM(string latitude1, string longitude1, string latitude2, string l
   double c = 2 * atan2(sqrt(a),sqrt(1-a));
   int d = R * c;
   return d;
-
 }
 
 int main(int argc, char *argv[]){
@@ -64,6 +63,7 @@ int main(int argc, char *argv[]){
   fstream departureFile;
   fstream runningFile;
   fstream latLongFile;
+  fstream latLongFullFile;
 
   string stationFileName;
   string trainFileName;
@@ -72,6 +72,7 @@ int main(int argc, char *argv[]){
   string departureFileName;
   string runningFileName;
   string latLongFileName;
+  string latLongFullFileName;
 
   stationFileName = "../datasets/stationCodes.txt";
   trainFileName = "../datasets/reservedTrains.txt";
@@ -80,6 +81,7 @@ int main(int argc, char *argv[]){
   departureFileName = "../datasets/departure.txt";
   runningFileName = "../datasets/runningDays.txt";
   latLongFileName = "../datasets/latlong.txt";
+  latLongFullFileName = "../datasets/latlongFull.txt";
 
   stationFile.open(stationFileName.c_str());
   trainFile.open(trainFileName.c_str());
@@ -88,6 +90,7 @@ int main(int argc, char *argv[]){
   departureFile.open(departureFileName.c_str());
   runningFile.open(runningFileName.c_str());
   latLongFile.open(latLongFileName.c_str());
+  latLongFullFile.open(latLongFullFileName.c_str());
 
   string stationCode;
   string trainNumber;
@@ -96,6 +99,10 @@ int main(int argc, char *argv[]){
   string departureString;
   string runningDay;
   string latLong;
+  string sourceLatitude;
+  string sourceLongitude;
+  string destinationLatitude;
+  string destinationLongitude;
 
   vector <string> stationCodes;
   vector <string> trainNumbers;
@@ -103,7 +110,9 @@ int main(int argc, char *argv[]){
   vector <string> arrivalTime[2500];
   vector <string> departureTime[2500];
   vector <string> runningDays;
-  vector <string> stationData[9000];
+  vector <string> stationData[3600];
+  vector <string> nearbySource;
+  vector <string> nearbyDestination;
   vector <struct data> graph[9000];
   vector <struct queueData> solution;
 
@@ -118,7 +127,11 @@ int main(int argc, char *argv[]){
   int arrival;
   int departure;
   int arrivalDay;
+  int stationDataSize;
   int routeSize = 0;
+  int nearbySourceSize = 0;
+  int nearbyDestinationSize = 0;
+  int leastDuration;
 
 
   i = 0;
@@ -164,6 +177,27 @@ int main(int argc, char *argv[]){
     i++;
   }
 
+  sourceLatitude = "";
+  destinationLatitude = "";
+  while(latLongFullFile >> latLong){
+    if(source == latLong){
+      latLongFullFile >> latLong;
+      sourceLatitude = latLong;
+      latLongFullFile >> latLong;
+      sourceLongitude = latLong;
+      continue;
+    }
+    if(destination == latLong){
+      latLongFullFile >> latLong;
+      destinationLatitude = latLong;
+      latLongFullFile >> latLong;
+      destinationLongitude = latLong;
+      continue;
+    }
+    latLongFullFile >> latLong;
+    latLongFullFile >> latLong;
+  }
+
   for (i = 0; i < 2473; i++){
     stationSize = routes[i].size() - 1;
     for(j = 0; j < stationSize - 1; j++){
@@ -191,7 +225,7 @@ int main(int argc, char *argv[]){
 
   index = stationMap[source];
 
-  for (auto node: graph[index]){
+  for (auto node : graph[index]){
     struct queueData temp;
     temp.startingTime = node.sourceDeparture;
     temp.endingTime = node.destinationArrival;
@@ -288,6 +322,50 @@ int main(int argc, char *argv[]){
   }
 
   sort(solution.begin(), solution.end(), comparator);
+  if(solution.size() > 10)
+    solution.resize(10);
+
+  if(sourceLatitude != "" && destinationLatitude != ""){
+    i = 0;
+    while(stationData[i].size() != 0){
+      if(nearbySourceSize < 5 && distanceInKM(sourceLatitude, sourceLongitude, stationData[i][1], stationData[i][2]) < 75){
+        nearbySource.push_back(stationData[i][0]);
+        nearbySourceSize++;
+      }
+      if(nearbyDestinationSize < 5 && distanceInKM(destinationLatitude, destinationLongitude, stationData[i][1], stationData[i][2]) < 75){
+        nearbyDestination.push_back(stationData[i][0]);
+        nearbyDestinationSize++;
+      }
+      i++;
+    }
+  }
+
+  for (auto alternateSource : nearbySource){
+    index = stationMap[alternateSource];
+    leastDuration = INT_MAX;
+    struct queueData temp, prev;
+    for(auto node : graph[index]){
+      if(node.destinationStation == destination){
+        if(node.destinationArrival - node.sourceDeparture < leastDuration){
+          startDay = currentDay - node.sourceDeparture / (24 * 60) + 7;
+          startDay %= 7;
+
+          if (node.days[startDay] == '0')
+            continue;
+
+          temp = prev;
+          temp.stationList.push_back(alternateSource);
+          temp.stationList.push_back(destination);
+          temp.trainList.push_back(node.trainNumber);
+          temp.duration = node.destinationArrival - node.sourceDeparture;
+          leastDuration = temp.duration;
+          temp.time.push_back(node.sourceDeparture);
+        }
+      }
+    }
+    if(temp.trainList.size() != 0)
+      solution.push_back(temp);
+  }
 
   for (auto node : solution){
 
