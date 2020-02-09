@@ -200,3 +200,5 @@ yarn-error.log*
 
 google-services.json
 app/google-services.json
+
+result.txt
