@@ -41,7 +41,9 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = getCustomView(position, convertView, parent);
-        ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.white));
+        if(mIsWhite){
+            ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.white));
+        }
         return view;
     }
 
@@ -52,10 +54,6 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
 
         mFull.setText(mList.get(position).getmFullForm());
         mAbb.setText(mList.get(position).getmAbbreviation());
-
-        if(mIsWhite){
-            // mFull.setTextColor(mContext.getResources().getColor(R.color.white));
-        }
 
         return row;
     }
