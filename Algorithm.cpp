@@ -23,10 +23,10 @@ struct queueData{
   int intermissions;
 };
 
-int main(){
+int main(int argc, char *argv[]){
   auto start = high_resolution_clock::now();
-  string source = "GKP";
-  string destination = "YPR";
+  string source = argv[0];
+  string destination = argv[1];
 
   fstream stationFile;
   fstream trainFile;
