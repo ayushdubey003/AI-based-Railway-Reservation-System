@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +35,10 @@ import com.android.volley.RequestQueue;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.koushikdutta.ion.Ion;
+import com.sih2020.railwayreservationsystem.Adapters.SpinnerAdapter;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
+import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
@@ -56,7 +59,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     public NetworkRequests networkRequests;
     private CoordinatorLayout mCL;
     private static final String LOG_TAG = "SeatAvailability";
-    private LinearLayout mToolbar;
+    private LinearLayout mToolbar, mHeader;
     private RelativeLayout mMain, mProgress;
     public TrainAdapter mAdapter;
     private ListView mList;
@@ -66,7 +69,13 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private ImageView mBack;
     private RadioButton lastChecked;
     public ArrayList<Train> mTrains;
+<<<<<<< HEAD
     FloatingActionButton floatingActionButton;
+=======
+    private ArrayList<Station> mSources, mDestinations;
+    private Spinner mSourcesSpinner, mDestinationsSpinner;
+    private int mSourceSpinnerChoice, mDestinationSpinnerChoice;
+>>>>>>> 3aa83f957c09fee94f2a01a955fb02d51327630c
 
     @Override
     public void onBackPressed() {
@@ -80,6 +89,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seat_availability);
         init();
         receiveClicks();
+        loadVicinityStations();
     }
 
     @Override
@@ -170,6 +180,39 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mSourcesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position != mSourceSpinnerChoice){
+                    mSourceSpinnerChoice = position;
+                    mSourcesSpinner.setSelection(position);
+                    refresh();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mDestinationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position != mDestinationSpinnerChoice){
+                    mDestinationSpinnerChoice = position;
+                    mDestinationsSpinner.setSelection(position);
+                    refresh();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void init() {
@@ -179,10 +222,14 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.app_bar);
         mMain = findViewById(R.id.main_rl);
         mProgress = findViewById(R.id.progress_rl);
+        mHeader = findViewById(R.id.header);
+        mHeader.setBackground(GenerateBackground.generateBackground());
         mList = findViewById(R.id.trains_list);
         mDateTv = findViewById(R.id.date_tv);
         mTravelClass = findViewById(R.id.travel_class_tv);
         mBack = findViewById(R.id.back_iv);
+        mSourcesSpinner = findViewById(R.id.source_spinner);
+        mDestinationsSpinner = findViewById(R.id.destination_spinner);
         mCalendar = Calendar.getInstance();
         mDate = new DatePickerDialog.OnDateSetListener() {
 
@@ -207,6 +254,11 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mDateTv.setText(dateToShow);
         String tc = AppConstants.mClass.getmAbbreviation() + " - " + AppConstants.mClass.getmFullForm();
         mTravelClass.setText(tc);
+
+        mSources = new ArrayList<>();
+        mDestinations = new ArrayList<>();
+        mSourceSpinnerChoice = 0;
+        mDestinationSpinnerChoice = 0;
     }
 
     public void trainListFetchComplete() {
@@ -571,4 +623,58 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             networkRequests.fetchConfirmationProbability(pos, url);
         }
     }
+
+    private void loadVicinityStations(){
+        Station source = AppConstants.mSourceStation;
+        Station destination = AppConstants.mDestinationStation;
+        ArrayList<Station> vicinity_source = new ArrayList<>(), vicinity_destination =
+                new ArrayList<>();
+        if (source.getmPinCode().length() == 6) {
+            try {
+                for (int i = 0; i < AppConstants.mStationsName.size(); i++) {
+                    String pin_code = AppConstants.mStationsName.get(i).getmPinCode();
+                    if (pin_code.length() == 6 && !pin_code.equals(source.getmPinCode()) &&
+                            source.getmPinCode().length() == 6 && pin_code.substring(0, 3).equals(source.getmPinCode().substring(0, 3)))
+                        vicinity_source.add(AppConstants.mStationsName.get(i));
+                    else if (pin_code.length() == 6 && !pin_code.equals(destination.getmPinCode())
+                            && destination.getmPinCode().length() == 6 && pin_code.substring(0, 3).equals(destination.getmPinCode().substring(0, 3)))
+                        vicinity_destination.add(AppConstants.mStationsName.get(i));
+                }
+            }
+            catch (Exception e){
+
+            }
+        }
+
+        ArrayList<SpinnerModel> sources = new ArrayList<>();
+        for(int i = 0;i < Math.min(5, vicinity_source.size());i ++){
+            mSources.add(vicinity_source.get(i));
+            sources.add(new SpinnerModel(vicinity_source.get(i).getmStationCode(), vicinity_source.
+                    get(i).getmStationName()));
+        }
+        mSources.add(0, AppConstants.mSourceStation);
+        sources.add(0, new SpinnerModel(AppConstants.mSourceStation.getmStationCode(),
+                AppConstants.mSourceStation.getmStationName()));
+
+        ArrayList<SpinnerModel> destinations = new ArrayList<>();
+        for(int i = 0;i < Math.min(5, vicinity_destination.size());i ++){
+            mDestinations.add(vicinity_destination.get(i));
+            destinations.add(new SpinnerModel(vicinity_destination.get(i).getmStationCode(), vicinity_destination.
+                    get(i).getmStationName()));
+        }
+        mDestinations.add(0, AppConstants.mDestinationStation);
+        destinations.add(0, new SpinnerModel(AppConstants.mDestinationStation.getmStationCode(),
+                AppConstants.mDestinationStation.getmStationName()));
+
+        mSourcesSpinner.setAdapter(new SpinnerAdapter(this, this, sources));
+        mDestinationsSpinner.setAdapter(new SpinnerAdapter(this, this, destinations));
+
+    }
+
+    private void refresh(){
+        AppConstants.mSourceStation = mSources.get(mSourceSpinnerChoice);
+        AppConstants.mDestinationStation = mDestinations.get(mDestinationSpinnerChoice);
+        update();
+    }
+
 }

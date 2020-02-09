@@ -96,13 +96,23 @@ public class AutomatedTatkal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
+
+                    String lmsg = trainNo.getText().toString() + "  " + trainName.getText().toString() + "\n" +
+                            "DOJ: " + getIntent().getExtras().getString("doj") + "\n" +
+                            getIntent().getExtras().getString("fromCode") + " to " +
+                            getIntent().getExtras().getString("toCode") + "\n" +
+                            "Boarding at- " + mBoardingList.get(mBoardingSpinner.getSelectedItemPosition()) + "\n" +
+                            "Passenger Mobile No: " + phoneNo.getText().toString() + "\n" +
+                            "Adults: " + mPassengers.size();
+
                     new AlertDialog.Builder(AutomatedTatkal.this)
                             .setTitle("Review Booking Details")
-                            .setMessage("Train ka sara details yahan aayega...sb kuch jitna bhi hai...")
+                            .setMessage(lmsg)
 
-                            .setPositiveButton("Proceed to pay", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Set automation", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
+                                    startService(new Intent(AutomatedTatkal.this, TatkalService.class));
                                 }
                             })
 
@@ -129,6 +139,18 @@ public class AutomatedTatkal extends AppCompatActivity {
         mBoardingSpinner = findViewById(R.id.boarding_stations_at);
         mBoardingList = new ArrayList<>();
         mBoardingList = AppConstants.mTrainList.get(getIntent().getExtras().getInt("position")).getmNamedRoutes();
+
+//        boolean flag=false;
+//        for(int i=0;i<mBoardingList.size();i++){
+//            if(!flag){
+//                if (mBoardingList.get(i).equals(getIntent().getExtras().getString("toName"))){
+//                    break;
+//                }
+//                else {
+//                    mBoardingList.remove(i);
+//                }
+//            }
+//        }
         mBoardingAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mBoardingList);
         mBoardingSpinner.setAdapter(mBoardingAdapter);
         mPassengers = new ArrayList<>();

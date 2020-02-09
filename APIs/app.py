@@ -1,15 +1,18 @@
-from flask import Flask, jsonify
-import requests 
+from flask import Flask, jsonify, request
+import requests
 from bs4 import BeautifulSoup
 import csv
 import re
-import joblib # install 
+import joblib # install
 import lightgbm as lgm # install
 import numpy as np # install
 from sklearn.preprocessing import StandardScaler # install
 from datetime import datetime
 import os
 import sys
+import json
+from hashlib import sha256
+import time
 
 app = Flask(__name__)
 
@@ -42,42 +45,45 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
         stations = u[i].split(" ")
         trains = u[i+1].split(" ")
         time = u[i+2]
+        stations = stations[:-1]
+        trains = trains[:-1]
         alternates.append({
             "stations":stations,
             "trains" :trains,
             "time" :time
             })
         i = i+3
+    # return requests.get("http://localhost:5000/trains/ACND").text
     return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
     train_metric_type = [0, 0, 0, 0]
     if train_type > 0:
         train_metric_type[train_type - 1] = 1
-    
+
     date_item_booking = list(map(int, booking_date.split('-')))
     date_item_journey = list(map(int, journey_date.split('-')))
-    
+
     booking_year = date_item_booking[0]
     journey_year = date_item_journey[0]
-    
+
     booking_month = date_item_booking[1]
     journey_month = date_item_journey[1]
-    
+
     booking_day = date_item_booking[2]
     journey_day = date_item_journey[2]
-    
+
     booking_datetime = datetime(booking_year, booking_month, booking_day, hour=booking_hour)
     journey_datetime = datetime(journey_year, journey_month, journey_day, hour=journey_hour)
-    
+
     time_difference_1 = (journey_datetime - booking_datetime).total_seconds() // 3600
     assert time_difference_1 >= 0
     time_difference_2 = 0
-    
+
     journey_month_type = [0] * 11
     if journey_month > 1:
         journey_month_type[journey_month - 2] = 1
-    
+
     ticket_class_type = [0, 0, 0]
     if ticket_class == 'SL':
         ticket_class_type[2] = 1
@@ -85,7 +91,7 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
         ticket_class_type[0] = 1
     if ticket_class == '3A':
         ticket_class_type[1] = 1
-    
+
     waiting_list_type = [0, 0, 0, 0]
     if waiting_list_category == 'RL':
         waiting_list_type[2] = 1
@@ -104,16 +110,16 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.extend(ticket_class_type)
     row.extend(waiting_list_type)
     row.extend(train_metric_type)
-   
+
     print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
     X = np.array([row])
-    
+
     model = joblib.load('../datasets/lgbtqmodel.pkl')
     scalar = joblib.load('../datasets/scaler_file.pkl')
     X_sc = scalar.transform(X)
-    
+
     return model.predict(X_sc)[0]
-    
+
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
 def predict(train_number, booking_date, booking_time, journey_date, journey_time, ticket_class, waiting_list):
     try:
@@ -132,7 +138,7 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
         assert len(time_pattern.findall(journey_time)[0]) == len(journey_time)
         booking_hour = int(booking_time[0:2])
         journey_hour = int(journey_time[0:2])
-        
+
         print(waiting_list)
         assert ticket_class in ['1A', '2A', '3A', 'SL']
         waiting_list_type = waiting_list[0:2]
@@ -142,7 +148,7 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
                 break
         waiting_number = int(waiting_list[i + 1:])
         print(waiting_number)
-        
+
     except Exception as e:
         print(e)
         return e.__str__()
@@ -384,7 +390,7 @@ def listofstations():
     flag = 0
 
     ans = []
-    with open('../datasets/stations.csv', 'rt') as file:
+    with open('../datasets/finalpincodes.csv', 'rt') as file:
         reader = csv.reader(file)
         for row in reader:
             if flag == 0:
@@ -392,12 +398,13 @@ def listofstations():
                 continue
             else:
                 coordinates =[]
-                coordinates.append(row[2])
                 coordinates.append(row[3])
+                coordinates.append(row[4])
                 ans.append({
-                    'name': row[0],
-                    'code': row[1],
-                    "coordinates": coordinates
+                    'name': row[1],
+                    'code': row[2],
+                    "coordinates": coordinates,
+                    "pincode" : row[5]
                 })
 
     return jsonify(stations=ans)
@@ -572,7 +579,7 @@ def livestation(src,destination,hours):
     if destination == "null":
         url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation=&hours="+hours
     else:
-        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation="+destination.strip()+"&hours="+hours      
+        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation="+destination.strip()+"&hours="+hours
     ans = []
     try:
         content = requests.get(url)
@@ -618,6 +625,199 @@ def livestatus(trainno,doj):
         return (jsonify(error = str(e)))
     return jsonify(status = ans)
 
+
+class Block:
+    def __init__(self, index, transactions, timestamp, previous_hash, nonce=0):
+        self.index = index
+        self.transactions = transactions
+        self.timestamp = timestamp
+        self.previous_hash = previous_hash
+        self.nonce = nonce
+
+    def compute_hash(self):
+        block_string = json.dumps(self.__dict__, sort_keys=True)
+        return sha256(block_string.encode()).hexdigest()
+
+
+class Blockchain:
+    difficulty = 4
+
+    def __init__(self):
+        self.unconfirmed_transactions = []
+        self.chain = []
+
+    def create_genesis_block(self):
+        genesis_block = Block(0, [], 0, "0")
+        genesis_block.hash = genesis_block.compute_hash()
+        try:
+            self.chain = joblib.load("../datasets/wallet.pkl")
+            print(self.chain)
+        except Exception as e:
+            self.chain.append(genesis_block)
+            joblib.dump(self.chain,"../datasets/wallet.pkl")
+
+    @property
+    def last_block(self):
+        return self.chain[-1]
+
+    def add_block(self, block, proof):
+        previous_hash = self.last_block.hash
+
+        if previous_hash != block.previous_hash:
+            return False
+
+        if not Blockchain.is_valid_proof(block, proof):
+            return False
+
+        block.hash = proof
+        self.chain.append(block)
+        joblib.dump(self.chain,"../datasets/wallet.pkl")
+
+        return True
+
+    def proof_of_work(self, block):
+        block.nonce = 0
+
+        computed_hash = block.compute_hash()
+        while not computed_hash.startswith('0' * Blockchain.difficulty):
+            block.nonce += 1
+            computed_hash = block.compute_hash()
+
+        return computed_hash
+
+    def add_new_transaction(self, transaction):
+        self.unconfirmed_transactions.append(transaction)
+
+    @classmethod
+    def is_valid_proof(cls, block, block_hash):
+        return (block_hash.startswith('0' * Blockchain.difficulty) and
+                block_hash == block.compute_hash())
+
+    @classmethod
+    def check_chain_validity(cls, chain):
+        result = True
+        previous_hash = "0"
+
+        for block in chain:
+            block_hash = block.hash
+            delattr(block, "hash")
+
+            if not cls.is_valid_proof(block, block.hash) or \
+                    previous_hash != block.previous_hash:
+                result = False
+                break
+
+            block.hash, previous_hash = block_hash, block_hash
+
+        return result
+
+    def mine(self):
+        if not self.unconfirmed_transactions:
+            return False
+
+        last_block = self.last_block
+
+        new_block = Block(index=last_block.index + 1,
+                          transactions=self.unconfirmed_transactions,
+                          timestamp=time.time(),
+                          previous_hash=last_block.hash)
+
+        proof = self.proof_of_work(new_block)
+        self.add_block(new_block, proof)
+        print(len(self.chain))
+        self.unconfirmed_transactions = []
+        return new_block.index
+
+blockchain = Blockchain()
+blockchain.create_genesis_block()
+
+@app.route('/new_transaction', methods=['POST'])
+def new_transaction():
+    tx_data = request.get_json()
+    required_fields = ["sender", "receiver", "amount"]
+
+    for field in required_fields:
+        if not tx_data.get(field):
+            return jsonify(error=404)
+
+    tx_data["timestamp"] = time.time()
+
+    blockchain.add_new_transaction(tx_data)
+    return jsonify(success=200)
+
+@app.route('/chain', methods=['GET'])
+def get_chain():
+    chain_data = []
+    for block in blockchain.chain:
+        chain_data.append(block.__dict__)
+    return json.dumps({"length": len(chain_data),
+                       "chain": chain_data,})
+
+@app.route('/calculateWalletAmount/<uid>',methods=['GET'])
+def calculate_amount(uid):
+    chain_data = []
+    amount = 0
+    for block in blockchain.chain:
+        chain_data.append(block.__dict__)
+    for data in chain_data:
+        try:
+            if data['transactions'][0]['sender'] == uid:
+                amount = amount - data['transactions'][0]['amount']
+        except Exception as e:
+            continue
+        try:
+            if data['transactions'][0]['receiver'] == uid:
+                amount = amount + data['transactions'][0]['amount']
+        except Exception as e:
+            continue
+
+    return (jsonify(walletAmount = amount))
+
+@app.route('/mine', methods=['GET'])
+def mine_unconfirmed_transactions():
+    result = blockchain.mine()
+    if not result:
+        return "No transactions to mine"
+    return jsonify(Success="true")
+
+def create_chain_from_dump(chain_dump):
+    generated_blockchain = Blockchain()
+    generated_blockchain.create_genesis_block()
+    for idx, block_data in enumerate(chain_dump):
+        if idx == 0:
+            continue 
+        block = Block(block_data["index"],
+                      block_data["transactions"],
+                      block_data["timestamp"],
+                      block_data["previous_hash"],
+                      block_data["nonce"])
+        proof = block_data['hash']
+        added = generated_blockchain.add_block(block, proof)
+        if not added:
+            raise Exception("The chain dump is tampered!!")
+    return generated_blockchain
+
+@app.route('/add_block', methods=['POST'])
+def verify_and_add_block():
+    block_data = request.get_json()
+    block = Block(block_data["index"],
+                  block_data["transactions"],
+                  block_data["timestamp"],
+                  block_data["previous_hash"],
+                  block_data["nonce"])
+
+    proof = block_data['hash']
+    added = blockchain.add_block(block, proof)
+
+    if not added:
+        return jsonify(code=400)
+
+    return jsonify(code=200)
+
+
+@app.route('/pending_tx')
+def get_pending_tx():
+    return json.dumps(blockchain.unconfirmed_transactions)
 
 if __name__ == '__main__':
     app.run()

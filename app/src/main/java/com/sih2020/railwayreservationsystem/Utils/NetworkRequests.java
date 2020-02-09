@@ -251,7 +251,8 @@ public class NetworkRequests {
                     JSONObject station = stations.getJSONObject(i);
                     AppConstants.mStationsName.add(new Station(station.getString("name"),
                             station.getString("code"),
-                            new Pair<String, String>(station.getJSONArray("coordinates").getString(0), station.getJSONArray("coordinates").getString(1))));
+                            new Pair<String, String>(station.getJSONArray("coordinates").getString(0),
+                                    station.getJSONArray("coordinates").getString(1)), station.getString("pincode")));
                 }
             } else {
                 JSONArray trains = jsonObject.getJSONArray("trains");

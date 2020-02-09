@@ -29,9 +29,9 @@
             android:layout_gravity="center"
             android:layout_weight="4"
             android:padding="16dp"
-            android:src="@drawable/loginicon"
+            android:src="@drawable/logout2icon"
             android:tint="#fff"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </LinearLayout>
 </LinearLayout>

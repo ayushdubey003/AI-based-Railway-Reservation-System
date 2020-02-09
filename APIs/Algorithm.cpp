@@ -24,6 +24,10 @@ struct queueData{
   int duration;
 };
 
+bool comparator(struct queueData queueData1, struct queueData queueData2){
+  return queueData1.duration < queueData2.duration;
+}
+
 int main(int argc, char *argv[]){
   // auto start = high_resolution_clock::now();
 
@@ -245,6 +249,8 @@ int main(int argc, char *argv[]){
       bfsQueue.push(temp);
     }
   }
+
+  sort(solution.begin(), solution.end(), comparator);
 
   for (auto node : solution){
 
