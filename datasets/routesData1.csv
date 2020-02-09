@@ -7119,3 +7119,99 @@ Train Number,Train Name,Arrival Delays,Departure Delays
 56101,MTDM ED PASS,$ $3 min$6 min$9 min$12 min$15 min$22 min$24 min$26 min$22 min$0,$0$4 min$12 min$8 min$12 min$16 min$22 min$26 min$26 min$24 min$ 
 56103,MTDM SA PASS,,
 78023,MTIP BQA DEMU,,
+78025,MTIP BQA DEMU,,
+78022,MTIP MSAE DEMU,,
+51971,MTJ AWR PASS,$ $55 min$56 min$57 min$59 min$1:03 hrs$1:05 hrs$1:06 hrs$1:10 hrs$1:12 hrs$1:15 hrs$1:18 hrs$1:27 hrs$1:50 hrs$1:56 hrs$1:16 hrs,$56 min$56 min$56 min$58 min$1:02 hrs$1:06 hrs$1:07 hrs$1:09 hrs$1:11 hrs$1:15 hrs$1:16 hrs$1:25 hrs$1:48 hrs$1:51 hrs$1:55 hrs$ 
+72171,MTJ BDB PASS M G,$ $0$0,$0$0$ 
+72173,MTJ BDB PASS M G,$ $1 min$0,$0$1 min$ 
+72175,MTJ BDB PASS M G,$ $1 min$0,$0$1 min$ 
+72177,MTJ BDB PASS M G,$ $1 min$0,$0$1 min$ 
+72179,MTJ BDB PASS M G,$ $1 min$0,$0$1 min$ 
+54791,MTJ BNW PASS,$ $1:47 hrs$1:29 hrs$1:35 hrs$1:39 hrs$1:54 hrs$1:42 hrs$1:43 hrs$1:44 hrs$1:55 hrs$1:49 hrs$1:54 hrs$2:02 hrs$2:07 hrs$2:13 hrs$2:02 hrs$2:21 hrs$2:21 hrs$2:24 hrs$2:28 hrs$2:30 hrs$1:59 hrs$2:03 hrs$2:01 hrs$2 hrs$2:44 hrs$1:59 hrs$1:58 hrs$1:58 hrs$1:42 hrs,$1:43 hrs$1:49 hrs$1:30 hrs$1:35 hrs$1:40 hrs$1:56 hrs$1:43 hrs$1:44 hrs$1:47 hrs$1:55 hrs$1:54 hrs$2:01 hrs$2:05 hrs$2:22 hrs$2:12 hrs$2:16 hrs$2:21 hrs$2:23 hrs$2:27 hrs$2:30 hrs$2:32 hrs$2 hrs$2:02 hrs$2:01 hrs$2:18 hrs$2:43 hrs$1:59 hrs$1:59 hrs$2:01 hrs$ 
+59360,MTJ BXN PASS,,
+64903,MTJ GZB EMU,$ $1 min$4 min$7 min$9 min$13 min$16 min$17 min$21 min$5 min$11 min$12 min$19 min$20 min$22 min$29 min$31 min$27 min$31 min$52 min$56 min$56 min$46 min,$0$1 min$4 min$7 min$9 min$14 min$17 min$18 min$21 min$8 min$11 min$12 min$19 min$20 min$23 min$30 min$31 min$27 min$38 min$47 min$56 min$56 min$ 
+51973,MTJ JP PASS,$ $44 min$47 min$48 min$53 min$55 min$56 min$57 min$1:05 hrs$1:05 hrs$1:07 hrs$1:11 hrs$1:14 hrs$1:22 hrs$1:34 hrs$1:14 hrs$1:13 hrs$1:15 hrs$1:14 hrs$1:18 hrs$1:22 hrs$1:29 hrs$1:29 hrs$1:32 hrs$1:32 hrs$1:38 hrs$1:37 hrs$1:39 hrs$1:43 hrs$1:45 hrs$1:50 hrs$1:43 hrs$1 hrs,$43 min$48 min$47 min$50 min$55 min$55 min$57 min$1:04 hrs$1:06 hrs$1:06 hrs$1:12 hrs$1:13 hrs$1:21 hrs$1:34 hrs$1:33 hrs$1:12 hrs$1:13 hrs$1:15 hrs$1:28 hrs$1:23 hrs$1:35 hrs$1:22 hrs$1:33 hrs$1:33 hrs$1:35 hrs$1:38 hrs$1:39 hrs$1:41 hrs$1:44 hrs$1:49 hrs$1:50 hrs$1:46 hrs$ 
+55340,MTJ KSJ FAST PASS,$ $0$0$11 min$11 min$3 min,$0$3 min$4 min$11 min$16 min$ 
+64905,MTJ NDLS EMU,$ $2 min$5 min$9 min$11 min$14 min$17 min$18 min$23 min$9 min$12 min$15 min$14 min$27 min$20 min$28 min$31 min$35 min$27 min,$0$2 min$5 min$9 min$11 min$15 min$17 min$20 min$23 min$10 min$13 min$16 min$15 min$27 min$20 min$28 min$32 min$34 min$ 
+54794,MTJ SWM PASS,$ $31 min$40 min$41 min$47 min$50 min$52 min$53 min$58 min$47 min$1:04 hrs$1:08 hrs$1:22 hrs$1:25 hrs$1:27 hrs$1:37 hrs$1:41 hrs$1:54 hrs$1:52 hrs$1:42 hrs$1:33 hrs$1:30 hrs$42 min,$24 min$33 min$41 min$42 min$49 min$54 min$52 min$54 min$1:05 hrs$51 min$1:18 hrs$1:14 hrs$1:23 hrs$1:26 hrs$1:36 hrs$1:40 hrs$1:46 hrs$1:59 hrs$1:58 hrs$1:42 hrs$1:34 hrs$1:33 hrs$ 
+77208,MTM BZA DMU,$ $5 min$10 min$0$17 min$24 min$10 min,$0$5 min$14 min$8 min$23 min$32 min$ 
+77212,MTM BZA DMU,$ $20 min$26 min$22 min$29 min$46 min$44 min$39 min$40 min$0,$9 min$21 min$27 min$26 min$38 min$47 min$46 min$40 min$40 min$ 
+77218,MTM BZA DMU,$ $5 min$10 min$12 min$18 min$27 min$30 min$43 min$39 min$0,$0$5 min$15 min$16 min$24 min$29 min$37 min$43 min$45 min$ 
+77234,MTM GDV DMU,,
+77216,MTM GDV DMU,$ $11 min$17 min$3 min,$5 min$12 min$17 min$ 
+77220,MTM GDV DMU,$ $19 min$8 min,$14 min$19 min$ 
+17402,MTM TPTY EXP,,
+57229,MTM VSKP PASSR,$ $10 min$17 min$16 min$50 min$57 min$1:04 hrs$1:04 hrs$29 min$1 hrs$53 min$1:07 hrs$1:05 hrs$1:12 hrs$1:20 hrs$1:28 hrs$1:07 hrs$1:03 hrs$59 min$1:27 hrs$1:33 hrs$1:26 hrs$1:08 hrs$1:37 hrs$1:44 hrs$53 min$29 min$20 min,$5 min$13 min$18 min$39 min$55 min$1:06 hrs$1:04 hrs$1:05 hrs$44 min$1:05 hrs$1:01 hrs$1:11 hrs$1:10 hrs$1:19 hrs$1:22 hrs$1:20 hrs$1:09 hrs$1:03 hrs$1:17 hrs$1:28 hrs$1:41 hrs$1:26 hrs$1:19 hrs$1:41 hrs$1:53 hrs$1:05 hrs$31 min$ 
+56145,MTP CBE PASS,,
+56147,MTP CBE PASS,,
+56149,MTP CBE PASS,,
+56151,MTP CBE PASS,,
+56136,MTP UAM PASSR,$ $0$4 min$4 min$1 min$0$0,$0$2 min$4 min$4 min$2 min$1 min$ 
+57657,MUGR KZJ PASS,,
+17025,MUGR SC EXPRESS,$ $11 min$38 min$43 min$57 min$1:10 hrs$1:16 hrs$1:16 hrs$1:27 hrs$1:32 hrs$1:08 hrs$1:10 hrs,$0$18 min$42 min$51 min$1:10 hrs$1:12 hrs$1:19 hrs$1:16 hrs$1:27 hrs$1:36 hrs$1:11 hrs$ 
+12228,MUMBAI DURONTO,$ $4 min$0$0$5 min,$1 min$3 min$1 min$0$ 
+17032,MUMBAI EXP,$ $26 min$20 min$20 min$2 min$9 min$4 min$0$8 min$9 min$42 min$45 min$28 min$32 min$40 min$14 min$4 min$10 min$14 min$13 min$12 min$26 min$32 min$10 min,$6 min$28 min$21 min$21 min$6 min$11 min$5 min$4 min$10 min$10 min$56 min$48 min$31 min$25 min$38 min$14 min$9 min$13 min$15 min$19 min$19 min$27 min$33 min$ 
+12134,MUMBAI EXP,$ $40 min$43 min$49 min$1 hrs$1:18 hrs$1:32 hrs$1:30 hrs$1:53 hrs$1:53 hrs$2:06 hrs$2:03 hrs$5:07 hrs$55 min,$37 min$42 min$45 min$49 min$1:04 hrs$1:19 hrs$1:44 hrs$1:35 hrs$2:01 hrs$1:55 hrs$2:08 hrs$2:33 hrs$4:30 hrs$ 
+16332,MUMBAI EXPRESS,$ $6 min$9 min$13 min$14 min$27 min$25 min$25 min$1 min$3 min$10 min$0$8 min$26 min$23 min$26 min$15 min$51 min$1:07 hrs$27 min$12 min$43 min$6 min$23 min$53 min$1:02 hrs$58 min$1:11 hrs$1:09 hrs$0$5 min$9 min$31 min$0$13 min$7 min$17 min$11 min,$0$6 min$8 min$13 min$18 min$33 min$24 min$25 min$2 min$3 min$14 min$1 min$20 min$27 min$25 min$27 min$37 min$55 min$1:08 hrs$25 min$6 min$44 min$9 min$36 min$58 min$1:02 hrs$1:10 hrs$1:12 hrs$1:10 hrs$4 min$6 min$17 min$31 min$15 min$15 min$11 min$18 min$ 
+16340,MUMBAI EXPRESS,$ $1 min$5 min$0$9 min$14 min$16 min$22 min$2 min$8 min$3 min$0$0$9 min$2 min$20 min$16 min$15 min$31 min$0$4 min$36 min$52 min$1:03 hrs$58 min$1:03 hrs$51 min$0$12 min$15 min$22 min$34 min$0$6 min$0$42 min$10 min,$3 min$2 min$6 min$13 min$10 min$15 min$17 min$27 min$8 min$9 min$6 min$1 min$3 min$17 min$9 min$24 min$32 min$16 min$35 min$5 min$29 min$38 min$58 min$1:02 hrs$1:06 hrs$1:02 hrs$51 min$9 min$13 min$18 min$29 min$35 min$11 min$10 min$10 min$42 min$ 
+11042,MUMBAI EXPRESS,$ $16 min$15 min$13 min$0$6 min$7 min$7 min$12 min$10 min$8 min$14 min$0$15 min$28 min$32 min$42 min$43 min$49 min$49 min$47 min$0$11 min$8 min$42 min$27 min$3 min$8 min$21 min$6 min$34 min$13 min,$7 min$16 min$15 min$13 min$6 min$7 min$8 min$9 min$13 min$10 min$10 min$14 min$6 min$15 min$26 min$44 min$42 min$52 min$52 min$49 min$47 min$10 min$16 min$9 min$51 min$32 min$11 min$18 min$22 min$14 min$34 min$ 
+12187,MUMBAI GARIBRATH,$ $14 min$11 min$22 min$0$10 min$0$4 min$29 min$40 min$33 min$11 min$15 min$2 min,$0$14 min$11 min$22 min$4 min$11 min$1 min$19 min$32 min$43 min$32 min$16 min$18 min$ 
+11028,MUMBAI MAIL,$ $6 min$4 min$6 min$5 min$0$3 min$0$1 min$0$1 min$7 min$9 min$0$11 min$23 min$22 min$29 min$58 min$55 min$56 min$1 hrs$55 min$1:09 hrs$1:15 hrs$58 min$54 min$1:01 hrs$1:07 hrs$0$15 min$13 min$29 min$31 min$33 min$34 min$15 min$21 min$21 min$31 min$25 min$32 min$23 min$4 min$0$18 min$3 min$32 min$21 min$6 min,$3 min$6 min$5 min$6 min$5 min$5 min$3 min$1 min$2 min$6 min$2 min$8 min$10 min$4 min$12 min$24 min$23 min$57 min$58 min$55 min$57 min$1 hrs$1:08 hrs$1:10 hrs$1:22 hrs$56 min$55 min$1:09 hrs$1:19 hrs$11 min$16 min$14 min$40 min$37 min$33 min$34 min$18 min$23 min$26 min$23 min$29 min$36 min$25 min$12 min$12 min$19 min$6 min$34 min$22 min$ 
+21028,MUMBAI MAIL,,
+12952,MUMBAI RAJDHANI,$ $0$0$0$0$0$9 min$2 min,$0$8 min$1 min$0$1 min$1 min$10 min$ 
+12951,MUMBAI RAJDHANI,$ $3 min$0$4 min$0$0$6 min$16 min,$0$3 min$0$3 min$1 min$0$9 min$ 
+54239,MUR AY PASS,$ $18 min$20 min,$13 min$24 min$ 
+54243,MUR AY PASS,$ $11 min$21 min,$5 min$24 min$ 
+54237,MUR FD PASS,$ $54 min$56 min$1:09 hrs$1:10 hrs,$54 min$58 min$1:17 hrs$1:14 hrs$ 
+14042,MUSSOORIE EXP,,
+24042,MUSSOORIE EXP,,
+14041,MUSSOORIE EXP,,
+54412,MUT RE PASS,$ $6 min$8 min$10 min$12 min$13 min$13 min$7 min$10 min$19 min$15 min$39 min$42 min$41 min$51 min$51 min$51 min$54 min$57 min$57 min$56 min$56 min$57 min$58 min$27 min,$2 min$5 min$8 min$10 min$13 min$14 min$13 min$7 min$15 min$18 min$17 min$41 min$42 min$41 min$51 min$51 min$54 min$56 min$57 min$57 min$56 min$56 min$57 min$1 hrs$ 
+75109,MAU BCY DEMU,$ $1:04 hrs$1:03 hrs$1:04 hrs$1:19 hrs$1:15 hrs$1:13 hrs$1:12 hrs$1:10 hrs$1:09 hrs$1:51 hrs,$1:08 hrs$1:05 hrs$1:04 hrs$1:22 hrs$1:19 hrs$1:15 hrs$1:13 hrs$1:13 hrs$1:11 hrs$1:51 hrs$ 
+55125,MUV ALY PASS,$ $15 min$11 min$13 min$12 min$18 min$24 min$26 min$25 min$31 min$36 min$35 min$41 min$41 min$40 min$15 min$4 min,$12 min$15 min$11 min$15 min$14 min$22 min$27 min$28 min$30 min$37 min$37 min$36 min$41 min$41 min$42 min$18 min$ 
+55127,MUV ALY PASS,$ $26 min$26 min$24 min$33 min$1 hrs$43 min$50 min$43 min$48 min$52 min$57 min$1:07 hrs$1:22 hrs$1:32 hrs$1:24 hrs$1:09 hrs,$25 min$26 min$25 min$28 min$57 min$1:01 hrs$44 min$56 min$55 min$53 min$56 min$1 hrs$1:28 hrs$1:27 hrs$1:34 hrs$1:27 hrs$ 
+55129,MUV ALY PASS,$ $48 min$49 min$49 min$55 min$1:05 hrs$1:13 hrs$1:17 hrs$1:19 hrs$1:30 hrs$1:29 hrs$1:36 hrs$1:43 hrs$1:45 hrs$1:50 hrs$1:41 hrs$1:32 hrs,$28 min$49 min$50 min$50 min$59 min$1:10 hrs$1:14 hrs$1:18 hrs$1:25 hrs$1:32 hrs$1:33 hrs$1:41 hrs$1:45 hrs$1:52 hrs$1:52 hrs$1:39 hrs$ 
+55122,MUV BTT PASS,$ $29 min$40 min$47 min$46 min$57 min$49 min$59 min$1:08 hrs$1:08 hrs$1:10 hrs$1:11 hrs$1:15 hrs$1:31 hrs$1:21 hrs$1:13 hrs$1:19 hrs$1:22 hrs$54 min,$12 min$36 min$48 min$47 min$47 min$1:04 hrs$53 min$1:09 hrs$1:18 hrs$1:10 hrs$1:10 hrs$1:11 hrs$1:41 hrs$1:32 hrs$1:22 hrs$1:24 hrs$1:27 hrs$1:24 hrs$ 
+55150,BCY GKP PASS,$ $5 min$3 min$6 min$4 min$8 min$10 min$13 min$20 min$14 min$0$0$14 min$10 min$18 min$8 min$1 min$19 min$20 min$23 min$31 min$26 min$29 min$32 min$35 min$1:15 hrs,$2 min$6 min$3 min$6 min$8 min$8 min$10 min$19 min$24 min$23 min$3 min$8 min$15 min$17 min$20 min$11 min$13 min$20 min$23 min$31 min$31 min$32 min$34 min$42 min$1:18 hrs$ 
+15103,MUV INTERCITY,$ $10 min$10 min$19 min$14 min$13 min$17 min$19 min$23 min$20 min$17 min$14 min$25 min$9 min$11 min$8 min,$0$13 min$14 min$19 min$16 min$17 min$19 min$21 min$25 min$20 min$17 min$16 min$26 min$11 min$1:41 hrs$ 
+15111,BCY INTERCITY,$ $21 min$26 min$29 min$36 min$33 min$36 min$34 min$37 min$45 min$43 min$50 min$57 min$58 min$51 min,$0$23 min$26 min$29 min$36 min$33 min$36 min$34 min$39 min$46 min$51 min$57 min$57 min$1 hrs$ 
+15117,MUV JBP EXPRES,$ $9:24 hrs$9:16 hrs$9:19 hrs$9:01 hrs$10:20 hrs$10:13 hrs$10:16 hrs$10:05 hrs$9:37 hrs,$9:28 hrs$9:26 hrs$9:16 hrs$9:18 hrs$9:24 hrs$10:11 hrs$10:13 hrs$10:16 hrs$10:05 hrs$ 
+15007,BCY  LJN EXPRESS,$ $7 min$14 min$17 min$23 min$22 min$23 min$24 min$18 min$23 min$22 min$18 min$16 min$5 min$10 min$8 min$4 min$3 min$17 min$22 min$19 min$17 min$20 min$20 min$16 min$18 min$29 min$25 min$41 min$54 min$52 min$55 min$44 min$39 min$27 min$43 min$3 min,$3 min$7 min$16 min$18 min$25 min$22 min$25 min$18 min$21 min$24 min$23 min$18 min$16 min$6 min$10 min$11 min$5 min$4 min$13 min$21 min$21 min$18 min$20 min$20 min$19 min$23 min$34 min$25 min$46 min$54 min$53 min$55 min$38 min$40 min$28 min$44 min$ 
+12538,MUV MFP EXPRESS,$ $9:31 hrs$36 min$55 min$2:03 hrs$2:14 hrs$2:21 hrs$2:46 hrs$3:18 hrs$3:23 hrs$3:36 hrs$3:43 hrs$4:03 hrs$4:12 hrs$4:19 hrs$4:10 hrs,$2 min$9:37 hrs$38 min$58 min$2:09 hrs$2:15 hrs$2:22 hrs$2:58 hrs$3:18 hrs$3:29 hrs$3:36 hrs$3:48 hrs$4:03 hrs$4:12 hrs$4:23 hrs$ 
+12581,MUV NDLS S F EXP,$ $14 min$11 min$0$44 min$12 min$19 min,$1 min$15 min$14 min$4 min$52 min$15 min$ 
+15120,MUV RMM EXP,$ $16 min$0$20 min$31 min$37 min$3:01 hrs$3:21 hrs$4:08 hrs$4:15 hrs$3:51 hrs$4 hrs$4:15 hrs$3:48 hrs$3:56 hrs$4:12 hrs$4:54 hrs$4:11 hrs$4 hrs$4:05 hrs$4:03 hrs$4:16 hrs$4:16 hrs$4:17 hrs$4:11 hrs$4:15 hrs$3:43 hrs$4:09 hrs$3:47 hrs$3:46 hrs$3:56 hrs$3:56 hrs$4:08 hrs$2:52 hrs,$3 min$17 min$0$23 min$46 min$1:27 hrs$3:15 hrs$3:50 hrs$4:08 hrs$4:16 hrs$3:46 hrs$4 hrs$4:15 hrs$3:50 hrs$4 hrs$4:12 hrs$4:55 hrs$4:12 hrs$4:04 hrs$3:56 hrs$4:03 hrs$4:15 hrs$4:16 hrs$4:16 hrs$4:11 hrs$4:20 hrs$3:56 hrs$4:09 hrs$3:48 hrs$3:47 hrs$3:57 hrs$3:56 hrs$4:08 hrs$ 
+11061,DARBHANGA EXP,$ $7 min$11 min$15 min$16 min$17 min$21 min$28 min$31 min$18 min$40 min$7 min$3 min$26 min$48 min$49 min$39 min$1:05 hrs$58 min$20 min$39 min$25 min$39 min$41 min$43 min$59 min$1:03 hrs$1:05 hrs$1:16 hrs$1:11 hrs$44 min$58 min$49 min$1:07 hrs$1:07 hrs$1:08 hrs$1:11 hrs$1:04 hrs$1:17 hrs$45 min$1 hrs$50 min,$1 min$7 min$13 min$14 min$15 min$17 min$22 min$29 min$32 min$37 min$40 min$12 min$6 min$26 min$48 min$49 min$1:01 hrs$1:05 hrs$1:01 hrs$28 min$41 min$34 min$42 min$42 min$43 min$1:02 hrs$1:03 hrs$1:05 hrs$1:18 hrs$1:11 hrs$50 min$59 min$58 min$1:08 hrs$1:08 hrs$1:08 hrs$1:11 hrs$1:12 hrs$1:17 hrs$48 min$59 min$ 
+15227,MUZAFFARPUR EXP,$ $48 min$37 min$0$0$0$6 min$0$21 min$0$4 min$0$1 min$6 min$9 min$0$0$0$5 min$0$0$38 min$49 min$50 min$26 min$34 min$7 min$14 min$9 min$26 min$4 min$20 min$0,$0$48 min$36 min$1 min$4 min$2 min$5 min$8 min$21 min$5 min$4 min$2 min$1 min$6 min$9 min$1 min$0$2 min$4 min$0$2 min$36 min$50 min$51 min$27 min$34 min$0$14 min$11 min$26 min$20 min$22 min$ 
+56033,MV MQ PASS,$ $5 min$6 min$8 min$16 min$18 min$23 min$1 min,$0$6 min$7 min$12 min$16 min$18 min$22 min$ 
+56821,MV TEN PASS,$ $3 min$5 min$10 min$23 min$29 min$28 min$27 min$34 min$45 min$19 min$30 min$29 min$28 min$33 min$34 min$36 min$9 min,$0$3 min$11 min$11 min$24 min$29 min$28 min$33 min$41 min$45 min$27 min$30 min$29 min$28 min$33 min$34 min$36 min$ 
+76825,MV TJ DEMU,$ $5 min$12 min$10 min$10 min$12 min$12 min$0,$0$8 min$12 min$9 min$10 min$12 min$13 min$ 
+16233,MV TPJ EXPRESS,$ $6 min$9 min$10 min$6 min$11 min$0,$0$6 min$9 min$11 min$8 min$12 min$ 
+56823,MV TPJ PASS,$ $4 min$3 min$0$0$1 min$10 min$11 min$12 min$13 min$13 min$13 min$16 min$0,$0$4 min$3 min$1 min$0$7 min$10 min$12 min$12 min$13 min$12 min$12 min$19 min$ 
+56871,MV TVR PASS,$ $13 min$15 min$0,$2 min$13 min$18 min$ 
+56879,MV TVR PASS,$ $16 min$17 min$3 min,$8 min$17 min$17 min$ 
+56874,MV VM PASS,$ $2 min$1 min$1 min$2 min$0$11 min$21 min$24 min$0$0$3 min$4 min$6 min$7 min$5 min$1 min,$0$2 min$1 min$2 min$2 min$8 min$22 min$21 min$27 min$0$0$3 min$4 min$6 min$6 min$5 min$ 
+56876,MV VM PASS,$ $5 min$6 min$8 min$10 min$9 min$11 min$14 min$14 min$11 min$13 min$11 min$12 min$18 min$19 min$19 min$1 min,$1 min$5 min$8 min$8 min$10 min$10 min$13 min$14 min$14 min$11 min$12 min$11 min$12 min$19 min$18 min$19 min$ 
+56878,MV VM PASS,$ $6 min$6 min$9 min$12 min$11 min$15 min$13 min$16 min$15 min$17 min$19 min$22 min$24 min$25 min$24 min$4 min,$2 min$8 min$4 min$11 min$12 min$13 min$17 min$13 min$18 min$15 min$19 min$23 min$22 min$26 min$25 min$23 min$ 
+79449,MVI MALB DMU,$ $4 min$3 min$3 min$0,$0$4 min$3 min$3 min$ 
+52076,MVJ MJ PASS,$ $6 min$5 min$25 min$5 min$0,$0$6 min$12 min$20 min$4 min$ 
+90141,BVI BSR FAST,,
+90037,CCG BVI LOCAL,,
+90057,CCG BVI LOCAL,,
+90075,MX BVI LOCAL,,
+90109,ADH VR FAST,,
+90167,MX BVI LOCAL,,
+90733,CCG BVI FAST,,
+90759,CCG BVI LOCAL,,
+90813,CCG BVI LOCAL,,
+55904,MXN DMV PASS,$ $1 min$1 min$0$0$0$1:39 hrs$1:25 hrs$1:57 hrs$4:07 hrs$3:49 hrs$3:33 hrs$3:28 hrs$3:21 hrs$3:24 hrs$3:23 hrs$2:55 hrs,$0$2 min$0$0$0$1:41 hrs$1:39 hrs$2:03 hrs$4:08 hrs$4:07 hrs$3:50 hrs$3:34 hrs$3:30 hrs$3:22 hrs$3:24 hrs$3:24 hrs$ 
+52022,MYG MKRL PASS N G,,
+37732,MYM BDC LOCAL,$ $15 min$15 min$16 min$16 min$18 min$17 min$11 min,$10 min$15 min$15 min$16 min$16 min$18 min$19 min$ 
+37652,MYM HWH FAST,$ $17 min$8 min$9 min$11 min$11 min$13 min$13 min$0$2 min$2 min$4 min$4 min$9 min$0,$4 min$17 min$8 min$9 min$11 min$11 min$13 min$13 min$2 min$3 min$3 min$4 min$5 min$9 min$ 
+37654,MYM HWH LOCAL,$ $1:08 hrs$35 min$37 min$39 min$39 min$41 min$41 min$41 min$43 min$44 min$44 min$45 min$47 min$48 min$47 min$49 min$49 min$50 min$49 min$37 min,$28 min$1:08 hrs$36 min$37 min$39 min$39 min$41 min$41 min$48 min$44 min$44 min$44 min$46 min$47 min$48 min$47 min$49 min$49 min$50 min$50 min$ 
+37656,MYM HWH LOCAL,$ $18 min$22 min$22 min$22 min$26 min$25 min$19 min$19 min$20 min$19 min$21 min$23 min$24 min$24 min$24 min$25 min$26 min$26 min$16 min,$15 min$19 min$22 min$22 min$23 min$26 min$26 min$21 min$19 min$20 min$20 min$22 min$23 min$24 min$25 min$24 min$25 min$26 min$26 min$ 
+37658,MYM HWH LOCAL,$ $11 min$25 min$26 min$28 min$28 min$30 min$31 min$29 min$30 min$31 min$31 min$33 min$34 min$35 min$35 min$36 min$36 min$37 min$37 min$30 min,$18 min$11 min$25 min$25 min$28 min$28 min$31 min$31 min$30 min$31 min$32 min$32 min$34 min$34 min$35 min$35 min$36 min$36 min$38 min$38 min$ 
+68095,MYPR BQA MEMU,,
+56266,MYS ASK PASS,$ $6 min$10 min$9 min$13 min$15 min$18 min$23 min$23 min$11 min$16 min$20 min$0,$3 min$8 min$10 min$9 min$14 min$15 min$18 min$23 min$23 min$12 min$17 min$19 min$ 
+56268,MYS ASK PASS,$ $5 min$7 min$11 min$17 min$18 min$29 min$26 min$27 min$5:03 hrs$32 min$36 min$0,$0$5 min$11 min$10 min$17 min$24 min$29 min$23 min$35 min$31 min$29 min$26 min$ 
+16229,MYS BSB EXP,$ $7 min$7 min$5 min$23 min$21 min$27 min$51 min$46 min$1:17 hrs$1:31 hrs$2:04 hrs$1:58 hrs$1:58 hrs$2:03 hrs$2:01 hrs$53 min$1:20 hrs$1:24 hrs$1:09 hrs$44 min$43 min$8 min$7 min$0$0$33 min$44 min$25 min$50 min$51 min$40 min$55 min$59 min$15 min,$1 min$7 min$7 min$27 min$22 min$22 min$35 min$53 min$45 min$1:22 hrs$2:14 hrs$2:04 hrs$2:07 hrs$2 hrs$1:59 hrs$2:02 hrs$1:23 hrs$1:19 hrs$1:29 hrs$1:43 hrs$44 min$45 min$17 min$12 min$12 min$6 min$33 min$43 min$39 min$49 min$53 min$45 min$1:13 hrs$59 min$ 
+56202,MYS CMNR PASS,$ $3 min$6 min$12 min$0,$0$3 min$6 min$12 min$ 

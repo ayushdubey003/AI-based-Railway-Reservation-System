@@ -702,7 +702,7 @@ public class NetworkRequests {
                                     Log.e("Network", hashMap + "");
                                     route.setmSeatstatus(hashMap);
                                 } catch (Exception ex) {
-                                    seatsFetched(trainNo, false);
+                                    seatsFetched(route,trainNo, false);
                                     ex.printStackTrace();
                                 }
                             } catch (Exception ex) {
@@ -727,7 +727,6 @@ public class NetworkRequests {
             route.setmConfirmation(hashMap);
             return;
         }
-        Train train = AppConstants.mTrainList.get(pos);
         Date currentTime = Calendar.getInstance().getTime();
         String s = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(currentTime);
         String u[] = s.split(" ");
@@ -744,9 +743,9 @@ public class NetworkRequests {
 //            }
 //        }
 
-        String jtime = train.getmDepartureTime().get(deptIndex).trim().split(" ")[0];
+        String jtime = route.getmDepartureTime().get(pos);
 //        Log.e(LOG_TAG, jtime);
-        String currStatus = train.getmSeats().get(0);
+        String currStatus = route.getmSeatstatus().get(pos);
         if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put(pos, "UNAVAILABLE");
@@ -765,7 +764,7 @@ public class NetworkRequests {
                     continue;
                 d = d + v[1].charAt(i);
             }
-            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + l + "_" + d;
+            String url = AppConstants.mUrl + "/predict/" + pos + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + l + "_" + d;
             Ion.with(mContext)
                     .load(url)
                     .asJsonObject()

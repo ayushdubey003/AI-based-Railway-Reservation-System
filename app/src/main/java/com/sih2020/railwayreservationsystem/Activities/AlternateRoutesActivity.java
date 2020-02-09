@@ -27,6 +27,7 @@ import com.sih2020.railwayreservationsystem.Utils.NetworkRequests;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class AlternateRoutesActivity extends AppCompatActivity {
 
@@ -92,6 +93,14 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                                 }
 
                                 for (int j = 0; j < singleroute.getAsJsonArray("trains").size(); j++) {
+                                    if (j == 0) {
+                                        HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put(singleroute.getAsJsonArray("trains").get(j).getAsString(), singleroute.getAsJsonArray("departureTime").get(j).getAsString());
+                                        route.setmDepartureTime(hashMap);
+                                    }
+                                    else{
+
+                                    }
                                     route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).toString());
                                     Date date = AppConstants.mDate;
                                     String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
