@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
-import requests 
+import requests
 from bs4 import BeautifulSoup
 import csv
 import re
-import joblib # install 
+import joblib # install
 import lightgbm as lgm # install
 import numpy as np # install
 from sklearn.preprocessing import StandardScaler # install
@@ -23,9 +23,9 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 def home():
     return 'hii...there 3!!!'
 
-@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>", methods=['GET'])
-def alternates(board,destination,intermediates,doj):
-    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj
+@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>", methods=['GET'])
+def alternates(board,destination,intermediates,doj,mintime,maxtime):
+    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime
     os.system(cmd)
     file=""
     with open("result.txt","r") as readFile:
@@ -42,42 +42,45 @@ def alternates(board,destination,intermediates,doj):
         stations = u[i].split(" ")
         trains = u[i+1].split(" ")
         time = u[i+2]
+        stations = stations[:-1]
+        trains = trains[:-1]
         alternates.append({
             "stations":stations,
             "trains" :trains,
             "time" :time
             })
         i = i+3
+    # return requests.get("http://localhost:5000/trains/ACND").text
     return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
     train_metric_type = [0, 0, 0, 0]
     if train_type > 0:
         train_metric_type[train_type - 1] = 1
-    
+
     date_item_booking = list(map(int, booking_date.split('-')))
     date_item_journey = list(map(int, journey_date.split('-')))
-    
+
     booking_year = date_item_booking[0]
     journey_year = date_item_journey[0]
-    
+
     booking_month = date_item_booking[1]
     journey_month = date_item_journey[1]
-    
+
     booking_day = date_item_booking[2]
     journey_day = date_item_journey[2]
-    
+
     booking_datetime = datetime(booking_year, booking_month, booking_day, hour=booking_hour)
     journey_datetime = datetime(journey_year, journey_month, journey_day, hour=journey_hour)
-    
+
     time_difference_1 = (journey_datetime - booking_datetime).total_seconds() // 3600
     assert time_difference_1 >= 0
     time_difference_2 = 0
-    
+
     journey_month_type = [0] * 11
     if journey_month > 1:
         journey_month_type[journey_month - 2] = 1
-    
+
     ticket_class_type = [0, 0, 0]
     if ticket_class == 'SL':
         ticket_class_type[2] = 1
@@ -85,7 +88,7 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
         ticket_class_type[0] = 1
     if ticket_class == '3A':
         ticket_class_type[1] = 1
-    
+
     waiting_list_type = [0, 0, 0, 0]
     if waiting_list_category == 'RL':
         waiting_list_type[2] = 1
@@ -104,16 +107,16 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.extend(ticket_class_type)
     row.extend(waiting_list_type)
     row.extend(train_metric_type)
-   
+
     print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
     X = np.array([row])
-    
+
     model = joblib.load('../datasets/lgbtqmodel.pkl')
     scalar = joblib.load('../datasets/scaler_file.pkl')
     X_sc = scalar.transform(X)
-    
+
     return model.predict(X_sc)[0]
-    
+
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
 def predict(train_number, booking_date, booking_time, journey_date, journey_time, ticket_class, waiting_list):
     try:
@@ -132,7 +135,7 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
         assert len(time_pattern.findall(journey_time)[0]) == len(journey_time)
         booking_hour = int(booking_time[0:2])
         journey_hour = int(journey_time[0:2])
-        
+
         print(waiting_list)
         assert ticket_class in ['1A', '2A', '3A', 'SL']
         waiting_list_type = waiting_list[0:2]
@@ -142,7 +145,7 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
                 break
         waiting_number = int(waiting_list[i + 1:])
         print(waiting_number)
-        
+
     except Exception as e:
         print(e)
         return e.__str__()
@@ -572,7 +575,7 @@ def livestation(src,destination,hours):
     if destination == "null":
         url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation=&hours="+hours
     else:
-        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation="+destination.strip()+"&hours="+hours      
+        url = "https://www.confirmtkt.com/train-LiveStation.php?sourcestation="+src.strip()+"&destinationstation="+destination.strip()+"&hours="+hours
     ans = []
     try:
         content = requests.get(url)
