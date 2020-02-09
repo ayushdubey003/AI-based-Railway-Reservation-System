@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -151,7 +152,27 @@ public class TrainAdapter extends ArrayAdapter<Train> {
             fareTv.setVisibility(View.VISIBLE);
             fareProgress.setVisibility(View.GONE);
         } catch (Exception e) {
+        }
 
+        final ProgressBar confirmationProgress = convertView.findViewById(R.id.confirmation_progress);
+        TextView confirmationTv = convertView.findViewById(R.id.confirmation_tv);
+        RelativeLayout confirmationRl = convertView.findViewById(R.id.confirmation_rl);
+        try {
+            int x;
+            if (mTrains.get(position).getmConfirmationProbability() == null)
+                x = 1 / 0;
+            if (mTrains.get(position).getmConfirmationProbability().equalsIgnoreCase("unavailable")) {
+                confirmationProgress.setVisibility(View.GONE);
+                String s = mTrains.get(position).getmConfirmationProbability().substring(0, 5) + "%";
+                confirmationTv.setText("UNAVAILABLE");
+                confirmationTv.setVisibility(View.VISIBLE);
+            } else {
+                confirmationProgress.setVisibility(View.GONE);
+                String s = mTrains.get(position).getmConfirmationProbability().substring(0, 5) + "%";
+                confirmationTv.setText(s);
+                confirmationTv.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
         }
         return convertView;
     }

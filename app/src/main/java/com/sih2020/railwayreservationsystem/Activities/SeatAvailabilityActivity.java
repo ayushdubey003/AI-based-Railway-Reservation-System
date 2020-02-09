@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.android.volley.RequestQueue;
 import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
+import com.sih2020.railwayreservationsystem.Models.Train;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
@@ -59,6 +61,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     private Calendar mCalendar;
     private ImageView mBack;
     private RadioButton lastChecked;
+    public ArrayList<Train> mTrains;
 
     @Override
     public void onBackPressed() {
@@ -111,9 +114,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
         mDateTv = findViewById(R.id.date_tv);
         mTravelClass = findViewById(R.id.travel_class_tv);
         mBack = findViewById(R.id.back_iv);
-        mAdapter = new TrainAdapter(SeatAvailabilityActivity.this, AppConstants.mTrainList);
         mCalendar = Calendar.getInstance();
-        mList.setAdapter(mAdapter);
         mDate = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -125,6 +126,9 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
                 updateJourneyDate();
             }
         };
+        mTrains = new ArrayList<>();
+        mAdapter = new TrainAdapter(SeatAvailabilityActivity.this, mTrains);
+        mList.setAdapter(mAdapter);
 
         networkRequests = new NetworkRequests(mCL, this, SeatAvailabilityActivity.this);
         networkRequests.fetchTrainsFromUrl(mUrl);
@@ -139,6 +143,7 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     public void trainListFetchComplete() {
         mMain.setAlpha(1.0f);
         mProgress.setVisibility(View.GONE);
+//        Log.e(LOG_TAG, "" + mTrains.size());
         mAdapter.notifyDataSetChanged();
         for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
             ArrayList<String> route = AppConstants.mTrainList.get(i).getmCodedRoutes();
@@ -447,5 +452,41 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             Log.e(LOG_TAG, e.getLocalizedMessage());
         }
         setDate(date);
+    }
+
+    public void seatsFetched(int pos, boolean b) {
+        if (!b) {
+            mTrains.get(pos).setmConfirmationProbability("UNAVAILABLE");
+            mAdapter.notifyDataSetChanged();
+            return;
+        }
+        Train train = AppConstants.mTrainList.get(pos);
+        Date currentTime = Calendar.getInstance().getTime();
+        String s = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(currentTime);
+        String u[] = s.split(" ");
+        String bdate = u[0];
+        String btime = u[1];
+        s = new SimpleDateFormat("yyyy-MM-dd").format(AppConstants.mDate);
+        String jdate = s;
+        int deptIndex = 0;
+        for (int i = 0; i < mTrains.get(pos).getmCodedRoutes().size(); i++) {
+            if (mTrains.get(pos).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode())) {
+                deptIndex = i;
+                break;
+            }
+        }
+
+        String jtime = train.getmDepartureTime().get(deptIndex).trim().split(" ")[0];
+        Log.e(LOG_TAG,jtime);
+        String currStatus = train.getmSeats().get(0);
+        if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
+            mTrains.get(pos).setmConfirmationProbability("UNAVAILABLE");
+            mAdapter.notifyDataSetChanged();
+            return;
+        } else {
+            String v[] = currStatus.split("/");
+            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + v[0] + "_" + v[1];
+            networkRequests.fetchConfirmationProbability(pos, url);
+        }
     }
 }

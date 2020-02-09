@@ -330,6 +330,24 @@ public class NetworkRequests {
                                         sigDelay,
                                         sliDelay,
                                         null,
+                                        null,
+                                        null));
+                                seatAvailabilityActivity.mTrains.add(new Train(trainName,
+                                        trainNo,
+                                        type,
+                                        zone,
+                                        arrTime,
+                                        avClasses,
+                                        canc,
+                                        deptTime,
+                                        rightTime,
+                                        codedRoutes,
+                                        namedRoutes,
+                                        days,
+                                        sigDelay,
+                                        sliDelay,
+                                        null,
+                                        null,
                                         null));
                             }
                         } catch (JSONException e) {
@@ -382,9 +400,16 @@ public class NetworkRequests {
     public void fetchSeatsData(final String trainNo, final String url, final int requestNo) {
         if (requestNo >= 3) {
             int pos = 0;
+            for (int i = 0; i < AppConstants.mTrainList.size(); i++) {
+                if (trainNo.equalsIgnoreCase(AppConstants.mTrainList.get(i).getmTrainNo().trim())) {
+                    pos = i;
+                    break;
+                }
+            }
             try {
-                seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
+                seatAvailabilityActivity.mTrains.get(pos).setmSeats(temp);
                 seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                seatAvailabilityActivity.seatsFetched(pos, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -414,9 +439,11 @@ public class NetworkRequests {
                                 }
                                 try {
                                     AppConstants.mTrainList.get(pos).setmSeats(arrayList);
-                                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(arrayList);
+                                    seatAvailabilityActivity.mTrains.get(pos).setmSeats(arrayList);
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                    seatAvailabilityActivity.seatsFetched(pos, true);
                                 } catch (Exception ex) {
+                                    seatAvailabilityActivity.seatsFetched(pos, false);
                                     ex.printStackTrace();
                                 }
                             } catch (Exception ex) {
@@ -429,7 +456,9 @@ public class NetworkRequests {
                                 }
                                 try {
                                     AppConstants.mTrainList.get(pos).setmSeats(temp);
+                                    seatAvailabilityActivity.mTrains.get(pos).setmSeats(temp);
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                                    seatAvailabilityActivity.seatsFetched(pos, true);
                                 } catch (Exception exx) {
                                     exx.printStackTrace();
                                 }
@@ -443,7 +472,7 @@ public class NetworkRequests {
         if (requestNo >= 3) {
             int pos = 0;
             try {
-                seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmSeats(temp);
+                seatAvailabilityActivity.mTrains.get(pos).setmFare("n/a".toUpperCase());
                 seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -485,7 +514,7 @@ public class NetworkRequests {
                                 }
                                 try {
                                     AppConstants.mTrainList.get(pos).setmFare(fare);
-                                    seatAvailabilityActivity.mAdapter.mTrains.get(pos).setmFare(fare);
+                                    seatAvailabilityActivity.mTrains.get(pos).setmFare(fare);
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                                 } catch (Exception ee) {
                                     ee.printStackTrace();
@@ -501,6 +530,7 @@ public class NetworkRequests {
                                 }
                                 try {
                                     AppConstants.mTrainList.get(pos).setmFare("N/A");
+                                    seatAvailabilityActivity.mTrains.get(pos).setmFare("N/A");
                                     seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
@@ -534,6 +564,27 @@ public class NetworkRequests {
                                         jsonObject.get("station").getAsString()));
                             }
                             trainLiveStatus.dataFetchComplete(route);
+                        }
+                    }
+                });
+    }
+
+    public void fetchConfirmationProbability(final int pos, String url) {
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null) {
+                            AppConstants.mTrainList.get(pos).setmConfirmationProbability("unavailable".toUpperCase());
+                            seatAvailabilityActivity.mTrains.get(pos).setmConfirmationProbability("unavailable".toUpperCase());
+                            seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
+                        } else {
+                            String u = result.get("prediction").getAsString();
+                            AppConstants.mTrainList.get(pos).setmConfirmationProbability(u);
+                            seatAvailabilityActivity.mTrains.get(pos).setmConfirmationProbability(u);
+                            seatAvailabilityActivity.mAdapter.notifyDataSetChanged();
                         }
                     }
                 });

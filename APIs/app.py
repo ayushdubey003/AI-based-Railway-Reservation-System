@@ -78,7 +78,7 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.extend(journey_month_type)
     row.extend(train_metric_type)
    
-    print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
+    # print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
     X = np.array([row])
     
     model = joblib.load('../datasets/lgbtqmodel.pkl')
@@ -110,7 +110,11 @@ def predict(train_number, booking_date, booking_time, journey_date, journey_time
     
     waiting_list_type = waiting_list[0:2]
     assert waiting_list_type in ['GN', 'RL', 'TQ', 'RA', 'PQ']
-    waiting_number = int(waiting_list.split('_')[1][2:])
+    for i in range(-1, -len(waiting_list) - 1, -1):
+        if not (waiting_list[i] in [str(j) for j in range(10)]):
+            break
+    waiting_number = int(waiting_list[i + 1:])
+
     
     return jsonify(prediction=predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_type, waiting_number)*100)
 

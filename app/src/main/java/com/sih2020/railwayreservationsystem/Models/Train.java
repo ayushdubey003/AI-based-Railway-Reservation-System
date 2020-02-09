@@ -3,11 +3,10 @@ package com.sih2020.railwayreservationsystem.Models;
 import java.util.ArrayList;
 
 public class Train {
-    private String mTrainName, mTrainNo, mType, mZone, mFare;
+    private String mTrainName, mTrainNo, mType, mZone, mFare, mConfirmationProbability;
     private ArrayList<String> mArrivalTimes, mAvailableClasses, mCancelled, mDepartureTime, mRightTime, mCodedRoutes, mNamedRoutes, mRunningDays, mSignificantDelay, mSlightDelay, mSeats;
 
-
-    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay, ArrayList<String> mSeats, String mFare) {
+    public Train(String mTrainName, String mTrainNo, String mType, String mZone, ArrayList<String> mArrivalTimes, ArrayList<String> mAvailableClasses, ArrayList<String> mCancelled, ArrayList<String> mDepartureTime, ArrayList<String> mRightTime, ArrayList<String> mCodedRoutes, ArrayList<String> mNamedRoutes, ArrayList<String> mRunningDays, ArrayList<String> mSignificantDelay, ArrayList<String> mSlightDelay, ArrayList<String> mSeats, String mFare, String mConfirmationProbability) {
         this.mTrainName = mTrainName;
         this.mTrainNo = mTrainNo;
         this.mType = mType;
@@ -24,6 +23,7 @@ public class Train {
         this.mSlightDelay = mSlightDelay;
         this.mSeats = mSeats;
         this.mFare = mFare;
+        this.mConfirmationProbability = mConfirmationProbability;
     }
 
     public String getmTrainName() {
@@ -96,5 +96,13 @@ public class Train {
 
     public void setmSeats(ArrayList<String> mSeats) {
         this.mSeats = mSeats;
+    }
+
+    public String getmConfirmationProbability() {
+        return mConfirmationProbability;
+    }
+
+    public void setmConfirmationProbability(String mConfirmationProbability) {
+        this.mConfirmationProbability = mConfirmationProbability;
     }
 }
