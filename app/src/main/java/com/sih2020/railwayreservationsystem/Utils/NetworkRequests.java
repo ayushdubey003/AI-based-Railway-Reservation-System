@@ -25,9 +25,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.sih2020.railwayreservationsystem.Activities.AlternateRoutesActivity;
 import com.sih2020.railwayreservationsystem.Activities.MainActivity;
 import com.sih2020.railwayreservationsystem.Activities.SeatAvailabilityActivity;
 import com.sih2020.railwayreservationsystem.Activities.TrainLiveStatus;
+import com.sih2020.railwayreservationsystem.Models.AlternateModel;
 import com.sih2020.railwayreservationsystem.Models.Station;
 import com.sih2020.railwayreservationsystem.Models.Status;
 import com.sih2020.railwayreservationsystem.Models.Train;
@@ -42,7 +44,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -59,6 +64,7 @@ public class NetworkRequests {
     private ArrayList<String> temp;
     String arrOfSplits[];
     public RequestQueue requestQueue;
+    private AlternateRoutesActivity alternateRoutesActivity;
 
     public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, MainActivity mainActivity) {
         mCL = coordinatorLayout;
@@ -84,6 +90,14 @@ public class NetworkRequests {
         mContext = context;
         mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
         this.trainLiveStatus = trainLiveStatus;
+        requestQueue = Volley.newRequestQueue(mContext);
+    }
+
+    public NetworkRequests(CoordinatorLayout coordinatorLayout, Context context, AlternateRoutesActivity alternateRoutesActivity) {
+        mCL = coordinatorLayout;
+        mContext = context;
+        mSharedPreferences = context.getSharedPreferences(AppConstants.mPrefsName, Context.MODE_PRIVATE);
+        this.alternateRoutesActivity = alternateRoutesActivity;
         requestQueue = Volley.newRequestQueue(mContext);
     }
 
@@ -591,5 +605,185 @@ public class NetworkRequests {
                         }
                     }
                 });
+    }
+
+    public void fetchAlternateFares(final String trainNo, final String url, final int requestNo, final AlternateModel route, final int position) {
+        if (requestNo >= 3) {
+            try {
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put(trainNo, "N/A");
+                route.setmFares(hashMap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null)
+                            fetchAlternateFares(trainNo, url, requestNo + 1, route, position);
+                        else {
+                            try {
+                                JsonObject jsonObject = result.getAsJsonObject("fare");
+                                JsonArray results;
+                                if (AppConstants.mQuota.getmAbbreviation().equalsIgnoreCase("tq"))
+                                    results = jsonObject.getAsJsonArray("adultTatkal");
+                                else
+                                    results = jsonObject.getAsJsonArray("adult");
+
+                                String fare = "N/A";
+                                for (int i = 0; i < results.size(); i++) {
+                                    JsonObject resultsJSONObject = results.get(i).getAsJsonObject();
+                                    try {
+                                        fare = resultsJSONObject.get(AppConstants.mClass.getmAbbreviation()).getAsString();
+                                    } catch (Exception eee) {
+                                        continue;
+                                    }
+                                }
+                                try {
+                                    HashMap<String, String> hashMap = new HashMap<>();
+                                    hashMap.put(trainNo, fare);
+                                    route.setmFares(hashMap);
+                                    Log.e("Network", hashMap + "");
+                                } catch (Exception ee) {
+                                    ee.printStackTrace();
+                                }
+                                return;
+                            } catch (Exception ee) {
+                                try {
+                                    HashMap<String, String> hashMap = new HashMap<>();
+                                    hashMap.put(trainNo, "N/A");
+                                    route.setmFares(hashMap);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            return;
+                        }
+                    }
+                });
+    }
+
+    public void fetchAlternateSeatsData(final String trainNo, final String url, final int requestNo, final AlternateModel route, final int j) {
+        if (requestNo >= 3) {
+            try {
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put(trainNo, "N/A");
+                route.setmSeatstatus(hashMap);
+                seatsFetched(route, trainNo, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+                seatsFetched(route, trainNo, false);
+            }
+            return;
+        }
+        Ion.with(mContext)
+                .load(url)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null)
+                            fetchAlternateSeatsData(trainNo, url, requestNo + 1, route, j);
+                        else {
+                            try {
+                                JsonArray jsonArray = result.getAsJsonArray("seatavailability");
+                                ArrayList<String> arrayList = new ArrayList<>();
+                                for (int i = 0; i < jsonArray.size(); i++)
+                                    arrayList.add(jsonArray.get(i).getAsString());
+                                arrayList = cleanList(arrayList);
+                                try {
+                                    HashMap<String, String> hashMap = new HashMap<>();
+                                    hashMap.put(trainNo, arrayList.get(0));
+                                    Log.e("Network", hashMap + "");
+                                    route.setmSeatstatus(hashMap);
+                                } catch (Exception ex) {
+                                    seatsFetched(trainNo, false);
+                                    ex.printStackTrace();
+                                }
+                            } catch (Exception ex) {
+                                try {
+                                    HashMap<String, String> hashMap = new HashMap<>();
+                                    hashMap.put(trainNo, "N/A");
+                                    route.setmSeatstatus(hashMap);
+                                    seatsFetched(route, trainNo, true);
+                                } catch (Exception exx) {
+                                    exx.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void seatsFetched(final AlternateModel route, final String pos, boolean b) {
+        if (!b) {
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put(pos, "UNAVAILABLE");
+            route.setmConfirmation(hashMap);
+            return;
+        }
+        Train train = AppConstants.mTrainList.get(pos);
+        Date currentTime = Calendar.getInstance().getTime();
+        String s = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(currentTime);
+        String u[] = s.split(" ");
+        String bdate = u[0];
+        String btime = u[1];
+        s = new SimpleDateFormat("yyyy-MM-dd").format(AppConstants.mDate);
+        String jdate = s;
+        int deptIndex = 0;
+
+//        for (int i = 0; i < route.get; i++) {
+//            if (mTrains.get(pos).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode())) {
+//                deptIndex = i;
+//                break;
+//            }
+//        }
+
+        String jtime = train.getmDepartureTime().get(deptIndex).trim().split(" ")[0];
+//        Log.e(LOG_TAG, jtime);
+        String currStatus = train.getmSeats().get(0);
+        if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put(pos, "UNAVAILABLE");
+            route.setmConfirmation(hashMap);
+            return;
+        } else {
+            String v[] = currStatus.split("/");
+            String l = "", d = "";
+            for (int i = 0; i < v[0].length(); i++) {
+                if (v[0].charAt(i) == ' ')
+                    continue;
+                l = l + v[0].charAt(i);
+            }
+            for (int i = 0; i < v[1].length(); i++) {
+                if (v[1].charAt(i) == ' ')
+                    continue;
+                d = d + v[1].charAt(i);
+            }
+            String url = AppConstants.mUrl + "/predict/" + train.getmTrainNo().trim() + "/" + bdate + "/" + btime + "/" + jdate + "/" + jtime + "/" + AppConstants.mClass.getmAbbreviation() + "/" + l + "_" + d;
+            Ion.with(mContext)
+                    .load(url)
+                    .asJsonObject()
+                    .setCallback(new FutureCallback<JsonObject>() {
+                        @Override
+                        public void onCompleted(Exception e, JsonObject result) {
+                            if (e != null) {
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put(pos, "UNAVAILABLE");
+                                route.setmConfirmation(hashMap);
+                            } else {
+                                String u = result.get("prediction").getAsString();
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put(pos, u);
+                                route.setmConfirmation(hashMap);
+                            }
+                        }
+                    });
+        }
     }
 }
