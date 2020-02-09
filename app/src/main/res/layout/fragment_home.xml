@@ -67,7 +67,7 @@
                 <EditText
                     android:id="@+id/source_et"
                     style="@style/internal_fonts"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@id/source_cv"
@@ -182,7 +182,7 @@
                     <EditText
                         android:id="@+id/destination_et"
                         style="@style/internal_fonts"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@id/destination_cv"

@@ -21,6 +21,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
     private Context mContext;
     private List<SpinnerModel> mList;
     private LayoutInflater mInflater;
+    private boolean mIsWhite = false;
 
     public SpinnerAdapter(Activity activity, @NonNull Context context, @NonNull List<SpinnerModel> objects) {
         super(context, 1, objects);
@@ -31,13 +32,17 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
+        View view = getCustomView(position, convertView, parent);
+        ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.black));
+        return view;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
+        View view = getCustomView(position, convertView, parent);
+        ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.white));
+        return view;
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
@@ -47,6 +52,15 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
 
         mFull.setText(mList.get(position).getmFullForm());
         mAbb.setText(mList.get(position).getmAbbreviation());
+
+        if(mIsWhite){
+            // mFull.setTextColor(mContext.getResources().getColor(R.color.white));
+        }
+
         return row;
+    }
+
+    public void changeWhiteType(){
+        mIsWhite = !mIsWhite;
     }
 }
