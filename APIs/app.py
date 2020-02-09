@@ -103,17 +103,15 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     row.append(waiting_list_number)
     row.extend(ticket_class_type)
     row.extend(waiting_list_type)
-    row.extend(journey_month_type)
     row.extend(train_metric_type)
    
-    # print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
+    print(train_days, train_type, time_difference_1, time_difference_2, waiting_list_number, journey_month)
     X = np.array([row])
     
     model = joblib.load('../datasets/lgbtqmodel.pkl')
     scalar = joblib.load('../datasets/scaler_file.pkl')
     X_sc = scalar.transform(X)
     
-    print(X, X_sc)
     return model.predict(X_sc)[0]
     
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
