@@ -13,7 +13,7 @@ if argc > 2:
       os.system(cmd)
    else:
       print('Binary file does not exist')
-      bin = 'gcc -o ' + argv[1] + ' '+ argv[1] + '.c'
+      bin = 'g++ -o ' + argv[1] + ' '+ argv[1] + '.cpp'
       print(bin)
       os.system(bin)
       if os.path.isfile(argv[1]):
