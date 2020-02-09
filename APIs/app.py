@@ -45,15 +45,17 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
         stations = u[i].split(" ")
         trains = u[i+1].split(" ")
         time = u[i+2]
+        departureTime = u[i+3].split(" ")
         stations = stations[:-1]
         trains = trains[:-1]
+        departureTime = departureTime[:-1]
         alternates.append({
             "stations":stations,
             "trains" :trains,
-            "time" :time
+            "time" :time,
+            "departureTime" : departureTime
             })
-        i = i+3
-    # return requests.get("http://localhost:5000/trains/ACND").text
+        i += 4
     return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):
@@ -786,7 +788,7 @@ def create_chain_from_dump(chain_dump):
     generated_blockchain.create_genesis_block()
     for idx, block_data in enumerate(chain_dump):
         if idx == 0:
-            continue 
+            continue
         block = Block(block_data["index"],
                       block_data["transactions"],
                       block_data["timestamp"],

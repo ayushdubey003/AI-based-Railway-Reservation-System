@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +37,21 @@ public class SearchStations extends AppCompatActivity {
     private StationAdapter mAdapter;
     private KMPStringMatching kmpStringMatching;
     private int mIntentCode;
+    private boolean mIsKeyBoardOpen = false;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mIsKeyBoardOpen)
+            closeKeyboard();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mIsKeyBoardOpen)
+            closeKeyboard();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +143,18 @@ public class SearchStations extends AppCompatActivity {
 
             }
         }));
+
+        mSearchEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b)
+                    showKeyboard();
+                else
+                    closeKeyboard();
+            }
+        });
+
+        mSearchEt.requestFocus();
     }
 
     private void init() {
@@ -152,4 +181,17 @@ public class SearchStations extends AppCompatActivity {
         if (mIntentCode > 1)
             mLocationLl.setVisibility(View.GONE);
     }
+
+    public void showKeyboard(){
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        mIsKeyBoardOpen = true;
+    }
+
+    public void closeKeyboard(){
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        mIsKeyBoardOpen = false;
+    }
+
 }
