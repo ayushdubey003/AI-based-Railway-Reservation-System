@@ -27,4 +27,10 @@
         <item name="android:fontFamily">@font/notosans</item>
     </style>
 
+    <style name="spinner_style" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/notosans</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
