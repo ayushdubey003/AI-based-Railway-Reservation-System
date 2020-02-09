@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
             loginButton.setImageResource(R.drawable.loginicon);
         }
         else{
-            loginButton.setImageResource(R.drawable.logouticon);
+            loginButton.setImageResource(R.drawable.logout2icon);
         }
     }
 

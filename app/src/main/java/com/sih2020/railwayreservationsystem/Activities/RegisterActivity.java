@@ -45,6 +45,7 @@ import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -149,8 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (!flag2) {
                             if (validate()) {
                                 sendVerificationCode();
-                            }
-                            else {
+                            } else {
                                 progressDialog.dismiss();
                             }
                         } else {
@@ -231,6 +231,15 @@ public class RegisterActivity extends AppCompatActivity {
         map.put("occupation", AppConstants.mOccupation[occupation.getSelectedItemPosition()]);
         map.put("maritalStatus", AppConstants.mMaritalStatus[maritalStatus.getSelectedItemPosition()]);
 
+//        HashMap<String,String> walletMap=new HashMap<>();
+//        walletMap.put("registered","false");
+//
+//        final String hashed = Hashing.sha256()
+//                .hashString("your input", StandardCharsets.UTF_8)
+//                .toString();
+//
+//        walletMap.put("hash","##########");
+
         dref.child(mauth.getCurrentUser().getUid()).setValue(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -250,6 +259,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             finish();
                                         }
                                     });
+
+                            //pref.child(mauth.getCurrentUser().getUid()).child("wallet").setValue()
 
                         } else {
                             Toast.makeText(RegisterActivity.this, "Registeration failed", Toast.LENGTH_SHORT).show();
