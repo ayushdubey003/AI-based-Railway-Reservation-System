@@ -343,11 +343,13 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (email.getText().toString().trim().length() == 0) {
             email.setError("Enter valid email address");
             return false;
-        } else if (email.getText().toString().trim().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
-            email.setError("Enter a valid email address");
-            return false;
-        } else if (username.getText().toString().trim().length() == 0) {
+        }
+//        else if (email.getText().toString().trim().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+//                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+//            email.setError("Enter a valid email address");
+//            return false;
+//        }
+        else if (username.getText().toString().trim().length() == 0) {
             username.setError("Enter a user name");
             return false;
         }
@@ -370,6 +372,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         } else if (!enterCaptchaRegister.getText().toString().equals(captchaRegister.getText().toString())) {
             enterCaptchaRegister.setError("Enter correct captcha");
+            setRandomCaptcha();
             return false;
         }
         return true;
