@@ -262,6 +262,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         } else if (!enterCaptcha.getText().toString().equals(captcha.getText().toString())) {
             enterCaptcha.setError("Enter correct captcha");
+            setRandomCaptcha();
             enterCaptcha.requestFocus();
             return false;
         }

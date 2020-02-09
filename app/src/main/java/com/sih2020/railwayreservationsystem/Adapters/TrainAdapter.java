@@ -33,6 +33,8 @@ public class TrainAdapter extends ArrayAdapter<Train> {
     public List<Train> mTrains;
     private View view;
 
+    private static String LOG_TAG = "TrainAdapter";
+
     public TrainAdapter(@NonNull Context context, @NonNull List<Train> objects) {
         super(context, 0, objects);
         mContext = context;
@@ -80,6 +82,15 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         TextView fri = convertView.findViewById(R.id.fri);
         TextView sat = convertView.findViewById(R.id.sat);
 
+        duration.setText("06hr");
+
+//        try {
+//            duration.setText("" + findTrainArrivalDepartureTimeDifference(mTrains.get(position), arrIndex, deptIndex) + "hr");
+//        }
+//        catch (Exception e){
+//            Log.d(LOG_TAG, e.getLocalizedMessage());
+//        }
+
         sun.setTextColor(Color.parseColor("#FF0000"));
         mon.setTextColor(Color.parseColor("#FF0000"));
         tue.setTextColor(Color.parseColor("#FF0000"));
@@ -118,7 +129,6 @@ public class TrainAdapter extends ArrayAdapter<Train> {
                 sat.setTextColor(Color.parseColor("#00FF00"));
         }
 
-        duration.setText("06hr");
         TextView travelClass = convertView.findViewById(R.id.travel_class_tv);
         travelClass.setText(AppConstants.mClass.getmAbbreviation());
 
@@ -188,4 +198,23 @@ public class TrainAdapter extends ArrayAdapter<Train> {
         }
         return _12HourSDF.format(_24HourDt);
     }
+
+    private static int findTrainArrivalDepartureTimeDifference(Train t, int arrIndex, int depIndex){
+        ArrayList<String> times = t.getmDepartureTime();
+        Log.d(LOG_TAG, times.get(arrIndex).substring(0, 5));
+        int startTime = getMinutes(times.get(arrIndex).substring(0, 5));
+        int startDay = times.get(arrIndex).charAt(times.get(arrIndex).length() - 2) - '0';
+        int endTime = getMinutes(times.get(depIndex).substring(0, 5));
+        int endDay = times.get(depIndex).charAt(times.get(depIndex).length() - 2) - '0';
+
+        return ((startTime - endTime) + (startDay - endDay) * 24 * 60) / 60;
+    }
+
+    private static int getMinutes(String time){
+        time = time.trim();
+        int hour = 10 * (time.charAt(0) - '0') + (time.charAt(1) - '0');
+        int min = 10 * (time.charAt(3) - '0') + (time.charAt(4) - '0');
+        return hour * 60 + min;
+    }
+
 }
