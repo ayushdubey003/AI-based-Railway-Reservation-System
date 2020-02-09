@@ -613,6 +613,7 @@ public class NetworkRequests {
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put(trainNo, "N/A");
                 route.setmFares(hashMap);
+                alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -648,6 +649,7 @@ public class NetworkRequests {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     hashMap.put(trainNo, fare);
                                     route.setmFares(hashMap);
+                                    alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
                                     Log.e("Network", hashMap + "");
                                 } catch (Exception ee) {
                                     ee.printStackTrace();
@@ -658,6 +660,7 @@ public class NetworkRequests {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     hashMap.put(trainNo, "N/A");
                                     route.setmFares(hashMap);
+                                    alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
@@ -701,6 +704,7 @@ public class NetworkRequests {
                                     hashMap.put(trainNo, arrayList.get(0));
                                     Log.e("Network", hashMap + "");
                                     route.setmSeatstatus(hashMap);
+                                    alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
                                 } catch (Exception ex) {
                                     seatsFetched(route,trainNo, false);
                                     ex.printStackTrace();
@@ -710,6 +714,7 @@ public class NetworkRequests {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     hashMap.put(trainNo, "N/A");
                                     route.setmSeatstatus(hashMap);
+                                    alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
                                     seatsFetched(route, trainNo, true);
                                 } catch (Exception exx) {
                                     exx.printStackTrace();
@@ -743,13 +748,14 @@ public class NetworkRequests {
 //            }
 //        }
 
-        String jtime = route.getmDepartureTime().get(pos);
+        String jtime = route.getmDepartureTime().get(route.getmTrains().indexOf(pos));
 //        Log.e(LOG_TAG, jtime);
         String currStatus = route.getmSeatstatus().get(pos);
         if (currStatus.equalsIgnoreCase("avbl") || currStatus.equalsIgnoreCase("available") || currStatus.equalsIgnoreCase("train cancelled") || currStatus.equalsIgnoreCase("unavailable")) {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put(pos, "UNAVAILABLE");
             route.setmConfirmation(hashMap);
+
             return;
         } else {
             String v[] = currStatus.split("/");
@@ -775,11 +781,14 @@ public class NetworkRequests {
                                 HashMap<String, String> hashMap = new HashMap<>();
                                 hashMap.put(pos, "UNAVAILABLE");
                                 route.setmConfirmation(hashMap);
+                                alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
+
                             } else {
                                 String u = result.get("prediction").getAsString();
                                 HashMap<String, String> hashMap = new HashMap<>();
                                 hashMap.put(pos, u);
                                 route.setmConfirmation(hashMap);
+                                alternateRoutesActivity.alternateRouteAdapter.notifyDataSetChanged();
                             }
                         }
                     });

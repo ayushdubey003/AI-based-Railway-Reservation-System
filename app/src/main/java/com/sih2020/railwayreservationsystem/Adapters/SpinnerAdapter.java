@@ -55,10 +55,6 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
         mFull.setText(mList.get(position).getmFullForm());
         mAbb.setText(mList.get(position).getmAbbreviation());
 
-        if(mIsWhite){
-            // mFull.setTextColor(mContext.getResources().getColor(R.color.white));
-        }
-
         return row;
     }
 
