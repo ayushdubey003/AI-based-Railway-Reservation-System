@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -58,6 +59,7 @@ public class ProfileAcitvity extends AppCompatActivity {
             addBalance, noHistoryText, noMasterText, logOut;
     private ProgressBar progressBar;
     private RelativeLayout zerothLayer;
+    private ImageView backButton;
 
     private DatabaseReference dref;
     private FirebaseAuth mAuth;
@@ -80,6 +82,14 @@ public class ProfileAcitvity extends AppCompatActivity {
     }
 
     private void receiveClicks() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,9 +159,8 @@ public class ProfileAcitvity extends AppCompatActivity {
                 int i;
                 try {
                     i = Integer.parseInt(enteredamount);
-                }
-                catch (Exception e){
-                    i=0;
+                } catch (Exception e) {
+                    i = 0;
                 }
 
                 createBlockChainTransaction(i);
@@ -264,6 +273,7 @@ public class ProfileAcitvity extends AppCompatActivity {
 
     private void init() {
         lMap = new HashMap<>();
+        backButton = findViewById(R.id.profile_back);
         userName = findViewById(R.id.username_pa);
         userEmail = findViewById(R.id.email_pa);
         currentBalance = findViewById(R.id.current_balance_pa);

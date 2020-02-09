@@ -24,7 +24,7 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
     private boolean mIsWhite = false;
 
     public SpinnerAdapter(Activity activity, @NonNull Context context, @NonNull List<SpinnerModel> objects) {
-        super(context, 1, objects);
+        super(context, 0, objects);
         mContext = context;
         mList = objects;
         mInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,7 +41,9 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = getCustomView(position, convertView, parent);
-        ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.white));
+        if(mIsWhite){
+            ((TextView) view.findViewById(R.id.full)).setTextColor(mContext.getResources().getColor(R.color.white));
+        }
         return view;
     }
 
@@ -63,4 +65,5 @@ public class SpinnerAdapter extends ArrayAdapter<SpinnerModel> {
     public void changeWhiteType(){
         mIsWhite = !mIsWhite;
     }
+
 }

@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,16 +27,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,8 +57,6 @@ import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -262,11 +255,16 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(RegisterActivity.this, "Registered Succesfully", Toast.LENGTH_SHORT).show();
-                                            if (progressDialog.isShowing()) {
-                                                progressDialog.dismiss();
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterActivity.this, "Registered Succesfully", Toast.LENGTH_SHORT).show();
+                                                if (progressDialog.isShowing()) {
+                                                    progressDialog.dismiss();
+                                                }
+                                                sendBlockChainTransaction(RegisterActivity.this, 0);
+                                                finish();
+                                            } else {
+                                                Log.e("onComplete: ", task.getException().getMessage());
                                             }
-                                            finish();
                                         }
                                     });
 
@@ -279,20 +277,19 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        createBlockChainTransaction();
     }
 
-    private void createBlockChainTransaction() {
+
+    private void sendBlockChainTransaction(final Context context, int i) {
 
         try {
             JsonObject jsonBody = new JsonObject();
-            jsonBody.addProperty("sender", mauth.getCurrentUser().getUid());
+            jsonBody.addProperty("sender", FirebaseAuth.getInstance().getCurrentUser().getUid());
             jsonBody.addProperty("receiver", "");
-            jsonBody.addProperty("amount", 0);
+            jsonBody.addProperty("amount", i);
 
-            Ion.with(RegisterActivity.this)
-                    .load(AppConstants.mUrl+"/new_transaction")
+            Ion.with(context)
+                    .load(AppConstants.mUrl + "/new_transaction")
                     .setTimeout(5000)
                     .setJsonObjectBody(jsonBody)
                     .asString()
@@ -302,7 +299,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             if (e == null) {
 
-                                RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
+                                RequestQueue requestQueue = Volley.newRequestQueue(context);
 
                                 String url2 = AppConstants.mUrl + "/mine";
                                 JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url2, null,
@@ -330,8 +327,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
@@ -376,45 +372,6 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }
-
-    private void takePhoneNoInput() {
-        Rect displayRectangle = new Rect();
-        Window window = RegisterActivity.this.getWindow();
-        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
-        ViewGroup viewGroup = findViewById(android.R.id.content);
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.mobile_dialog, viewGroup, false);
-
-        dialogView.findViewById(R.id.upper_text).setBackground(GenerateBackground.generateBackground());
-        TextView sendOtp = dialogView.findViewById(R.id.send_otp);
-        final EditText enterPhone = dialogView.findViewById(R.id.enter_phone_no_et);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, R.style.CustomAlertDialog);
-        builder.setView(dialogView);
-        alertDialogPhoneNo = builder.create();
-        alertDialogPhoneNo.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        alertDialogPhoneNo.setCancelable(false);
-        alertDialogPhoneNo.show();
-
-        sendOtp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                phoneno = enterPhone.getText().toString().trim();
-                if (phoneno.equals("")) {
-                    enterPhone.setError("Enter Phone Number");
-                    enterPhone.requestFocus();
-                    return;
-                }
-                if (phoneno.length() != 10) {
-                    enterPhone.setError("Enter a valid 10 digit Phone Number");
-                    enterPhone.requestFocus();
-                    return;
-                }
-
-                sendVerificationCode();
-                alertDialogPhoneNo.hide();
-            }
-        });
     }
 
     private void sendVerificationCode() {
