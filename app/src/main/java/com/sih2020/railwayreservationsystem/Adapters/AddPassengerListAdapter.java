@@ -20,31 +20,35 @@ import java.util.ArrayList;
 public class AddPassengerListAdapter extends RecyclerView.Adapter<AddPassengerListAdapter.Viewholder> {
 
     Context mContext;
-    ArrayList<AddPassengerModal> mList=new ArrayList<>();
+    ArrayList<AddPassengerModal> mList = new ArrayList<>();
+    AutomatedTatkal automatedTatkal;
 
-    public AddPassengerListAdapter(Context context,ArrayList<AddPassengerModal> data) {
-        this.mContext=context;
-        this.mList=data;
+    public AddPassengerListAdapter(Context context, ArrayList<AddPassengerModal> data, AutomatedTatkal automatedTatkal) {
+        this.mContext = context;
+        this.mList = data;
+        this.automatedTatkal = automatedTatkal;
     }
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.add_passenger_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.add_passenger_item, parent, false);
         return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull Viewholder holder, final int position) {
         holder.name.setText(mList.get(position).getmName());
-        holder.restInfo.setText(mList.get(position).getmAge()+" "+
-                mList.get(position).getmGender()+" | "+
-                mList.get(position).getmBerth()+" | "+
+        holder.restInfo.setText(mList.get(position).getmAge() + " " +
+                mList.get(position).getmGender() + " | " +
+                mList.get(position).getmBerth() + " | " +
                 mList.get(position).getmNationality());
         holder.deletePassenger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Ruk bhai thoda...", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "Ruk bhai thoda...", Toast.LENGTH_SHORT).show();
+                automatedTatkal.mPassengers.remove(position);
+                automatedTatkal.addPassengerListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -55,13 +59,14 @@ public class AddPassengerListAdapter extends RecyclerView.Adapter<AddPassengerLi
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {
-        TextView name,restInfo;
+        TextView name, restInfo;
         ImageView deletePassenger;
+
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            name=itemView.findViewById(R.id.passenger_name_api);
-            restInfo=itemView.findViewById(R.id.rest_info_api);
-            deletePassenger=itemView.findViewById(R.id.delete_passenger_api);
+            name = itemView.findViewById(R.id.passenger_name_api);
+            restInfo = itemView.findViewById(R.id.rest_info_api);
+            deletePassenger = itemView.findViewById(R.id.delete_passenger_api);
         }
     }
 }

@@ -188,7 +188,7 @@ public class AutomatedTatkal extends AppCompatActivity {
         fare.setText(getIntent().getExtras().getString("fare"));
 
         passengerList = findViewById(R.id.passenger_list_at);
-        addPassengerListAdapter = new AddPassengerListAdapter(this, mPassengers);
+        addPassengerListAdapter = new AddPassengerListAdapter(this, mPassengers, AutomatedTatkal.this);
         passengerList.setLayoutManager(new LinearLayoutManager(this));
         passengerList.setAdapter(addPassengerListAdapter);
     }

@@ -52,6 +52,6 @@ with open("../datasets/routesData.csv","r") as readFile:
 	file = csv.reader(readFile)
 	for row in file:
 		i = i + 1
-		if i < 4958:
+		if i < 5600:
 			continue
 		loadurl(url,row)
