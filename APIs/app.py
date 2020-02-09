@@ -23,9 +23,9 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 def home():
     return 'hii...there 3!!!'
 
-@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>", methods=['GET'])
-def alternates(board,destination,intermediates,doj):
-    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj
+@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>", methods=['GET'])
+def alternates(board,destination,intermediates,doj,mintime,maxtime):
+    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime
     os.system(cmd)
     file=""
     with open("result.txt","r") as readFile:
