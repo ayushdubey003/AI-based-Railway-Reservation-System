@@ -39,8 +39,9 @@ public class PnrPassengerListAdapter extends RecyclerView.Adapter<PnrPassengerLi
         holder.pass_no.setText(data.get(position).getPass_no());
         holder.seat_no.setText(data.get(position).getSeat_no());
         if(!data.get(position).getSeat_no().contains("CNF")){
-            holder.confirm_text.setTextColor(Color.RED);
-            holder.confirm_checkbox.setColorFilter(ContextCompat.getColor(mcontext, R.color.red));
+            holder.confirm_text.setTextColor(Color.parseColor("#8d021f"));
+            holder.confirm_text.setText("Not Confirmed");
+            holder.confirm_checkbox.setColorFilter(ContextCompat.getColor(mcontext, R.color.burgandyRed));
         }
     }
 

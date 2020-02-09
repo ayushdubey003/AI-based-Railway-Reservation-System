@@ -21,15 +21,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.AutomatedTatkal"></activity>
+        <activity android:name=".Activities.AutomatedTatkal">
+
+        </activity>
 
         <receiver
             android:name=".BroadcastRecievers.TatkalReciever"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="wallet_notify" />
-                <action android:name="booking_start"/>
+                <action android:name="booking_start" />
             </intent-filter>
         </receiver>
 

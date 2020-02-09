@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -26,9 +27,11 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.google.firebase.auth.FirebaseAuth;
 import com.koushikdutta.ion.Ion;
 import com.sih2020.railwayreservationsystem.Adapters.TrainAdapter;
 import com.sih2020.railwayreservationsystem.Models.SpinnerModel;
@@ -78,6 +81,13 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppConstants.mFareFetch.clear();
+        AppConstants.mSeatFetch.clear();
+    }
+
+    @Override
     protected void onStop() {
         Ion.getDefault(this).cancelAll(this);
         super.onStop();
@@ -100,6 +110,55 @@ public class SeatAvailabilityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setUpClassAlert();
+            }
+        });
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                    startActivity(new Intent(SeatAvailabilityActivity.this, LoginActivity.class));
+                } else if (!AppConstants.mSeatFetch.contains(position) || !AppConstants.mFareFetch.contains(position)) {
+                    Toast.makeText(SeatAvailabilityActivity.this, "Please wait to fetch all data", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayList<Train> dlist = new ArrayList<>();
+                    dlist = AppConstants.mTrainList;
+
+                    int deptIndex = 0;
+                    for (int i = 0; i < dlist.get(position).getmCodedRoutes().size(); i++) {
+                        if (dlist.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mSourceStation.getmStationCode())) {
+                            deptIndex = i;
+                            break;
+                        }
+                    }
+
+                    int arrIndex = 0;
+                    for (int i = 0; i < dlist.get(position).getmCodedRoutes().size(); i++) {
+                        if (dlist.get(position).getmCodedRoutes().get(i).trim().equalsIgnoreCase(AppConstants.mDestinationStation.getmStationCode())) {
+                            arrIndex = i;
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(SeatAvailabilityActivity.this, AutomatedTatkal.class);
+                    intent.putExtra("trainNo", dlist.get(position).getmTrainNo());
+                    intent.putExtra("trainName", dlist.get(position).getmTrainName());
+                    intent.putExtra("boardTime", dlist.get(position).getmArrivalTimes().get(arrIndex));
+                    intent.putExtra("reachTime", dlist.get(position).getmDepartureTime().get(deptIndex));
+                    intent.putExtra("fromCode", dlist.get(position).getmCodedRoutes().get(arrIndex));
+                    intent.putExtra("toCode", dlist.get(position).getmCodedRoutes().get(deptIndex));
+                    intent.putExtra("fromName", dlist.get(position).getmNamedRoutes().get(arrIndex));
+                    intent.putExtra("toName", dlist.get(position).getmNamedRoutes().get(deptIndex));
+                    intent.putExtra("class", mTravelClass.getText().toString());
+                    intent.putExtra("availability", dlist.get(position).getmSeats().get(0));
+                    intent.putExtra("duration", "06hr");
+                    intent.putExtra("doj", mDateTv.getText().toString());
+                    intent.putExtra("fare", dlist.get(position).getmFare());
+                    intent.putExtra("position",position);
+
+                    startActivity(intent);
+                }
             }
         });
     }
