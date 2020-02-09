@@ -88,32 +88,37 @@ def predict_probability(train_days, train_type, booking_date, booking_hour, jour
     
 @app.route("/predict/<train_number>/<booking_date>/<booking_time>/<journey_date>/<journey_time>/<ticket_class>/<waiting_list>",methods=['GET'])
 def predict(train_number, booking_date, booking_time, journey_date, journey_time, ticket_class, waiting_list):
-    train_dict = joblib.load('../datasets/train_dictionary.pkl')
-    train_number = int(train_number.strip())
-    assert train_number in train_dict.keys()
-    train_days = train_dict[train_number]['days']
-    train_type = train_dict[train_number]['type']
-    
-    date_pattern = re.compile('[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')
-    assert len(date_pattern.findall(booking_date)[0]) == len(booking_date)
-    assert len(date_pattern.findall(journey_date)[0]) == len(journey_date)
-    
-    time_pattern = re.compile('[0-9][0-9]:[0-9][0-9]')
-    assert len(time_pattern.findall(booking_time)[0]) == len(booking_time)
-    assert len(time_pattern.findall(journey_time)[0]) == len(journey_time)
-    booking_hour = int(booking_time[0:2])
-    journey_hour = int(journey_time[0:2])
-    
-    assert ticket_class in ['1A', '2A', '3A', 'SL']
-    
-    waiting_list_type = waiting_list[0:2]
-    assert waiting_list_type in ['GN', 'RL', 'TQ', 'RA', 'PQ']
-    for i in range(-1, -len(waiting_list) - 1, -1):
-        if not (waiting_list[i] in [str(j) for j in range(10)]):
-            break
-    waiting_number = int(waiting_list[i + 1:])
+    try:
+        train_dict = joblib.load('../datasets/train_dictionary.pkl')
+        train_number = int(str(train_number).strip())
+        assert train_number in train_dict.keys()
+        train_days = train_dict[train_number]['days']
+        train_type = train_dict[train_number]['type']
 
-    
+        date_pattern = re.compile('[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')
+        assert len(date_pattern.findall(booking_date)[0]) == len(booking_date)
+        assert len(date_pattern.findall(journey_date)[0]) == len(journey_date)
+
+        time_pattern = re.compile('[0-9][0-9]:[0-9][0-9]')
+        assert len(time_pattern.findall(booking_time)[0]) == len(booking_time)
+        assert len(time_pattern.findall(journey_time)[0]) == len(journey_time)
+        booking_hour = int(booking_time[0:2])
+        journey_hour = int(journey_time[0:2])
+        
+        print(waiting_list)
+        assert ticket_class in ['1A', '2A', '3A', 'SL']
+        waiting_list_type = waiting_list[0:2]
+        assert waiting_list_type in ['GN', 'RL', 'TQ', 'RA', 'PQ']
+        for i in range(-1, -len(waiting_list) - 1, -1):
+            if not (waiting_list[i] in [str(j) for j in range(10)]):
+                break
+        waiting_number = int(waiting_list[i + 1:])
+        print(waiting_number)
+        
+    except Exception as e:
+        print(e)
+        return e.__str__()
+
     return jsonify(prediction=predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_type, waiting_number)*100)
 
 
