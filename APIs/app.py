@@ -46,6 +46,7 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
         trains = u[i+1].split(" ")
         time = u[i+2]
         departureTime = u[i+3].split(" ")
+        type = u[i+4]
         stations = stations[:-1]
         trains = trains[:-1]
         departureTime = departureTime[:-1]
@@ -53,9 +54,10 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
             "stations":stations,
             "trains" :trains,
             "time" :time,
-            "departureTime" : departureTime
+            "departureTime" : departureTime,
+            "type" : type
             })
-        i += 4
+        i += 5
     return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):

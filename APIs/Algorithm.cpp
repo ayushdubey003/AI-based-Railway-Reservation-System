@@ -24,6 +24,7 @@ struct queueData{
   vector <string> stationList;
   int intermissions;
   int duration;
+  int type;
 };
 
 bool comparator(struct queueData queueData1, struct queueData queueData2){
@@ -310,7 +311,7 @@ int main(int argc, char *argv[]){
             routeSize--;
           }
         }
-
+        temp.type = 1;
         solution.push_back(temp);
         routeSize++;
         continue;
@@ -360,6 +361,7 @@ int main(int argc, char *argv[]){
           temp.duration = node.destinationArrival - node.sourceDeparture;
           leastDuration = temp.duration;
           temp.time.push_back(node.sourceDeparture);
+          temp.type = 3;
         }
       }
     }
@@ -382,6 +384,8 @@ int main(int argc, char *argv[]){
     for(auto timeDuration : node.time)
       cout << timeDuration << " ";
     cout << endl;
+
+    cout<< node.type <<endl;
   }
 
   // auto stop = high_resolution_clock::now();

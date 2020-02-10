@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class AutomatedTatkal extends AppCompatActivity {
     private RecyclerView passengerList;
     public AddPassengerListAdapter addPassengerListAdapter;
     public ArrayList<AddPassengerModal> mPassengers;
+    ProgressDialog progressDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +114,9 @@ public class AutomatedTatkal extends AppCompatActivity {
                             .setPositiveButton("Set automation", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
+                                    progressDialog.show();
                                     startService(new Intent(AutomatedTatkal.this, TatkalService.class));
+
                                 }
                             })
 
@@ -137,6 +141,9 @@ public class AutomatedTatkal extends AppCompatActivity {
     public void init() {
 
         mBoardingSpinner = findViewById(R.id.boarding_stations_at);
+        progressDialog = new ProgressDialog(AutomatedTatkal.this);
+        progressDialog.setMessage("Please wait...");
+
         mBoardingList = new ArrayList<>();
         mBoardingList = AppConstants.mTrainList.get(getIntent().getExtras().getInt("position")).getmNamedRoutes();
 
