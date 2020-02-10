@@ -26,9 +26,9 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 def home():
     return 'hii...there 3!!!'
 
-@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>", methods=['GET'])
-def alternates(board,destination,intermediates,doj,mintime,maxtime):
-    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime
+@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>/<type>", methods=['GET'])
+def alternates(board,destination,intermediates,doj,mintime,maxtime,type):
+    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime+" "+type
     os.system(cmd)
     file=""
     with open("result.txt","r") as readFile:
@@ -46,7 +46,6 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
         trains = u[i+1].split(" ")
         time = u[i+2]
         departureTime = u[i+3].split(" ")
-        type = u[i+4]
         stations = stations[:-1]
         trains = trains[:-1]
         departureTime = departureTime[:-1]
@@ -54,10 +53,9 @@ def alternates(board,destination,intermediates,doj,mintime,maxtime):
             "stations":stations,
             "trains" :trains,
             "time" :time,
-            "departureTime" : departureTime,
-            "type" : type
+            "departureTime" : departureTime
             })
-        i += 5
+        i += 4
     return jsonify(alternates=alternates)
 
 def predict_probability(train_days, train_type, booking_date, booking_hour, journey_date, journey_hour, ticket_class, waiting_list_category, waiting_list_number):

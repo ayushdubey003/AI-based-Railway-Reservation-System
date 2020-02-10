@@ -24,7 +24,6 @@ struct queueData{
   vector <string> stationList;
   int intermissions;
   int duration;
-  int type;
 };
 
 bool comparator(struct queueData queueData1, struct queueData queueData2){
@@ -55,6 +54,7 @@ int main(int argc, char *argv[]){
   int currentDay = stoi(argv[4]);
   int minTime = stoi(argv[5]);
   int maxTime = stoi(argv[6]);
+  int type = stoi(argv[7]);
 
 
   fstream stationFile;
@@ -133,6 +133,7 @@ int main(int argc, char *argv[]){
   int nearbySourceSize = 0;
   int nearbyDestinationSize = 0;
   int leastDuration;
+  int solutionSize;
 
 
   i = 0;
@@ -311,7 +312,6 @@ int main(int argc, char *argv[]){
             routeSize--;
           }
         }
-        temp.type = 1;
         solution.push_back(temp);
         routeSize++;
         continue;
@@ -325,6 +325,11 @@ int main(int argc, char *argv[]){
   sort(solution.begin(), solution.end(), comparator);
   if(solution.size() > 10)
     solution.resize(10);
+
+  solutionSize = solution.size();
+
+  if(type == 3)
+    solution.clear();
 
   if(sourceLatitude != "" && destinationLatitude != ""){
     i = 0;
@@ -361,12 +366,15 @@ int main(int argc, char *argv[]){
           temp.duration = node.destinationArrival - node.sourceDeparture;
           leastDuration = temp.duration;
           temp.time.push_back(node.sourceDeparture);
-          temp.type = 3;
         }
       }
     }
     if(temp.trainList.size() != 0)
       solution.push_back(temp);
+  }
+
+  if(type == 1){
+    solution.resize(solutionSize);
   }
 
   for (auto node : solution){
@@ -385,7 +393,6 @@ int main(int argc, char *argv[]){
       cout << timeDuration << " ";
     cout << endl;
 
-    cout<< node.type <<endl;
   }
 
   // auto stop = high_resolution_clock::now();
