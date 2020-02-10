@@ -107,7 +107,7 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                                 }
 
                                 for (int j = 0; j < singleroute.getAsJsonArray("trains").size(); j++) {
-                                    route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).toString());
+                                    route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).getAsString());
                                     Date date = AppConstants.mDate;
                                     String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
                                     String temp = AppConstants.mUrl + "/seats/" + singleroute.getAsJsonArray("trains").get(j).getAsString().trim() + "/" + singleroute.getAsJsonArray("stations").get(j).getAsString().trim() + "/" + singleroute.getAsJsonArray("stations").get(j + 1).getAsString().trim() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();

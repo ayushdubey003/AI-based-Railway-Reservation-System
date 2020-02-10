@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sih2020.railwayreservationsystem.Models.AlternateModel;
 import com.sih2020.railwayreservationsystem.Models.AlternateRoutesModel;
 import com.sih2020.railwayreservationsystem.R;
+import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,6 @@ public class AlternateRouteAdapter extends RecyclerView.Adapter<AlternateRouteAd
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         if (routes.get(position).getN() == 1) {
-            Log.e("Adapter", "Here");
             try {
                 holder.two.setVisibility(View.GONE);
                 holder.one.setVisibility(View.VISIBLE);
@@ -66,25 +67,87 @@ public class AlternateRouteAdapter extends RecyclerView.Adapter<AlternateRouteAd
                 int hr = time / 60;
                 int min = time % 60;
                 holder.otime.setText(hr + " hr " + (min == 0 ? "" : min + " min "));
-                Log.e("Hey", routes.get(position).getmTrains() + "");
-                holder.ofare_tv1.setVisibility(View.VISIBLE);
-                holder.ofare_progress1.setVisibility(View.GONE);
-                Log.e("Hey",routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)+""));
                 if (routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)).length() == 0)
                     holder.ofare_tv1.setText("UNAVAILABLE");
                 else {
-                    Log.e("Hey", routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)));
                     holder.ofare_tv1.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)));
                 }
-                holder.ofare_tv2.setVisibility(View.VISIBLE);
-                holder.ofare_progress2.setVisibility(View.GONE);
+                holder.ofare_tv1.setVisibility(View.VISIBLE);
+                holder.ofare_progress1.setVisibility(View.GONE);
+            } catch (Exception e) {
+            }
+            try {
+                if (routes.get(position).getmConfirmation().get(routes.get(position).getmTrains().get(0)).length() == 0)
+                    holder.oconfirmation_tv1.setText("UNAVAILABLE");
+                else {
+                    String s = routes.get(position).getmConfirmation().get(routes.get(position).getmTrains().get(1));
+                    s = s.substring(0, 5);
+                    s = s + "%";
+                    holder.oconfirmation_tv1.setText(s);
+                }
+                holder.oconfirmation_tv1.setVisibility(View.VISIBLE);
+                holder.oconfirmation_progress1.setVisibility(View.GONE);
+            } catch (Exception e) {
+            }
+
+            try {
+
+//                Log.e("Hey", routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(0)) + "xx");
+                if(routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(0)).contains("AVBL"))
+                    holder.oConfirmationRl1.setVisibility(View.GONE);
+                if (routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(0)).length() == 0)
+                    holder.oavailability_tv1.setText("UNAVAILABLE");
+                else {
+                    holder.oavailability_tv1.setText(routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(0)));
+                }
+
+                holder.oavailability_tv1.setVisibility(View.VISIBLE);
+                holder.oavailability_progress1.setVisibility(View.GONE);
+            } catch (Exception e) {
+            }
+
+            try {
                 if (routes.get(position).getmFares().get(routes.get(position).getmTrains().get(1)).length() == 0)
-                    holder.ofare_tv2.setText("UNAVAILABLE");
+                    holder.ofare_tv2.setText("N/A");
                 else
                     holder.ofare_tv2.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(1)));
+                holder.ofare_tv2.setVisibility(View.VISIBLE);
+                holder.ofare_progress2.setVisibility(View.GONE);
             } catch (Exception e) {
-                Log.e("Route", "Exception was generated " + e.getMessage());
             }
+
+            try {
+//                Log.e("Hey", routes.get(position).getmConfirmation().get(routes.get(position).getmTrains().get(1)) + "xx");
+                if(routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(1)).contains("AVBL"))
+                    holder.oConfirmationRl2.setVisibility(View.GONE);
+                if (routes.get(position).getmConfirmation().get(routes.get(position).getmTrains().get(1)).length() == 0)
+                    holder.oconfirmation_tv2.setText("N/A");
+                else {
+                    String s = routes.get(position).getmConfirmation().get(routes.get(position).getmTrains().get(1));
+                    s = s.substring(0, 5);
+                    s = s + "%";
+                    holder.oconfirmation_tv2.setText(s);
+                }
+                holder.oconfirmation_tv2.setVisibility(View.VISIBLE);
+                holder.oconfirmation_progress2.setVisibility(View.GONE);
+            } catch (Exception e) {
+            }
+
+            try {
+//                Log.e("Hey", routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(1)) + "xx");
+                if (routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(1)).length() == 0)
+                    holder.oavailability_tv2.setText("UNAVAILABLE");
+                else {
+                    Log.e("Hey", routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(1)));
+                    holder.oavailability_tv2.setText(routes.get(position).getmSeatstatus().get(routes.get(position).getmTrains().get(1)));
+                }
+                holder.oavailability_tv2.setVisibility(View.VISIBLE);
+                holder.oavailability_progress2.setVisibility(View.GONE);
+            } catch (Exception e) {
+
+            }
+            holder.otravel_class_tv1.setText(AppConstants.mClass.getmAbbreviation());
+            holder.otravel_class_tv2.setText(AppConstants.mClass.getmAbbreviation());
 
         } else {
             try {
@@ -110,12 +173,29 @@ public class AlternateRouteAdapter extends RecyclerView.Adapter<AlternateRouteAd
                 int time = Integer.parseInt(routes.get(position).getmTime());
                 int hr = time / 60;
                 int min = time % 60;
-                String u = hr + " hr " + (min == 0 ? "" : min + " min ");
-                holder.otime.setText(u);
+                holder.otime.setText(hr + " hr " + (min == 0 ? "" : min + " min "));
+                Log.e("Hey", routes.get(position).getmTrains().get(0) + "  " + routes.get(position).getmFares().get(Integer.parseInt(routes.get(position).getmTrains().get(0))));
                 holder.ofare_tv1.setVisibility(View.VISIBLE);
                 holder.ofare_progress1.setVisibility(View.GONE);
-                Log.e("Hey", routes.get(position).getmFares().toString());
-                holder.ofare_tv1.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)));
+                Log.e("Hey", routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)) + "xx");
+                if (routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)).length() == 0)
+                    holder.ofare_tv1.setText("UNAVAILABLE");
+                else {
+                    Log.e("Hey", routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)));
+                    holder.ofare_tv1.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(0)));
+                }
+                holder.ofare_tv2.setVisibility(View.VISIBLE);
+                holder.ofare_progress2.setVisibility(View.GONE);
+                if (routes.get(position).getmFares().get(routes.get(position).getmTrains().get(1)).length() == 0)
+                    holder.ofare_tv2.setText("UNAVAILABLE");
+                else
+                    holder.ofare_tv2.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(1)));
+                holder.ofare_tv3.setVisibility(View.VISIBLE);
+                holder.ofare_progress3.setVisibility(View.GONE);
+                if (routes.get(position).getmFares().get(routes.get(position).getmTrains().get(2)).length() == 0)
+                    holder.ofare_tv2.setText("UNAVAILABLE");
+                else
+                    holder.ofare_tv2.setText(routes.get(position).getmFares().get(routes.get(position).getmTrains().get(2)));
             } catch (Exception e) {
                 Log.e("Route", "Exception was generated " + e.getMessage());
             }
@@ -135,8 +215,13 @@ public class AlternateRouteAdapter extends RecyclerView.Adapter<AlternateRouteAd
         FrameLayout one, two;
         ImageView img1, img2, img3, timg1, timg2, timg3, timg4;
         TextView t1s, t1d, t1n, t2s, t2d, t2n, tt1s, tt1d, tt1n, tt2s, tt2d, tt2n, tt3s, tt3d, tt3n, ttime, otime, s1nm, s2nm, s3nm;
-        TextView otravel_class_tv1, ofare_tv1, oavailability_tv1, oconfirmation_tv1, otravel_class_tv2, ofare_tv2, oavailability_tv2, oconfirmation_tv2;
-        ProgressBar ofare_progress1, ofare_progress2;
+        TextView otravel_class_tv1, ofare_tv1, oavailability_tv1, oconfirmation_tv1, otravel_class_tv2, ofare_tv2, oavailability_tv2, oconfirmation_tv2, ofare_tv3, oconfirmation_tv3, oavailability_tv3;
+        ProgressBar ofare_progress1, ofare_progress2, ofare_progress3, oconfirmation_progress1, oconfirmation_progress2, oavailability_progress1, oavailability_progress2, oavailability_progress3;
+        ProgressBar fare_progress1, confirmation_progress1, availability_progress1, fare_progress2, confirmation_progress2, availability_progress2,
+                fare_progress3, confirmation_progress3, availability_progress3;
+        TextView fare_tv1, fare_tv2, fare_tv3, confirmation_tv1, confirmation_tv2, confirmation_tv3, availability_tv1, availability_tv2, availability_tv3, travel_class_tv1, travel_class_tv2, travel_class_tv3;
+        RelativeLayout oConfirmationRl1, oConfirmationRl2;
+        RelativeLayout predictionRl;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -180,6 +265,30 @@ public class AlternateRouteAdapter extends RecyclerView.Adapter<AlternateRouteAd
             ofare_tv2 = itemView.findViewById(R.id.ofare_tv2);
             ofare_progress1 = itemView.findViewById(R.id.ofare_progress1);
             ofare_progress2 = itemView.findViewById(R.id.ofare_progress2);
+            oconfirmation_progress1 = itemView.findViewById(R.id.oconfirmation_progress1);
+            oconfirmation_progress2 = itemView.findViewById(R.id.oconfirmation_progress2);
+            oavailability_progress1 = itemView.findViewById(R.id.oavailability_progress1);
+            oavailability_progress2 = itemView.findViewById(R.id.oavailability_progress2);
+            fare_progress1 = itemView.findViewById(R.id.fare_progress1);
+            fare_progress2 = itemView.findViewById(R.id.fare_progress2);
+            fare_progress3 = itemView.findViewById(R.id.fare_progress3);
+            confirmation_progress1 = itemView.findViewById(R.id.confirmation_progress1);
+            confirmation_progress2 = itemView.findViewById(R.id.confirmation_progress2);
+            confirmation_progress3 = itemView.findViewById(R.id.confirmation_progress3);
+            fare_tv1 = itemView.findViewById(R.id.fare_tv1);
+            fare_tv2 = itemView.findViewById(R.id.fare_tv2);
+            fare_tv3 = itemView.findViewById(R.id.fare_tv3);
+            confirmation_tv1 = itemView.findViewById(R.id.confirmation_tv1);
+            confirmation_tv2 = itemView.findViewById(R.id.confirmation_tv2);
+            confirmation_tv3 = itemView.findViewById(R.id.confirmation_tv3);
+            availability_tv1 = itemView.findViewById(R.id.availability_tv1);
+            availability_tv2 = itemView.findViewById(R.id.availability_tv2);
+            availability_tv3 = itemView.findViewById(R.id.availability_tv3);
+            travel_class_tv1 = itemView.findViewById(R.id.travel_class_tv1);
+            travel_class_tv2 = itemView.findViewById(R.id.travel_class_tv2);
+            travel_class_tv3 = itemView.findViewById(R.id.travel_class_tv3);
+            oConfirmationRl1 = itemView.findViewById(R.id.oconfirmation_rl1);
+            oConfirmationRl2 = itemView.findViewById(R.id.oconfirmation_rl2);
         }
     }
 }
