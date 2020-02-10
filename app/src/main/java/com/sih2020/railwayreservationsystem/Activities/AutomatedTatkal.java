@@ -202,6 +202,10 @@ public class AutomatedTatkal extends AppCompatActivity {
         mBoardingList = new ArrayList<>();
         mBoardingList = AppConstants.mTrainList.get(getIntent().getExtras().getInt("position")).getmNamedRoutes();
 
+        for (int i = 0; i < mBoardingList.size(); i++){
+            
+        }
+
 //        boolean flag=false;
 //        for(int i=0;i<mBoardingList.size();i++){
 //            if(!flag){

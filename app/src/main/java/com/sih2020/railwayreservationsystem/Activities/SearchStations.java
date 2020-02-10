@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -26,8 +28,11 @@ import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
 import com.sih2020.railwayreservationsystem.Utils.KMPStringMatching;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SearchStations extends AppCompatActivity {
+
+    private final int REQ_CODE_SPEECH_INPUT = 2;
 
     private LinearLayout mAppBar, mLocationLl;
     private EditText mSearchEt;
@@ -74,10 +79,10 @@ public class SearchStations extends AppCompatActivity {
                 mSearchStations.clear();
                 if (s.toString().trim().length() == 0 || s.toString() == null) {
                     if (mIntentCode == 1)
-                        mLocationLl.setVisibility(View.VISIBLE);
+//                        mLocationLl.setVisibility(View.VISIBLE);
                     mSearchList.setVisibility(View.GONE);
                 } else {
-                    mLocationLl.setVisibility(View.GONE);
+//                    mLocationLl.setVisibility(View.GONE);
                     mSearchList.setVisibility(View.VISIBLE);
                     for (int i = 0; i < AppConstants.mStationsName.size(); i++) {
                         Station station = AppConstants.mStationsName.get(i);
@@ -109,8 +114,8 @@ public class SearchStations extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSearchEt.setText("");
-                if (mIntentCode == 1)
-                    mLocationLl.setVisibility(View.VISIBLE);
+//                if (mIntentCode == 1)
+//                    mLocationLl.setVisibility(View.VISIBLE);
                 mSearchList.setVisibility(View.GONE);
             }
         });
@@ -165,7 +170,7 @@ public class SearchStations extends AppCompatActivity {
         mSearchEt = findViewById(R.id.search_station_et);
         mMicIv = findViewById(R.id.mic_iv);
         mCloseIv = findViewById(R.id.close_iv);
-        mLocationLl = findViewById(R.id.location_ll);
+//        mLocationLl = findViewById(R.id.location_ll);
         mSearchList = findViewById(R.id.search_list);
         mBackIv = findViewById(R.id.back_iv);
         mSearchStations = new ArrayList<>();
@@ -178,8 +183,15 @@ public class SearchStations extends AppCompatActivity {
         mAppBar.setBackground(GenerateBackground.generateBackground());
         mCloseIv.setColorFilter(Color.parseColor("#a9a9a9"));
 
-        if (mIntentCode > 1)
-            mLocationLl.setVisibility(View.GONE);
+        mMicIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                promptSpeechInput();
+            }
+        });
+
+//        if (mIntentCode > 1)
+//            mLocationLl.setVisibility(View.GONE);
     }
 
     public void showKeyboard(){
@@ -194,4 +206,28 @@ public class SearchStations extends AppCompatActivity {
         mIsKeyBoardOpen = false;
     }
 
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.enter_journal_message));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT:
+                if (resultCode == RESULT_OK && data != null) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mSearchEt.setText(result.get(0));
+                }
+                break;
+        }
+    }
 }

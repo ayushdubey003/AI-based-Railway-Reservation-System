@@ -11,12 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +28,18 @@ import com.sih2020.railwayreservationsystem.Activities.PnrActivity;
 import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
+import static android.app.Activity.RESULT_OK;
+
 public class TripsFragment extends Fragment {
+
+    private final int REQ_CODE_SPEECH_INPUT = 2;
 
     private LinearLayout find_pnr_button;
     private EditText pnr_no;
+    private ImageView mic_iv;
 
     private TextView pnrno1, code1, doj1, pnrno2, code2, doj2, pnrno3, code3, doj3, pnrno4, code4, doj4,
             pnrno5, code5, doj5;
@@ -122,6 +132,12 @@ public class TripsFragment extends Fragment {
 
     private void setClicks() {
         Log.e("onClick: ", "level 0");
+        mic_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                promptSpeechInput();
+            }
+        });
         find_pnr_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,6 +209,7 @@ public class TripsFragment extends Fragment {
     private void init(View view) {
         find_pnr_button = view.findViewById(R.id.find_pnr_button);
         pnr_no = view.findViewById(R.id.pnr_no);
+        mic_iv = view.findViewById(R.id.mic);
 
         pnrno1 = view.findViewById(R.id.recent_pnrno1);
         code1 = view.findViewById(R.id.recent_code1);
@@ -219,5 +236,30 @@ public class TripsFragment extends Fragment {
         pnr3 = view.findViewById(R.id.recent_pnr3);
         pnr4 = view.findViewById(R.id.recent_pnr4);
         pnr5 = view.findViewById(R.id.recent_pnr5);
+    }
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.enter_journal_message));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT:
+                if (resultCode == RESULT_OK && data != null) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    pnr_no.setText(result.get(0));
+                }
+                break;
+        }
     }
 }

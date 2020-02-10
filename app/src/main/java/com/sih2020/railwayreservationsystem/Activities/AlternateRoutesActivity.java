@@ -35,10 +35,10 @@ public class AlternateRoutesActivity extends AppCompatActivity {
 
     ArrayList<AlternateModel> routes;
     RecyclerView recycler;
-   public  AlternateRouteAdapter alternateRouteAdapter;
+    public AlternateRouteAdapter alternateRouteAdapter;
     ProgressDialog progressDialog;
     LinearLayout toolBar;
-    SimpleDateFormat timeformat,dateformat;
+    SimpleDateFormat timeformat, dateformat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,10 @@ public class AlternateRoutesActivity extends AppCompatActivity {
 
         toolBar = findViewById(R.id.tool_bar_ar);
         toolBar.setBackground(GenerateBackground.generateBackground());
-         dateformat=new SimpleDateFormat("yyyy-MM-dd");
-         timeformat=new SimpleDateFormat("hh:mm");
+        dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        timeformat = new SimpleDateFormat("hh:mm");
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Asd");
+        progressDialog.setMessage("Loading alternates");
         progressDialog.setCancelable(false);
         progressDialog.show();
         routes = new ArrayList<>();
@@ -72,8 +72,8 @@ public class AlternateRoutesActivity extends AppCompatActivity {
         String temp = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(date);
         String current[] = temp.split(" ");
         Log.i("fetchAlternateRoutes: ", day);
-        String uri1 = AppConstants.mUrl + "/alternates/" + AppConstants.mSourceStation.getmStationCode().toUpperCase() + "/" + AppConstants.mDestinationStation.getmStationCode().toUpperCase() + "/1/" + AppConstants.getDay(day) + "/120/360";///";//+current[0]+"/"+current[1]+"/"+AppConstants.mDate;
-        final String uri2 = AppConstants.mUrl + "/alternates/" + AppConstants.mSourceStation.getmStationCode().toUpperCase() + "/" + AppConstants.mDestinationStation.getmStationCode().toUpperCase() + "/2/" + AppConstants.getDay(day) + "/120/360";///"+current[0]+"/"+current[1]+"/"+AppConstants.mDate;
+        String uri1 = AppConstants.mUrl + "/alternates/" + AppConstants.mSourceStation.getmStationCode().toUpperCase() + "/" + AppConstants.mDestinationStation.getmStationCode().toUpperCase() + "/1/" + AppConstants.getDay(day) + "/120/360/1";///";//+current[0]+"/"+current[1]+"/"+AppConstants.mDate;
+        final String uri2 = AppConstants.mUrl + "/alternates/" + AppConstants.mSourceStation.getmStationCode().toUpperCase() + "/" + AppConstants.mDestinationStation.getmStationCode().toUpperCase() + "/2/" + AppConstants.getDay(day) + "/120/360/1";///"+current[0]+"/"+current[1]+"/"+AppConstants.mDate;
         Log.i("fetchAlternateRoutes: ", uri1);
 
         final NetworkRequests networkRequests = new NetworkRequests(null, AlternateRoutesActivity.this, AlternateRoutesActivity.this);
@@ -95,19 +95,19 @@ public class AlternateRoutesActivity extends AppCompatActivity {
                                     route.getmStations().add(singleroute.getAsJsonArray("stations").get(j).toString());
                                 }
                                 Date target;
-                                int min=0;
-                                for(int j=0;j<singleroute.getAsJsonArray("departureTime").size();j++){
-                                    min+=Integer.parseInt(singleroute.getAsJsonArray("departureTime").get(j).getAsString());
-                                    target=new Date(AppConstants.mDate.getTime()+min*60000);
-                                    String time=timeformat.format(target);
-                                    String date=dateformat.format(target);
+                                int min = 0;
+                                for (int j = 0; j < singleroute.getAsJsonArray("departureTime").size(); j++) {
+                                    min += Integer.parseInt(singleroute.getAsJsonArray("departureTime").get(j).getAsString());
+                                    target = new Date(AppConstants.mDate.getTime() + min * 60000);
+                                    String time = timeformat.format(target);
+                                    String date = dateformat.format(target);
                                     route.getmDepartureTime().add(time);
                                     route.getmDepartureDate().add(date);
 
                                 }
 
                                 for (int j = 0; j < singleroute.getAsJsonArray("trains").size(); j++) {
-                                    route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).toString());
+                                    route.getmTrains().add(singleroute.getAsJsonArray("trains").get(j).getAsString());
                                     Date date = AppConstants.mDate;
                                     String doj = (String) DateFormat.format("yyyy", date) + "-" + (String) DateFormat.format("MM", date) + "-" + (String) DateFormat.format("dd", date);
                                     String temp = AppConstants.mUrl + "/seats/" + singleroute.getAsJsonArray("trains").get(j).getAsString().trim() + "/" + singleroute.getAsJsonArray("stations").get(j).getAsString().trim() + "/" + singleroute.getAsJsonArray("stations").get(j + 1).getAsString().trim() + "/" + AppConstants.mClass.getmAbbreviation().trim() + "/" + doj + "/" + AppConstants.mQuota.getmAbbreviation().trim();
