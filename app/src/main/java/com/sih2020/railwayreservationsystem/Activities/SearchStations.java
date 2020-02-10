@@ -74,10 +74,10 @@ public class SearchStations extends AppCompatActivity {
                 mSearchStations.clear();
                 if (s.toString().trim().length() == 0 || s.toString() == null) {
                     if (mIntentCode == 1)
-                        mLocationLl.setVisibility(View.VISIBLE);
+//                        mLocationLl.setVisibility(View.VISIBLE);
                     mSearchList.setVisibility(View.GONE);
                 } else {
-                    mLocationLl.setVisibility(View.GONE);
+//                    mLocationLl.setVisibility(View.GONE);
                     mSearchList.setVisibility(View.VISIBLE);
                     for (int i = 0; i < AppConstants.mStationsName.size(); i++) {
                         Station station = AppConstants.mStationsName.get(i);
@@ -109,8 +109,8 @@ public class SearchStations extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSearchEt.setText("");
-                if (mIntentCode == 1)
-                    mLocationLl.setVisibility(View.VISIBLE);
+//                if (mIntentCode == 1)
+//                    mLocationLl.setVisibility(View.VISIBLE);
                 mSearchList.setVisibility(View.GONE);
             }
         });
@@ -165,7 +165,7 @@ public class SearchStations extends AppCompatActivity {
         mSearchEt = findViewById(R.id.search_station_et);
         mMicIv = findViewById(R.id.mic_iv);
         mCloseIv = findViewById(R.id.close_iv);
-        mLocationLl = findViewById(R.id.location_ll);
+//        mLocationLl = findViewById(R.id.location_ll);
         mSearchList = findViewById(R.id.search_list);
         mBackIv = findViewById(R.id.back_iv);
         mSearchStations = new ArrayList<>();
@@ -178,8 +178,8 @@ public class SearchStations extends AppCompatActivity {
         mAppBar.setBackground(GenerateBackground.generateBackground());
         mCloseIv.setColorFilter(Color.parseColor("#a9a9a9"));
 
-        if (mIntentCode > 1)
-            mLocationLl.setVisibility(View.GONE);
+//        if (mIntentCode > 1)
+//            mLocationLl.setVisibility(View.GONE);
     }
 
     public void showKeyboard(){
