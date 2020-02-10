@@ -24,6 +24,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.sih2020.railwayreservationsystem.Adapters.AddPassengerListAdapter;
 import com.sih2020.railwayreservationsystem.Fragments.AddPassengerFragment;
@@ -32,6 +38,9 @@ import com.sih2020.railwayreservationsystem.R;
 import com.sih2020.railwayreservationsystem.Services.TatkalService;
 import com.sih2020.railwayreservationsystem.Utils.AppConstants;
 import com.sih2020.railwayreservationsystem.Utils.GenerateBackground;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -52,6 +61,7 @@ public class AutomatedTatkal extends AppCompatActivity {
     public AddPassengerListAdapter addPassengerListAdapter;
     public ArrayList<AddPassengerModal> mPassengers;
     ProgressDialog progressDialog;
+    private int currentWalletAmount,mTotalFare;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +125,7 @@ public class AutomatedTatkal extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
                                     progressDialog.show();
-                                    startService(new Intent(AutomatedTatkal.this, TatkalService.class));
+                                    setProfileDataFromBlockChain();
 
                                 }
                             })
@@ -132,6 +142,51 @@ public class AutomatedTatkal extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setProfileDataFromBlockChain() {
+        String url = AppConstants.mUrl + "/calculateWalletAmount/" + FirebaseAuth.getInstance().getCurrentUser().getUid();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int jobj = response.getInt("walletAmount");
+
+                            currentWalletAmount=jobj;
+                            progressDialog.dismiss();
+                            finish();
+
+                            mTotalFare=mPassengers.size()*Integer.parseInt(fare.getText().toString().split(" ")[1]);
+
+                            if(currentWalletAmount<mTotalFare){
+                                Toast.makeText(AutomatedTatkal.this, "Wallet balance is less than total fare", Toast.LENGTH_SHORT).show();
+                            }
+                            Intent intent=new Intent(AutomatedTatkal.this, TatkalService.class);
+                            intent.putExtra("walletbalance",currentWalletAmount);
+                            intent.putExtra("totalfare",mTotalFare);
+
+                            startService(intent);
+
+
+
+                            Log.e("onResponse: ", response.getString("Success"));
+                        } catch (JSONException e) {
+                            Log.e("onResponse: ", e.getMessage());
+                            e.printStackTrace();
+//                            Toast.makeText(PnrActivity.this, "PNR Not Available", Toast.LENGTH_SHORT).show();
+//                            finish();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(PnrActivity.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//                finish();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 
     private boolean validate() {
