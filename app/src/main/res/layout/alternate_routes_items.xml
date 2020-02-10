@@ -762,7 +762,7 @@
                                         android:paddingTop="4dp"
                                         android:paddingRight="4dp"
                                         android:paddingBottom="4dp"
-                                        android:text="₹ 190"
+                                        android:text="N/A"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:visibility="invisible"></TextView>
