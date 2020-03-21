@@ -10,12 +10,12 @@ driver.get(url)
 
 stationNames = []
 
-with open("../datasets/lost.csv","r") as file:
+with open("../datasets/stations.csv","r") as file:
 	read = csv.reader(file)
 	for row in read:
 		stationNames.append(row[1])
 
-i = 844
+i = 0
 driver.get(url)
 
 while True:
@@ -30,12 +30,12 @@ while True:
 				x = driver.find_elements_by_class_name("Z0LcW")[0].text
 				pin = x
 				print(pin)
-				file = csv.writer(writeFile)
-				file.writerow([stationNames[i]]+[pin])
+				# file = csv.writer(writeFile)
+				# file.writerow([stationNames[i]]+[pin])
 			except Exception as e:
 				print(e)
-				file = csv.writer(writeFile)
-				file.writerow([stationNames[i]]+[""])
+				# file = csv.writer(writeFile)
+				# file.writerow([stationNames[i]]+[""])
 				continue
 		except Exception as e:
 			print(e)
