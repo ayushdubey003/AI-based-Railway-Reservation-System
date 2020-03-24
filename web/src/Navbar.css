@@ -1,0 +1,55 @@
+@keyframes fadeIn{
+    0%{
+        opacity: 0.5
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    0%{
+        opacity: 1
+    }
+    100%{
+        opacity: 0.5;
+    }
+}
+
+.navbar{
+    width: 100vw;
+    height: 60vh;
+    position: relative;
+    margin: 0;
+}
+
+.pseudo-background1,.pseudo-background2{
+    width: 100vw;
+    height: 60vh;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.background1{
+    margin: 0;
+    animation: fadeOut 5000ms linear 0ms infinite;
+    /* animation-fill-mode: forwards; */
+}
+
+.background2{
+    margin: 0;
+    animation: fadeIn 5000ms linear 0ms infinite;
+    /* animation-fill-mode: forwards; */
+}
+
+.background1>h1,.background2>h1{
+    position: absolute;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    top:30vh;
+    left:80vw;
+    z-index: 1;
+}

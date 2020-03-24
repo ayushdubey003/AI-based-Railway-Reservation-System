@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
 import {connect} from "react-redux";
-import {loadInitialData} from "./store/actions/initialAppData";
-import {TRAINS_LIST_LOADED,STATIONS_LIST_LOADED} from "./store/actionTypes";
+import {loadInitialData} from "../store/actions/initialAppData";
+import {TRAINS_LIST_LOADED,STATIONS_LIST_LOADED} from "../store/actionTypes";
+import Navbar from "./Navbar";
 
 class App extends Component{
   constructor(props){
@@ -22,7 +22,7 @@ class App extends Component{
     }
     return (
       <div className="App">
-        Hello World
+        <Navbar></Navbar>
       </div>
     )
   }
