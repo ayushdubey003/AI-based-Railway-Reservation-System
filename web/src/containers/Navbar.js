@@ -1,5 +1,7 @@
 import React,{Component} from "react";
 import "../Navbar.css"
+import NavTop from "./NavTop";
+import TrainSearchForm from "./TrainSearchForm";
 
 const backgroundImages = [
     {
@@ -55,7 +57,7 @@ class Navbar extends Component{
                 }
             });
             this.updateBackgroundRecursively();
-        },10000);
+        },20000);
     }
 
     updateCounter(){
@@ -66,7 +68,7 @@ class Navbar extends Component{
                 }
             });
             this.updateCounter();
-        },5000);
+        },10000);
     }
 
     render(){
@@ -75,17 +77,17 @@ class Navbar extends Component{
 
         return (
             <div className="navbar">
-                {/* <div className={
-                        this.state.counter%2 ? 'background2' : 'background1'
-                    }>
-                    <h1 className="pseudo-heading2">{background2.name}</h1>
-                    <img className="pseudo-background2" src={background2.url}></img>
-                </div> */}
+                <NavTop></NavTop>
                 <div className={
                         this.state.counter%2 ? 'background1' : 'background2'
                     }>
                     <h1 className="pseudo-heading1">{background1.name}</h1>
                     <img className="pseudo-background1" src={background1.url}></img>
+                </div>
+                <div className="realBackground">
+                </div>
+                <div className="form-container">
+                    <TrainSearchForm></TrainSearchForm>
                 </div>
             </div>
         )

@@ -1,6 +1,6 @@
 @keyframes fadeIn{
     0%{
-        opacity: 0.5
+        opacity: 0.6
     }
     100%{
         opacity: 1;
@@ -12,7 +12,16 @@
         opacity: 1
     }
     100%{
-        opacity: 0.5;
+        opacity: 0.6;
+    }
+}
+
+@keyframes borderAnimation{
+    0%{
+        border-bottom: none;
+    }
+    100%{
+        border-bottom: 2px solid #1A63A7
     }
 }
 
@@ -32,16 +41,23 @@
     top: 0;
 }
 
+.realBackground{
+    width: 100vw;
+    height: 60vh;
+    position: absolute;
+    margin: 0;
+    background-color: #a9a9a9;
+    opacity: 0.2;
+}
+
 .background1{
     margin: 0;
-    animation: fadeOut 5000ms linear 0ms infinite;
-    /* animation-fill-mode: forwards; */
+    animation: fadeOut 10000ms linear 0ms infinite;
 }
 
 .background2{
     margin: 0;
-    animation: fadeIn 5000ms linear 0ms infinite;
-    /* animation-fill-mode: forwards; */
+    animation: fadeIn 10000ms linear 0ms infinite;
 }
 
 .background1>h1,.background2>h1{
@@ -49,7 +65,156 @@
     color: white;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    top:30vh;
+    top:25vh;
     left:80vw;
     z-index: 1;
+}
+
+.navtop{
+    position: absolute;
+    left: 13vw;
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    z-index: 1;
+}
+
+.navtop>h1{
+    opacity: 1;
+    animation: none;
+}
+
+.secondColumns>ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.secondColumns>ul>li{
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.form-container{
+    position: absolute;
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 1;
+    top: 40vh;
+}
+
+.train-search-form{
+    padding: 0 32px;
+    width: 75vw;
+    height: 7vh;
+    background: white;
+    z-index: 1;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+    box-shadow: 2px solid #a9a9a9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.search-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.from,.to,.doj{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.from>label,.to>label,.doj>label{
+    color:rgba(0,0,0,0.7);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.from>input,.to>input,.doj>input{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #a9a9a9;
+    font-family: 'Noto Sans', sans-serif;
+    padding: 2px;
+    font-size: 14px;
+}
+
+.from>input:focus,.to>input:focus,.doj>input:focus{
+    outline: none;
+    animation: borderAnimation 500 linear 1ms 1 forwards;
+    border-bottom: 2px solid #1A63A7;
+}
+
+.flip-arrow{
+    position: relative;
+}
+
+.bidirectional-arrow{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 24px;
+}
+
+.fa{
+    color:#1A63A7;
+    font-size: 8px;
+}
+
+.circle{
+    z-index: 1;
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    border: 1px solid #1A63A7;
+    position: absolute;
+    top: 19px;
+    left: -9px;
+    cursor: pointer;
+}
+
+.search-button{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #1A63A7;
+    border: 1px solid #1A63A7;
+    border-radius: 2px;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.fa-search{
+    font-size: 16px;
+    color: white;
+    padding-right: 16px;
+}
+
+.search-button>p{
+    text-transform: capitalize;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
 }
