@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import "../Navbar.css"
 import NavTop from "./NavTop";
-import TrainSearchForm from "./TrainSearchForm";
 
 const backgroundImages = [
     {
@@ -85,9 +84,6 @@ class Navbar extends Component{
                     <img className="pseudo-background1" src={background1.url}></img>
                 </div>
                 <div className="realBackground">
-                </div>
-                <div className="form-container">
-                    <TrainSearchForm></TrainSearchForm>
                 </div>
             </div>
         )

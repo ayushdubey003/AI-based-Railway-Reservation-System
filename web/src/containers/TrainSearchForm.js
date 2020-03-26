@@ -30,6 +30,10 @@ class TrainSearchForm extends Component{
         )
     }
 
+    handleDropDownItemClick(e){
+        let val = e.target.innerText;
+    }
+
     handleFormChanges(e)
     {
         let value = e.target.value;
@@ -48,7 +52,7 @@ class TrainSearchForm extends Component{
                 if(KMPSearch(value,station.code)||KMPSearch(value,station.name))
                     matchedData.push(station);
             }
-            let filteredData = matchedData.map((item,index)=> <SearchDropdownItem key={index}>{item.code}{item.name}</SearchDropdownItem>)
+            let filteredData = matchedData.map((item,index)=> <SearchDropdownItem key={index}>{item.code}{item.name}{this.handleDropDownItemClick}</SearchDropdownItem>)
             this.setState({
                 matchedForItems: filteredData,
             });
@@ -68,7 +72,7 @@ class TrainSearchForm extends Component{
                 if(KMPSearch(value,station.code)||KMPSearch(value,station.name))
                     matchedData.push(station);
             }
-            let filteredData = matchedData.map((item,index)=> <SearchDropdownItem key={index}>{item.code}{item.name}</SearchDropdownItem>)
+            let filteredData = matchedData.map((item,index)=> <SearchDropdownItem key={index}>{item.code}{item.name}{this.handleDropDownItemClick}</SearchDropdownItem>)
             this.setState({
                 matchedToItems: filteredData,
             });

@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 import {loadInitialData} from "../store/actions/initialAppData";
 import {TRAINS_LIST_LOADED,STATIONS_LIST_LOADED} from "../store/actionTypes";
 import Navbar from "./Navbar";
+import TrainSearchForm from "./TrainSearchForm";
+import Feature from "../components/Feature";
+import Headers from "../components/Headers";
 
 class App extends Component{
   constructor(props){
@@ -23,6 +26,15 @@ class App extends Component{
     return (
       <div className="App">
         <Navbar></Navbar>
+        <div className="header-content">
+          <Headers></Headers>
+        </div>
+        <div className="form-container">
+            <TrainSearchForm></TrainSearchForm>
+        </div>
+        <div className="feature-container">
+          <Feature></Feature>
+        </div>
       </div>
     )
   }
