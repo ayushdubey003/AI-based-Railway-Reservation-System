@@ -282,6 +282,8 @@ def listoftrains(board, destination):
 
     return jsonify(trains=ans)
 
+#doj here is for day of the week...e.g. MON,TUE.....
+
 @app.route("/trains/<board>/<destination>/<doj>/<travelclass>", methods=['GET'])
 def listoftrainsdaywise(board, destination,doj,travelclass):
     ans = []

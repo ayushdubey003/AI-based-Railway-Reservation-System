@@ -1,4 +1,4 @@
-import {FROM_STATION,TO_STATION} from "../actionTypes";
+import {FROM_STATION,TO_STATION,DATE_OF_JOURNEY} from "../actionTypes";
 
 export function updateDepartureStation(data){
     return {
@@ -11,5 +11,12 @@ export function updateArrivalStation(data){
     return {
         type: TO_STATION,
         to_station: data
+    }
+}
+
+export function updateJourneyDate(data){
+    return {
+        type: DATE_OF_JOURNEY,
+        doj: data
     }
 }
