@@ -9,6 +9,7 @@ import Feature from "../components/Feature";
 import Headers from "../components/Headers";
 import {Switch,Route,Redirect,Link} from "react-router-dom";
 import RunningStatusForm from './RunningStatusForm';
+import TrainListContainer from './TrainListContainer';
 
 class App extends Component{
   constructor(props){
@@ -46,6 +47,9 @@ class App extends Component{
         </div>
         <div className="feature-container">
           <Feature></Feature>
+        </div>
+        <div className="train-list-container">
+          <TrainListContainer></TrainListContainer>
         </div>
       </div>
     )

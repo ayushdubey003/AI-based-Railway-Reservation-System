@@ -388,3 +388,16 @@
     color: #C59676;
     font-family: 'Open Sans', sans-serif;
 }
+
+.train-list-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.train-list{
+    width: 75vw;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 2px solid #a9a9a9;
+}
