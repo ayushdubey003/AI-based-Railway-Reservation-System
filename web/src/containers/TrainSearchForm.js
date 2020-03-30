@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {updateDepartureStation,updateArrivalStation,updateJourneyDate} from "../store/actions/updateArrivalDepartureStations";
 import KMPSearch from "../services/KMPStringmatch";
 import SearchDropdownItem from "../components/SearchDropdownItem";
+import loadTrains from "../store/actions/loadTrains";
 
 class TrainSearchForm extends Component{
     constructor(props){
@@ -120,13 +121,12 @@ class TrainSearchForm extends Component{
         });
         let src = this.props.from_station;
         let dest = this.props.to_station;
+        let doj = this.props.doj.getDay();
         let srcMatch = false;
         let destMatch = false;
-        console.log(src+" "+dest);
         for(let i=0;i<this.props.stationsList.length;i++)
         {
             let sn=this.props.stationsList[i].name+" - "+this.props.stationsList[i].code;
-            console.log(sn);
             if(sn.toLowerCase() == src.toLowerCase())
                 srcMatch = true;
             if(sn.toLowerCase() == dest.toLowerCase())
@@ -146,6 +146,13 @@ class TrainSearchForm extends Component{
             },3000);
             return;
         }
+        let days = "SUN MON TUE WED THURS FRI SAT".split(" ");
+        doj = days[doj];
+        src = src.split("-")[1].trim();
+        dest  = dest.split("-")[1].trim();
+
+        let url = `http://localhost:5000/trains/${src}/${dest}/${doj}/SL`;
+        this.props.dispatch(loadTrains(url));
     }
 
     render(){
@@ -202,7 +209,7 @@ function mapStateToProps(state){
         stationsList: state.initialAppData.stationsList,
         to_station: state.updateArrivalDepartureStations.to_station,
         from_station: state.updateArrivalDepartureStations.from_station,
-        doj : state.updateArrivalDepartureStations.doj
+        doj : state.updateArrivalDepartureStations.doj,
     }
 }
 
