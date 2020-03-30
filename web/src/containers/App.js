@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 import TrainSearchForm from "./TrainSearchForm";
 import Feature from "../components/Feature";
 import Headers from "../components/Headers";
+import {Switch,Route,Redirect,Link} from "react-router-dom";
+import RunningStatusForm from './RunningStatusForm';
 
 class App extends Component{
   constructor(props){
@@ -30,7 +32,17 @@ class App extends Component{
           <Headers></Headers>
         </div>
         <div className="form-container">
-            <TrainSearchForm></TrainSearchForm>
+          <Switch>
+            <Route exact path="/">
+              <TrainSearchForm></TrainSearchForm>
+            </Route>
+            <Route exact path="/search/seats">
+              <TrainSearchForm></TrainSearchForm>
+            </Route>
+            <Route exact path="/search/runningstatus">
+              <RunningStatusForm></RunningStatusForm>
+            </Route>
+          </Switch>
         </div>
         <div className="feature-container">
           <Feature></Feature>

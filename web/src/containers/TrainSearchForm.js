@@ -12,7 +12,8 @@ class TrainSearchForm extends Component{
         this.state = {
             matchedForItems: [],
             matchedToItems: [],
-            focus: -1
+            focus: -1,
+            showError: false
         }
         this.handleFocusChanges = this.handleFocusChanges.bind(this);
         this.handleDropDownItemClick = this.handleDropDownItemClick.bind(this);
@@ -93,6 +94,9 @@ class TrainSearchForm extends Component{
         if(e.target.name == "date"){
             let d = new Date(e.target.value);
             this.props.dispatch(updateJourneyDate(d));
+            this.setState({
+                focus: -1
+            });
         }
     }
 
@@ -111,13 +115,37 @@ class TrainSearchForm extends Component{
 
     handleFormSubmit(e){
         e.preventDefault();
-        console.log("HERe");
-        let url = "http://localhost:5000/trains/GKP/LKO/MON/SL";
-        fetch(url).then((res)=>{
-            if(!res.ok)
-                throw("Error");
-            return res.json()
-        }).then((res)=>console.log(res)).catch((e)=>console.log(e));
+        this.setState({
+            focus: -1
+        });
+        let src = this.props.from_station;
+        let dest = this.props.to_station;
+        let srcMatch = false;
+        let destMatch = false;
+        console.log(src+" "+dest);
+        for(let i=0;i<this.props.stationsList.length;i++)
+        {
+            let sn=this.props.stationsList[i].name+" - "+this.props.stationsList[i].code;
+            console.log(sn);
+            if(sn.toLowerCase() == src.toLowerCase())
+                srcMatch = true;
+            if(sn.toLowerCase() == dest.toLowerCase())
+                destMatch = true;
+            if(srcMatch&&destMatch)
+                break;
+        }
+        if(!srcMatch||!destMatch)
+        {
+            this.setState({
+                showError: true
+            });
+            setTimeout(()=>{
+                this.setState({
+                    showError: false
+                });
+            },3000);
+            return;
+        }
     }
 
     render(){
@@ -160,6 +188,9 @@ class TrainSearchForm extends Component{
                     <div className={this.state.focus == 1?'to-dropdown':'to-hidden'}>
                         {this.state.matchedToItems}
                     </div>
+                </div>
+                <div className="error-message" style={this.state.showError?{opacity:1}:{opacity:0}}>
+                    <p>There seems to be some error in the above inputs.Please validate your inputs</p>
                 </div>
             </div>
         )
