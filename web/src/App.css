@@ -573,7 +573,8 @@
     border: 2px solid  #1A63A7;
     border-radius: 2px;
     font-weight: 400;
-    text-transform: capitalize
+    text-transform: capitalize;
+    cursor: pointer;
 }
 
 .six-days{
@@ -582,4 +583,11 @@
 
 .four-months{
     margin-right: 48px;
+}
+
+.train-list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -26,6 +26,11 @@ class App extends Component{
       localStorage.setItem("stationsList",JSON.stringify(this.props.stationsList));
       localStorage.setItem("trainsList",JSON.stringify(this.props.trainsList));
     }
+    
+    let trains=[];
+    if(this.props.trains.trains!=undefined)
+      trains = this.props.trains.trains.map((item,index)=><TrainListItem key={index}>{item}</TrainListItem>)
+
     return (
       <div className="App">
         <Navbar></Navbar>
@@ -51,8 +56,8 @@ class App extends Component{
         <div className="feature-container">
           <Feature></Feature>
         </div>
-        <div className="train-list-container">
-          <TrainListItem></TrainListItem>
+        <div className="train-list-container" style={this.props.loading?{opacity:0}:{opacity:1}}>
+          {trains}
         </div>
       </div>
     )
@@ -63,7 +68,8 @@ function mapStateToProps(state){
   return {
     trainsList: state.initialAppData.trainsList,
     stationsList: state.initialAppData.stationsList,
-    loading: state.loadTrains.loading
+    loading: state.loadTrains.loading,
+    trains: state.loadTrains.trains
   }
 }
 

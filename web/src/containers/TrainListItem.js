@@ -7,21 +7,22 @@ class TrainListItem extends Component{
     }
 
     render(){
+        let train = this.props.children;
         return <div className="train-item">
             <div className="train-details">
                 <div className="train-number">
-                    15909
+                    {train['train no']}
                 </div>
                 <div className="train-name">
-                    abadh assam express
+                    {train['train name']}
                     <span className="train-type">
-                        (Mail/Express)
+                        ({train['type']})
                     </span>
                 </div>
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
             </div>
             <div className="time-details">
-                <div className="src-time">03:20pm</div>
+                <div className="src-time">{train['departure times'][0]}</div>
                 <div className="middle">
                     <div className="duration">
                         <div className="view"></div>
@@ -32,10 +33,12 @@ class TrainListItem extends Component{
                             s m t w t f s
                     </div>
                 </div>
-                <div className="dept-time">05:45am</div>
+                <div className="dept-time">{train['arrival times'][train['arrival times'].length-2]}</div>
             </div>
             <div className="card-navbar">
                 <div className="six-days">View six days availability</div>
+                <div className="six-days" style={{opacity: 0}}>Vieew hahaha</div>
+
                 <div className="ticket-details">
                     <div className="travel-class">
                         SL
@@ -50,6 +53,7 @@ class TrainListItem extends Component{
                         58%
                     </div>
                 </div>
+                <div className="six-days" style={{opacity: 0}}>Vieew</div>
                 <div className="four-months">View four months availability</div>
             </div>
         </div>
