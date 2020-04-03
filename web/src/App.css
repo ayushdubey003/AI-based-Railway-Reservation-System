@@ -412,13 +412,6 @@
     justify-content: center;
 }
 
-.train-list{
-    width: 75vw;
-    background: white;
-    border-radius: 4px;
-    box-shadow: 2px solid #a9a9a9;
-}
-
 .loader-container{
     display: flex;
     justify-content: center;
@@ -440,4 +433,153 @@
 	animation-duration: 1s;
     animation-timing-function: linear;
     z-index:10;
+}
+
+.train-item{
+    width: 60vw;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 2px solid #a9a9a9;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+    box-shadow: 2px solid #a9a9a9;
+    padding: 24px;
+}
+
+.train-details,.time-details,.ticket-details,.card-navbar{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Noto Sans', sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 8px;
+}
+
+.ticket-details{
+    justify-content: center;
+}
+
+.view-more{
+    justify-content: space-between
+}
+
+.train-number{
+    color: white;
+    background: rgb(70,137,51);
+    background: linear-gradient(90deg, rgba(70,137,51,1) 0%, rgba(85,167,79,1) 50%, rgba(108,197,110,1) 100%);
+    padding: 8px 32px;
+    border: 1px solid #478A34;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-left: 48px;
+}
+
+.train-name{
+    color: #1A63A7;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.train-type{
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+    margin-left: 16px;
+}
+
+.fa-map-marker{
+    font-size: 32px;
+    color: #a9a9a9;
+    cursor: pointer;
+    margin-right: 48px;    
+}
+
+.src-time,.dept-time{
+    color: rgba(0,0,0,0.6)
+}
+
+.dept-time{
+    margin-right: 54px;
+}
+
+.src-time{
+    margin-left: 54px;
+}
+
+.running-days{
+    text-transform: uppercase;
+    color: greenyellow
+}
+
+.middle{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.duration{
+    display: flex;
+    flex-direction: row;
+    color: rgba(0,0,0,0.6)
+}
+
+.view{
+    width: 50%;
+    height: 2px;
+    background: rgba(0,0,0,0.9);
+    margin-top: 10px;
+}
+
+.travel-class{
+    color: rgba(0,0,0,0.7);
+    padding: 4px;
+    border: 2px solid  #1A63A7;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.fare{
+    color: rgba(0,0,0,0.7);
+    padding: 4px;
+    border-top: 2px solid  #1A63A7;
+    border-bottom: 2px solid  #1A63A7;
+    background: #1A63A7;
+    color: white;
+}
+
+.ticket-status{
+    color: rgba(0,0,0,0.7);
+    padding: 4px;
+    border-left: 2px solid  #1A63A7;
+    border-top: 2px solid  #1A63A7;
+    border-bottom: 2px solid  #1A63A7;
+}
+
+.confirmation-probability{
+    color: rgba(0,0,0,0.7);
+    padding: 4px;
+    border: 2px solid  #1A63A7;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background: #1A63A7;
+    color: white;
+}
+
+.six-days,.four-months{
+    background: #1A63A7;
+    color: white;
+    padding: 8px;
+    border: 2px solid  #1A63A7;
+    border-radius: 2px;
+    font-weight: 400;
+    text-transform: capitalize
+}
+
+.six-days{
+    margin-left: 48px;
+}
+
+.four-months{
+    margin-right: 48px;
 }
