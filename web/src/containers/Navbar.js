@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import "../Navbar.css"
+import "../App.css"
 import NavTop from "./NavTop";
 
 const backgroundImages = [

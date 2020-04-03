@@ -1,6 +1,6 @@
-import {LOAD_SRC_TO_DEST_TRAINS} from "../actionTypes";
+import {LOAD_SRC_TO_DEST_TRAINS,CHANGE_LOAD_TYPE} from "../actionTypes";
 
-export default function loadTrains(url){
+export function loadTrains(url){
     return function(dispatch){
         fetch(url).then((res)=>{
             if(!res.ok)
@@ -13,4 +13,10 @@ export default function loadTrains(url){
             })
         }).catch((e)=>console.log(e));
     }
+}
+
+export function changeLoadType(){
+    return {
+        type:CHANGE_LOAD_TYPE
+    }   
 }

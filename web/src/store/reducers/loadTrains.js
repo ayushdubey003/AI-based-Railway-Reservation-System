@@ -1,8 +1,9 @@
-import { LOAD_SRC_TO_DEST_TRAINS } from "../actionTypes";
+import { LOAD_SRC_TO_DEST_TRAINS, CHANGE_LOAD_TYPE } from "../actionTypes";
 
 
 const defaultState = {
-    trains: []
+    trains: [],
+    loading: false
 }
 
 export default function loadTrains(state=defaultState,action){
@@ -10,7 +11,13 @@ export default function loadTrains(state=defaultState,action){
         case LOAD_SRC_TO_DEST_TRAINS:
             return {
                 ...state,
-                trains: action.trains
+                trains: action.trains,
+                loading: false
+            }
+        case CHANGE_LOAD_TYPE:
+            return{
+                ...state,
+                loading: true
             }
         default:
             return state;

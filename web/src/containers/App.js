@@ -32,6 +32,9 @@ class App extends Component{
         <div className="header-content">
           <Headers></Headers>
         </div>
+        <div className="loader-container" style={this.props.loading?{opacity:1}:{opacity:0}}>
+          <div className="loader"></div>
+        </div>
         <div className="form-container">
           <Switch>
             <Route exact path="/">
@@ -59,7 +62,8 @@ class App extends Component{
 function mapStateToProps(state){
   return {
     trainsList: state.initialAppData.trainsList,
-    stationsList: state.initialAppData.stationsList
+    stationsList: state.initialAppData.stationsList,
+    loading: state.loadTrains.loading
   }
 }
 

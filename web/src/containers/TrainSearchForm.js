@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {updateDepartureStation,updateArrivalStation,updateJourneyDate} from "../store/actions/updateArrivalDepartureStations";
 import KMPSearch from "../services/KMPStringmatch";
 import SearchDropdownItem from "../components/SearchDropdownItem";
-import loadTrains from "../store/actions/loadTrains";
+import {loadTrains,changeLoadType} from "../store/actions/loadTrains";
 
 class TrainSearchForm extends Component{
     constructor(props){
@@ -116,6 +116,8 @@ class TrainSearchForm extends Component{
 
     handleFormSubmit(e){
         e.preventDefault();
+        if(this.props.loading)
+            return;
         this.setState({
             focus: -1
         });
@@ -152,15 +154,22 @@ class TrainSearchForm extends Component{
         dest  = dest.split("-")[1].trim();
 
         let url = `http://localhost:5000/trains/${src}/${dest}/${doj}/SL`;
+        this.props.dispatch(changeLoadType());
         this.props.dispatch(loadTrains(url));
     }
 
     render(){
         let date="";
-        if(this.props.doj.getMonth()<9)
+        let doj = this.props.doj;
+        if(this.props.doj.getMonth()<9&&doj.getDate()<10)
+            date = `${this.props.doj.getFullYear()}-0${this.props.doj.getMonth()+1}-0${this.props.doj.getDate()}`;
+        else if(doj.getMonth()<9)
             date = `${this.props.doj.getFullYear()}-0${this.props.doj.getMonth()+1}-${this.props.doj.getDate()}`;
+        else if(doj.getDate()<10)
+            date = `${this.props.doj.getFullYear()}-${this.props.doj.getMonth()+1}-0${this.props.doj.getDate()}`;
         else
             date = `${this.props.doj.getFullYear()}-${this.props.doj.getMonth()+1}-${this.props.doj.getDate()}`;
+            
         return (
             <div className="train-search-form">
                 <form className="search-form" onSubmit={this.handleFormSubmit}>
@@ -210,6 +219,7 @@ function mapStateToProps(state){
         to_station: state.updateArrivalDepartureStations.to_station,
         from_station: state.updateArrivalDepartureStations.from_station,
         doj : state.updateArrivalDepartureStations.doj,
+        loading: state.loadTrains.loading
     }
 }
 
