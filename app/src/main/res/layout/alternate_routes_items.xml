@@ -8,7 +8,7 @@
     android:layout_margin="8dp"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/cardview_default_radius"
-    app:cardElevation="@dimen/cardview_default_elevation">
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -592,11 +592,6 @@
                         android:id="@+id/olinearLayout"
                         android:layout_width="0dp"
                         android:layout_height="80dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -604,20 +599,23 @@
 
                         <ImageView
                             android:id="@+id/oimg1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:layout_gravity="center"
                             android:layout_weight="2"
                             android:padding="4dp"
-                            android:src="@drawable/ic_train_black_24dp"
-                            android:tint="#000" />
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:alpha="0.9"
+                            android:tint="@color/colorPrimary" />
 
                         <ImageView
                             android:id="@+id/imageView2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/arrow" />
+                            android:rotation="180"
+                            android:src="@drawable/ic_arrow_back_black_24dp"
+                            android:tint="@color/colorPrimary" />
 
                         <ImageView
                             android:id="@+id/oimg2"
@@ -626,32 +624,36 @@
                             android:layout_gravity="center"
                             android:layout_weight="2"
                             android:padding="4dp"
-                            android:src="@drawable/ic_train_black_24dp"
-                            android:tint="#000" />
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:alpha="1"
+                            android:tint="@color/colorPrimary" />
 
                         <ImageView
                             android:id="@+id/imageView"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/arrow" />
+                            android:src="@drawable/ic_arrow_back_black_24dp"
+                            android:rotation="180"
+                            android:tint="@color/colorPrimary"/>
 
                         <ImageView
                             android:id="@+id/oimg3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:layout_gravity="center"
                             android:layout_weight="2"
                             android:padding="4dp"
-                            android:src="@drawable/ic_train_black_24dp"
-                            android:tint="#000" />
+                            android:alpha="0.9"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="@color/colorPrimary" />
 
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/otime"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="30dp"
                         android:gravity="center"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -673,7 +675,7 @@
 
                         <TextView
                             android:id="@+id/ott1s"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -684,7 +686,7 @@
 
                         <TextView
                             android:id="@+id/ott1d"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -695,13 +697,13 @@
 
                         <TextView
                             android:id="@+id/ott1n"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="TextView"
-                            android:textSize="18sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -762,7 +764,7 @@
                                         android:paddingTop="4dp"
                                         android:paddingRight="4dp"
                                         android:paddingBottom="4dp"
-                                        android:text="N/A"
+                                        android:text="₹ 190"
                                         android:textColor="#fff"
                                         android:textSize="13sp"
                                         android:visibility="invisible"></TextView>
@@ -838,7 +840,7 @@
 
                         <TextView
                             android:id="@+id/ott2s"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -849,7 +851,7 @@
 
                         <TextView
                             android:id="@+id/ott2d"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -860,13 +862,13 @@
 
                         <TextView
                             android:id="@+id/ott2n"
-                            style="@style/font"
+                            style="@style/internal_fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="TextView"
-                            android:textSize="18sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -1005,7 +1007,7 @@
                         <TextView
                             android:id="@+id/s1nm"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="TextView"
@@ -1023,7 +1025,7 @@
                         <TextView
                             android:id="@+id/s3nm"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="TextView"

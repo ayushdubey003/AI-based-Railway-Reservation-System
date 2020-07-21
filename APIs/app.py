@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -16,19 +17,23 @@ import time
 
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 # with open('./stations.csv', 'rt') as file:
 #     reader = csv.reader(file)
 #     # for row in reader:
 #     #     print(row)
-app.run(host="0.0.0.0", port=5000, debug=True)
+# app.run(host="0.0.0.0", port=5000, debug=True)
 
 @app.route("/")
+@cross_origin()
 def home():
     return 'hii...there 3!!!'
 
-@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>/<type>", methods=['GET'])
-def alternates(board,destination,intermediates,doj,mintime,maxtime,type):
-    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime+" "+type
+@app.route("/alternates/<board>/<destination>/<intermediates>/<doj>/<mintime>/<maxtime>", methods=['GET'])
+def alternates(board,destination,intermediates,doj,mintime,maxtime):
+    cmd = "./Algorithm "+board+" "+destination+" "+intermediates+" "+doj+" "+mintime+" "+maxtime+" 1"
     os.system(cmd)
     file=""
     with open("result.txt","r") as readFile:
@@ -277,6 +282,8 @@ def listoftrains(board, destination):
 
     return jsonify(trains=ans)
 
+#doj here is for day of the week...e.g. MON,TUE.....
+
 @app.route("/trains/<board>/<destination>/<doj>/<travelclass>", methods=['GET'])
 def listoftrainsdaywise(board, destination,doj,travelclass):
     ans = []
@@ -370,18 +377,21 @@ def listoftrainsdaywise(board, destination,doj,travelclass):
 @app.route("/seats/<trainno>/<board>/<destination>/<travelClass>/<doj>/<quota>", methods=['GET'])
 def seat_availability(trainno, board, destination, travelClass, doj, quota):
     url = "https://www.railyatri.in/seat-availability/" +trainno+"-"+board+"-"+destination+"?journey_class="+travelClass+"&journey_date="+doj+"&quota="+quota
+    print(url)
     try:
         content = requests.get(url)
         soup = BeautifulSoup(content.text, 'html.parser')
 
         try:
             availability = []
-            x = soup.find('div',{"id":"one"}).find_all('div',{"class":"seat_availability_details"})
+            x = soup.find_all('div',{"class":"sa-quota-block"})[0].find_all('div',{"class":"availability-block"})[0].find_all('div',{"class":"row"})
             for i in range(0,len(x)):
                 v = "first"+str(i+1)
-                availability.append(x[i].find('span',{"class":"status_one"}).find('div',{"id":v}).text)
+                availability.append(x[i].find_all('div',{"class":"col-md-4"})[0])
+            print(availability)
             return jsonify(seatavailability=availability)
         except Exception as e:
+            print(e)
             return jsonify(error = str(e))
 
     except Exception as e:
