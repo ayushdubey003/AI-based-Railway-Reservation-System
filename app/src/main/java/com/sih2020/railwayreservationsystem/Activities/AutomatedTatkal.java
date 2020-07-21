@@ -125,7 +125,7 @@ public class AutomatedTatkal extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Toast.makeText(AutomatedTatkal.this, "Set the service", Toast.LENGTH_SHORT).show();
                                     progressDialog.show();
-                                    setProfileDataFromBlockChain();
+                                    fetchWalletBalanceFromBlockChain();
 
                                 }
                             })
@@ -144,7 +144,7 @@ public class AutomatedTatkal extends AppCompatActivity {
         });
     }
 
-    private void setProfileDataFromBlockChain() {
+    private void fetchWalletBalanceFromBlockChain() {
         String url = AppConstants.mUrl + "/calculateWalletAmount/" + FirebaseAuth.getInstance().getCurrentUser().getUid();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
