@@ -1,7 +1,7 @@
 # AI-based-Railway-Reservation-System
 
 ## Usage :
-Predict alternates and seat availability accurately in the app using machine learning and graph traversal algorithms .
+Predict alternates and seat availability accurately in the app using machine learning and graph traversal algorithms.
 Automated Tatkal booking using wallet implemented in blockchain .
 
 ## TechStack : 
